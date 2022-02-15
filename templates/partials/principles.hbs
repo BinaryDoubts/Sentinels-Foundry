@@ -1,0 +1,66 @@
+{{!-- Principles --}}
+<section class="sheet-content principles twocolgrid box-border">
+    {{!-- Entries for first principle, roleplaying info, minor twist and major twist --}}
+    <div class="principle">
+        <h3 class="section-name section-name-principle">
+            <input name="data.firstPrinciple.name" type="text" value="{{data.data.firstPrinciple.name}}"
+                placeholder="First Principle">
+        </h3>
+        <h4 class="principle-section">
+            {{localize "SCRPG.principles.duringRoleplaying"}}
+        </h4>
+        <div>
+            {{editor content=data.data.firstPrinciple.roleplaying target="data.firstPrinciple.roleplaying"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+        <h4 class="principle-section">
+            {{localize "SCRPG.twist.minorTwist"}}
+        </h4>
+        <div>
+            {{editor content=data.data.firstPrinciple.minorTwist target="data.firstPrinciple.minorTwist"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+        <h4 class="principle-section">
+            {{localize "SCRPG.twist.majorTwist"}}
+        </h4>
+        <div>
+            {{editor content=data.data.firstPrinciple.majorTwist target="data.firstPrinciple.majorTwist"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+    </div>
+
+    {{!-- Entries for second principle, roleplaying info, minor twist and major twist --}}
+    <div class="principle left-border">
+        <h3 class="section-name section-name-principle">
+            <input name="data.secondPrinciple.name" type="text" value="{{data.data.secondPrinciple.name}}"
+                placeholder="Second Principle">
+        </h3>
+        <h4 class="principle-section">
+            {{localize "SCRPG.principles.duringRoleplaying"}}
+        </h4>
+        <div>
+            {{editor content=data.data.secondPrinciple.roleplaying target="data.secondPrinciple.roleplaying"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+        <h4 class="principle-section">
+            {{localize "SCRPG.twist.minorTwist"}}
+        </h4>
+        <div>
+            {{editor content=data.data.secondPrinciple.minorTwist target="data.secondPrinciple.minorTwist"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+        <h4 class="principle-section">
+            {{localize "SCRPG.twist.majorTwist"}}
+        </h4>
+        <div>
+            {{editor content=data.data.secondPrinciple.majorTwist target="data.secondPrinciple.majorTwist"
+            button=true
+            owner=owner editable=editable}}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+{{!-- Displays a roll of a sinple power, quality or status die --}}
+
+<div class="SCRPG chat roll">
+    <div class="dice-results dice-rolled box-border">
+        {{!-- Table displays name, die type, and result --}}
+        <table>
+            <colgroup>
+                <col style="width: 65px">
+                <col>
+                <col style="width: 40px">
+            </colgroup>
+            <tr>
+                {{!-- Displays the type of roll, name, and die result --}}
+                {{#if (eq rollResult.rollType "power")}}
+                <th>{{localize "SCRPG.powerquality.power"}}</th>
+                {{/if}}
+                {{#if (eq rollResult.rollType "quality")}}
+                <th>{{localize "SCRPG.powerquality.quality"}}</th>
+                {{/if}}
+                {{#if (eq rollResult.rollType "status")}}
+                <th>{{localize "SCRPG.powerquality.status"}}</th>
+                {{/if}}
+                <td>
+                    {{#if (eq rollResult.rollName "green")}}{{localize "SCRPG.scene.green"}}
+                    {{else}}
+                    {{#if (eq rollResult.rollName "yellow")}}{{localize "SCRPG.scene.yellow"}}
+                    {{else}}
+                    {{#if (eq rollResult.rollName "red")}}{{localize "SCRPG.scene.red"}}
+                    {{else}}
+                    {{rollResult.rollName}}
+                    {{/if}}
+                    {{/if}}
+                    {{/if}}
+
+                </td>
+                <td colspan="2">
+                    <div class="dice" style="margin-right: 6px">
+                        <label> {{{rollResult.total}}} </label>
+                        {{#if rollResult.img}}
+                        <img src="{{rollResult.img}}" />
+                        {{/if}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

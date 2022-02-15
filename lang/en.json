@@ -1,0 +1,133 @@
+{
+    "ACTOR.TypeHero": "Hero",
+    "ACTOR.TypeVillain": "Villain",
+    "ACTOR.TypeEnvironment": "Environment",
+    "ITEM.TypePower": "Power",
+    "ITEM.TypeQuality": "Quality",
+    "ITEM.TypeAbility": "Ability",
+    "ITEM.TypeVillainstatus": "Villain Status",
+    "ITEM.TypeEnvironmenttwist": "Environment Twist",
+    "SCRPG": {
+        "sheet": {
+            "die": "Die",
+            "description": "Description",
+            "newItem": "N/A"
+        },
+        "tabs": {
+            "heroInfo": "Hero",
+            "villainInfo": "Villain",
+            "powers": "Powers",
+            "principlesIssues": "Principles",
+            "auxiliary": "Auxiliary",
+            "minions": "Minions"
+        },
+        "scene": {
+            "green": "Green",
+            "yellow": "Yellow",
+            "red": "Red"
+        },
+        "charInfo": {
+            "heroName": "Hero Name",
+            "villainName": "Villain Name",
+            "alias": "Alias",
+            "physicalAttributes": "Physical Attributes",
+            "gender": "Gender",
+            "age": "Age",
+            "height": "Height",
+            "eyes": "Eyes",
+            "hair": "Hair",
+            "skin": "Skin",
+            "build": "Build",
+            "costume": "Costume",
+            "characteristics": "Characteristics",
+            "background": "Background",
+            "powerSource": "Power Source",
+            "archetype": "Archetype",
+            "personality": "Personality",
+            "approach": "Approach",
+            "health": "Health",
+            "currentHealth": "Current Health",
+            "maxHealth": "Max Health"
+        },
+        "principles": {
+            "duringRoleplaying": "During Roleplaying"
+        },
+        "issues": {
+            "heroPoints": "Hero Points",
+            "thisIssue": "This Issue",
+            "heroPointRewards": "Hero Point Rewards",
+            "backIssues": "Back Issues",
+            "collections": "Collections"
+        },
+        "abilities": {
+            "abilities": "Abilities",
+            "icon": "Icon",
+            "type": "Type",
+            "gameText": "Game Text",
+            "name": "Name",
+            "formmode": "Form/Mode",
+            "description": "Description"
+        },
+        "abilitytypes": {
+            "A": {
+                "display": "A",
+                "tooltip": "Action"
+            },
+            "I": {
+                "display": "I",
+                "tooltip": "Inherent"
+            },
+            "R": {
+                "display": "R",
+                "tooltip": "Reaction"
+            }
+        },
+        "powerquality": {
+            "power": "Power",
+            "quality": "Quality",
+            "powers": "Powers",
+            "qualities": "Qualities",
+            "statusDice": "Status Dice",
+            "status": "Status",
+            "currentHealth": "Current Health",
+            "sceneStatus": "Scene Status"
+        },
+        "modes": {
+            "main": "Default",
+            "green": "Green",
+            "yellow": "Yellow",
+            "red": "Red",
+            "villain": "Villain",
+            "green1": "Mode/Form Green #1",
+            "green2": "Mode/Form Green #2",
+            "yellow1": "Mode/Form Yellow #1",
+            "yellow2": "Mode/Form Yellow #2",
+            "red1": "Mode/Form Red #1"
+        },
+        "auxiliary": {
+            "modular": "Modular",
+            "powerless": "Powerless Mode",
+            "formChanger": "Form-Changer",
+            "divided": "Divided",
+            "dividedPsyche": "Divided Psyche",
+            "dividedStatus": "Divided Status",
+            "powered": "Powered",
+            "civilian": "Civilian"
+        },
+        "twist": {
+            "greenminor": "Green Minor",
+            "greenmajor": "Green Major",
+            "yellowminor": "Yellow Minor",
+            "yellowmajor": "Yellow Major",
+            "redminor": "Red Minor",
+            "redmajor": "Red Major",
+            "minorTwist": "Minor Twist",
+            "majorTwist": "Major Twist"
+        },
+        "environment": {
+            "dieOne": "First Die",
+            "dieTwo": "Second Die",
+            "dieThree": "Third Die"
+        }
+    }
+}

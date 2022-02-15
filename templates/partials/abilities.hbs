@@ -1,0 +1,96 @@
+{{!-- Character sheet abilities display --}}
+
+{{!-- Displays Regular and Auxiliary abilities for hero type characters --}}
+{{!-- Auxiliary ability display --}}
+{{!-- Displays the current mode/form and its associated abilities --}}
+{{#if (eq data.data.divided true)}}
+<div class="section-name section-name-divided">
+    <h3>{{localize "SCRPG.auxiliary.dividedPsyche"}}</h3>
+</div>
+<div class="auxiliary-table" style="margin-bottom: 4px;">
+    <table class="box-border">
+        <colgroup>
+            <col width="140px">
+            <col width="140px">
+        </colgroup>
+        <tr>
+            <td>
+                <div class="auxiliary-item">
+                    <input class="set-powered" type="checkbox" name="data.poweredMode" {{checked data.data.poweredMode}}
+                        data-dtype="boolean" />
+                    <p>{{localize "SCRPG.auxiliary.powered"}}</p>
+                </div>
+            </td>
+            <td>
+                <div class="auxiliary-item">
+
+                    <input class="set-civilian" type="checkbox" name="data.civilianMode" {{checked
+                        data.data.civilianMode}} data-dtype="boolean" />
+                    <p>{{localize "SCRPG.auxiliary.civilian"}}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{{/if}}
+
+{{#if (eq data.data.civilianMode false)}}
+{{#if (eq this.actor.data.data.formchanger true)}}
+
+{{> "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs"}}
+
+{{/if}}
+
+{{#if (eq this.actor.data.data.modular true)}}
+
+{{> "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs"}}
+
+{{!-- Second yellow mode/form --}}
+{{#if (eq this.actor.data.data.mode "yellow2")}}
+<table class="box-border yellow-abilities">
+    <tr>
+        <th>{{localize "SCRPG.abilities.description"}}</th>
+    </tr>
+    <tr>
+        <td>
+            {{{this.actor.data.data.modeDescription.yellow2}}}
+        </td>
+    </tr>
+</table>
+{{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow2"}}
+{{/if}}
+
+{{!-- Red mode/form --}}
+{{#if (eq this.actor.data.data.mode "red1")}}
+<table class="box-border red-abilities">
+    <tr>
+        <th>{{localize "SCRPG.abilities.description"}}</th>
+    </tr>
+    <tr>
+        <td>
+            {{{this.actor.data.data.modeDescription.red1}}}
+        </td>
+    </tr>
+</table>
+{{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red1"}}
+{{/if}}
+{{/if}}
+{{/if}}
+
+{{!- Displays the regular green, yellow and red abilities --}}
+<h3 class="section-name section-name-ability">{{localize "SCRPG.abilities.abilities"}}</h3>
+<div class="ability-list">
+
+    {{#if (eq actor.type "hero")}}
+    {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green"}}
+    {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow"}}
+    {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red"}}
+    <input class="box-border out-box" type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
+    {{/if}}
+
+    {{!-- displays the villain abilities if the actor type is villain --}}
+    {{#if (eq actor.type "villain")}}
+    {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="villain"}}
+    {{/if}}
+</div>

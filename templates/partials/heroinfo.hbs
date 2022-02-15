@@ -1,0 +1,163 @@
+{{!-- Display all character background information --}}
+
+<section {{#if (eq actor.type "hero" )}}class="character chargrid chargrid-hero" {{/if}} {{#if (eq actor.type "villain"
+    )}}class="character chargrid chargrid-villain" {{/if}}>
+    <div class="character-photo">
+        <img src="{{data.img}}" data-edit="img" title="{{data.name}}" {{#if (eq actor.type "hero"
+            )}}class="hero-img img-border" {{/if}} {{#if (eq actor.type "villain" )}}class="villain-img img-border"
+            {{/if}} />
+
+    </div>
+
+    {{!-- Displays background information for hero type actor --}}
+    <div {{#if (eq actor.type "hero" )}}class="hero-info char-info" {{/if}} {{#if (eq actor.type "villain"
+        )}}class="villain-info char-info" {{/if}}>
+        <div class="names box-border">
+            <table>
+                <tr>
+                    <td>
+                        {{!-- Displays name dependant on actor type --}}
+                        {{#if (eq actor.type "hero" )}}
+                        <h3>{{localize "SCRPG.charInfo.heroName"}}</h3>
+                        {{/if}}
+                        {{#if (eq actor.type "villain" )}}
+                        <h3>{{localize "SCRPG.charInfo.villainName"}}</h3>
+                        {{/if}}
+                    </td>
+                    <td>
+                        <h3>{{localize "SCRPG.charInfo.alias"}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" />
+                    </td>
+                    <td>
+                        <input name="data.alias" type="text" value="{{data.data.alias}}">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{!-- Displays background information for hero type actor --}}
+        {{#if (eq actor.type "hero")}}
+        <div class="physical box-border">
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <h3>{{localize "SCRPG.charInfo.physicalAttributes"}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.gender"}}</h4>
+                        <input name="data.gender" type="text" value="{{data.data.gender}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.age"}}</h4>
+                        <input name="data.age" type="text" value="{{data.data.age}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.height"}}</h4>
+                        <input name="data.height" type="text" value="{{data.data.height}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.eyes"}}</h4>
+                        <input name="data.eyes" type="text" value="{{data.data.eyes}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.hair"}}</h4>
+                        <input name="data.hair" type="text" value="{{data.data.hair}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.skin"}}</h4>
+                        <input name="data.skin" type="text" value="{{data.data.skin}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.build"}}</h4>
+                        <input name="data.build" type="text" value="{{data.data.build}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <h4>{{localize "SCRPG.charInfo.costume"}}</h4>
+                        {{editor content=data.data.costume target="data.costume"
+                        button=true
+                        owner=owner editable=editable}}
+
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        {{/if}}
+        <div class="characteristics box-border">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <h3>{{localize "SCRPG.charInfo.characteristics"}}</h3>
+                    </td>
+                </tr>
+                {{#if (eq actor.type "hero")}}
+                <tr>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.background"}}</h4>
+                        <input name="data.background" type="text" value="{{data.data.background}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.powerSource"}}</h4>
+                        <input name="data.powerSource" type="text" value="{{data.data.powerSource}}">
+                    </td>
+                <tr>
+                    {{/if}}
+
+                    {{!-- Displays villain specific data --}}
+                    {{#if (eq actor.type "villain")}}
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.approach"}}</h4>
+                        <input name="data.approach" type="text" value="{{data.data.approach}}">
+                    </td>
+                    {{/if}}
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.archetype"}}</h4>
+                        <input name="data.archetype" type="text" value="{{data.data.archetype}}">
+                    </td>
+                    {{#if (eq actor.type "hero")}}
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.personality"}}</h4>
+                        <input name="data.personality" type="text" value="{{data.data.personality}}">
+                    </td>
+                    {{/if}}
+                </tr>
+                </tr>
+            </table>
+        </div>
+
+        {{!-- Displays villain specific data --}}
+        {{#if (eq actor.type "villain")}}
+        <div class="villain-health box-border">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <h3>{{localize "SCRPG.charInfo.health"}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.maxHealth"}}</h4>
+                        <input name="data.wounds.max" type="text" value="{{data.data.wounds.max}}">
+                    </td>
+                    <td>
+                        <h4>{{localize "SCRPG.charInfo.currentHealth"}}</h4>
+                        <input name="data.wounds.value" type="text" value="{{data.data.wounds.value}}">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{/if}}
+    </div>
+
+</section>

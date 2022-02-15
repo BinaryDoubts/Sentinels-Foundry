@@ -1,0 +1,132 @@
+{{!-- Hero points, back issues and collected trades --}}
+
+<section class="issues-grid">
+    <div class="box-border hero-point">
+        {{!-- Hero points collected in a session --}}
+        <div class="hero-point-grid">
+            <div class="hero-point-grid-item">
+                <h3>{{localize "SCRPG.issues.heroPoints"}}</h3>
+                <h3>{{localize "SCRPG.issues.thisIssue"}}:</h3>
+            </div>
+            <div class="hero-point-two">
+                <input type="checkbox" name="data.heroPoints.game.one" {{checked data.data.heroPoints.game.one}}
+                    data-dtype="boolean" />
+                <input type="checkbox" name="data.heroPoints.game.two" {{checked data.data.heroPoints.game.two}}
+                    data-dtype="boolean" />
+            </div>
+            <div class="hero-point-three">
+                <input type="checkbox" name="data.heroPoints.game.three" {{checked data.data.heroPoints.game.three}}
+                    data-dtype="boolean" />
+                <input type="checkbox" name="data.heroPoints.game.four" {{checked data.data.heroPoints.game.four}}
+                    data-dtype="boolean" />
+                <input type="checkbox" name="data.heroPoints.game.five" {{checked data.data.heroPoints.game.five}}
+                    data-dtype="boolean" />
+            </div>
+        </div>
+
+        {{!-- Hero rewards available for +1, +2, +3, and +4 --}}
+        <div>
+            <h3>{{localize "SCRPG.issues.heroPointRewards"}}</h3>
+            <div class="hero-reward-grid">
+                <div>
+                    <h3>+1</h3>
+                </div>
+                <div class="hero-point-four">
+                    <input type="checkbox" name="data.heroPoints.one.one" {{checked data.data.heroPoints.one.one}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.one.two" {{checked data.data.heroPoints.one.two}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.one.three" {{checked data.data.heroPoints.one.three}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.one.four" {{checked data.data.heroPoints.one.four}}
+                        data-dtype="boolean" />
+                </div>
+                <div>
+                    <h3>+2</h3>
+                </div>
+                <div class="hero-point-four">
+                    <input type="checkbox" name="data.heroPoints.two.one" {{checked data.data.heroPoints.two.one}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.two.two" {{checked data.data.heroPoints.two.two}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.two.three" {{checked data.data.heroPoints.two.three}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.two.four" {{checked data.data.heroPoints.two.four}}
+                        data-dtype="boolean" />
+                </div>
+                <div>
+                    <h3>+3</h3>
+                </div>
+                <div class="hero-point-four">
+                    <input type="checkbox" name="data.heroPoints.three.one" {{checked data.data.heroPoints.three.one}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.three.two" {{checked data.data.heroPoints.three.two}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.three.three" {{checked
+                        data.data.heroPoints.three.three}} data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.three.four" {{checked data.data.heroPoints.three.four}}
+                        data-dtype="boolean" />
+                </div>
+                <div>
+                    <h3>+4</h3>
+                </div>
+                <div class="hero-point-four">
+                    <input type="checkbox" name="data.heroPoints.four.one" {{checked data.data.heroPoints.four.one}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.four.two" {{checked data.data.heroPoints.four.two}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.four.three" {{checked data.data.heroPoints.four.three}}
+                        data-dtype="boolean" />
+                    <input type="checkbox" name="data.heroPoints.four.four" {{checked data.data.heroPoints.four.four}}
+                        data-dtype="boolean" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Names of back issues --}}
+    <div class="box-border back-issues">
+        <h3>{{localize "SCRPG.issues.backIssues"}}</h3>
+        <input name="data.backIssue.one" type="text" value="{{data.data.backIssue.one}}">
+        <input name="data.backIssue.two" type="text" value="{{data.data.backIssue.two}}">
+        <input name="data.backIssue.three" type="text" value="{{data.data.backIssue.three}}">
+        <input name="data.backIssue.four" type="text" value="{{data.data.backIssue.four}}">
+        <input name="data.backIssue.five" type="text" value="{{data.data.backIssue.five}}">
+        <input name="data.backIssue.six" type="text" value="{{data.data.backIssue.six}}">
+    </div>
+
+    {{!-- Names of collections and checkboxes for marking if they were used --}}
+    <div class="box-border collections">
+        <h3>{{localize "SCRPG.issues.collections"}}</h3>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.one" {{checked data.data.collectionsUsed.one}}
+                data-dtype="boolean" />
+            <input name="data.collections.one" type="text" value="{{data.data.collections.one}}">
+        </div>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.two" {{checked data.data.collectionsUsed.two}}
+                data-dtype="boolean" />
+            <input name="data.collections.two" type="text" value="{{data.data.collections.two}}">
+        </div>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.three" {{checked data.data.collectionsUsed.three}}
+                data-dtype="boolean" />
+            <input name="data.collections.three" type="text" value="{{data.data.collections.three}}">
+        </div>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.four" {{checked data.data.collectionsUsed.four}}
+                data-dtype="boolean" />
+            <input name="data.collections.four" type="text" value="{{data.data.collections.four}}">
+        </div>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.five" {{checked data.data.collectionsUsed.five}}
+                data-dtype="boolean" />
+            <input name="data.collections.five" type="text" value="{{data.data.collections.five}}">
+        </div>
+        <div class="collection-grid">
+            <input type="checkbox" name="data.collectionsUsed.six" {{checked data.data.collectionsUsed.six}}
+                data-dtype="boolean" />
+            <input name="data.collections.six" type="text" value="{{data.data.collections.six}}">
+        </div>
+    </div>
+</section>

@@ -1,0 +1,44 @@
+{
+    "name": "scrpg",
+    "title": "Sentinel Comics the Roleplaying Game",
+    "description": "A system for playing Sentinel Comics the Roleplaying Game",
+    "authors": [
+        {
+            "name": "RabidRaccoon"
+        },
+        {
+            "name": "GamerDragon"
+        }
+    ],
+    "version": "1.0.0",
+    "minimumCoreVersion": "9",
+    "compatibleCoreVersion": "9",
+    "esmodules": [
+        "SCRPG.js"
+    ],
+    "styles": [
+        "dist/SCRPG.css"
+    ],
+    "packs": [
+        {
+            "name": "macros",
+            "label": "SCRPG Macros",
+            "path": "packs/macros.db",
+            "entity": "Macro"
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "primaryTokenAttribute": "health",
+    "initiative": "N/A",
+    "url": "https://gitlab.com/RabidRaccoon/scrpg",
+    "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/main/system.json",
+    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.0.0/scrpg-v1.0.0.zip"
+}

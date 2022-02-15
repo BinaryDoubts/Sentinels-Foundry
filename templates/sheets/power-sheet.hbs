@@ -1,0 +1,47 @@
+{{!-- Sheet for displaying power --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    {{!-- Dropdown menu shows where the power belongs either default or part of mode/form --}}
+    {{#if (eq this.item.actor null)}}
+    <select name="data.aux">
+        {{#select data.data.aux}}
+        {{#each config.types as |name type|}}
+        <option value="{{type}}">{{localize name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+    {{/if}}
+    <div class="sheet-content">
+        <table class="box-border powerquality">
+            <colgroup>
+                <col width="60px">
+                <col>
+            </colgroup>
+            <tr>
+                <th>{{localize "SCRPG.sheet.die"}}</th>
+                <th>{{localize "SCRPG.sheet.description"}}</th>
+            </tr>
+            <tr>
+                {{!-- Dropdown menu for selecting die type --}}
+                <td>
+                    <select name="data.dieType">
+                        {{#select data.data.dieType}}
+                        {{#each config.dieTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                {{!-- Description input --}}
+                <td>
+                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    editable=editable}}
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</form>

@@ -1,0 +1,572 @@
+.SCRPG.sheet.actor {
+    .editor {
+        height: 6.25rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        p {
+            margin: 0.25rem;
+        }
+        .tox .tox-tbtn {
+            transform:scale(0.9);
+            height: 18px;
+            width: auto;
+        }
+        .tox.tox-tinymce .tox-tbtn[title="Formats"]{
+            width: 80px;
+        }
+    }
+    .sheet-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .box-border {
+        border: 2px solid black;
+        box-shadow: 2px 2px gray;
+        margin-bottom: 4px;
+    }
+    .img-border {
+        border: 2px solid black;
+        box-shadow: 2px 2px gray;
+    }
+    .left-border {
+        border-left: 1px solid black;
+    }
+    .twocolgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .chargrid {
+        display: grid;
+        grid-gap: 4px;
+        &-hero{
+            grid-template-columns: 2fr 3fr;
+        }
+        &-villain{
+            grid-template-columns: 2fr 4fr;
+        }
+    }
+    .principles {
+        background-color: white;
+    }
+    .principle {
+        padding: 4px;
+    }
+    .section-name {
+        border: 1px solid black;
+        box-shadow: 2px 2px black;
+        padding: 2px;
+        background: linear-gradient($titleorange, $titleyellow);
+        input {
+            all: unset;
+            width: 100%;
+        }
+        &-principle {
+            width: 75%;
+        }
+        &-powerquality {
+            width: 75%;
+            display: flex;
+            height: 1.625rem;
+            .buttons {
+                margin-left: auto;
+            }
+        }
+        &-ability {
+            width: max-content;
+            margin: 0;
+        } 
+        &-formmode {
+            width: max-content;
+            margin: 0;
+            border-radius: 0;
+            font-size: 1.125em;
+            font-family: "Signika", sans-serif;
+        } 
+        &-divided {
+            width: max-content;
+            h3 {
+                margin: 0;
+            }
+        }          
+    }
+    .principle-section {
+        border-top: 2px dotted black;
+        border-bottom: 2px dotted black;
+        text-align: center;
+    }
+    .hero-img {
+        height: 476px;
+    }
+    .villain-img {
+        height: 235px;   
+    }
+    .hero-img, .villain-img, .environment-img {
+        background-color: white;
+        width: 100%;
+        object-fit: scale-down;
+    }
+    .hero-info {
+        h3 {
+            color: $titleorange;
+            margin: 0px;
+        }
+        h4 {
+            color: $titlegray;
+            display: inline;
+        }
+        .names, .physical, .characteristics {
+            background-color: $orangebg;
+        }
+    }
+    .villain-info {
+        h3 {
+            color: $redborder;
+            margin: 0px;
+        }
+        .names, .physical, .characteristics, .villain-health {
+            background-color: $redbg;
+        } 
+    }
+    .char-info{
+        table, th, td {
+            border: 0px solid black;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            background: inherit;
+            padding: 4px;
+        }
+        table tr:nth-child(even) {
+            background: inherit;
+        }
+        input {
+            all: unset;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid lightgray;
+            border-radius: 3px;
+        }
+    }
+    .issues-grid {       
+        display: grid;
+        grid-template-columns: 10.625rem 1fr 1fr;
+        column-gap: 4px;   
+    }
+    .hero-point, .back-issues, .collections {
+        background-color: $bluebg;
+        padding: 4px;
+        h3 {
+            color: $titleblue;
+        }
+    }
+    .hero-point {
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 12px;
+            border: 1px solid $inputlightgray;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0;
+            padding: 0;
+        }
+        input[type="checkbox"]:checked {
+            -webkit-filter: none;
+            filter: none;
+            background-color: $inputlightgray;
+        }
+        input[type="checkbox"]:hover:checked {
+            background-color: $inputdarkgray;
+        }
+        input[type="checkbox"]:hover {
+            border: 1px solid $inputdarkgray;
+        }
+        h3 {
+            display: inline;
+        } 
+        table, tr, td {
+            margin: 0;
+            padding: 0;
+            border: 0px;
+        }  
+    }
+    .hero-point-grid {
+        display: grid;
+        grid-template-columns: 50% auto;
+        border-bottom: 1px dotted black;
+    }
+    .hero-point-grid-item {
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .hero-point-two {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 4px;
+        place-content: center;
+    }
+    .hero-point-three {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 4px;
+        place-content: center;
+    }
+    .hero-reward-grid{
+        display: grid;
+        grid-template-columns: 1.5625rem auto;
+    }
+    .hero-point-four {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 4px;
+        place-content: center start;
+    }
+    .back-issues, .collections {
+        input[type="text"] {
+            border: 0;
+            border-radius: 0;
+            height: fit-content;
+            background: inherit;
+            width: 100%;
+            border-bottom: 1px dotted black;
+            padding: 0px 4px;
+        } 
+        input[type="checkbox"]{
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+        }
+        .collection-grid {
+            display: grid;
+            grid-template-columns: 20px auto;
+        }
+    }
+    .stats {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+    }
+    .status-dice{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        select {
+            display: block;  
+        }
+        select, .health-box {
+            margin: 4px;
+            text-align: center;
+        }
+        .health-box{
+            padding: 2px;
+            border-radius: 3px;
+        }
+    } 
+    .divided-status {
+        width: 190px;
+        background-color: white;
+        h3 {
+            text-align: center;
+            margin: 0;
+        }
+    }   
+    .green-border {
+        border: 2px solid $greenborder;   
+    }
+    .yellow-border {
+        border: 2px solid $yellowborder;
+    }
+    .red-border {
+        border: 2px solid $redborder;
+    }
+    .power-list, .quality-list, .status-dice, .status, .villain-status-list {
+        padding-left: 2px;
+        padding-top: 4px;
+        padding-right: 2px;
+        padding-bottom: 2px;
+    }
+    .powersqualities {
+        background-color: white;
+        table, td, tr {
+            margin: 0;
+            padding: 0;
+            border: 0px;
+            background-color: inherit;
+        }
+        table {
+            border-collapse: collapse;
+            border-style: hidden;
+        }
+        table td {
+            border: 1px solid black;
+        }
+    }
+    .top-align{
+        vertical-align: top;
+    }
+    .power-item, .quality-item, .villain-status-item {
+        display: grid;
+        grid-template-columns: auto 2.1875rem 2.1875rem;
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        margin: 2px;
+        padding: 2px;
+    }
+    .health {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    .page {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    .max-update {
+        all: unset;
+        width: 1.875rem;
+        border: 1px solid gray;
+        white-space: nowrap;
+        padding: 0;
+    }
+    .green-abilities {
+        background-color: $greenbg;
+    }
+    .yellow-abilities {
+        background-color: $yellowbg;
+    }
+    .red-abilities {
+        background-color: $redbg;
+    }
+    .villain-abilities {
+        background-color: $graybg;
+    }
+    .green-abilities, .yellow-abilities, .red-abilities, .villain-abilities {
+        margin-top: 0;
+        
+        table {
+            margin: 0;
+        }
+        td, tr, th{
+            border: 1px dotted black;
+            padding: 4px;
+        }
+        p {
+            margin: 0px;
+        }
+        td:nth-child(3), td:nth-child(5){
+            text-align: center;
+        }
+    }
+    .out-box {
+        background-color: $graybg;
+        border-radius: 0;
+    }
+    .quality {
+        text-align: center;
+    }
+    .combined-roll {
+        width:100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 31% 31% 23% auto;
+        text-align: center;
+        align-items: center;
+        background: white;
+        
+        a {
+            font-size: 1.25rem;
+        }
+    }
+    .status {
+        input {
+            width: 4.25rem;
+            text-align: center;
+            margin-bottom: 4px;         
+        }
+        select, input {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    .forms {
+        display: grid;
+        grid-template-columns: 2fr 4fr;
+        grid-gap: 4px 4px;
+    }
+    .mode-card {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .mode-power {
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .mode-name{
+        width: 50%;
+        display: grid;
+        grid-template-columns: auto 2.1875rem 2.1875rem;
+    }
+    .mode-name-input {
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+    }
+    .mode-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .select-border {
+        border: 4px solid green;
+        margin-bottom: 4px;
+    }
+    .icon-position {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 2px;
+        text-align: center;
+    }
+    .ability-table {
+        .icon-col {
+            width: 2.8125rem;
+        }
+        .name-col {
+            width: 8.4375rem;
+        }
+        .type-col {
+            width: 2.1875rem;
+        }
+        .gametext-col {
+            width: auto;
+        }
+        .button-col {
+            width: 2.8125rem;
+        }
+    }
+    .mode-name-col {
+        width: 12.5rem;
+    }
+    .sheet-tabs {
+        background-color: lightgray;
+    }
+    .tabs .item.active {
+        text-shadow: 0 0 10px var(--color-shadow-primary);
+        font-weight: bold;
+    }
+    .auxiliary-item {
+        display: grid;
+        grid-template-columns: auto 6.25rem;
+        align-items: center;
+    }
+    .auxiliary-table{
+        table {
+            width: auto;
+            background-color: white;
+            margin: 0;
+        }
+        tr {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .environment {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 4px;
+    }
+    .environment-name {
+        font-size: 1.5rem;
+        color: white;
+        text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+    }
+    .environment-title {
+        padding: 4px;
+        background-color: $titlegreen;
+        select {
+            text-align: center;
+        }
+        input {
+            text-align: right;
+        }
+        select, input {
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.05);
+            border: 0;
+        }
+    }
+    .environment-dice {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        grid-gap: 4px;
+        padding: 4px;
+        justify-content: end;
+        a {
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .environmentTwist-item {
+        display: grid;
+        grid-template-columns: auto 50px;
+        border-radius: 3px;
+        margin-bottom: 4px;
+        margin-left: 4px;
+        margin-right: 4px;
+        padding: 4px;
+        p {
+            margin: 0;
+        }
+    } 
+    .environment-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .green-twists {
+        background-color: $greenbg;
+        .twist-title-color {
+            color: $darkgreen;
+        }
+    }
+    .yellow-twists {
+        background-color: $yellowbg;
+        .twist-title-color {
+            color: $darkyellow;
+        }
+    }
+    .red-twists {
+        background-color: $redbg;
+        .twist-title-color {
+            color: $darkred;
+        }
+    }
+    .green-twists, .yellow-twists, .red-twists {
+        padding: 4px;
+    }
+    .environment-img {
+        height: 500px;
+    }
+    .twist-title {
+        display: flex;
+        h3 {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    }
+    .nested-name {
+        p:first-child {
+            display: inline;
+            font-weight: bold;
+        }
+        p:nth-child(2) {
+            display: inline
+        }
+    }   
+}

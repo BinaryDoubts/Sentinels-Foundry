@@ -1,0 +1,32 @@
+{{!-- Sheet for displaying environment twist --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+
+    {{!-- Drop down menu for selecting the type --}}
+    {{#if (eq this.item.actor null)}}
+    <select name="data.type">
+        {{#select data.data.type}}
+        {{#each config.twistType as |name type|}}
+        <option value="{{type}}">{{localize name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+    {{!-- Form for filling in description--}}
+    {{/if}}
+    <div class="sheet-content">
+        <table class="box-border {{#color}}{{data.data.type}}{{/color}}-abilities">
+            <tr>
+                <th>{{localize "SCRPG.sheet.description"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    editable=editable}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

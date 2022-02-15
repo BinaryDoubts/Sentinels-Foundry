@@ -1,0 +1,212 @@
+{
+    "Actor": {
+        "types": [
+            "hero",
+            "villain",
+            "environment"
+        ],
+        "templates": {
+            "heroic": {
+                "alias": "",
+                "archetype": "",
+                "wounds": {
+                    "value": 0,
+                    "max": 0
+                },
+                "mode": "main"
+            },
+            "dice": {
+                "firstDie": "d4",
+                "secondDie": "d4",
+                "thirdDie": "d4",
+                "firstDieName": "N/A",
+                "secondDieName": "N/A",
+                "thirdDieName": "N/A"
+            }
+        },
+        "hero": {
+            "templates": [
+                "heroic",
+                "dice"
+            ],
+            "firstPrinciple": {
+                "name": "",
+                "roleplaying": "",
+                "minorTwist": "",
+                "majorTwist": ""
+            },
+            "secondPrinciple": {
+                "name": "",
+                "roleplaying": "",
+                "minorTwist": "",
+                "majorTwist": ""
+            },
+            "backIssues": {
+                "one": "",
+                "two": "",
+                "three": "",
+                "four": "",
+                "five": "",
+                "six": ""
+            },
+            "collections": {
+                "one": "",
+                "two": "",
+                "three": "",
+                "four": "",
+                "five": "",
+                "six": ""
+            },
+            "collectionsUsed": {
+                "one": false,
+                "two": false,
+                "three": false,
+                "four": false,
+                "five": false,
+                "six": false
+            },
+            "heroPoints": {
+                "game": {
+                    "one": false,
+                    "two": false,
+                    "three": false,
+                    "four": false,
+                    "five": false
+                },
+                "one": {
+                    "one": false,
+                    "two": false,
+                    "three": false,
+                    "four": false
+                },
+                "two": {
+                    "one": false,
+                    "two": false,
+                    "three": false,
+                    "four": false
+                },
+                "three": {
+                    "one": false,
+                    "two": false,
+                    "three": false,
+                    "four": false
+                },
+                "four": {
+                    "one": false,
+                    "two": false,
+                    "three": false,
+                    "four": false
+                }
+            },
+            "gender": "",
+            "age": "",
+            "height": "",
+            "eyes": "",
+            "hair": "",
+            "skin": "",
+            "build": "",
+            "costume": "",
+            "background": "",
+            "powerSource": "",
+            "personality": "",
+            "health": {
+                "greenLow": 0,
+                "yellowHigh": 0,
+                "yellowLow": 0,
+                "redHigh": 0,
+                "redLow": 1
+            },
+            "statusDie": {
+                "green": "d8",
+                "yellow": "d8",
+                "red": "d8",
+                "civilianGreen": "d8",
+                "civilianYellow": "d8",
+                "civilianRed": "d8"
+            },
+            "scene": "green",
+            "out": "",
+            "modeName": {
+                "main": "Default Mode/Form",
+                "green1": "Mode/Form Green #1",
+                "green2": "Mode/Form Green #2",
+                "yellow1": "Mode/Form Yellow #1",
+                "yellow2": "Mode/Form Yellow #2",
+                "red1": "Mode/Form Red #1"
+            },
+            "modeDescription": {
+                "main": "",
+                "green1": "",
+                "green2": "",
+                "yellow1": "",
+                "yellow2": "",
+                "red1": ""
+            },
+            "modeDisplayed": {
+                "main": false,
+                "green1": false,
+                "green2": false,
+                "yellow1": false,
+                "yellow2": false,
+                "red1": false
+            },
+            "modular": false,
+            "powerlessMode": false,
+            "formchanger": false,
+            "divided": false,
+            "dividedPsyche": false,
+            "dividedStatus": false,
+            "civilianMode": false,
+            "poweredMode": false
+        },
+        "villain": {
+            "templates": [
+                "heroic",
+                "dice"
+            ],
+            "approach": ""
+        },
+        "environment": {
+            "templates": [
+                "dice"
+            ],
+            "description": ""
+        }
+    },
+    "Item": {
+        "types": [
+            "power",
+            "quality",
+            "ability",
+            "villainStatus",
+            "environmentTwist"
+        ],
+        "power": {
+            "dieType": "d4",
+            "aux": "main"
+        },
+        "quality": {
+            "dieType": "d4"
+        },
+        "ability": {
+            "aux": "main",
+            "icon": {
+                "attack": false,
+                "defend": false,
+                "overcome": false,
+                "hinder": false,
+                "boost": false,
+                "recover": false
+            },
+            "type": "A",
+            "gameText": ""
+        },
+        "villainStatus": {
+            "dieType": "d4"
+        },
+        "environmentTwist": {
+            "type": "greenminor",
+            "description": ""
+        }
+    }
+}

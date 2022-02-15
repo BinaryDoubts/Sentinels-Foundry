@@ -1,0 +1,82 @@
+{{!-- Sheet for displaying Abilities --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    <div class="sheet-content">
+        {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
+        {{!-- or part of mode/form --}}
+        {{#if (eq this.item.actor "null")}}
+        <select name="data.aux">
+            {{#select data.data.aux}}
+            {{#each config.modes as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        {{/if}}
+
+
+
+        <table class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border">
+            <colgroup>
+                <col width="45px">
+                <col width="30px">
+                <col width="auto">
+            </colgroup>
+            <tr>
+                <th>{{localize "SCRPG.abilities.icon"}}</th>
+                <th>{{localize "SCRPG.abilities.type"}}</th>
+                <th>{{localize "SCRPG.abilities.gameText"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    {{!-- buttons for setting what icons are associated with the ability --}}
+                    {{!-- icons turn green if selected --}}
+                    <div class="icon-position">
+                        <a class="set-attack">
+                            <i class="fas fa-hand-rock" {{#if (eq data.data.icon.attack true)}}style="color:green"
+                                {{/if}}></i>
+                        </a>
+                        <a class="set-defend">
+                            <i class="fas fa-shield-alt" {{#if (eq data.data.icon.defend true)}}style="color:green"
+                                {{/if}}></i>
+                        </a>
+                        <a class="set-overcome">
+                            <i class="fas fa-share" {{#if (eq data.data.icon.overcome true)}}style="color:green"
+                                {{/if}}></i>
+                        </a>
+                        <a class="set-hinder">
+                            <i class="fas fa-angle-double-down" {{#if (eq data.data.icon.hinder
+                                true)}}style="color:green" {{/if}}></i>
+                        </a>
+                        <a class="set-boost">
+                            <i class="fas fa-angle-double-up" {{#if (eq data.data.icon.boost true)}}style="color:green"
+                                {{/if}}></i>
+                        </a>
+                        <a class="set-recover">
+                            <i class="fas fa-plus-square" {{#if (eq data.data.icon.recover true)}}style="color:green"
+                                {{/if}}></i>
+                        </a>
+                    </div>
+                </td>
+                {{!-- Ability Type --}}
+                <td class="top-align">
+                    <select name="data.type">
+                        {{#select data.data.type}}
+                        {{#each config.abilityType}}
+                        <option value="{{this.type}}" title="{{localize this.tooltip}}">{{localize this.desc}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                {{!-- Description input --}}
+                <td>
+                    {{editor content=data.data.gameText target="data.gameText" button=true owner=owner
+                    editable=editable}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

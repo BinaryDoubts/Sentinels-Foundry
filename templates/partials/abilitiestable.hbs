@@ -1,0 +1,62 @@
+{{!-- Creates a table to display the abilities --}}
+
+{{!-- This partial takes a variable called mode which is uses --}}
+{{!-- to determine where the ability belongs --}}
+<div>
+    <table class="{{#color}}{{mode}}{{/color}}-abilities box-border">
+        <colgroup class="ability-table">
+            <col class="icon-col">
+            <col class="name-col">
+            <col class="type-col">
+            <col class="gametext-col">
+            <col class="button-col">
+        </colgroup>
+        <tr>
+            <th>{{localize "SCRPG.abilities.icon"}}</th>
+            <th>{{localize "SCRPG.abilities.name"}}</th>
+            <th>{{localize "SCRPG.abilities.type"}}</th>
+            <th>{{localize "SCRPG.abilities.gameText"}}</th>
+            <th>
+                <a class="add-ability" data-type="ability" data-aux="{{mode}}">
+                    <i class=" fas fa-plus"></i>
+                </a>
+            </th>
+        </tr>
+        {{#each actor.ability as |ability id|}}
+        {{#if (eq ability.data.aux ../mode)}}
+        <tr class="ability-item item" data-item-id="{{ability._id}}">
+            <td>
+                {{!-- Icons can be selected here --}}
+                <div class="icon-position">
+                    {{#if (eq data.icon.attack true)}}<i class="fas fa-hand-rock"></i>{{/if}}
+                    {{#if (eq data.icon.defend true)}}<i class="fas fa-shield-alt"></i>{{/if}}
+                    {{#if (eq data.icon.overcome true)}}<i class="fas fa-share"></i>{{/if}}
+                    {{#if (eq data.icon.hinder true)}}<i class="fas fa-angle-double-down"></i>{{/if}}
+                    {{#if (eq data.icon.boost true)}}<i class="fas fa-angle-double-up"></i>{{/if}}
+                    {{#if (eq data.icon.recover true)}}<i class="fas fa-plus-square"></i>{{/if}}
+                </div>
+            </td>
+            <td>
+                {{name}}
+            </td>
+            <td>
+                <div title="{{getLocalizeAbilityTypeTooltip data.type}}">{{getLocalizeAbilityTypeDescription data.type}}</div>
+            </td>
+            <td>
+                <div>{{{data.gameText}}}</div>
+
+            </td>
+            <td>
+                {{!-- buttons for editing and deleting the ablity --}}
+                <a class="item-edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="item-delete">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {{/if}}
+        {{/each}}
+    </table>
+</div>

@@ -1,0 +1,55 @@
+.SCRPG.chat.roll {
+    .box-border {
+        border: 2px solid black;
+        box-shadow: 2px 2px gray;
+        margin-bottom: 4px;
+    }
+    .dice-rolled{
+        
+        table td {
+            text-align: center;
+        }
+        table th {
+            padding-left: 8px;
+        }
+        table {
+            background-color: white;
+            margin: 0;
+            border: 0;
+        }
+    }
+    .dice-results {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+
+        p {
+            display: inline;
+        }
+        .dice {
+            position: relative;
+            margin: 2px;
+            display: inline-flex;
+            width: 1.5625rem;
+            height: 1.5625rem;
+        
+            label {
+                position: absolute;
+                top: 4px;
+                font-weight: bold;
+                text-align: center;
+                width: 100%;
+                z-index: 1;
+            }
+        
+            img {
+                position: absolute;
+                width: 1.5625;
+                height: 1.5625;
+                border: none;
+            }
+        }
+
+    }
+}
+

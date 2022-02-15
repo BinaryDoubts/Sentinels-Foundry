@@ -1,0 +1,36 @@
+{{!-- Sheet for displaying quality --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    <div class="sheet-content">
+        <table class="box-border powerquality">
+            <colgroup>
+                <col width="60px">
+                <col>
+            </colgroup>
+            <tr>
+                <th>{{localize "SCRPG.sheet.die"}}</th>
+                <th>{{localize "SCRPG.sheet.description"}}</th>
+            </tr>
+            <tr>
+                {{!-- Dropdown menu for selecting die type --}}
+                <td>
+                    <select name="data.dieType">
+                        {{#select data.data.dieType}}
+                        {{#each config.dieTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                {{!-- Description input --}}
+                <td>
+                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    editable=editable}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
