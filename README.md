@@ -1,8 +1,10 @@
-# Foundry Virtual Tabletop - Sentinel Comics The Roleplaying Game System
+# Sentinel Comics The Roleplaying Game (unoffcial)
 
-This game system for Foundry Virtual Tabletop provides the characther sheets and game system for Sentinel Comics the Roleplaying Game by Greater than Games.
+This game system for [Foundry Virtual Tabletop](https://foundryvtt.com/) provides the character sheets and game system for [Sentinel Comics the Roleplaying Game](https://greaterthangames.com/product/sentinel-comics-the-role-playing-game-core-rulebook/) by [Greater than Games](https://greaterthangames.com/).
 
 This system provides character sheet support for Heros, Villains and Environments. It also provides macros for updating all hero character's scene status.
+
+This is an unofficial package and a copy of the rulebook will be required to use this system.
 
 ## Features
 
