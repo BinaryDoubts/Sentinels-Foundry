@@ -49,6 +49,21 @@
                 border: none;
             }
         }
+        .d4 {
+            filter: brightness(0) saturate(100%) invert(69%) sepia(89%) saturate(3407%) hue-rotate(189deg) brightness(108%) contrast(99%);
+        }
+        .d6 {
+            filter: brightness(0) saturate(100%) invert(79%) sepia(45%) saturate(559%) hue-rotate(47deg) brightness(82%) contrast(89%);
+        }
+        .d8 {
+            filter: brightness(0) saturate(100%) invert(74%) sepia(16%) saturate(5893%) hue-rotate(346deg) brightness(105%) contrast(97%);
+        }
+        .d10 {
+            filter: brightness(0) saturate(100%) invert(35%) sepia(79%) saturate(1183%) hue-rotate(330deg) brightness(98%) contrast(90%);
+        }
+        .d12 {
+            filter: brightness(0) saturate(100%) invert(45%) sepia(9%) saturate(2852%) hue-rotate(247deg) brightness(118%) contrast(78%);
+        }
 
     }
 }
