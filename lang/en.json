@@ -7,6 +7,8 @@
     "ITEM.TypeAbility": "Ability",
     "ITEM.TypeVillainstatus": "Villain Status",
     "ITEM.TypeEnvironmenttwist": "Environment Twist",
+    "SETTINGS.coloredDice.name": "Colored Dice",
+    "SETTINGS.coloredDice.hint": "Enable Sentinel Comics dice colors (d4=blue, d6=green, d8=orange, d10=red, d12=purple) in Chat roll messages. Dice will be grey if disabled. Changes will be applied to new rolls.",
     "SCRPG": {
         "sheet": {
             "die": "Die",
@@ -80,7 +82,13 @@
             "R": {
                 "display": "R",
                 "tooltip": "Reaction"
-            }
+            },
+            "attack": "Attack",
+            "defend": "Defend",
+            "overcome": "Overcome",
+            "hinder": "Hinder",
+            "boost": "Boost",
+            "recover": "Recover"
         },
         "powerquality": {
             "power": "Power",

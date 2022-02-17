@@ -3,6 +3,7 @@
 /* Rolls power, quality, and status and outputs to chat */
 export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, quality = null, status = null, poweredMode = null, civilianMode = null, type = null) {
 
+    let color = game.settings.get("scrpg", "coloredDice");
     const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
 
     let rollFormula = "{" + d1 + "," + d2 + "," + d3 + "}";
@@ -18,6 +19,10 @@ export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, q
     for (let i = 0; i < diceresults.length; i++) {
         if ([4, 6, 8, 10, 12].indexOf(diceresults[i].faces) > -1) {
             diceresults[i].img = `icons/svg/d${diceresults[i].faces}-grey.svg`;
+            // if the setting for colored dice is enabled, adds a class to to the roll to be used in the template
+            if (color) {
+                diceresults[i].imgClass = `d${diceresults[i].faces}`
+            }
         }
         diceresults[i].dicePosition = dicePosition[i];
     }
@@ -49,12 +54,17 @@ export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, q
 export async function SingleCheck(roll = null, rollType = null, rollName = null) {
     const messageTemplate = "systems/scrpg/templates/chat/minorroll.hbs";
 
+    let color = game.settings.get("scrpg", "coloredDice");
     let rollResult = new Roll(roll).evaluate({ async: false });
     rollResult.rollType = rollType;
     rollResult.rollName = rollName;
     //checks the number of die faces and attachs the corresponding dice image
     if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
         rollResult.img = `icons/svg/d${rollResult.dice[0].faces}-grey.svg`;
+        // if the setting for colored dice is enabled, adds a class to to the roll to be used in the template
+        if (color) {
+            rollResult.imgClass = `d${rollResult.dice[0].faces}`
+        }
     };
 
     let chatData = {

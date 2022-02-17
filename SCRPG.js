@@ -21,6 +21,18 @@ async function preloadHandlebarsTemplates() {
     return loadTemplates(templatePaths)
 };
 
+// Sets up a system setting to run on and off colored dice as part of the roll templates
+function registerSystemSettings() {
+    game.settings.register("scrpg", "coloredDice", {
+        config: true,
+        scope: "world",
+        name: "SETTINGS.coloredDice.name",
+        hint: "SETTINGS.coloredDice.hint",
+        type: Boolean,
+        default: true
+    });
+};
+
 Hooks.once("init", function () {
     console.log("SCRPG | Initialising SCRPG");
 
@@ -33,6 +45,8 @@ Hooks.once("init", function () {
     //unregister core actor sheet and use SCRPGHeroCharacterSheet
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("SCRPG", SCRPGCharacterSheet, { makeDefault: true });
+
+    registerSystemSettings();
 
     preloadHandlebarsTemplates();
 });
