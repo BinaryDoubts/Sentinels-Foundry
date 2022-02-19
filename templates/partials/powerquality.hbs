@@ -31,10 +31,10 @@
                     <h3>{{localize "SCRPG.powerquality.qualities"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just quality die and creating new quality --}}
-                        <a class="roll-power">
+                        <a title='{{localize "SCRPG.button.rollQuality"}}' class="roll-power">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="item-create" data-type="quality">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="quality">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -46,10 +46,11 @@
                     <h3>{{localize "SCRPG.powerquality.powers"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just power die and creating new power --}}
-                        <a class="roll-power">
+                        <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-power">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="create-power" data-type="power" data-aux="{{data.data.mode}}">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                            data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -62,10 +63,11 @@
                     <h3>{{localize "SCRPG.powerquality.powers"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just power die and creating new power --}}
-                        <a class="roll-power">
+                        <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-power">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="create-power" data-type="power" data-aux="{{data.data.mode}}">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                            data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -82,10 +84,11 @@
                     <h3>{{localize "SCRPG.powerquality.powers"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just power die and creating new power --}}
-                        <a class="roll-quality">
+                        <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-quality">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="create-power" data-type="power" data-aux="{{data.data.mode}}">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                            data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -97,10 +100,10 @@
                     <h3>{{localize "SCRPG.powerquality.qualities"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just quality die and creating new quality --}}
-                        <a class="roll-quality">
+                        <a title='{{localize "SCRPG.button.rollQuality"}}' class="roll-quality">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="item-create" data-type="quality">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="quality">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -113,10 +116,10 @@
                     <h3>{{localize "SCRPG.powerquality.qualities"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just quality die and creating new quality --}}
-                        <a class="roll-quality">
+                        <a title='{{localize "SCRPG.button.rollQuality"}}' class="roll-quality">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a class="item-create" data-type="quality">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="quality">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -130,12 +133,12 @@
                     <h3>{{localize "SCRPG.powerquality.statusDice"}}</h3>
                     <div class="buttons">
                         {{!-- buttons for rolling just status die --}}
-                        <a class="roll-status">
+                        <a title='{{localize "SCRPG.button.rollStatus"}}' class="roll-status">
                             <i class="fas fa-dice"></i>
                         </a>
                         {{!-- button for adding new status type for villains --}}
                         {{#if (eq actor.type "villain")}}
-                        <a class="item-create" data-type="villainStatus">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="villainStatus">
                             <i class="fas fa-plus"></i>
                         </a>
                         {{/if}}
@@ -167,10 +170,10 @@
                         <a class="set-power quality">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting quality --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -190,10 +193,10 @@
                         <a style="text-align: center" class="set-power">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting power --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -215,10 +218,10 @@
                         <a style="text-align: center" class="set-power">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting power --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -244,10 +247,10 @@
                         <a style="text-align: center" class="set-power">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting power --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -267,10 +270,10 @@
                         <a class="set-quality quality">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting quality --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -290,10 +293,10 @@
                         <a class="set-quality quality">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting quality --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -408,10 +411,10 @@
                         <a style="text-align: center" class="set-villain-status">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting villain status --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
@@ -460,7 +463,7 @@
             {{#if (eq data.data.thirdDieName "yellow")}}{{localize "SCRPG.scene.yellow"}}{{/if}}
             {{#if (eq data.data.thirdDieName "red")}}{{localize "SCRPG.scene.red"}}{{/if}}
             {{this.actor.data.data.thirdDie}}</p>
-        <a class="make-roll">
+        <a title='{{localize "SCRPG.button.rollMain"}}' class="make-roll">
             <i class="fas fa-dice"></i>
         </a>
     </div>

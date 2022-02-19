@@ -21,6 +21,9 @@
     }
     .powerquality {
         background-color: $white;
+        td:first-child {
+            width: 3.75rem;
+        }    
     }
     .green-abilities {
         background-color: $greenbg;

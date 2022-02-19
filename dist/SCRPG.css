@@ -38,6 +38,10 @@
   background-color: #ffffff;
 }
 
+.SCRPG.sheet.item .powerquality td:first-child {
+  width: 3.75rem;
+}
+
 .SCRPG.sheet.item .green-abilities {
   background-color: #b6d6aa;
 }
@@ -690,27 +694,23 @@
   text-align: center;
 }
 
-.SCRPG.sheet.actor .ability-table .icon-col, .SCRPG.sheet.actor .minion-form-table .icon-col {
+.SCRPG.sheet.actor .ability-table td:first-child {
   width: 2.8125rem;
 }
 
-.SCRPG.sheet.actor .ability-table .name-col, .SCRPG.sheet.actor .minion-form-table .name-col {
+.SCRPG.sheet.actor .ability-table td:nth-child(2) {
   width: 8.4375rem;
 }
 
-.SCRPG.sheet.actor .ability-table .type-col, .SCRPG.sheet.actor .minion-form-table .type-col {
+.SCRPG.sheet.actor .ability-table td:nth-child(3) {
   width: 2.1875rem;
 }
 
-.SCRPG.sheet.actor .ability-table .gametext-col, .SCRPG.sheet.actor .minion-form-table .gametext-col {
-  width: auto;
-}
-
-.SCRPG.sheet.actor .ability-table .button-col, .SCRPG.sheet.actor .minion-form-table .button-col {
+.SCRPG.sheet.actor .ability-table td:nth-child(5) {
   width: 2.8125rem;
 }
 
-.SCRPG.sheet.actor .ability-table .bonus-col, .SCRPG.sheet.actor .minion-form-table .bonus-col {
+.SCRPG.sheet.actor .ability-table .bonus-col {
   width: 5.5rem;
 }
 
@@ -750,6 +750,10 @@
 
 .SCRPG.sheet.actor .auxiliary-table p {
   margin: 0;
+}
+
+.SCRPG.sheet.actor .auxiliary-table td:nth-child(n) {
+  width: 8.75rem;
 }
 
 .SCRPG.sheet.actor .environment {
@@ -921,6 +925,9 @@
 
 .SCRPG.sheet.actor .heroMinion-item .minion-title .minion-name h3 {
   margin: 0;
+  max-width: 100px;
+  max-height: 1.25rem;
+  overflow: hidden;
 }
 
 .SCRPG.sheet.actor .heroMinion-item .minion-title .minion-button {
@@ -935,11 +942,35 @@
   text-align: center;
 }
 
+.SCRPG.sheet.actor .minion-form-table td:first-child {
+  width: 8.4375rem;
+}
+
+.SCRPG.sheet.actor .minion-form-table td:nth-child(3) {
+  width: 5.5rem;
+}
+
+.SCRPG.sheet.actor .minion-form-table td:nth-child(4) {
+  width: 2.8125rem;
+}
+
 .SCRPG.chat.roll .box-border {
   border: 2px solid #000000;
   -webkit-box-shadow: 2px 2px #808080;
           box-shadow: 2px 2px #808080;
   margin-bottom: 4px;
+}
+
+.SCRPG.chat.roll .main-roll th:first-child {
+  width: 5.625rem;
+}
+
+.SCRPG.chat.roll .minor-roll th:first-child {
+  width: 4.0625rem;
+}
+
+.SCRPG.chat.roll .minor-roll td:nth-child(3) {
+  width: 2.5rem;
 }
 
 .SCRPG.chat.roll .dice-rolled table td {

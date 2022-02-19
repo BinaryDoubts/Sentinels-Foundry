@@ -10,7 +10,8 @@
                     <h3>{{localize "SCRPG.powerquality.powers"}}</h3>
                     <div class="buttons">
                         {{!-- Buttons for creating a new power --}}
-                        <a class="create-power" data-type="power" data-aux="{{mode}}">
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                            data-aux="{{mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -30,10 +31,10 @@
                         <a style="text-align: center" class="set-power">{{data.dieType}}</a>
                         <div style="text-align: right">
                             {{!-- Buttons for editing and deleting power --}}
-                            <a class="item-edit">
+                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="item-delete">
+                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>

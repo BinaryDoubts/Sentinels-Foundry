@@ -105,16 +105,16 @@
             "sceneStatus": "Scene Status"
         },
         "modes": {
-            "main": "Default",
+            "main": "Default Mode/Form",
             "green": "Green",
             "yellow": "Yellow",
             "red": "Red",
             "villain": "Villain",
-            "green1": "Mode/Form Green #1",
-            "green2": "Mode/Form Green #2",
-            "yellow1": "Mode/Form Yellow #1",
-            "yellow2": "Mode/Form Yellow #2",
-            "red1": "Mode/Form Red #1"
+            "green1": "Green Mode/Form #1",
+            "green2": "Powerless Mode/Green Form #2",
+            "yellow1": "Yellow Mode/Form #1",
+            "yellow2": "Yellow Mode/Form #2",
+            "red1": "Red Mode/Form #1"
         },
         "auxiliary": {
             "modular": "Modular",
@@ -170,6 +170,7 @@
             "rollQuality": "Roll Quality",
             "rollStatus": "Roll Status",
             "rollMain": "Roll Dice Pool",
+            "rollEnvironment": "Roll Environment Dice",
             "downgrade": "Downgrade Minion Die",
             "show": "Show/Hide Details",
             "changeMode": "Change to this Mode/Form"
