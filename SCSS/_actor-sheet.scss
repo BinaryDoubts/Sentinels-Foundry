@@ -2,7 +2,7 @@
     .editor {
         height: 6.25rem;
         background: rgba(255, 255, 255, 0.2);
-        border: 1px solid lightgray;
+        border: 1px solid $lightgray;
         border-radius: 3px;
         p {
             margin: 0.25rem;
@@ -22,16 +22,16 @@
         flex-direction: column;
     }
     .box-border {
-        border: 2px solid black;
-        box-shadow: 2px 2px gray;
+        border: 2px solid $black;
+        box-shadow: 2px 2px $gray;
         margin-bottom: 4px;
     }
     .img-border {
-        border: 2px solid black;
-        box-shadow: 2px 2px gray;
+        border: 2px solid $black;
+        box-shadow: 2px 2px $gray;
     }
     .left-border {
-        border-left: 1px solid black;
+        border-left: 1px solid $black;
     }
     .twocolgrid {
         display: grid;
@@ -48,14 +48,14 @@
         }
     }
     .principles {
-        background-color: white;
+        background-color: $white;
     }
     .principle {
         padding: 4px;
     }
     .section-name {
-        border: 1px solid black;
-        box-shadow: 2px 2px black;
+        border: 1px solid $black;
+        box-shadow: 2px 2px $black;
         padding: 2px;
         background: linear-gradient($titleorange, $titleyellow);
         input {
@@ -89,11 +89,21 @@
             h3 {
                 margin: 0;
             }
-        }          
+        } 
+        &-minion {
+            width: 6rem;
+            display: flex;
+            .buttons {
+                margin-left: auto;
+            }
+            h3 {
+                margin: 0;
+            }
+        }         
     }
     .principle-section {
-        border-top: 2px dotted black;
-        border-bottom: 2px dotted black;
+        border-top: 2px dotted $black;
+        border-bottom: 2px dotted $black;
         text-align: center;
     }
     .hero-img {
@@ -103,7 +113,7 @@
         height: 235px;   
     }
     .hero-img, .villain-img, .environment-img {
-        background-color: white;
+        background-color: $white;
         width: 100%;
         object-fit: scale-down;
     }
@@ -131,7 +141,7 @@
     }
     .char-info{
         table, th, td {
-            border: 0px solid black;
+            border: 0px solid $black;
             margin-top: 0px;
             margin-bottom: 0px;
             background: inherit;
@@ -145,7 +155,7 @@
             width: 100%;
             text-align: center;
             background: rgba(255, 255, 255, 0.2);
-            border: 1px solid lightgray;
+            border: 1px solid $lightgray;
             border-radius: 3px;
         }
     }
@@ -167,7 +177,7 @@
             width: 20px;
             height: 12px;
             border: 1px solid $inputlightgray;
-            background-color: white;
+            background-color: $white;
             border-radius: 50%;
             margin: 0;
             padding: 0;
@@ -195,7 +205,7 @@
     .hero-point-grid {
         display: grid;
         grid-template-columns: 50% auto;
-        border-bottom: 1px dotted black;
+        border-bottom: 1px dotted $black;
     }
     .hero-point-grid-item {
         grid-row-start: 1;
@@ -230,7 +240,7 @@
             height: fit-content;
             background: inherit;
             width: 100%;
-            border-bottom: 1px dotted black;
+            border-bottom: 1px dotted $black;
             padding: 0px 4px;
         } 
         input[type="checkbox"]{
@@ -265,7 +275,7 @@
     } 
     .divided-status {
         width: 190px;
-        background-color: white;
+        background-color: $white;
         h3 {
             text-align: center;
             margin: 0;
@@ -287,7 +297,7 @@
         padding-bottom: 2px;
     }
     .powersqualities {
-        background-color: white;
+        background-color: $white;
         table, td, tr {
             margin: 0;
             padding: 0;
@@ -299,7 +309,7 @@
             border-style: hidden;
         }
         table td {
-            border: 1px solid black;
+            border: 1px solid $black;
         }
     }
     .top-align{
@@ -308,7 +318,7 @@
     .power-item, .quality-item, .villain-status-item {
         display: grid;
         grid-template-columns: auto 2.1875rem 2.1875rem;
-        border: 1px solid lightgray;
+        border: 1px solid $lightgray;
         border-radius: 3px;
         margin: 2px;
         padding: 2px;
@@ -324,7 +334,7 @@
     .max-update {
         all: unset;
         width: 1.875rem;
-        border: 1px solid gray;
+        border: 1px solid $gray;
         white-space: nowrap;
         padding: 0;
     }
@@ -340,6 +350,16 @@
     .villain-abilities {
         background-color: $graybg;
     }
+    .ability-list {
+        td:nth-child(3), td:nth-child(5){
+            text-align: center;
+        }
+    }
+    .minion-form-list {
+        td:first-child, td:nth-child(3), td:nth-child(4){
+            text-align: center;
+        }
+    }
     .green-abilities, .yellow-abilities, .red-abilities, .villain-abilities {
         margin-top: 0;
         
@@ -347,14 +367,11 @@
             margin: 0;
         }
         td, tr, th{
-            border: 1px dotted black;
+            border: 1px dotted $black;
             padding: 4px;
         }
         p {
             margin: 0px;
-        }
-        td:nth-child(3), td:nth-child(5){
-            text-align: center;
         }
     }
     .out-box {
@@ -372,7 +389,7 @@
         grid-template-columns: 31% 31% 23% auto;
         text-align: center;
         align-items: center;
-        background: white;
+        background: $white;
         
         a {
             font-size: 1.25rem;
@@ -428,7 +445,7 @@
         grid-gap: 2px;
         text-align: center;
     }
-    .ability-table {
+    .ability-table, .minion-form-table {
         .icon-col {
             width: 2.8125rem;
         }
@@ -444,12 +461,15 @@
         .button-col {
             width: 2.8125rem;
         }
+        .bonus-col {
+            width: 5.5rem;
+        }
     }
     .mode-name-col {
         width: 12.5rem;
     }
     .sheet-tabs {
-        background-color: lightgray;
+        background-color: $lightgray;
     }
     .tabs .item.active {
         text-shadow: 0 0 10px var(--color-shadow-primary);
@@ -463,12 +483,12 @@
     .auxiliary-table{
         table {
             width: auto;
-            background-color: white;
+            background-color: $white;
             margin: 0;
         }
         tr {
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
+            border-top: 1px solid $black;
+            border-bottom: 1px solid $black;
         }
         p {
             margin: 0;
@@ -481,8 +501,8 @@
     }
     .environment-name {
         font-size: 1.5rem;
-        color: white;
-        text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+        color: $white;
+        text-shadow: 0 0 2px $black, 0 0 2px $black, 0 0 2px $black, 0 0 2px $black;
     }
     .environment-title {
         padding: 4px;
@@ -567,6 +587,42 @@
         }
         p:nth-child(2) {
             display: inline
+        }
+    }
+    .heroMinion-list {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $white;
+        min-height: 7.5rem;        
+    }
+    .heroMinion-item {
+        width: 11.6875rem;
+        margin: 4px;
+        
+        .minion-title {
+            padding: 0;
+            border-bottom: 2px $black solid;
+
+            .minion-name {
+                padding: 0;
+                display: flex;
+                background-color: $miniontitle;
+                padding: 2px;
+                h3 {
+                    margin: 0;
+                }
+            }
+            .minion-button {
+                margin-left: auto;
+            }
+        }
+        .minion-stats {
+            th:first-child {
+                width: 4.375rem;
+            }
+            td:nth-child(2) {
+                text-align: center;
+            }
         }
     }   
 }

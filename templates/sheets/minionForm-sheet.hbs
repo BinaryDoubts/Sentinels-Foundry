@@ -1,0 +1,32 @@
+{{!-- Sheet for displaying minion forms --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    <div class="sheet-content minion-form-sheet">
+        <table class="villain-abilities box-border">
+            <tr>
+                <th>{{localize "SCRPG.sheet.description"}}</th>
+                <th>{{localize "SCRPG.sheet.bonus"}}</th>
+            </tr>
+            <tr>
+                {{!-- Minion form description --}}
+                <td>
+                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    editable=editable}}
+                </td>
+                {{!-- Bonus required to apply form --}}
+                <td class="top-align">
+                    <select name="data.bonus">
+                        {{#select data.data.bonus}}
+                        {{#each config.bonus as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

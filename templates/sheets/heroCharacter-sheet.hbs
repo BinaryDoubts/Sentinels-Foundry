@@ -7,6 +7,7 @@
         <a class="item" data-tab="info">{{ localize "SCRPG.tabs.heroInfo" }}</a>
         <a class="item" data-tab="powerabilities">{{ localize "SCRPG.tabs.powers" }}</a>
         <a class="item" data-tab="auxiliary">{{ localize "SCRPG.tabs.auxiliary" }}</a>
+        <a class="item" data-tab="minions">{{ localize "SCRPG.tabs.minions" }}</a>
         {{/if}}
 
         {{#if (eq actor.type "villain")}}
@@ -29,6 +30,9 @@
         </div>
         <div class="tab auxiliary" data-group="primary" data-tab="auxiliary">
             {{> "systems/scrpg/templates/partials/auxiliary.hbs"}}
+        </div>
+        <div class="tab minions" data-group="primary" data-tab="minions">
+            {{> "systems/scrpg/templates/partials/minions.hbs"}}
         </div>
         {{/if}}
         {{!-- Villain Tab Content --}}

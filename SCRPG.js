@@ -15,7 +15,8 @@ async function preloadHandlebarsTemplates() {
         "systems/scrpg/templates/partials/abilitiestable.hbs",
         "systems/scrpg/templates/partials/formmodularcommon.hbs",
         "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs",
-        "systems/scrpg/templates/partials/environmenttwist.hbs"
+        "systems/scrpg/templates/partials/environmenttwist.hbs",
+        "systems/scrpg/templates/partials/minions.hbs"
     ];
 
     return loadTemplates(templatePaths)
@@ -89,5 +90,19 @@ Handlebars.registerHelper("getLocalizeAbilityTypeDescription", function (ability
 Handlebars.registerHelper("getLocalizeAbilityTypeTooltip", function (abilitytype) {
 
     if (abilitytype) { return game.i18n.localize(SCRPG.abilityType[abilitytype].tooltip); }
+    return "";
+});
+
+// handlebars helper that returns the localized minion ability. Returns empty string on invalid.
+Handlebars.registerHelper("getLocalizeMinionAbility", function (minionability) {
+
+    if (minionability) { return game.i18n.localize(SCRPG.actionType[minionability]); }
+    return "";
+});
+
+// handlebars helper that returns the localized bonus. Returns empty string on invalid 
+Handlebars.registerHelper("getLocalizeMinionBonus", function (bonus) {
+
+    if (bonus) { return game.i18n.localize(SCRPG.bonus[bonus]); }
     return "";
 });

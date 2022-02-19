@@ -54,6 +54,15 @@ SCRPG.abilityType = {
     R: { type: "R", desc: "SCRPG.abilitytypes.R.display", tooltip: "SCRPG.abilitytypes.R.tooltip" }
 }
 
+//Action types
+SCRPG.actionType = {
+    attack: "SCRPG.actionType.attack",
+    defend: "SCRPG.actionType.defend",
+    boost: "SCRPG.actionType.boost",
+    hinder: "SCRPG.actionType.hinder",
+    overcome: "SCRPG.actionType.overcome"
+}
+
 //Environment Twist Types
 SCRPG.twistType = {
     greenminor: "SCRPG.twist.greenminor",
@@ -62,4 +71,12 @@ SCRPG.twistType = {
     yellowmajor: "SCRPG.twist.yellowmajor",
     redminor: "SCRPG.twist.redminor",
     redmajor: "SCRPG.twist.redmajor"
+}
+
+//Minion bonuses
+SCRPG.bonus = {
+    "one": "SCRPG.minion.bonus.one",
+    "two": "SCRPG.minion.bonus.two",
+    "three": "SCRPG.minion.bonus.three",
+    "four": "SCRPG.minion.bonus.four",
 }
