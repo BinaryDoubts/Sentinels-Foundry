@@ -106,3 +106,18 @@ Handlebars.registerHelper("getLocalizeMinionBonus", function (bonus) {
     if (bonus) { return game.i18n.localize(SCRPG.bonus[bonus]); }
     return "";
 });
+
+// handlebars helper that returns the localized bonus. Returns empty string on invalid 
+Handlebars.registerHelper("getLocalizeModeForm", function (modeform) {
+    switch (modeform) {
+        case "main":
+        case "green1":
+        case "green2":
+        case "yellow1":
+        case "yellow2":
+        case "red1":
+            return game.i18n.localize(SCRPG.types[modeform]);
+        default:
+            return modeform;
+    }
+});

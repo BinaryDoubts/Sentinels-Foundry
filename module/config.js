@@ -41,7 +41,6 @@ SCRPG.types = {
     main: "SCRPG.modes.main",
     green1: "SCRPG.modes.green1",
     green2: "SCRPG.modes.green2",
-    green3: "SCRPG.modes.green3",
     yellow1: "SCRPG.modes.yellow1",
     yellow2: "SCRPG.modes.yellow2",
     red1: "SCRPG.modes.red1"

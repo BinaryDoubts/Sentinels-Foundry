@@ -127,12 +127,12 @@
             "scene": "green",
             "out": "",
             "modeName": {
-                "main": "Default Mode/Form",
-                "green1": "Mode/Form Green #1",
-                "green2": "Mode/Form Green #2",
-                "yellow1": "Mode/Form Yellow #1",
-                "yellow2": "Mode/Form Yellow #2",
-                "red1": "Mode/Form Red #1"
+                "main": "main",
+                "green1": "green1",
+                "green2": "green2",
+                "yellow1": "yellow1",
+                "yellow2": "yellow2",
+                "red1": "red1"
             },
             "modeDescription": {
                 "main": "",
@@ -191,7 +191,7 @@
             "dieType": "d4"
         },
         "ability": {
-            "aux": "main",
+            "aux": "green",
             "icon": {
                 "attack": false,
                 "defend": false,
