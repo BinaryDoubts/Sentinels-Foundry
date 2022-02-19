@@ -7,7 +7,7 @@
     <div class="sheet-content">
         {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
         {{!-- or part of mode/form --}}
-        {{#if (eq this.item.actor "null")}}
+        {{#if (eq this.item.actor null)}}
         <select name="data.aux">
             {{#select data.data.aux}}
             {{#each config.modes as |name type|}}
