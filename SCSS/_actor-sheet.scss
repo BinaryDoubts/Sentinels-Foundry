@@ -445,20 +445,17 @@
         grid-gap: 2px;
         text-align: center;
     }
-    .ability-table, .minion-form-table {
-        .icon-col {
+    .ability-table {
+        td:first-child {
             width: 2.8125rem;
         }
-        .name-col {
+        td:nth-child(2) {
             width: 8.4375rem;
         }
-        .type-col {
+        td:nth-child(3) {
             width: 2.1875rem;
         }
-        .gametext-col {
-            width: auto;
-        }
-        .button-col {
+        td:nth-child(5) {
             width: 2.8125rem;
         }
         .bonus-col {
@@ -492,6 +489,9 @@
         }
         p {
             margin: 0;
+        }
+        td:nth-child(n) {
+            width: 8.75rem;
         }
     }
     .environment {
@@ -610,6 +610,9 @@
                 padding: 2px;
                 h3 {
                     margin: 0;
+                    max-width: 100px;
+                    max-height: 1.25rem;
+                    overflow: hidden;
                 }
             }
             .minion-button {
@@ -623,6 +626,17 @@
             td:nth-child(2) {
                 text-align: center;
             }
+        }
+    }
+    .minion-form-table {
+        td:first-child {
+            width: 8.4375rem;
+        }
+        td:nth-child(3) {
+            width: 5.5rem;
+        }
+        td:nth-child(4) {
+            width: 2.8125rem;
         }
     }   
 }

@@ -1,14 +1,9 @@
 {{!-- Displays a roll of a sinple power, quality or status die --}}
 
 <div class="SCRPG chat roll">
-    <div class="dice-results dice-rolled box-border">
+    <div class="dice-results dice-rolled box-border minor-roll">
         {{!-- Table displays name, die type, and result --}}
         <table>
-            <colgroup>
-                <col style="width: 65px">
-                <col>
-                <col style="width: 40px">
-            </colgroup>
             <tr>
                 {{!-- Displays the type of roll, name, and die result --}}
                 {{#if (eq rollResult.rollType "power")}}
@@ -22,8 +17,6 @@
                 {{/if}}
                 {{#if (eq rollResult.rollType "minion")}}
                 <th>{{localize "SCRPG.minion.minion"}}</th>
-                {{else}}
-                <th>{{rollResult.rollType}}</th>
                 {{/if}}
                 <td>
                     {{#if (eq rollResult.rollName "green")}}{{localize "SCRPG.scene.green"}}
@@ -38,7 +31,7 @@
                     {{/if}}
 
                 </td>
-                <td colspan="2">
+                <td>
                     <div class="dice" style="margin-right: 6px">
                         <label> {{{rollResult.total}}} </label>
                         {{#if rollResult.img}}

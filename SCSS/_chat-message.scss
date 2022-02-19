@@ -4,6 +4,19 @@
         box-shadow: 2px 2px $gray;
         margin-bottom: 4px;
     }
+    .main-roll {
+        th:first-child {
+            width: 5.625rem;
+        }
+    }
+    .minor-roll {
+        th:first-child {
+            width: 4.0625rem;
+        }
+        td:nth-child(3) {
+            width: 2.5rem;
+        }
+    }
     .dice-rolled{
         
         table td {
