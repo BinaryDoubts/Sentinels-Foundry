@@ -42,6 +42,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         const abilities = [];
         const powers = [];
         const qualities = [];
+        const heroMinions = [];
+        const minionForms = [];
         const villainstatus = [];
 
         for (let i of sheetData.items) {
@@ -55,6 +57,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             if (i.type === "villainStatus") {
                 villainstatus.push(i)
             }
+            if (i.type === "heroMinion") {
+                heroMinions.push(i)
+            }
+            if (i.type === "minionForm") {
+                minionForms.push(i)
+            }
             else if (i.type === 'ability') {
                 abilities.push(i)
             }
@@ -63,6 +71,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         actorData.ability = abilities;
         actorData.power = powers;
         actorData.quality = qualities;
+        actorData.heroMinion = heroMinions;
+        actorData.minionForm = minionForms;
         actorData.villainStatus = villainstatus;
     }
 
@@ -145,6 +155,11 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         html.find(".show-main").click(this._onShowMain.bind(this));
         //create new power
         html.find(".create-twist").click(this._onCreateTwist.bind(this));
+        //roll minnion
+        html.find(".roll-minion").click(this._onRollMinion.bind(this));
+        //downgrade minion
+        html.find(".downgrade-minion").click(this._onDowngradeMinion.bind(this));
+
 
         super.activateListeners(html);
     }
@@ -200,6 +215,33 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         //data.secondDie represents the die that will be used in the main roll for quality
         this.actor.update({ "data.secondDie": item.data.data.dieType });
         this.actor.update({ "data.secondDieName": item.data.name });
+    }
+
+    // Rolls the minion die
+    _onRollMinion(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let rollName = item.data.name
+        let rollType = "minion"
+        let roll = item.data.data.dieType
+
+        dice.SingleCheck(roll, rollType, rollName);
+    }
+
+    // Reduces the minion die one type
+    _onDowngradeMinion(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let dieNum = parseInt(item.data.data.dieType.match(/[0-9]+/g)[0]);
+        if (dieNum > 4) {
+            dieNum -= 2;
+        }
+        let dieType = "d" + dieNum;
+        item.update({ "data.dieType": dieType });
     }
 
     //Assigns villain status to main roll

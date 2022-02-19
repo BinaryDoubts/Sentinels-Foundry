@@ -7,13 +7,17 @@
     "ITEM.TypeAbility": "Ability",
     "ITEM.TypeVillainstatus": "Villain Status",
     "ITEM.TypeEnvironmenttwist": "Environment Twist",
+    "ITEM.TypeMinionform": "Minion Form",
+    "ITEM.TypeHerominion": "Hero Minion",
     "SETTINGS.coloredDice.name": "Colored Dice",
     "SETTINGS.coloredDice.hint": "Enable Sentinel Comics dice colors (d4=blue, d6=green, d8=orange, d10=red, d12=purple) in Chat roll messages. Dice will be grey if disabled. Changes will be applied to new rolls.",
     "SCRPG": {
         "sheet": {
             "die": "Die",
             "description": "Description",
-            "newItem": "N/A"
+            "newItem": "N/A",
+            "name": "Name",
+            "bonus": "Bonus"
         },
         "tabs": {
             "heroInfo": "Hero",
@@ -136,6 +140,39 @@
             "dieOne": "First Die",
             "dieTwo": "Second Die",
             "dieThree": "Third Die"
+        },
+        "actionType": {
+            "attack": "Attack",
+            "defend": "Defend",
+            "boost": "Boost",
+            "hinder": "Hinder",
+            "overcome": "Overcome"
+        },
+        "minion": {
+            "action": "Action",
+            "form": "Form",
+            "minion": "Minion",
+            "minions": "Minions",
+            "minionForm": "Minion Forms",
+            "bonus": {
+                "one": "+1 or higher",
+                "two": "+2 or higher",
+                "three": "+3 or higher",
+                "four": "+4 or higher"
+            }
+        },
+        "button": {
+            "addNew": "Add New",
+            "delete": "Delete",
+            "edit": "Edit",
+            "rollMinion": "Roll Minion",
+            "rollPower": "Roll Power",
+            "rollQuality": "Roll Quality",
+            "rollStatus": "Roll Status",
+            "rollMain": "Roll Dice Pool",
+            "downgrade": "Downgrade Minion Die",
+            "show": "Show/Hide Details",
+            "changeMode": "Change to this Mode/Form"
         }
     }
 }

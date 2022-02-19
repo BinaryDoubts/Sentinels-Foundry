@@ -20,7 +20,7 @@
         }
     }
     .powerquality {
-        background-color: white;
+        background-color: $white;
     }
     .green-abilities {
         background-color: $greenbg;
@@ -35,13 +35,13 @@
         background-color: $graybg;
     }
     .box-border {
-        border: 2px solid black;
-        box-shadow: 2px 2px gray;
+        border: 2px solid $black;
+        box-shadow: 2px 2px $gray;
         margin-bottom: 4px;
     }
     .green-abilities, .yellow-abilities, .red-abilities, .villain-abilities, .powerquality {
         td, tr, th{
-            border: 1px dotted black;
+            border: 1px dotted $black;
             padding: 4px;
         }
     }
@@ -50,5 +50,20 @@
         grid-template-columns: 50% 50%;
         grid-gap: 2px;
         text-align: center;
+    }
+    .minion-form-sheet {
+        td:nth-child(2){
+            width: 7.5rem;
+            text-align: center;
+            vertical-align: top;
+            select {
+                margin-top: 3px;
+            }
+        }
+    }
+    .heroMinion-sheet {
+        td {
+            text-align: center;
+        }
     }
 }

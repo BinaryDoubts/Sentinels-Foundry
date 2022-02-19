@@ -20,6 +20,11 @@
                 {{#if (eq rollResult.rollType "status")}}
                 <th>{{localize "SCRPG.powerquality.status"}}</th>
                 {{/if}}
+                {{#if (eq rollResult.rollType "minion")}}
+                <th>{{localize "SCRPG.minion.minion"}}</th>
+                {{else}}
+                <th>{{rollResult.rollType}}</th>
+                {{/if}}
                 <td>
                     {{#if (eq rollResult.rollName "green")}}{{localize "SCRPG.scene.green"}}
                     {{else}}

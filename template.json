@@ -179,7 +179,9 @@
             "quality",
             "ability",
             "villainStatus",
-            "environmentTwist"
+            "environmentTwist",
+            "heroMinion",
+            "minionForm"
         ],
         "power": {
             "dieType": "d4",
@@ -207,6 +209,15 @@
         "environmentTwist": {
             "type": "greenminor",
             "description": ""
+        },
+        "heroMinion": {
+            "dieType": "d4",
+            "action": "attack",
+            "form": "N/A"
+        },
+        "minionForm": {
+            "description": "",
+            "bonus": "one"
         }
     }
 }

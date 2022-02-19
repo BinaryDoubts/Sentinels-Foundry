@@ -1,0 +1,59 @@
+{{!-- Sheet for displaying hero minions --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    <div class="sheet-content heroMinion-sheet">
+        <table class="box-border">
+            <tr class="villain-abilities">
+                <th>
+                    {{localize "SCRPG.minion.action"}}
+                </th>
+                <th>
+                    {{localize "SCRPG.minion.form"}}
+                </th>
+                <th>
+                    {{localize "SCRPG.sheet.die"}}
+                </th>
+            </tr>
+            <tr class="villain-abilities">
+                <td>
+                    {{!-- Drop down to select the action the minion can take --}}
+                    <select name="data.action">
+                        {{#select data.data.action}}
+                        {{#each config.actionType as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td>
+                    {{!-- Drop down to select the form that it can take --}}
+                    {{!-- list is generated from character options --}}
+                    <select name="data.form">
+                        {{#select data.data.form}}
+                        <option value="N/A">N/A</option>
+                        {{#each this.item.actor.minionForm as |minionForm|}}
+                        <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td>
+                    {{!-- Drop down to select minion die type --}}
+                    <select name="data.dieType">
+                        {{#select data.data.dieType}}
+                        {{#each config.dieTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</form>

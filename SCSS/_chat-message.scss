@@ -1,7 +1,7 @@
 .SCRPG.chat.roll {
     .box-border {
-        border: 2px solid black;
-        box-shadow: 2px 2px gray;
+        border: 2px solid $black;
+        box-shadow: 2px 2px $gray;
         margin-bottom: 4px;
     }
     .dice-rolled{
@@ -13,13 +13,13 @@
             padding-left: 8px;
         }
         table {
-            background-color: white;
+            background-color: $white;
             margin: 0;
             border: 0;
         }
     }
     .dice-results {
-        background-color: white;
+        background-color: $white;
         display: flex;
         justify-content: center;
 
