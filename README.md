@@ -9,12 +9,13 @@ This is an unofficial package and a copy of the rulebook will be required to use
 ## Features
 
 - Support for Heros, Villain and Environment character sheets
-- Support for Modular, Form-Changer, and Divided archetypes
+- Support for Modular, Form-Changer, Divided, Minion-Maker archetypes
     - Modular characters can choose to have a non-powered form
     - Divided psyche (rolling two powers/two qualities) and divided status can both be enabled seperately
     - Different modes/forms of Modular and Form-Changer characters can have different powers and power die
     - Forms/Modes abilities, powers and description can be filled out on the Auxiliary tab but can also be viewed on the Power tab
     - Form/Mode can be changed on the Auxiliary tab or from the drop down menu on the Power tab
+    - Minion forms and minions can be tacked on minion tab
 - Hero heath ranges are automatically calculated from entering Max health
 - Hero Status is automatically determined from heath range and scene status
 - Powers, qualities, and abilities can be added directly on the character sheet
