@@ -127,12 +127,12 @@
             "scene": "green",
             "out": "",
             "modeName": {
-                "main": "main",
-                "green1": "green1",
-                "green2": "green2",
-                "yellow1": "yellow1",
-                "yellow2": "yellow2",
-                "red1": "red1"
+                "main": "",
+                "green1": "",
+                "green2": "",
+                "yellow1": "",
+                "yellow2": "",
+                "red1": ""
             },
             "modeDescription": {
                 "main": "",

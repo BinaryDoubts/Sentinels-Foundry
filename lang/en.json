@@ -17,7 +17,9 @@
             "description": "Description",
             "newItem": "N/A",
             "name": "Name",
-            "bonus": "Bonus"
+            "bonus": "Bonus",
+            "firstPrinciple": "First Principle",
+            "secondPrinciple": "Second Principle"
         },
         "tabs": {
             "heroInfo": "Hero",
