@@ -1,8 +1,8 @@
 {{!-- Default mode/form --}}
 <div {{#if (eq data.data.mode "main" )}} class="select-border green-abilities mode-name"
     {{else}}class="box-border green-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.main"
-        value="{{getLocalizeModeForm data.data.modeName.main}}" />
+    <input class="mode-name-input" type="text" name="data.modeName.main" value="{{data.data.modeName.main}}"
+        placeholder='{{localize "SCRPG.modes.main"}}' />
     {{!-- Buttons for minimizing the details and applying it to character --}}
     <a title='{{localize "SCRPG.button.show"}}' class="show-main mode-item" {{#if (eq data.data.modeDisplayed.main true
         )}} style="color:green" {{/if}} data-aux="main">
@@ -43,8 +43,8 @@
 {{!-- First green mode/form --}}
 <div {{#if (eq data.data.mode "green1" )}} class="select-border green-abilities mode-name"
     {{else}}class="box-border green-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.green1"
-        value="{{getLocalizeModeForm data.data.modeName.green1}}" />
+    <input class="mode-name-input" type="text" name="data.modeName.green1" value="{{data.data.modeName.green1}}"
+        placeholder='{{localize "SCRPG.modes.green1"}}' />
     {{!-- Buttons for minimizing the details and applying it to character --}}
     <a title='{{localize "SCRPG.button.show"}}' class="show-green1 mode-item" {{#if (eq data.data.modeDisplayed.green1
         true )}} style="color:green" {{/if}} data-aux="green1">
@@ -89,8 +89,8 @@
 {{#if (eq data.data.powerless true)}}
 <div {{#if (eq data.data.mode "green2" )}} class="select-border green-abilities mode-name"
     {{else}}class="box-border green-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.green2"
-        value="{{getLocalizeModeForm data.data.modeName.green2}}">
+    <input class="mode-name-input" type="text" name="data.modeName.green2" value="{{data.data.modeName.green2}}"
+        placeholder='{{localize "SCRPG.modes.green2"}}'>
     {{!-- Buttons for minimizing the details and applying it to character --}}
     <a title='{{localize "SCRPG.button.show"}}' class="show-green2 mode-item" {{#if (eq data.data.modeDisplayed.green2
         true )}} style="color:green" {{/if}} data-aux="green2">
@@ -138,8 +138,8 @@
 {{!-- First yellow mode/form --}}
 <div {{#if (eq data.data.mode "yellow1" )}} class="select-border yellow-abilities mode-name"
     {{else}}class="box-border yellow-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.yellow1"
-        value="{{getLocalizeModeForm data.data.modeName.yellow1}}">
+    <input class="mode-name-input" type="text" name="data.modeName.yellow1" value="{{data.data.modeName.yellow1}}"
+        placeholder='{{localize "SCRPG.modes.yellow1"}}'>
     {{!-- Buttons for minimizing the details and applying it to character --}}
     <a title='{{localize "SCRPG.button.show"}}' class="show-yellow1 mode-item" {{#if (eq data.data.modeDisplayed.yellow1
         true )}} style="color:green" {{/if}} data-aux="yellow1">
