@@ -1,0 +1,46 @@
+{{!-- Sheet for displaying bonuses and penalties --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    </header>
+    <div class="sheet-content mod-sheet">
+        <table class="box-border villain-abilities">
+            <tr>
+                <th>
+                    {{localize "SCRPG.mod.mod"}}
+                </th>
+                <th>
+                    {{localize "SCRPG.mod.persistant"}}
+                </th>
+                <th>
+                    {{localize "SCRPG.mod.exclusive"}}
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    {{!-- Drop down to select the mod --}}
+                    <select name="data.value">
+                        {{#select data.data.value}}
+                        {{#each config.mod as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td>
+                    {{!-- Toggle wether the mod is persistant --}}
+                    <input type="checkbox" name="data.persistant" {{checked data.data.persistant}}
+                        data-dtype="boolean" />
+                </td>
+                <td>
+                    {{!-- Toggle wether the mod is exclusvie --}}
+                    <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}} data-dtype="boolean" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</form>

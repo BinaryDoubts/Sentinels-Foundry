@@ -9,8 +9,11 @@
     "ITEM.TypeEnvironmenttwist": "Environment Twist",
     "ITEM.TypeMinionform": "Minion Form",
     "ITEM.TypeHerominion": "Hero Minion",
+    "ITEM.TypeMod": "Bonus/Penalty",
     "SETTINGS.coloredDice.name": "Colored Dice",
     "SETTINGS.coloredDice.hint": "Enable Sentinel Comics dice colors (d4=blue, d6=green, d8=orange, d10=red, d12=purple) in Chat roll messages. Dice will be grey if disabled. Changes will be applied to new rolls.",
+    "SETTINGS.mod.name": "Track Bonus/Penalty",
+    "SETTINGS.mod.hint": "Enable the ability to track bonuses and penalties gained throughout the game.",
     "SETTINGS.availableAbilities.name": "Available Abilities",
     "SETTINGS.availableAbilities.hint": "Abilities not currently avilable to you due to your current status will be greyed out",
     "SCRPG": {
@@ -179,6 +182,14 @@
             "downgrade": "Downgrade Minion Die",
             "show": "Show/Hide Details",
             "changeMode": "Change to this Mode/Form"
+        },
+        "mod": {
+            "mod": "Bonus/Penalty",
+            "persistant": "Persistant",
+            "exclusive": "Exclusive",
+            "bonus": "Bonus",
+            "penalty": "Penalty",
+            "addNew": "Add New"
         }
     }
 }

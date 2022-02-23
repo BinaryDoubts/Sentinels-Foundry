@@ -26,6 +26,9 @@
         </div>
         <div class="tab powerabilities" data-group="primary" data-tab="powerabilities">
             {{> "systems/scrpg/templates/partials/powerquality.hbs"}}
+            {{#ifSetting "mod"}}
+            {{> "systems/scrpg/templates/partials/mod.hbs"}}
+            {{/ifSetting}}
             {{> "systems/scrpg/templates/partials/abilities.hbs"}}
         </div>
         <div class="tab auxiliary" data-group="primary" data-tab="auxiliary">
@@ -40,6 +43,9 @@
         <div class="tab info" data-group="primary" data-tab="info">
             {{> "systems/scrpg/templates/partials/heroinfo.hbs"}}
             {{> "systems/scrpg/templates/partials/powerquality.hbs"}}
+            {{#ifSetting "mod"}}
+            {{> "systems/scrpg/templates/partials/mod.hbs"}}
+            {{/ifSetting}}
             {{> "systems/scrpg/templates/partials/abilities.hbs"}}
         </div>
         {{/if}}

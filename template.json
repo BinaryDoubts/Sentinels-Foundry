@@ -157,7 +157,9 @@
             "dividedPsyche": false,
             "dividedStatus": false,
             "civilianMode": false,
-            "poweredMode": false
+            "poweredMode": false,
+            "persistant": false,
+            "exclusive": false
         },
         "villain": {
             "templates": [
@@ -181,7 +183,8 @@
             "villainStatus",
             "environmentTwist",
             "heroMinion",
-            "minionForm"
+            "minionForm",
+            "mod"
         ],
         "power": {
             "dieType": "d4",
@@ -218,6 +221,11 @@
         "minionForm": {
             "description": "",
             "bonus": "one"
+        },
+        "mod": {
+            "value": 1,
+            "persistant": false,
+            "exclusive": false
         }
     }
 }
