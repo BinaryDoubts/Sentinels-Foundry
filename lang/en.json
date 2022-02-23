@@ -11,6 +11,8 @@
     "ITEM.TypeHerominion": "Hero Minion",
     "SETTINGS.coloredDice.name": "Colored Dice",
     "SETTINGS.coloredDice.hint": "Enable Sentinel Comics dice colors (d4=blue, d6=green, d8=orange, d10=red, d12=purple) in Chat roll messages. Dice will be grey if disabled. Changes will be applied to new rolls.",
+    "SETTINGS.availableAbilities.name": "Available Abilities",
+    "SETTINGS.availableAbilities.hint": "Abilities not currently avilable to you due to your current status will be greyed out",
     "SCRPG": {
         "sheet": {
             "die": "Die",
