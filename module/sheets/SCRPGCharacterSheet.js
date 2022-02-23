@@ -91,6 +91,29 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         actorData.environmentTwist = twists;
     }
 
+    getNextMinionIndex() {
+        let minions = this.object.heroMinion;
+        let names = [];
+        let highestIndex = 0;
+
+        for (let i = 0; i < minions.length; i++) {
+            let curname = minions[i].name;
+            let curindex;
+            let minionPrefix = game.i18n.localize("SCRPG.sheet.newMinion");
+
+            // Only check index if name starts with the minionPrefix
+            if (curname.startsWith(minionPrefix)) {
+                let curNamePostfix = curname.substring(minionPrefix.length);
+                curindex = parseInt(curNamePostfix);
+            }
+
+            //Update highestindex
+            if (!isNaN(curindex) && curindex > highestIndex) { highestIndex = curindex; }
+        }
+
+        return highestIndex + 1;
+    }
+
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
     /* -------------------------------------------- */
@@ -168,16 +191,26 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onItemCreate(event) {
         event.preventDefault();
         let element = event.currentTarget;
+        let itemData = null;
 
-        let itemData = {
-            name: game.i18n.localize("SCRPG.sheet.newItem"),
-            type: element.dataset.type
-        };
+        switch (element.dataset.type) {
+            case "heroMinion":
+                itemData = {
+                    name: game.i18n.localize("SCRPG.sheet.newMinion") + " " + this.getNextMinionIndex(),
+                    type: element.dataset.type
+                };
+                break;
+            default:
+                itemData = {
+                    name: game.i18n.localize("SCRPG.sheet.newItem"),
+                    type: element.dataset.type
+                };
+        }
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
-    //deletes the closest item
+        //deletes the closest item
     _onItemDelete(event) {
         event.preventDefault();
         let element = event.currentTarget;
