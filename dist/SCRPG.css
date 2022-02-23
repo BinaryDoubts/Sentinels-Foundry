@@ -89,7 +89,7 @@
   margin-top: 3px;
 }
 
-.SCRPG.sheet.item .heroMinion-sheet td {
+.SCRPG.sheet.item .heroMinion-sheet td, .SCRPG.sheet.item .mod-sheet td {
   text-align: center;
 }
 
@@ -245,6 +245,16 @@
 }
 
 .SCRPG.sheet.actor .section-name-minion h3 {
+  margin: 0;
+}
+
+.SCRPG.sheet.actor .section-name-mod {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.SCRPG.sheet.actor .section-name-mod h3 {
   margin: 0;
 }
 
@@ -979,6 +989,80 @@
 
 .SCRPG.sheet.actor .buttons a {
   vertical-align: middle;
+}
+
+.SCRPG.sheet.actor .mods {
+  background-color: white;
+  margin-bottom: 4px;
+}
+
+.SCRPG.sheet.actor .mods table {
+  margin: 0;
+}
+
+.SCRPG.sheet.actor .mods td, .SCRPG.sheet.actor .mods th {
+  border: 1px dotted black;
+}
+
+.SCRPG.sheet.actor .mods th:first-child, .SCRPG.sheet.actor .mods td:first-child {
+  width: 20%;
+}
+
+.SCRPG.sheet.actor .mods th:first-child div, .SCRPG.sheet.actor .mods td:first-child div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.SCRPG.sheet.actor .mods th:nth-child(2), .SCRPG.sheet.actor .mods td:nth-child(2) {
+  width: 40%;
+}
+
+.SCRPG.sheet.actor .mods td:nth-child(2), .SCRPG.sheet.actor .mods td:nth-child(3) {
+  vertical-align: text-top;
+}
+
+.SCRPG.sheet.actor .mods button {
+  width: 32px;
+  line-height: normal;
+}
+
+.SCRPG.sheet.actor .penalties, .SCRPG.sheet.actor .bonuses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.SCRPG.sheet.actor .mod-item {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 4px;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto auto;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.SCRPG.sheet.actor .mod-item h3 {
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+.SCRPG.sheet.actor .mod-item i {
+  vertical-align: center;
+  margin: 2px;
 }
 
 .SCRPG.chat.roll .box-border {

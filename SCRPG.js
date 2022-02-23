@@ -16,7 +16,8 @@ async function preloadHandlebarsTemplates() {
         "systems/scrpg/templates/partials/formmodularcommon.hbs",
         "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs",
         "systems/scrpg/templates/partials/environmenttwist.hbs",
-        "systems/scrpg/templates/partials/minions.hbs"
+        "systems/scrpg/templates/partials/minions.hbs",
+        "systems/scrpg/templates/partials/mod.hbs"
     ];
 
     return loadTemplates(templatePaths)
@@ -31,6 +32,14 @@ function registerSystemSettings() {
         hint: "SETTINGS.coloredDice.hint",
         type: Boolean,
         default: true
+    });
+    game.settings.register("scrpg", "mod", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.mod.name",
+        hint: "SETTINGS.mod.hint",
+        type: Boolean,
+        default: true,
     });
     game.settings.register("scrpg", "availableAbilities", {
         config: true,
@@ -115,6 +124,13 @@ Handlebars.registerHelper("getLocalizeMinionBonus", function (bonus) {
     return "";
 });
 
+// handlebars helper if statement that checks system setting
+Handlebars.registerHelper("ifSetting", function (setting, options) {
+    let settingState = game.settings.get("scrpg", setting);
+    if (settingState) {
+        return new Handlebars.SafeString(options.fn(this));
+    }
+});
 // handlebars helper that returns a css class depending if the abilities would be enabled by the scene/character status.
 Handlebars.registerHelper("getAbilitiesEnabledFromStatusClass", function (mode, actor) {
 

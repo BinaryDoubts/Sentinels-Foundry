@@ -79,3 +79,15 @@ SCRPG.bonus = {
     "three": "SCRPG.minion.bonus.three",
     "four": "SCRPG.minion.bonus.four",
 }
+
+//Mod values
+SCRPG.mod = {
+    "-4": "-4",
+    "-3": "-3",
+    "-2": "-2",
+    "-1": "-1",
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4"
+}

@@ -44,6 +44,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         const qualities = [];
         const heroMinions = [];
         const minionForms = [];
+        const mods = [];
         const villainstatus = [];
 
         for (let i of sheetData.items) {
@@ -63,6 +64,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             if (i.type === "minionForm") {
                 minionForms.push(i)
             }
+            if (i.type === "mod") {
+                mods.push(i)
+            }
             else if (i.type === 'ability') {
                 abilities.push(i)
             }
@@ -73,6 +77,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         actorData.quality = qualities;
         actorData.heroMinion = heroMinions;
         actorData.minionForm = minionForms;
+        actorData.mod = mods;
         actorData.villainStatus = villainstatus;
     }
 
@@ -182,6 +187,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         html.find(".roll-minion").click(this._onRollMinion.bind(this));
         //downgrade minion
         html.find(".downgrade-minion").click(this._onDowngradeMinion.bind(this));
+        //create mod
+        html.find(".create-mod").click(this._onCreateMod.bind(this));
 
 
         super.activateListeners(html);
@@ -611,6 +618,30 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         } else {
             this.actor.update({ "data.modeDisplayed.main": true });
         }
+    }
+
+    //creates a new mod
+    _onCreateMod(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        //checks datatype of element and assigns that to the ability value
+        //value is used to determine where the ability goes, ex in a mode/form
+        var value = "+1"
+        if (element.dataset.value) {
+            value = element.dataset.value
+        }
+
+        let itemData = {
+            name: game.i18n.localize("SCRPG.sheet.newItem"),
+            type: element.dataset.type,
+            "data.value": value,
+            "data.persistant": this.actor.data.data.persistant,
+            "data.exclusive": this.actor.data.data.exclusive
+        };
+        this.actor.update({ "data.persistant": false });
+        this.actor.update({ "data.exclusive": false });
+
+        return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
     //creates a new environment twist
