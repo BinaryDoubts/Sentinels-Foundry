@@ -32,6 +32,14 @@ function registerSystemSettings() {
         type: Boolean,
         default: true
     });
+    game.settings.register("scrpg", "availableAbilities", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.availableAbilities.name",
+        hint: "SETTINGS.availableAbilities.hint",
+        type: Boolean,
+        default: false
+    });
 };
 
 Hooks.once("init", function () {
@@ -104,5 +112,28 @@ Handlebars.registerHelper("getLocalizeMinionAbility", function (minionability) {
 Handlebars.registerHelper("getLocalizeMinionBonus", function (bonus) {
 
     if (bonus) { return game.i18n.localize(SCRPG.bonus[bonus]); }
+    return "";
+});
+
+// handlebars helper that returns a css class depending if the abilities would be enabled by the scene/character status.
+Handlebars.registerHelper("getAbilitiesEnabledFromStatusClass", function (mode, actor) {
+
+    let setting = game.settings.get("scrpg", "availableAbilities")
+    let scene = actor.scene;
+    let actorStatus = actor.thirdDieName;
+
+    if (setting) {
+        if (scene == "red" || actorStatus == "red") {
+            //Enable green, yellow and red
+        } else if (scene == "yellow" || actorStatus == "yellow") {
+            if (mode == "red") { return "filter: grayscale(70%);" }
+            //Enabled green
+            //enable yellow
+        } else {
+            if (mode == "yellow" || mode == "red") { return "filter: grayscale(70%);" }
+            //enable green
+        }
+    }
+
     return "";
 });

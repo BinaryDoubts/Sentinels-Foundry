@@ -3,7 +3,8 @@
 {{!-- This partial takes a variable called mode which is uses --}}
 {{!-- to determine where the ability belongs --}}
 <div class="ability-list item-list ability-table">
-    <table class="{{#color}}{{mode}}{{/color}}-abilities box-border">
+    <table class="{{#color}}{{mode}}{{/color}}-abilities box-border"
+        style="{{getAbilitiesEnabledFromStatusClass mode this.actor.data.data}}">
         <tr>
             <th>{{localize "SCRPG.abilities.icon"}}</th>
             <th>{{localize "SCRPG.abilities.name"}}</th>
