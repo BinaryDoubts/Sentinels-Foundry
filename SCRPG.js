@@ -31,7 +31,7 @@ function registerSystemSettings() {
         name: "SETTINGS.coloredDice.name",
         hint: "SETTINGS.coloredDice.hint",
         type: Boolean,
-        default: false
+        default: true
     });
     game.settings.register("scrpg", "mod", {
         config: true,
@@ -39,7 +39,7 @@ function registerSystemSettings() {
         name: "SETTINGS.mod.name",
         hint: "SETTINGS.mod.hint",
         type: Boolean,
-        default: false
+        default: true
     });
     game.settings.register("scrpg", "availableAbilities", {
         config: true,
@@ -47,7 +47,7 @@ function registerSystemSettings() {
         name: "SETTINGS.availableAbilities.name",
         hint: "SETTINGS.availableAbilities.hint",
         type: Boolean,
-        default: false
+        default: true
     });
 };
 
