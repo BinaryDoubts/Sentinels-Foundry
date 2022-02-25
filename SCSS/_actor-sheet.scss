@@ -670,13 +670,13 @@
         }  
     }
     .mods {
-        background-color: white;
+        background-color: $white;
         margin-bottom: 4px;
         table {
             margin: 0;
         }
         td, th {
-            border: 1px dotted black;
+            border: 1px dotted $black;
         }
         th:first-child, td:first-child {
             width: 20%;
@@ -700,6 +700,15 @@
     .penalties, .bonuses {
         display: flex;
         flex-wrap: wrap;
+        .p-e-icon {
+            font-size: 0.75rem;
+            display: grid;
+            grid-template-rows: auto auto;
+            grid-gap: 3px;
+        }
+        .p-icon, .e-icon {
+            height: 0.75rem;
+        }
     }
     .mod-item {
         height: fit-content;
@@ -710,14 +719,30 @@
         padding-left: 2px;
         padding-right: 2px;
         h3 {
-            margin: 0;
+            margin: 2px;
             font-weight: bold;
             text-align: center;
-            font-size: 20px;
+            font-size: 1.5625rem;
         }
-        i {
-            vertical-align: center;
+        .fa-trash {
+            vertical-align: middle;
             margin: 2px;
         }
-    }   
+    } 
+    .mod-dialogue {
+        p {
+            display: inline;
+            vertical-align: middle;
+            margin: 0;
+        }
+        input {
+            vertical-align: middle;
+        }
+    }  
+    .fa-hourglass {
+        color: $persistant;
+    }
+    .fa-lock {
+        color: $exclusive;
+    }
 }
