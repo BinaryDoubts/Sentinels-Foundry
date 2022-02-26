@@ -1039,15 +1039,18 @@
 
 .SCRPG.sheet.actor .penalties .p-e-icon, .SCRPG.sheet.actor .bonuses .p-e-icon {
   font-size: 0.75rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: auto auto;
-      grid-template-rows: auto auto;
-  grid-gap: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
 }
 
-.SCRPG.sheet.actor .penalties .p-icon, .SCRPG.sheet.actor .penalties .e-icon, .SCRPG.sheet.actor .bonuses .p-icon, .SCRPG.sheet.actor .bonuses .e-icon {
-  height: 0.75rem;
+.SCRPG.sheet.actor .penalties .p-e-icon i, .SCRPG.sheet.actor .bonuses .p-e-icon i {
+  padding: 1px 0;
 }
 
 .SCRPG.sheet.actor .mod-item {
