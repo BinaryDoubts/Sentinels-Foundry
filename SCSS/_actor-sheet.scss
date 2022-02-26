@@ -702,12 +702,12 @@
         flex-wrap: wrap;
         .p-e-icon {
             font-size: 0.75rem;
-            display: grid;
-            grid-template-rows: auto auto;
-            grid-gap: 3px;
-        }
-        .p-icon, .e-icon {
-            height: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            i {
+                padding: 1px 0;
+            }
         }
     }
     .mod-item {

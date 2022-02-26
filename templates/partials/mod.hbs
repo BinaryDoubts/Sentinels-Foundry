@@ -12,18 +12,6 @@
             </tr>
             <tr>
                 <td>
-                    <div>
-                        <button class="create-mod" data-type="mod" data-value="+1">+1</button>
-                        <button class="create-mod" data-type="mod" data-value="+2">+2</button>
-                        <button class="create-mod" data-type="mod" data-value="+3">+3</button>
-                        <button class="create-mod" data-type="mod" data-value="+4">+4</button>
-                    </div>
-                    <div>
-                        <button class="create-mod" data-type="mod" data-value="-1">-1</button>
-                        <button class="create-mod" data-type="mod" data-value="-2">-2</button>
-                        <button class="create-mod" data-type="mod" data-value="-3">-3</button>
-                        <button class="create-mod" data-type="mod" data-value="-4">-4</button>
-                    </div>
                     <div class="mod-dialogue">
                         <p>
                             {{localize "SCRPG.mod.persistant"}}
@@ -40,29 +28,35 @@
                         <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}}
                             data-dtype="boolean" />
                     </div>
+                    <div>
+                        <button class="create-mod" data-type="mod" data-value="+1">+1</button>
+                        <button class="create-mod" data-type="mod" data-value="+2">+2</button>
+                        <button class="create-mod" data-type="mod" data-value="+3">+3</button>
+                        <button class="create-mod" data-type="mod" data-value="+4">+4</button>
+                    </div>
+                    <div>
+                        <button class="create-mod" data-type="mod" data-value="-1">-1</button>
+                        <button class="create-mod" data-type="mod" data-value="-2">-2</button>
+                        <button class="create-mod" data-type="mod" data-value="-3">-3</button>
+                        <button class="create-mod" data-type="mod" data-value="-4">-4</button>
+                    </div>
                 </td>
                 <td>
                     <div class="bonuses">
                         {{#each actor.mod as |mod id|}}
                         {{#if (gte data.value 0)}}
-                        <div class="mod-item item box-border green-abilities" data-item-id="{{ mod._id}}">
+                        <a class="mod-item item box-border green-abilities item-delete"
+                            title='{{localize "SCRPG.button.delete"}}' data-item-id="{{ mod._id}}">
                             <h3>{{data.value}}</h3>
                             <div class="p-e-icon">
-                                <div class="p-icon">
-                                    {{#if (eq data.persistant true)}}
-                                    <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
-                                    {{/if}}
-                                </div>
-                                <div class="e-icon">
-                                    {{#if (eq data.exclusive true)}}
-                                    <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
-                                    {{/if}}
-                                </div>
+                                {{#if (eq data.persistant true)}}
+                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                                {{/if}}
+                                {{#if (eq data.exclusive true)}}
+                                <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
+                                {{/if}}
                             </div>
-                            <a title='{{localize "SCRPG.button.delete" }}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
+                        </a>
                         {{/if}}
                         {{/each}}
                     </div>
@@ -71,24 +65,18 @@
                     <div class="penalties">
                         {{#each actor.mod as |mod id|}}
                         {{#if (lte data.value 0)}}
-                        <div class="mod-item item box-border red-abilities" data-item-id="{{ mod._id}}">
+                        <a class="mod-item item box-border red-abilities item-delete"
+                            title='{{localize "SCRPG.button.delete"}}' data-item-id="{{ mod._id}}">
                             <h3>{{data.value}}</h3>
                             <div class="p-e-icon">
-                                <div class="p-icon">
-                                    {{#if (eq data.persistant true)}}
-                                    <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
-                                    {{/if}}
-                                </div>
-                                <div class="e-icon">
-                                    {{#if (eq data.exclusive true)}}
-                                    <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
-                                    {{/if}}
-                                </div>
+                                {{#if (eq data.persistant true)}}
+                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                                {{/if}}
+                                {{#if (eq data.exclusive true)}}
+                                <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
+                                {{/if}}
                             </div>
-                            <a title='{{localize "SCRPG.button.delete" }}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
+                        </a>
                         {{/if}}
                         {{/each}}
                     </div>
