@@ -719,12 +719,22 @@
 }
 
 .SCRPG.sheet.actor .icon-position {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 50% 50%;
-      grid-template-columns: 50% 50%;
-  grid-gap: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.SCRPG.sheet.actor .icon-position .icon {
   text-align: center;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  margin: 1px;
 }
 
 .SCRPG.sheet.actor .ability-table th:first-child, .SCRPG.sheet.actor .ability-table td:first-child {
@@ -1008,7 +1018,7 @@
   width: 20%;
 }
 
-.SCRPG.sheet.actor .mods th:first-child div, .SCRPG.sheet.actor .mods td:first-child div {
+.SCRPG.sheet.actor .mods th:first-child .mod-dialogue, .SCRPG.sheet.actor .mods th:first-child .mod-buttons, .SCRPG.sheet.actor .mods td:first-child .mod-dialogue, .SCRPG.sheet.actor .mods td:first-child .mod-buttons {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1081,7 +1091,25 @@
   margin: 2px;
 }
 
+.SCRPG.sheet.actor .mod-dialogue {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: right;
+      -ms-flex-align: right;
+          align-items: right;
+}
+
+.SCRPG.sheet.actor .mod-dialogue .mod-per-dialogue, .SCRPG.sheet.actor .mod-dialogue .mod-exc-dialogue {
+  margin-left: auto;
+}
+
 .SCRPG.sheet.actor .mod-dialogue p {
+  margin-left: auto;
   display: inline;
   vertical-align: middle;
   margin: 0;
