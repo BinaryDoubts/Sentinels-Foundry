@@ -23,18 +23,19 @@
             <td>
                 {{!-- Icons can be selected here --}}
                 <div class="icon-position">
-                    {{#if (eq data.icon.attack true)}}<i title={{localize "SCRPG.abilitytypes.attack" }}
-                        class="fas fa-hand-rock"></i>{{/if}}
-                    {{#if (eq data.icon.defend true)}}<i title={{localize "SCRPG.abilitytypes.defend" }}
-                        class="fas fa-shield-alt"></i>{{/if}}
-                    {{#if (eq data.icon.overcome true)}}<i title={{localize "SCRPG.abilitytypes.overcome" }}
-                        class="fas fa-share"></i>{{/if}}
-                    {{#if (eq data.icon.hinder true)}}<i title={{localize "SCRPG.abilitytypes.hinder" }}
-                        class="fas fa-angle-double-down"></i>{{/if}}
-                    {{#if (eq data.icon.boost true)}}<i title={{localize "SCRPG.abilitytypes.boost" }}
-                        class="fas fa-angle-double-up"></i>{{/if}}
-                    {{#if (eq data.icon.recover true)}}<i title={{localize "SCRPG.abilitytypes.recover" }}
-                        class="fas fa-plus-square"></i>{{/if}}
+                    {{#if (eq data.icon.attack true)}}<div class="icon"><i title={{localize "SCRPG.abilitytypes.attack"
+                            }} class="fas fa-hand-rock"></i></div>{{/if}}
+                    {{#if (eq data.icon.defend true)}}<div class="icon"><i title={{localize "SCRPG.abilitytypes.defend"
+                            }} class="fas fa-shield-alt"></i></div>{{/if}}
+                    {{#if (eq data.icon.overcome true)}}<div class="icon"><i
+                            title={{localize "SCRPG.abilitytypes.overcome" }} class="fas fa-share"></i></div>{{/if}}
+                    {{#if (eq data.icon.hinder true)}}<div class="icon"><i title={{localize "SCRPG.abilitytypes.hinder"
+                            }} class="fas fa-angle-double-down"></i></div>{{/if}}
+                    {{#if (eq data.icon.boost true)}}<div class="icon"><i title={{localize "SCRPG.abilitytypes.boost" }}
+                            class="fas fa-angle-double-up"></i></div>{{/if}}
+                    {{#if (eq data.icon.recover true)}}<div class="icon"><i
+                            title={{localize "SCRPG.abilitytypes.recover" }} class="fas fa-plus-square"></i></div>
+                    {{/if}}
                 </div>
             </td>
             <td>

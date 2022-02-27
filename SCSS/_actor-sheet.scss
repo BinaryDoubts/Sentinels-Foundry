@@ -464,10 +464,16 @@
         margin-bottom: 4px;
     }
     .icon-position {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-gap: 2px;
-        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .icon {
+            text-align: center;
+            vertical-align: middle;
+            width: 14px;
+            height: 14px;
+            margin: 1px;
+        }
     }
     .ability-table {
         th:first-child, td:first-child {
@@ -680,7 +686,7 @@
         }
         th:first-child, td:first-child {
             width: 20%;
-            div {
+            .mod-dialogue, .mod-buttons {
                 width: fit-content;
                 margin-left: auto;
                 margin-right: auto;
@@ -730,7 +736,14 @@
         }
     } 
     .mod-dialogue {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        .mod-per-dialogue, .mod-exc-dialogue {
+            margin-left: auto;
+        }
         p {
+            margin-left: auto;
             display: inline;
             vertical-align: middle;
             margin: 0;

@@ -13,28 +13,30 @@
             <tr>
                 <td>
                     <div class="mod-dialogue">
-                        <p>
-                            {{localize "SCRPG.mod.persistant"}}
-                            <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
-                        </p>
-                        <input type="checkbox" name="data.persistant" {{checked data.data.persistant}}
-                            data-dtype="boolean" />
+                        <div class="mod-per-dialogue">
+                            <p>
+                                {{localize "SCRPG.mod.persistant"}}
+                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                            </p>
+                            <input type="checkbox" name="data.persistant" {{checked data.data.persistant}}
+                                data-dtype="boolean" />
+                        </div>
+                        <div class="mod-exc-dialogue">
+                            <p>
+                                {{localize "SCRPG.mod.exclusive"}}
+                                <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
+                            </p>
+                            <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}}
+                                data-dtype="boolean" />
+                        </div>
                     </div>
-                    <div class="mod-dialogue">
-                        <p>
-                            {{localize "SCRPG.mod.exclusive"}}
-                            <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
-                        </p>
-                        <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}}
-                            data-dtype="boolean" />
-                    </div>
-                    <div>
+                    <div class="mod-buttons">
                         <button class="create-mod" data-type="mod" data-value="+1">+1</button>
                         <button class="create-mod" data-type="mod" data-value="+2">+2</button>
                         <button class="create-mod" data-type="mod" data-value="+3">+3</button>
                         <button class="create-mod" data-type="mod" data-value="+4">+4</button>
                     </div>
-                    <div>
+                    <div class="mod-buttons">
                         <button class="create-mod" data-type="mod" data-value="-1">-1</button>
                         <button class="create-mod" data-type="mod" data-value="-2">-2</button>
                         <button class="create-mod" data-type="mod" data-value="-3">-3</button>
