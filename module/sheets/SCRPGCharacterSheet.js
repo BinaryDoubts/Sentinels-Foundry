@@ -125,70 +125,72 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
     activateListeners(html) {
 
-        //item creation
-        html.find(".item-create").click(this._onItemCreate.bind(this));
-        //item deletion
-        html.find(".item-delete").click(this._onItemDelete.bind(this));
-        //item edit
-        html.find(".item-edit").click(this._onItemEdit.bind(this));
-        //set power to main roll
-        html.find(".set-power").click(this._onSetPower.bind(this));
-        //set quality to main roll
-        html.find(".set-quality").click(this._onSetQuality.bind(this));
-        //set villain status to main roll
-        html.find(".set-villain-status").click(this._onSetVillainStatus.bind(this));
-        //roll set power, quality and status
-        html.find(".make-roll").click(this._onMakeRoll.bind(this));
-        //roll just power die
-        html.find(".roll-power").click(this._onRollPower.bind(this));
-        //roll just quality die
-        html.find(".roll-quality").click(this._onRollQuality.bind(this));
-        //roll just status die
-        html.find(".roll-status").click(this._onRollStatus.bind(this));
-        //update health ranges after max health update
-        html.find(".max-update").focusout(this._onMaxUpdate.bind(this));
-        //update status when health changed
-        html.find(".health-update").focusout(this._onHealthUpdate.bind(this));
-        //update status if status die type changed
-        html.find(".status-die-update").focusout(this._onStatusDieUpdate.bind(this));
-        //update status if scene changes
-        html.find(".scene-update").focusout(this._onSceneUpdate.bind(this));
-        //create new ability
-        html.find(".add-ability").click(this._onAddAbility.bind(this));
-        //create new power
-        html.find(".create-power").click(this._onCreatePower.bind(this));
-        //expand first green mode/form
-        html.find(".show-green1").click(this._onShowGreen1.bind(this));
-        //expand second green mode/form
-        html.find(".show-green2").click(this._onShowGreen2.bind(this));
-        //expand first yellow mode/form
-        html.find(".show-yellow1").click(this._onShowYellow1.bind(this));
-        //expand second yellow mode/form
-        html.find(".show-yellow2").click(this._onShowYellow2.bind(this));
-        //expand red mode/form
-        html.find(".show-red1").click(this._onShowRed1.bind(this));
-        //Set mode/form
-        html.find(".set-mode").click(this._onSetMode.bind(this));
-        //Turns on/off modular archetype for character
-        html.find(".set-modular").click(this._onSetModular.bind(this));
-        //Turns on/off formchanger archetype for character
-        html.find(".set-formchanger").click(this._onSetFormChanger.bind(this));
-        //Turns on/off divided
-        html.find(".set-divided").click(this._onSetDivided.bind(this));
-        //Turns on divided psyche powered mode and turns off civilian mode
-        html.find(".set-powered").click(this._onSetPowered.bind(this));
-        //Turns on divided psyche civilian mode and turns off powered mode
-        html.find(".set-civilian").click(this._onSetCivilian.bind(this));
-        //expand default mode/form
-        html.find(".show-main").click(this._onShowMain.bind(this));
-        //create new power
-        html.find(".create-twist").click(this._onCreateTwist.bind(this));
-        //roll minnion
-        html.find(".roll-minion").click(this._onRollMinion.bind(this));
-        //downgrade minion
-        html.find(".downgrade-minion").click(this._onDowngradeMinion.bind(this));
-        //create mod
-        html.find(".create-mod").click(this._onCreateMod.bind(this));
+        if (this.actor.isOwner) {
+            //item creation
+            html.find(".item-create").click(this._onItemCreate.bind(this));
+            //item deletion
+            html.find(".item-delete").click(this._onItemDelete.bind(this));
+            //item edit
+            html.find(".item-edit").click(this._onItemEdit.bind(this));
+            //set power to main roll
+            html.find(".set-power").click(this._onSetPower.bind(this));
+            //set quality to main roll
+            html.find(".set-quality").click(this._onSetQuality.bind(this));
+            //set villain status to main roll
+            html.find(".set-villain-status").click(this._onSetVillainStatus.bind(this));
+            //roll set power, quality and status
+            html.find(".make-roll").click(this._onMakeRoll.bind(this));
+            //roll just power die
+            html.find(".roll-power").click(this._onRollPower.bind(this));
+            //roll just quality die
+            html.find(".roll-quality").click(this._onRollQuality.bind(this));
+            //roll just status die
+            html.find(".roll-status").click(this._onRollStatus.bind(this));
+            //update health ranges after max health update
+            html.find(".max-update").focusout(this._onMaxUpdate.bind(this));
+            //update status when health changed
+            html.find(".health-update").focusout(this._onHealthUpdate.bind(this));
+            //update status if status die type changed
+            html.find(".status-die-update").focusout(this._onStatusDieUpdate.bind(this));
+            //update status if scene changes
+            html.find(".scene-update").focusout(this._onSceneUpdate.bind(this));
+            //create new ability
+            html.find(".add-ability").click(this._onAddAbility.bind(this));
+            //create new power
+            html.find(".create-power").click(this._onCreatePower.bind(this));
+            //expand first green mode/form
+            html.find(".show-green1").click(this._onShowGreen1.bind(this));
+            //expand second green mode/form
+            html.find(".show-green2").click(this._onShowGreen2.bind(this));
+            //expand first yellow mode/form
+            html.find(".show-yellow1").click(this._onShowYellow1.bind(this));
+            //expand second yellow mode/form
+            html.find(".show-yellow2").click(this._onShowYellow2.bind(this));
+            //expand red mode/form
+            html.find(".show-red1").click(this._onShowRed1.bind(this));
+            //Set mode/form
+            html.find(".set-mode").click(this._onSetMode.bind(this));
+            //Turns on/off modular archetype for character
+            html.find(".set-modular").click(this._onSetModular.bind(this));
+            //Turns on/off formchanger archetype for character
+            html.find(".set-formchanger").click(this._onSetFormChanger.bind(this));
+            //Turns on/off divided
+            html.find(".set-divided").click(this._onSetDivided.bind(this));
+            //Turns on divided psyche powered mode and turns off civilian mode
+            html.find(".set-powered").click(this._onSetPowered.bind(this));
+            //Turns on divided psyche civilian mode and turns off powered mode
+            html.find(".set-civilian").click(this._onSetCivilian.bind(this));
+            //expand default mode/form
+            html.find(".show-main").click(this._onShowMain.bind(this));
+            //create new power
+            html.find(".create-twist").click(this._onCreateTwist.bind(this));
+            //roll minnion
+            html.find(".roll-minion").click(this._onRollMinion.bind(this));
+            //downgrade minion
+            html.find(".downgrade-minion").click(this._onDowngradeMinion.bind(this));
+            //create mod
+            html.find(".create-mod").click(this._onCreateMod.bind(this));
+        }
 
 
         super.activateListeners(html);
@@ -217,7 +219,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
-        //deletes the closest item
+    //deletes the closest item
     _onItemDelete(event) {
         event.preventDefault();
         let element = event.currentTarget;
