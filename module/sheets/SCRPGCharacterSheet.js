@@ -224,7 +224,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
-        return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+
+        let d = Dialog.confirm({
+            title: "Delete",
+            content: "<p>Are you sure you want to delete this item?</p>",
+            yes: () => this.actor.deleteEmbeddedDocuments("Item", [itemId]),
+            no: () => console.log("Foundry VTT | Item with id [" + itemId + "] was not deleted"),
+            defaultYes: false
+        });
+
+        return d
     }
 
     //Opens item sheet so it can be edited
