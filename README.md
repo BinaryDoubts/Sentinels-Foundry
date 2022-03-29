@@ -25,6 +25,8 @@ This is an unofficial package and a copy of the rulebook will be required to use
 - Villains can add Statuses to their sheet
 - Macros for updating all hero character's scene status (found in the compendium)
 - Track hero points, hero reward points, back issues, and collections on the Hero tab
+- Track Bonus and Penalties
+    - Penalties will make dice roll chat messages red as a reminder
 
 ## Game Settings
 
