@@ -628,6 +628,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onCreateMod(event) {
         event.preventDefault();
         let element = event.currentTarget;
+        let named = false;
+        let name = game.i18n.localize("SCRPG.sheet.newItem");
         //checks datatype of element and assigns that to the ability value
         //value is used to determine where the ability goes, ex in a mode/form
         var value = "+1"
@@ -635,15 +637,22 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             value = element.dataset.value
         }
 
+        if (this.actor.data.data.modName != "") {
+            name = this.actor.data.data.modName
+            named = true;
+        }
+
         let itemData = {
-            name: game.i18n.localize("SCRPG.sheet.newItem"),
+            name: name,
             type: element.dataset.type,
+            "data.named": named,
             "data.value": value,
             "data.persistant": this.actor.data.data.persistant,
             "data.exclusive": this.actor.data.data.exclusive
         };
         this.actor.update({ "data.persistant": false });
         this.actor.update({ "data.exclusive": false });
+        this.actor.update({ "data.modName": "" })
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }

@@ -159,7 +159,8 @@
             "civilianMode": false,
             "poweredMode": false,
             "persistant": false,
-            "exclusive": false
+            "exclusive": false,
+            "modName": ""
         },
         "villain": {
             "templates": [
@@ -225,7 +226,8 @@
         "mod": {
             "value": 1,
             "persistant": false,
-            "exclusive": false
+            "exclusive": false,
+            "named": false
         }
     }
 }
