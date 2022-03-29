@@ -12,6 +12,10 @@
             </tr>
             <tr>
                 <td>
+                    <div>
+                        <input name="data.modName" type="text" value="{{data.data.modName}}"
+                            placeholder='{{localize "SCRPG.mod.modName"}}' />
+                    </div>
                     <div class="mod-dialogue">
                         <div class="mod-per-dialogue">
                             <p>
@@ -49,7 +53,7 @@
                         {{#if (gte data.value 0)}}
                         <a class="mod-item item box-border green-abilities item-delete"
                             title='{{localize "SCRPG.button.delete"}}' data-item-id="{{ mod._id}}">
-                            <h3>{{data.value}}</h3>
+                            <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
                                 {{#if (eq data.persistant true)}}
                                 <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
@@ -69,7 +73,7 @@
                         {{#if (lte data.value 0)}}
                         <a class="mod-item item box-border red-abilities item-delete"
                             title='{{localize "SCRPG.button.delete"}}' data-item-id="{{ mod._id}}">
-                            <h3>{{data.value}}</h3>
+                            <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
                                 {{#if (eq data.persistant true)}}
                                 <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>

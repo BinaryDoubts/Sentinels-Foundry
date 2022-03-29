@@ -189,7 +189,8 @@
             "exclusive": "Exclusive",
             "bonus": "Bonus",
             "penalty": "Penalty",
-            "addNew": "Add New"
+            "addNew": "Add New",
+            "modName": "Bonus/Penalty Name"
         }
     }
 }

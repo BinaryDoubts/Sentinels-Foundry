@@ -1016,6 +1016,7 @@
 
 .SCRPG.sheet.actor .mods th:first-child, .SCRPG.sheet.actor .mods td:first-child {
   width: 20%;
+  vertical-align: top;
 }
 
 .SCRPG.sheet.actor .mods th:first-child .mod-dialogue, .SCRPG.sheet.actor .mods th:first-child .mod-buttons, .SCRPG.sheet.actor .mods td:first-child .mod-dialogue, .SCRPG.sheet.actor .mods td:first-child .mod-buttons {
@@ -1080,6 +1081,8 @@
 }
 
 .SCRPG.sheet.actor .mod-item h3 {
+  max-width: 100%;
+  overflow: hidden;
   margin: 2px;
   font-weight: bold;
   text-align: center;
