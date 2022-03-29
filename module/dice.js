@@ -1,19 +1,41 @@
 /* Dice rolling functions */
 
 /* Rolls power, quality, and status and outputs to chat */
-export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, quality = null, status = null, poweredMode = null, civilianMode = null, type = null) {
+export async function TaskCheck(actor = null) {
 
+    let d1 = actor.data.data.firstDie;
+    let d2 = actor.data.data.secondDie;
+    let d3 = actor.data.data.thirdDie;
+    let power = actor.data.data.firstDieName;
+    let quality = actor.data.data.secondDieName;
+    let status = actor.data.data.thirdDieName;
+    let poweredMode = actor.data.data.poweredMode;
+    let civilianMode = actor.data.data.civilianMode;
+    let type = actor.data.type;
+    let mods = actor.items.document.mod;
     let color = game.settings.get("scrpg", "coloredDice");
+    let modsOn = game.settings.get("scrpg", "mod");
+    let coloring = "black";
+
     const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
 
+    //Sets the roll formula and rolls it
     let rollFormula = "{" + d1 + "," + d2 + "," + d3 + "}";
     let rollResult = new Roll(rollFormula).roll({ async: false });
 
-    //sorts dice in order of highest result
+    //Sorts dice in order of highest result
     let diceresults = rollResult.dice.sort(function (a, b) { if (b.total - a.total == 0) { return b.faces - a.faces } else { return b.total - a.total } });
 
-    //assigns the higest result Max, mid result Mid and lowest result Min
+    //Assigns the higest result Max, mid result Mid and lowest result Min
     let dicePosition = ["Max", "Mid", "Min"];
+
+    //Checks to see if the actor has a negative mod and then sets penalty true
+    for (let j = 0; j < mods.length; j++) {
+        if (mods[j].data.value < 0 && modsOn) {
+            coloring = "red";
+            break;
+        }
+    }
 
     //checks the number of die faces and attachs the corresponding dice image
     for (let i = 0; i < diceresults.length; i++) {
@@ -35,7 +57,8 @@ export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, q
         names: names,
         poweredMode: poweredMode,
         civilianMode: civilianMode,
-        type: type
+        type: type,
+        coloring: coloring
     }
 
     //renders roll template using mainroll.hbs
@@ -51,13 +74,16 @@ export async function TaskCheck(d1 = null, d2 = null, d3 = null, power = null, q
 }
 
 /* Rolls either power, quality or status and displays to chat */
-export async function SingleCheck(roll = null, rollType = null, rollName = null) {
+export async function SingleCheck(roll = null, rollType = null, rollName = null, actor = null) {
     const messageTemplate = "systems/scrpg/templates/chat/minorroll.hbs";
-
     let color = game.settings.get("scrpg", "coloredDice");
     let rollResult = new Roll(roll).evaluate({ async: false });
+    let coloring = "black";
+    let mods = actor.items.document.mod;
+    let modsOn = game.settings.get("scrpg", "mod");
     rollResult.rollType = rollType;
     rollResult.rollName = rollName;
+
     //checks the number of die faces and attachs the corresponding dice image
     if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
         rollResult.img = `icons/svg/d${rollResult.dice[0].faces}-grey.svg`;
@@ -67,8 +93,19 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null)
         }
     };
 
+    //Checks to see if the actor has a negative mod and then sets penalty true
+    if (rollType == "power" || rollType == "quality" || rollType == "status") {
+        for (let j = 0; j < mods.length; j++) {
+            if (mods[j].data.value < 0 && modsOn) {
+                coloring = "red";
+                break;
+            }
+        }
+    }
+
     let chatData = {
         rollResult: rollResult,
+        coloring: coloring
     };
 
     //renders roll template using minorroll.hbs
@@ -76,10 +113,11 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null)
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
-        content: render
+        content: render,
     };
 
     //push roll result to chat
     rollResult.toMessage(messageData);
 }
+
 

@@ -2,7 +2,7 @@
 
 {{!-- Table of selected power, quality and status for roll --}}
 <div class="SCRPG chat roll">
-    <div class="dice-rolled box-border main-roll">
+    <div class="dice-rolled box-border main-roll" style="color: {{coloring}}; border: 2px solid {{coloring}}">
         <table>
             <tr>
                 {{!-- Displays title appropriate to environment or power/quality --}}
@@ -48,9 +48,9 @@
     </div>
 
     {{!-- Roll result displayed in order of Max, Mid and Min --}}
-    <div class="dice-results box-border">
+    <div class="dice-results box-border" style="border: 2px solid {{coloring}}">
         {{#each dice}}
-        <p style="font-weight: bold; margin-left: 6px">{{this.dicePosition}} :</p>
+        <p style="font-weight: bold; margin-left: 6px; color: {{../coloring}}">{{this.dicePosition}} :</p>
         <div class="dice" style="margin-right: 6px">
             <label> {{this.total}} </label>
             {{#if this.img}}
