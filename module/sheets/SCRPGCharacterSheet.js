@@ -268,19 +268,6 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         this.actor.update({ "data.secondDieName": item.data.name });
     }
 
-    // Rolls the minion die
-    _onRollMinion(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.items.get(itemId);
-        let rollName = item.data.name
-        let rollType = "minion"
-        let roll = item.data.data.dieType
-
-        dice.SingleCheck(roll, rollType, rollName);
-    }
-
     // Reduces the minion die one type
     _onDowngradeMinion(event) {
         event.preventDefault();
@@ -309,19 +296,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //Rolls currently assigned power, quality and status
     _onMakeRoll(event) {
         event.preventDefault();
-
-        //dice types and names of power, quality and status
-        let d1 = this.actor.data.data.firstDie;
-        let d2 = this.actor.data.data.secondDie;
-        let d3 = this.actor.data.data.thirdDie;
-        let power = this.actor.data.data.firstDieName;
-        let quality = this.actor.data.data.secondDieName;
-        let status = this.actor.data.data.thirdDieName;
-        let poweredMode = this.actor.data.data.poweredMode;
-        let civilianMode = this.actor.data.data.civilianMode;
-        let type = this.actor.data.type;
-
-        dice.TaskCheck(d1, d2, d3, power, quality, status, poweredMode, civilianMode, type);
+        let actor = this.actor;
+        dice.TaskCheck(actor);
     }
 
     //Rolls just the power die
@@ -330,11 +306,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         //dice type and name of power
         let roll = this.actor.data.data.firstDie;
         let rollType = "power";
+        let actor = this.actor
         if (this.actor.data.data.civilianMode == true) {
             rollType = "quality";
         };
         let rollName = this.actor.data.data.firstDieName;
-        dice.SingleCheck(roll, rollType, rollName);
+        dice.SingleCheck(roll, rollType, rollName, actor);
     }
 
     //Rolls just the quality die
@@ -343,11 +320,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         //dice type and name of quality
         let roll = this.actor.data.data.secondDie;
         let rollType = "quality";
+        let actor = this.actor
         if (this.actor.data.data.poweredMode == true) {
             rollType = "power";
         };
         let rollName = this.actor.data.data.secondDieName;
-        dice.SingleCheck(roll, rollType, rollName);
+        dice.SingleCheck(roll, rollType, rollName, actor);
     }
 
     //Rolls just the status die
@@ -357,7 +335,22 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let roll = this.actor.data.data.thirdDie;
         let rollType = "status";
         let rollName = this.actor.data.data.thirdDieName;
-        dice.SingleCheck(roll, rollType, rollName);
+        let actor = this.actor
+        dice.SingleCheck(roll, rollType, rollName, actor);
+    }
+
+    // Rolls the minion die
+    _onRollMinion(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let rollName = item.data.name
+        let rollType = "minion"
+        let roll = item.data.data.dieType
+        let actor = this.actor
+
+        dice.SingleCheck(roll, rollType, rollName, actor);
     }
 
     //Updates heath ranges when Max health set
