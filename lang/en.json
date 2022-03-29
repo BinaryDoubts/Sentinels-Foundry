@@ -30,6 +30,7 @@
         "tabs": {
             "heroInfo": "Hero",
             "villainInfo": "Villain",
+            "environmentInfo": "Environment",
             "powers": "Powers",
             "principlesIssues": "Principles",
             "auxiliary": "Auxiliary",
@@ -150,6 +151,7 @@
             "dieThree": "Third Die"
         },
         "actionType": {
+            "all": "All",
             "attack": "Attack",
             "defend": "Defend",
             "boost": "Boost",
@@ -157,11 +159,13 @@
             "overcome": "Overcome"
         },
         "minion": {
+            "ability": "Ability",
             "action": "Action",
             "form": "Form",
             "minion": "Minion",
             "minions": "Minions",
             "minionForm": "Minion Forms",
+            "minionAbilities": "Minion Abilities",
             "bonus": {
                 "one": "+1 or higher",
                 "two": "+2 or higher",

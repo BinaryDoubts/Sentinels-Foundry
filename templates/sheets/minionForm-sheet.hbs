@@ -8,7 +8,9 @@
         <table class="villain-abilities box-border">
             <tr>
                 <th>{{localize "SCRPG.sheet.description"}}</th>
+                {{#if (eq this.item.actor.data.type "hero")}}
                 <th>{{localize "SCRPG.sheet.bonus"}}</th>
+                {{/if}}
             </tr>
             <tr>
                 {{!-- Minion form description --}}
@@ -17,6 +19,7 @@
                     editable=editable}}
                 </td>
                 {{!-- Bonus required to apply form --}}
+                {{#if (eq this.item.actor.data.type "hero")}}
                 <td class="top-align">
                     <select name="data.bonus">
                         {{#select data.data.bonus}}
@@ -26,6 +29,7 @@
                         {{/select}}
                     </select>
                 </td>
+                {{/if}}
             </tr>
         </table>
     </div>

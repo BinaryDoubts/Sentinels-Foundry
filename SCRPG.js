@@ -15,6 +15,7 @@ async function preloadHandlebarsTemplates() {
         "systems/scrpg/templates/partials/abilitiestable.hbs",
         "systems/scrpg/templates/partials/formmodularcommon.hbs",
         "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs",
+        "systems/scrpg/templates/partials/environment.hbs",
         "systems/scrpg/templates/partials/environmenttwist.hbs",
         "systems/scrpg/templates/partials/minions.hbs",
         "systems/scrpg/templates/partials/mod.hbs"

@@ -85,14 +85,24 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _prepareEnvironmentItems(sheetData) {
         const actorData = sheetData.actor
         const twists = [];
+        const minionForms = [];
+        const heroMinions = [];
 
         for (let i of sheetData.items) {
             i.img = i.img;
             if (i.type === "environmentTwist") {
                 twists.push(i);
             };
+            if (i.type === "heroMinion") {
+                heroMinions.push(i)
+            };
+            if (i.type === "minionForm") {
+                minionForms.push(i)
+            };
         }
 
+        actorData.heroMinion = heroMinions;
+        actorData.minionForm = minionForms;
         actorData.environmentTwist = twists;
     }
 
@@ -200,13 +210,18 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onItemCreate(event) {
         event.preventDefault();
         let element = event.currentTarget;
+        let action = "all"
         let itemData = null;
 
         switch (element.dataset.type) {
             case "heroMinion":
+                if (this.actor.type == "hero") {
+                    action = "attack"
+                }
                 itemData = {
                     name: game.i18n.localize("SCRPG.sheet.newMinion") + " " + this.getNextMinionIndex(),
-                    type: element.dataset.type
+                    type: element.dataset.type,
+                    "data.action": action
                 };
                 break;
             default:

@@ -1,14 +1,20 @@
 {{!-- Hero minions and minion forms --}}
 
+{{#if (eq actor.type "hero")}}
 <h3 class="section-name section-name-ability">{{localize "SCRPG.minion.minionForm"}}</h3>
+{{else}}
+<h3 class="section-name section-name-ability">{{localize "SCRPG.minion.minionAbilities"}}</h3>
+{{/if}}
 <div class="minion-form-list item-list">
     {{!-- Table to displaying available minion forms --}}
     <table class="villain-abilities box-border minion-form-table">
         <tr>
-            <th>{{localize "SCRPG.sheet.name"}}</th>
+            <th class="first-column">{{localize "SCRPG.sheet.name"}}</th>
             <th>{{localize "SCRPG.sheet.description"}}</th>
-            <th>{{localize "SCRPG.sheet.bonus"}}</th>
-            <th>
+            {{#if (eq this.actor.data.type "hero")}}
+            <th class="third-column">{{localize "SCRPG.sheet.bonus"}}</th>
+            {{/if}}
+            <th class="fourth-column">
                 {{!-- Button for adding a new minion form --}}
                 <a title='{{localize "SCRPG.button.addNew" }}' class="item-create" data-type="minionForm">
                     <i class=" fas fa-plus"></i>
@@ -24,9 +30,11 @@
             <td>
                 {{{data.description}}}
             </td>
+            {{#if (eq ../this.actor.data.type "hero")}}
             <td>
                 {{getLocalizeMinionBonus data.bonus}}
             </td>
+            {{/if}}
             <td>
                 {{!-- buttons for editing and deleting the minion form --}}
                 <a title='{{localize "SCRPG.button.edit" }}' class="item-edit">
@@ -80,7 +88,11 @@
                 <td>{{getLocalizeMinionAbility data.action}}</td>
             </tr>
             <tr>
+                {{#if (eq ../this.actor.data.type "hero")}}
                 <th>{{localize "SCRPG.minion.form"}}</th>
+                {{else}}
+                <th>{{localize "SCRPG.minion.ability"}}</th>
+                {{/if}}
                 <td>{{data.form}}</td>
             </tr>
             <tr>

@@ -55,6 +55,7 @@ SCRPG.abilityType = {
 
 //Action types
 SCRPG.actionType = {
+    all: "SCRPG.actionType.all",
     attack: "SCRPG.actionType.attack",
     defend: "SCRPG.actionType.defend",
     boost: "SCRPG.actionType.boost",

@@ -8,13 +8,14 @@
         {{#if (eq actor.limited false)}}
         <a class="item" data-tab="powerabilities">{{ localize "SCRPG.tabs.powers" }}</a>
         <a class="item" data-tab="auxiliary">{{ localize "SCRPG.tabs.auxiliary" }}</a>
-        <a class="item" data-tab="minions">{{ localize "SCRPG.tabs.minions" }}</a>
         {{/if}}
         {{/if}}
 
         {{#if (eq actor.type "villain")}}
         <a class="item" data-tab="info">{{ localize "SCRPG.tabs.villainInfo" }}</a>
         {{/if}}
+
+        <a class="item" data-tab="minions">{{ localize "SCRPG.tabs.minions" }}</a>
     </nav>
 
     {{!-- Character Sheet Tab Content --}}
@@ -37,11 +38,13 @@
         <div class="tab auxiliary" data-group="primary" data-tab="auxiliary">
             {{> "systems/scrpg/templates/partials/auxiliary.hbs"}}
         </div>
+        {{/if}}
+        {{/if}}
+
         <div class="tab minions" data-group="primary" data-tab="minions">
             {{> "systems/scrpg/templates/partials/minions.hbs"}}
         </div>
-        {{/if}}
-        {{/if}}
+
         {{!-- Villain Tab Content --}}
         {{#if (eq actor.type "villain")}}
         <div class="tab info" data-group="primary" data-tab="info">
