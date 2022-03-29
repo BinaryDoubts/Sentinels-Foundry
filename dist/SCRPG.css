@@ -983,17 +983,17 @@
   text-align: center;
 }
 
-.SCRPG.sheet.actor .minion-form-table th:first-child, .SCRPG.sheet.actor .minion-form-table td:first-child {
+.SCRPG.sheet.actor .minion-form-table .first-column {
   width: 8.4375rem;
   max-width: 8.4375rem;
   overflow: hidden;
 }
 
-.SCRPG.sheet.actor .minion-form-table th:nth-child(3), .SCRPG.sheet.actor .minion-form-table td:nth-child(3) {
+.SCRPG.sheet.actor .minion-form-table .third-column {
   width: 5.5rem;
 }
 
-.SCRPG.sheet.actor .minion-form-table th:nth-child(4), .SCRPG.sheet.actor .minion-form-table td:nth-child(4) {
+.SCRPG.sheet.actor .minion-form-table .fourth-column {
   width: 2.8125rem;
 }
 
@@ -1131,7 +1131,6 @@
 }
 
 .SCRPG.chat.roll .box-border {
-  border: 2px solid #000000;
   -webkit-box-shadow: 2px 2px #808080;
           box-shadow: 2px 2px #808080;
   margin-bottom: 4px;

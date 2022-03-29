@@ -658,15 +658,15 @@
         }
     }
     .minion-form-table {
-        th:first-child, td:first-child {
+        .first-column {
             width: 8.4375rem;
             max-width: 8.4375rem;
             overflow: hidden;
         }
-        th:nth-child(3), td:nth-child(3) {
+        .third-column {
             width: 5.5rem;
         }
-        th:nth-child(4), td:nth-child(4) {
+        .fourth-column {
             width: 2.8125rem;
         }
     }
