@@ -227,7 +227,7 @@
             "value": 1,
             "persistant": false,
             "exclusive": false,
-            "named": false
+            "named": true
         }
     }
 }
