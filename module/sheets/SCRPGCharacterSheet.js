@@ -166,8 +166,6 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".scene-update").focusout(this._onSceneUpdate.bind(this));
             //create new ability
             html.find(".add-ability").click(this._onAddAbility.bind(this));
-            //create new power
-            html.find(".create-power").click(this._onCreatePower.bind(this));
             //expand first green mode/form
             html.find(".show-green1").click(this._onShowGreen1.bind(this));
             //expand second green mode/form
@@ -212,8 +210,19 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let action = "all"
         let itemData = null;
+        var aux = "main";
 
         switch (element.dataset.type) {
+            case "power":
+                if (element.dataset.aux) {
+                    aux = element.dataset.aux
+                }
+                itemData = {
+                    name: game.i18n.localize("SCRPG.sheet.newItem"),
+                    type: element.dataset.type,
+                    "data.aux": aux
+                }
+                break;
             case "heroMinion":
                 if (this.actor.type == "hero") {
                     action = "attack"
@@ -463,26 +472,6 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             "data.aux": aux
         };
         //creates new ability and assigns it to actor
-        return this.actor.createEmbeddedDocuments("Item", [itemData]);
-    }
-
-    //creates a new power
-    _onCreatePower(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        //checks datatype of element and assigns that to the ability aux
-        //aux is used to determine where the ability goes, ex in a mode/form
-        var aux = "main"
-        if (element.dataset.aux) {
-            aux = element.dataset.aux
-        }
-
-        let itemData = {
-            name: game.i18n.localize("SCRPG.sheet.newItem"),
-            type: element.dataset.type,
-            "data.aux": aux
-        };
-        //creates new power and assigns it to actor
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
