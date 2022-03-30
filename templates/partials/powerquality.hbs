@@ -49,7 +49,7 @@
                         <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-power">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="power"
                             data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
@@ -66,7 +66,7 @@
                         <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-power">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="power"
                             data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
@@ -87,7 +87,7 @@
                         <a title='{{localize "SCRPG.button.rollPower"}}' class="roll-quality">
                             <i class="fas fa-dice"></i>
                         </a>
-                        <a title='{{localize "SCRPG.button.addNew"}}' class="create-power" data-type="power"
+                        <a title='{{localize "SCRPG.button.addNew"}}' class="item-create" data-type="power"
                             data-aux="{{data.data.mode}}">
                             <i class="fas fa-plus"></i>
                         </a>
@@ -452,16 +452,28 @@
 <section>
     <div class="combined-roll box-border">
         {{!-- Current selected power and die type --}}
-        <p><b>{{localize "SCRPG.powerquality.power"}}:</b> {{this.actor.data.data.firstDieName}}
+        <p><b>{{localize "SCRPG.powerquality.power"}}:</b>
+            {{#if (eq data.data.firstDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
+            {{else}}
+            {{this.actor.data.data.firstDieName}}
+            {{/if}}
             {{this.actor.data.data.firstDie}}</p>
         {{!-- Current selected quality and die type --}}
-        <p><b>{{localize "SCRPG.powerquality.quality"}}:</b> {{this.actor.data.data.secondDieName}}
+        <p><b>{{localize "SCRPG.powerquality.quality"}}:</b>
+            {{#if (eq data.data.firstDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
+            {{else}}
+            {{this.actor.data.data.secondDieName}}
+            {{/if}}
             {{this.actor.data.data.secondDie}}</p>
         {{!-- Current selected status and die type--}}
         <p><b>{{localize "SCRPG.powerquality.status"}}:</b>
+            {{#if (eq data.data.thirdDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
+            {{else}}
             {{#if (eq data.data.thirdDieName "green")}}{{localize "SCRPG.scene.green"}}{{/if}}
             {{#if (eq data.data.thirdDieName "yellow")}}{{localize "SCRPG.scene.yellow"}}{{/if}}
             {{#if (eq data.data.thirdDieName "red")}}{{localize "SCRPG.scene.red"}}{{/if}}
+            {{#if (eq this.actor.type "villain")}}{{this.actor.data.data.thirdDieName}}{{/if}}
+            {{/if}}
             {{this.actor.data.data.thirdDie}}</p>
         <a title='{{localize "SCRPG.button.rollMain"}}' class="make-roll">
             <i class="fas fa-dice"></i>

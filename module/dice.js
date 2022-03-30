@@ -30,10 +30,12 @@ export async function TaskCheck(actor = null) {
     let dicePosition = ["Max", "Mid", "Min"];
 
     //Checks to see if the actor has a negative mod and then sets penalty true
-    for (let j = 0; j < mods.length; j++) {
-        if (mods[j].data.value < 0 && modsOn) {
-            coloring = "red";
-            break;
+    if (actor.data.type != "environment") {
+        for (let j = 0; j < mods.length; j++) {
+            if (mods[j].data.value < 0 && modsOn) {
+                coloring = "red";
+                break;
+            }
         }
     }
 
