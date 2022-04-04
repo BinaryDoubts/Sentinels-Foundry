@@ -1,8 +1,9 @@
 {{!-- Sheet for displaying minion forms --}}
 
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    <header class="minion-form-title sheet-header">
+        <h3 class="box-border villain-abilities"><input name="name" type="text" value="{{item.name}}"
+                placeholder="{{ localize 'Name' }}" /></h3>
     </header>
     <div class="sheet-content minion-form-sheet">
         <table class="villain-abilities box-border">

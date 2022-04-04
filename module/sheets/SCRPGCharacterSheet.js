@@ -680,4 +680,69 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         //creates new power and assigns it to actor
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
+
+    async _onDropItem(event, data) {
+        if ( !this.actor.isOwner ) return false;
+        const item = await Item.implementation.fromDropData(data);
+        const itemData = item.toObject();
+
+        switch (itemData.type)
+        {
+            case "principles":
+                if ( this.checkDropTarget(event, "DroppableFirstPrinciple") )
+                {
+                    this.actor.update({ "data.firstPrinciple.name": itemData.name });
+                    this.actor.update({ "data.firstPrinciple.roleplaying": itemData.data.roleplaying });
+                    this.actor.update({ "data.firstPrinciple.minorTwist": itemData.data.minorTwist });
+                    this.actor.update({ "data.firstPrinciple.majorTwist": itemData.data.majorTwist });
+                }
+
+                if  ( this.checkDropTarget(event, "DroppableSecondPrinciple") )
+                {
+                    this.actor.update({ "data.secondPrinciple.name": itemData.name });
+                    this.actor.update({ "data.secondPrinciple.roleplaying": itemData.data.roleplaying });
+                    this.actor.update({ "data.secondPrinciple.minorTwist": itemData.data.minorTwist });
+                    this.actor.update({ "data.secondPrinciple.majorTwist": itemData.data.majorTwist });
+                }
+                
+                return false;
+            case "backgrounds":
+                this.actor.update({ "data.background": itemData.name });
+                return false;
+            case "powerSources":
+                this.actor.update({ "data.powerSource": itemData.name });
+                return false;
+            case "archetypes":
+                this.actor.update({ "data.archetype": itemData.name });
+                return false;
+            case "personality":
+                this.actor.update({ "data.personality": itemData.name });
+                this.actor.update({ "data.out": itemData.data.out });
+                this.actor.update({ "data.statusDie.green": itemData.data.statusDie.green });
+                this.actor.update({ "data.statusDie.yellow": itemData.data.statusDie.yellow });
+                this.actor.update({ "data.statusDie.red": itemData.data.statusDie.red });
+                return false;
+        }
+
+
+        // Handle item sorting within the same Actor
+        if ( await this._isFromSameActor(data) ) return this._onSortItem(event, itemData);
+    
+        // Create the owned item
+        return this._onDropItemCreate(itemData);
+    }
+
+    // Helper Function for _onDropItem. target example: "DroppableFirstPrinciple"
+    checkDropTarget(event, target)
+    {
+        //Checks if any parts of the elements have the class name
+        for (let i = 0; i < event.path.length; i++) {
+            if (event.path[i].className != null && event.path[i].className.includes(target))
+            {
+                return true;
+            }
+          }
+
+        return false;
+    }
 }

@@ -185,7 +185,12 @@
             "environmentTwist",
             "heroMinion",
             "minionForm",
-            "mod"
+            "mod",
+            "principles",
+            "backgrounds",
+            "powerSources",
+            "archetypes",
+            "personality"
         ],
         "power": {
             "dieType": "d4",
@@ -228,6 +233,29 @@
             "persistant": false,
             "exclusive": false,
             "named": true
+        },
+        "principles": {
+            "roleplaying": "",
+            "minorTwist": "",
+            "majorTwist": ""
+        },
+        "backgrounds": {
+            "description": ""
+        },
+        "powerSources": {
+            "description": ""
+        },
+        "archetypes": {
+            "description": ""
+        },
+        "personality": {
+            "description": "",
+            "out": "",
+            "statusDie": {
+                "green": "d8",
+                "yellow": "d8",
+                "red": "d8"
+            }
         }
     }
 }

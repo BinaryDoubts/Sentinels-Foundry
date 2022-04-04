@@ -170,7 +170,7 @@
 <div class="status-dice box-border divided-status">
     <h3>{{localize "SCRPG.auxiliary.powered"}}</h3>
     <h3>{{localize "SCRPG.auxiliary.civilian"}}</h3>
-    <select class="status-die-update green-border" name="data.statusDie.green">
+    <select class="status-die-update green-border green-status-background" name="data.statusDie.green">
         {{#select data.data.statusDie.green}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
@@ -178,7 +178,7 @@
         {{/select}}
     </select>
 
-    <select class="status-die-update green-border" name="data.statusDie.civilianGreen">
+    <select class="status-die-update green-border green-status-background" name="data.statusDie.civilianGreen">
         {{#select data.data.statusDie.civilianGreen}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
@@ -186,7 +186,7 @@
         {{/select}}
     </select>
 
-    <select class="status-die-update yellow-border" name="data.statusDie.yellow">
+    <select class="status-die-update yellow-border yellow-status-background" name="data.statusDie.yellow">
         {{#select data.data.statusDie.yellow}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
@@ -194,7 +194,7 @@
         {{/select}}
     </select>
 
-    <select class="status-die-update yellow-border" name="data.statusDie.civilianYellow">
+    <select class="status-die-update yellow-border yellow-status-background" name="data.statusDie.civilianYellow">
         {{#select data.data.statusDie.civilianYellow}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
@@ -202,7 +202,7 @@
         {{/select}}
     </select>
 
-    <select class="status-die-update red-border" name="data.statusDie.red">
+    <select class="status-die-update red-border red-status-background" name="data.statusDie.red">
         {{#select data.data.statusDie.red}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
@@ -210,7 +210,7 @@
         {{/select}}
     </select>
 
-    <select class="status-die-update red-border" name="data.statusDie.civilianRed">
+    <select class="status-die-update red-border red-status-background" name="data.statusDie.civilianRed">
         {{#select data.data.statusDie.civilianRed}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>

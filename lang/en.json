@@ -10,6 +10,11 @@
     "ITEM.TypeMinionform": "Minion Form",
     "ITEM.TypeHerominion": "Hero Minion",
     "ITEM.TypeMod": "Bonus/Penalty",
+    "ITEM.TypePrinciples": "Principle",
+    "ITEM.TypeBackgrounds": "Background",
+    "ITEM.TypePowersources": "Power Source",
+    "ITEM.TypeArchetypes": "Archetype",
+    "ITEM.TypePersonality": "Personality",
     "SETTINGS.coloredDice.name": "Colored Dice",
     "SETTINGS.coloredDice.hint": "Enable Sentinel Comics dice colors (d4=blue, d6=green, d8=orange, d10=red, d12=purple) in Chat roll messages. Dice will be grey if disabled. Changes will be applied to new rolls.",
     "SETTINGS.mod.name": "Track Bonus/Penalty",
@@ -25,7 +30,8 @@
             "name": "Name",
             "bonus": "Bonus",
             "firstPrinciple": "First Principle",
-            "secondPrinciple": "Second Principle"
+            "secondPrinciple": "Second Principle",
+            "principle": "Principle"
         },
         "tabs": {
             "heroInfo": "Hero",
@@ -62,7 +68,8 @@
             "approach": "Approach",
             "health": "Health",
             "currentHealth": "Current Health",
-            "maxHealth": "Max Health"
+            "maxHealth": "Max Health",
+            "out": "Out Ability"
         },
         "principles": {
             "duringRoleplaying": "During Roleplaying"
@@ -195,6 +202,11 @@
             "penalty": "Penalty",
             "addNew": "Add New",
             "modName": "Bonus/Penalty Name"
+        },
+        "type": {
+            "ability": "Ability Color/Type",
+            "power": "Power Type",
+            "twist": "Twist Color/Type"
         }
     }
 }

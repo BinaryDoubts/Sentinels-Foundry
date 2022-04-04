@@ -1,24 +1,30 @@
 {{!-- Sheet for displaying Abilities --}}
 
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    <header class="ability-title sheet-header">
+        <h3 class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border "><input name="name" type="text"
+                value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h3>
     </header>
-    <div class="sheet-content">
-        {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
-        {{!-- or part of mode/form --}}
+
+    <div class="sheet-content ability-content">
         {{#if (eq this.item.actor null)}}
-        <select name="data.aux">
-            {{#select data.data.aux}}
-            {{#each config.modes as |name type|}}
-            <option value="{{type}}">{{localize name}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
+        <table class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border type-table">
+            <tr>
+                <th>{{localize "SCRPG.type.ability"}}</th>
+                <td>
+                    {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
+                    {{!-- or part of mode/form --}}
+                    <select name="data.aux">
+                        {{#select data.data.aux}}
+                        {{#each config.modes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+        </table>
         {{/if}}
-
-
-
         <table class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border">
             <colgroup>
                 <col width="45px">

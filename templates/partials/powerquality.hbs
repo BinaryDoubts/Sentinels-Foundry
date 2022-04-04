@@ -313,16 +313,16 @@
                     {{!-- Green status dice type --}}
                     {{#if (eq data.data.dividedStatus true)}}
                     {{#if (eq data.data.poweredMode true)}}
-                    <div class="health-box green-border">
+                    <div class="health-box green-border green-status-background">
                         {{data.data.statusDie.green}}
                     </div>
                     {{else}}
-                    <div class="health-box green-border">
+                    <div class="health-box green-border green-status-background">
                         {{data.data.statusDie.civilianGreen}}
                     </div>
                     {{/if}}
                     {{else}}
-                    <select class="status-die-update green-border" name="data.statusDie.green">
+                    <select class="status-die-update green-border green-status-background" name="data.statusDie.green">
                         {{#select data.data.statusDie.green}}
                         {{#each config.dieTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
@@ -334,7 +334,7 @@
                     {{!-- Input to set maximum health --}}
                     {{!-- Health ranges updated automatically based on max health --}}
                     {{!-- Green health range --}}
-                    <div class="health-box green-border">
+                    <div class="health-box green-border green-status-background">
                         <input class="max-update" name="data.wounds.max" type="text" value="{{data.data.wounds.max}}"
                             data-dtype="Number">
 
@@ -344,16 +344,17 @@
                     {{!-- Yellow status dice type --}}
                     {{#if (eq data.data.dividedStatus true)}}
                     {{#if (eq data.data.poweredMode true)}}
-                    <div class="health-box yellow-border">
+                    <div class="health-box yellow-border yellow-status-background">
                         {{data.data.statusDie.yellow}}
                     </div>
                     {{else}}
-                    <div class="health-box yellow-border">
+                    <div class="health-box yellow-border yellow-status-background">
                         {{data.data.statusDie.civilianYellow}}
                     </div>
                     {{/if}}
                     {{else}}
-                    <select class="status-die-update yellow-border" name="data.statusDie.yellow">
+                    <select class="status-die-update yellow-border yellow-status-background"
+                        name="data.statusDie.yellow">
                         {{#select data.data.statusDie.yellow}}
                         {{#each config.dieTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
@@ -363,7 +364,7 @@
                     {{/if}}
 
                     {{!-- Yellow health range --}}
-                    <div class="health-box yellow-border">
+                    <div class="health-box yellow-border yellow-status-background">
                         {{this.actor.data.data.health.yellowHigh}} -
                         {{this.actor.data.data.health.yellowLow}}
                     </div>
@@ -371,16 +372,16 @@
                     {{!-- Red status dice type --}}
                     {{#if (eq data.data.dividedStatus true)}}
                     {{#if (eq data.data.poweredMode true)}}
-                    <div class="health-box red-border">
+                    <div class="health-box red-border red-status-background">
                         {{data.data.statusDie.red}}
                     </div>
                     {{else}}
-                    <div class="health-box red-border">
+                    <div class="health-box red-border red-status-background">
                         {{data.data.statusDie.civilianRed}}
                     </div>
                     {{/if}}
                     {{else}}
-                    <select class="status-die-update red-border" name="data.statusDie.red">
+                    <select class="status-die-update red-border red-status-background" name="data.statusDie.red">
                         {{#select data.data.statusDie.red}}
                         {{#each config.dieTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
@@ -390,7 +391,7 @@
                     {{/if}}
 
                     {{!-- Red health range --}}
-                    <div class="health-box red-border">
+                    <div class="health-box red-border red-status-background">
                         {{this.actor.data.data.health.redHigh}} -
                         {{this.actor.data.data.health.redLow}}
                     </div>
@@ -429,12 +430,16 @@
             <td class="top-align">
                 <div class="status">
                     <h4>{{localize "SCRPG.powerquality.currentHealth"}}</h4>
-                    <input class="health-update" name="data.wounds.value" type="text" value="{{data.data.wounds.value}}"
-                        data-dtype="Number">
+                    <input class="health-update black-border" name="data.wounds.value" type="text"
+                        value="{{data.data.wounds.value}}" data-dtype="Number">
 
                     {{!-- Dropdown for selecting scene status --}}
                     <h4>{{localize "SCRPG.powerquality.sceneStatus"}}</h4>
-                    <select class="scene-update" name="data.scene">
+                    <select {{#if (eq data.data.scene "green" )}}
+                        class="scene-update green-border green-status-background" {{/if}} {{#if (eq
+                        data.data.scene "yellow" )}} class="scene-update yellow-border yellow-status-background" {{/if}}
+                        {{#if (eq data.data.scene "red" )}} class="scene-update red-border red-status-background"
+                        {{/if}} name="data.scene">
                         {{#select data.data.scene}}
                         {{#each config.scenes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>

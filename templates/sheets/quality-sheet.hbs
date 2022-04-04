@@ -1,9 +1,11 @@
 {{!-- Sheet for displaying quality --}}
 
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    <header class="quality-title sheet-header">
+        <h3 class="box-border white-abilities"><input name="name" type="text" value="{{item.name}}"
+                placeholder="{{ localize 'Name' }}" /></h3>
     </header>
+
     <div class="sheet-content">
         <table class="box-border powerquality">
             <tr>

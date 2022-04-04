@@ -1,28 +1,36 @@
 {{!-- Sheet for displaying environment twist --}}
 
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+    <header class="environment-twist-title sheet-header">
+        <h3 class="{{#color}}{{data.data.type}}{{/color}}-abilities box-border "><input name="name" type="text"
+                value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h3>
     </header>
 
     {{!-- Drop down menu for selecting the type --}}
-    {{#if (eq this.item.actor null)}}
-    <select name="data.type">
-        {{#select data.data.type}}
-        {{#each config.twistType as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
-    {{!-- Form for filling in description--}}
-    {{/if}}
-    <div class="sheet-content">
+    <div class="sheet-content environment-twist-content">
+        {{#if (eq this.item.actor null)}}
+        <table class="{{#color}}{{data.data.type}}{{/color}}-abilities box-border type-table">
+            <tr>
+                <th>{{localize "SCRPG.type.twist"}}</th>
+                <td>
+                    <select name="data.type">
+                        {{#select data.data.type}}
+                        {{#each config.twistType as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+        </table>
+        {{/if}}
         <table class="box-border {{#color}}{{data.data.type}}{{/color}}-abilities">
             <tr>
                 <th>{{localize "SCRPG.sheet.description"}}</th>
             </tr>
             <tr>
                 <td>
+                    {{!-- Form for filling in description--}}
                     {{editor content=data.data.description target="data.description" button=true owner=owner
                     editable=editable}}
                 </td>

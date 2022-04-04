@@ -1,0 +1,53 @@
+{{!-- Sheet for displaying Environments --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="personality sheet-content">
+        <div class="box-border">
+            <div class="personality-title">
+                <h3>
+                    <input name="name" type="text" value="{{item.name}}"
+                        placeholder='{{localize "SCRPG.charInfo.personality"}}'>
+                </h3>
+            </div>
+            <div class="personality-description">
+                <div>
+                    {{editor content=data.data.description target="data.description"
+                    button=true
+                    owner=owner editable=editable}}
+                    <input name="data.out" type="text" value="{{item.data.data.out}}"
+                        placeholder='{{localize "SCRPG.charInfo.out"}}'>
+                </div>
+                <div class="status-dice">
+                    <div class="status-dice-child">
+                        <select name="data.statusDie.green" class="green-border green-status-background">
+                            {{#select data.data.statusDie.green}}
+                            {{#each config.dieTypes as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                    <div class="status-dice-child">
+                        <select name="data.statusDie.yellow" class="yellow-border yellow-status-background">
+                            {{#select data.data.statusDie.yellow}}
+                            {{#each config.dieTypes as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                    <div class="status-dice-child">
+                        <select name="data.statusDie.red" class="red-border red-status-background">
+                            {{#select data.data.statusDie.red}}
+                            {{#each config.dieTypes as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

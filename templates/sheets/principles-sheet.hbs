@@ -1,0 +1,39 @@
+{{!-- Sheet for displaying Environments --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="sheet-content">
+        <div class="principle box-border">
+            <div>
+                <h3 class="principle-title">
+                    <input name="name" type="text" value="{{item.name}}"
+                        placeholder='{{localize "SCRPG.charInfo.principle"}}'>
+                </h3>
+            </div>
+            <h4 class="principle-section">
+                {{localize "SCRPG.principles.duringRoleplaying"}}
+            </h4>
+            <div>
+                {{editor content=data.data.roleplaying target="data.roleplaying"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+
+            <h4 class="principle-section">
+                {{localize "SCRPG.twist.minorTwist"}}
+            </h4>
+            <div>
+                {{editor content=data.data.minorTwist target="data.minorTwist"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+            <h4 class="principle-section">
+                {{localize "SCRPG.twist.majorTwist"}}
+            </h4>
+            <div>
+                {{editor content=data.data.majorTwist target="data.majorTwist"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+        </div>
+    </div>
+</form>
