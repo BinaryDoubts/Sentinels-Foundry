@@ -6,8 +6,6 @@ export default class SCRPGItemSheet extends ItemSheet {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 600,
-            height: 300,
             classes: ["SCRPG", "sheet", "item"]
         });
     }
@@ -15,6 +13,7 @@ export default class SCRPGItemSheet extends ItemSheet {
     get template() {
         return 'systems/scrpg/templates/sheets/' + this.item.data.type + '-sheet.hbs';
     }
+
     getData() {
         const data = super.getData();
 

@@ -1,20 +1,30 @@
 {{!-- Sheet for displaying power --}}
 
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h1>
+
+    <header class="power-title sheet-header">
+        <h3 class="box-border white-abilities"><input name="name" type="text" value="{{item.name}}"
+                placeholder="{{ localize 'Name' }}" /></h3>
     </header>
-    <div class="sheet-content">
-        {{!-- Dropdown menu shows where the power belongs either default or part of mode/form --}}
+    <div class="sheet-content power-content">
         {{#if (eq this.item.actor null)}}
-        <select name="data.aux">
-            {{#select data.data.aux}}
-            {{#each config.types as |name type|}}
-            <option value="{{type}}">{{localize name}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
+        <table class=" box-border white-abilities type-table">
+            <tr>
+                <th>{{localize "SCRPG.type.power"}}</th>
+                <td>
+                    {{!-- Dropdown menu shows where the power belongs either default or part of mode/form --}}
+                    <select name="data.aux">
+                        {{#select data.data.aux}}
+                        {{#each config.types as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+            </tr>
+        </table>
         {{/if}}
+
         <div class="sheet-content">
             <table class="box-border powerquality">
                 <tr>

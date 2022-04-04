@@ -1,0 +1,19 @@
+{{!-- Sheet for displaying Backgrounds --}}
+
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="background sheet-content">
+        <div class="box-border">
+            <div class="background-title">
+                <h3>
+                    <input name="name" type="text" value="{{item.name}}"
+                        placeholder='{{localize "SCRPG.charInfo.background"}}'>
+                </h3>
+            </div>
+            <div class="background-description">
+                {{editor content=data.data.description target="data.description"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+        </div>
+    </div>
+</form>
