@@ -797,12 +797,31 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     // Helper Function for _onDropItem. target example: "DroppableFirstPrinciple"
     checkDropTarget(event, target) {
         //Checks if any parts of the elements have the class name
-        for (let i = 0; i < event.path.length; i++) {
-            if (event.path[i].className != null && event.path[i].className.includes(target)) {
-                return true;
+
+        function checkClass(event, target) {
+            if (event.srcElement.className.includes(target)) { return true; }
+            if (!event.srcElement.parentElement) { return false; }
+            return checkClassRecursive(event.srcElement.parentElement, target);
+        }
+
+
+        function checkClassRecursive(pElement, target) {
+            if (pElement.className.includes(target)) { return true; }
+            if (!pElement.parentElement) { return false; }
+            return checkClassRecursive(pElement.parentElement, target);
+        }
+
+        if (event.path) {
+            for (let i = 0; i < event.path.length; i++) {
+                if (event.path[i].className != null && event.path[i].className.includes(target)) {
+                    return true;
+                }
             }
+        } else {
+            return checkClass(event, target);
         }
 
         return false;
+
     }
 }
