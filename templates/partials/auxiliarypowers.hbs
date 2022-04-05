@@ -27,17 +27,8 @@
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../mode)}}
                     <div class="power-item item" data-item-id="{{power._id}}">
-                        <a class="set-power">{{name}}</a>
-                        <a style="text-align: center" class="set-power">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting power --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
+                        <div>{{name}}</div>
+                        <div>{{data.dieType}}</div>
                     </div>
                     {{/if}}
                     {{/each}}

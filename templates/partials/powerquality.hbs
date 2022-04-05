@@ -165,19 +165,10 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <div class="quality-item item" data-item-id="{{quality._id}}">
-                        <a class="set-power">{{name}}</a>
-                        <a class="set-power quality">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting quality --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="quality-item item set-power" data-item-id="{{quality._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/each}}
                 </div>
             </td>
@@ -188,19 +179,10 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <div class="power-item item" data-item-id="{{power._id}}">
-                        <a class="set-power">{{name}}</a>
-                        <a style="text-align: center" class="set-power">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting power --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="power-item item set-power" data-item-id="{{power._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/if}}
                     {{/each}}
                 </div>
@@ -213,19 +195,10 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <div class="power-item item" data-item-id="{{power._id}}">
-                        <a class="set-power">{{name}}</a>
-                        <a style="text-align: center" class="set-power">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting power --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="power-item item set-power" data-item-id="{{power._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/if}}
                     {{/each}}
                 </div>
@@ -242,19 +215,10 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <div class="power-item item" data-item-id="{{power._id}}">
-                        <a class="set-quality">{{name}}</a>
-                        <a style="text-align: center" class="set-power">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting power --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="power-item item set-quality" data-item-id="{{power._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/if}}
                     {{/each}}
                 </div>
@@ -265,19 +229,10 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <div class="quality-item item" data-item-id="{{quality._id}}">
-                        <a class="set-quality">{{name}}</a>
-                        <a class="set-quality quality">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting quality --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="quality-item item set-quality" data-item-id="{{quality._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/each}}
                 </div>
             </td>
@@ -288,19 +243,10 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <div class="quality-item item" data-item-id="{{quality._id}}">
-                        <a class="set-quality">{{name}}</a>
-                        <a class="set-quality quality">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting quality --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="quality-item item set-quality" data-item-id="{{quality._id}}">
+                        <div class="name">{{name}}</div>
+                        <div class="center">{{data.dieType}}</div>
+                    </a>
                     {{/each}}
                 </div>
             </td>
@@ -407,19 +353,10 @@
                     {{!-- Displays all villain statuses --}}
                     {{!-- Villain statuses can be clicked to set them to the main roll --}}
                     {{#each actor.villainStatus as |villainStatus id|}}
-                    <div class="villain-status-item item" data-item-id="{{villainStatus._id}}">
-                        <a class="set-villain-status">{{name}}</a>
-                        <a style="text-align: center" class="set-villain-status">{{data.dieType}}</a>
-                        <div style="text-align: right">
-                            {{!-- Buttons for editing and deleting villain status --}}
-                            <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="villain-status-item item set-villain-status" data-item-id="{{villainStatus._id}}">
+                        <div>{{name}}</div>
+                        <div style="text-align: center">{{data.dieType}}</div>
+                    </a>
                     {{/each}}
                 </div>
             </td>
@@ -465,7 +402,7 @@
             {{this.actor.data.data.firstDie}}</p>
         {{!-- Current selected quality and die type --}}
         <p><b>{{localize "SCRPG.powerquality.quality"}}:</b>
-            {{#if (eq data.data.firstDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
+            {{#if (eq data.data.secondDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
             {{else}}
             {{this.actor.data.data.secondDieName}}
             {{/if}}

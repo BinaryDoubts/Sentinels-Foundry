@@ -188,9 +188,12 @@
             "rollPower": "Roll Power",
             "rollQuality": "Roll Quality",
             "rollStatus": "Roll Status",
+            "displayAbility": "Display Twist to Chat",
+            "displayTwist": "Display Twist to Chat",
             "rollMain": "Roll Dice Pool",
             "rollEnvironment": "Roll Environment Dice",
             "downgrade": "Downgrade Minion Die",
+            "upgrade": "Upgrade Minion Die",
             "show": "Show/Hide Details",
             "changeMode": "Change to this Mode/Form"
         },

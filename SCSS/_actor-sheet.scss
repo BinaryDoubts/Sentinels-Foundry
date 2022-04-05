@@ -427,7 +427,7 @@
     .quality-item,
     .villain-status-item {
         display: grid;
-        grid-template-columns: auto 2.1875rem 2.1875rem;
+        grid-template-columns: auto 2.1875rem;
         border: 1px solid $lightgray;
         border-radius: 3px;
         margin: 2px;
@@ -438,6 +438,10 @@
         .set-villain-status {
             max-width: 157px;
             overflow: hidden;
+        }
+
+        .center {
+            text-align: center;
         }
     }
 
@@ -473,23 +477,6 @@
 
     .villain-abilities {
         background-color: $graybg;
-    }
-
-    .ability-list {
-
-        td:nth-child(3),
-        td:nth-child(5) {
-            text-align: center;
-        }
-    }
-
-    .minion-form-list {
-
-        td:first-child,
-        td:nth-child(3),
-        td:nth-child(4) {
-            text-align: center;
-        }
     }
 
     .green-abilities,
@@ -561,6 +548,11 @@
             margin-bottom: 4px;
         }
 
+        h4 {
+            text-align: center;
+            margin: 0;
+        }
+
         select,
         input {
             display: block;
@@ -623,27 +615,47 @@
     }
 
     .ability-table {
+        display: grid;
 
-        th:first-child,
-        td:first-child {
-            width: 2.8125rem;
+        .ability-item,
+        .ability-title {
+            display: grid;
+            grid-template-columns: 2.8125rem 8.4375rem 2.1875rem auto 1.25rem;
         }
 
-        th:nth-child(2),
-        td:nth-child(2) {
-            width: 8.4375rem;
-            max-width: 8.4375rem;
-            overflow: hidden;
+        .ability-title {
+            text-align: center;
+            font-weight: bold;
         }
 
-        th:nth-child(3),
-        td:nth-child(3) {
-            width: 2.1875rem;
+        .ability-title-child {
+            padding: 4px;
+            background: rgba(0, 0, 0, 0.05);
         }
 
-        th:nth-child(5),
-        td:nth-child(5) {
-            width: 2.8125rem;
+        .ability-item:nth-child(odd) {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .ability-item-child {
+            border-top-style: dotted;
+            border-width: thin;
+            padding: 4px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .ability-title-child:not(:first-child),
+        .ability-item-child:not(:first-child) {
+            border-left-style: dotted;
+            border-width: thin;
+        }
+
+        .ability-item-child:nth-child(1),
+        .ability-item-child:nth-child(3),
+        .ability-item-child:nth-child(5) {
+            justify-content: center;
         }
     }
 
@@ -854,18 +866,54 @@
     }
 
     .minion-form-table {
-        .first-column {
-            width: 8.4375rem;
-            max-width: 8.4375rem;
-            overflow: hidden;
+        display: grid;
+
+        .villain-minion-form-title,
+        .villain-minionForm-parent {
+            display: grid;
+            grid-template-columns: 8.4375rem auto 1.25rem;
         }
 
-        .third-column {
-            width: 5.5rem;
+        .minion-form-title,
+        .minionForm-parent {
+            display: grid;
+            grid-template-columns: 8.4375rem auto 5.5rem 1.25rem;
         }
 
-        .fourth-column {
-            width: 2.8125rem;
+        .villain-minion-form-title,
+        .minion-form-title {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .villain-minionForm-parent:nth-child(odd),
+        .minionForm-parent:nth-child(odd) {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .minion-form-title-child {
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        .minionForm-child:nth-child(3),
+        .minionForm-child:nth-child(4) {
+            justify-content: center;
+        }
+
+        .minionForm-child {
+            border-top-style: dotted;
+            border-width: thin;
+            padding: 4px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .minion-form-title-child:not(:first-child),
+        .minionForm-child:not(:first-child) {
+            border-left-style: dotted;
+            border-width: thin;
         }
     }
 
@@ -949,7 +997,7 @@
             margin: 2px;
             font-weight: bold;
             text-align: center;
-            font-size: 1.5625rem;
+            font-size: 1.25rem;
         }
 
         .fa-trash {

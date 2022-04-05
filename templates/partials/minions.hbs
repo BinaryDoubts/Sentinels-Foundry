@@ -7,46 +7,45 @@
 {{/if}}
 <div class="minion-form-list item-list">
     {{!-- Table to displaying available minion forms --}}
-    <table class="villain-abilities box-border minion-form-table">
-        <tr>
-            <th class="first-column">{{localize "SCRPG.sheet.name"}}</th>
-            <th>{{localize "SCRPG.sheet.description"}}</th>
+    <div class="villain-abilities box-border minion-form-table">
+        <div class={{#if (eq this.actor.data.type "hero"
+            )}}"minion-form-title"{{else}}"villain-minion-form-title"{{/if}}>
+            <div class="minion-form-title-child">{{localize "SCRPG.sheet.name"}}</div>
+            <div class="minion-form-title-child">{{localize "SCRPG.sheet.description"}}</div>
             {{#if (eq this.actor.data.type "hero")}}
-            <th class="third-column">{{localize "SCRPG.sheet.bonus"}}</th>
+            <div class="minion-form-title-child">{{localize "SCRPG.sheet.bonus"}}</div>
             {{/if}}
-            <th class="fourth-column">
+            <div class="minion-form-title-child">
                 {{!-- Button for adding a new minion form --}}
                 <a title='{{localize "SCRPG.button.addNew" }}' class="item-create" data-type="minionForm">
                     <i class=" fas fa-plus"></i>
                 </a>
-            </th>
-        </tr>
+            </div>
+        </div>
         {{!-- Displays all minion forms the character has --}}
         {{#each actor.minionForm as |minionForm id|}}
-        <tr class="minionForm-item item" data-item-id="{{minionForm._id}}">
-            <td>
+        <div class={{#if (eq ../this.actor.data.type "hero" )}}"minionForm-item minionForm-parent
+            item"{{else}}"minionForm-item villain-minionForm-parent item"{{/if}} data-item-id="{{minionForm._id}}">
+            <div class="minionForm-child">
                 {{name}}
-            </td>
-            <td>
-                {{{data.description}}}
-            </td>
+            </div>
+            <div class="minionForm-child">
+                <div>{{{data.description}}}</div>
+            </div>
             {{#if (eq ../this.actor.data.type "hero")}}
-            <td>
+            <div class="minionForm-child">
                 {{getLocalizeMinionBonus data.bonus}}
-            </td>
+            </div>
             {{/if}}
-            <td>
-                {{!-- buttons for editing and deleting the minion form --}}
-                <a title='{{localize "SCRPG.button.edit" }}' class="item-edit">
-                    <i class="fas fa-edit"></i>
+            <div class="minionForm-child">
+                {{!-- buttons for pushing minion form to chat --}}
+                <a title='{{localize "SCRPG.button.displayMinionForm"}}' class="roll-item">
+                    <i class="fas fa-comment-alt"></i>
                 </a>
-                <a title='{{localize "SCRPG.button.delete" }}' class="item-delete">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </td>
-        </tr>
+            </div>
+        </div>
         {{/each}}
-    </table>
+    </div>
 </div>
 
 {{!-- Section for displaying available minons and their abilities --}}
@@ -73,11 +72,8 @@
                             <a title='{{localize "SCRPG.button.downgrade" }}' class="downgrade-minion">
                                 <i class="fas fa-angle-double-down"></i>
                             </a>
-                            <a title='{{localize "SCRPG.button.edit" }}' class="item-edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a title='{{localize "SCRPG.button.delete" }}' class="item-delete">
-                                <i class="fas fa-trash"></i>
+                            <a title='{{localize "SCRPG.button.upgrade" }}' class="upgrade-minion">
+                                <i class="fas fa-angle-double-up"></i>
                             </a>
                         </div>
                     </div>
