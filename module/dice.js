@@ -122,4 +122,19 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     rollResult.toMessage(messageData);
 }
 
+export async function ItemRoll(item = null) {
 
+    let chatData = {
+        item: item
+    }
+    const messageTemplate = "systems/scrpg/templates/chat/" + item.type + "roll.hbs";
+
+    let render = await renderTemplate(messageTemplate, chatData)
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: render,
+    };
+
+    return ChatMessage.create(messageData);
+}

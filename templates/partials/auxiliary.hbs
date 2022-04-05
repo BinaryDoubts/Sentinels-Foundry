@@ -15,7 +15,8 @@
             {{#if (eq data.data.modular true)}}
             <td>
                 <div class="auxiliary-item">
-                    <input type="checkbox" name="data.powerless" {{checked data.data.powerless}} data-dtype="boolean" />
+                    <input class="set-powerless" type="checkbox" name="data.powerless" {{checked data.data.powerless}}
+                        data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.powerless"}}</p>
                 </div>
             </td>

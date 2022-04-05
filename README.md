@@ -27,6 +27,9 @@ This is an unofficial package and a copy of the rulebook will be required to use
 - Track hero points, hero reward points, back issues, and collections on the Hero tab
 - Track Bonus and Penalties
     - Penalties will make dice roll chat messages red as a reminder
+- Background, Power Source, Archetype, Personality, and Principles items can be dragged onto the the character sheet
+- Abilites, Environment Twists, and Minion Forms can be submitted to chat
+- Items on character sheets can be edited and deleted by right clicking on them
 
 ## Game Settings
 

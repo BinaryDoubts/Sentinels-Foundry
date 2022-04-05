@@ -13,6 +13,23 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "info" }]
         })
     }
+    itemContextMenu = [
+        {
+            name: game.i18n.localize("SCRPG.button.edit"),
+            icon: '<i class="fas fa-edit"></i>',
+            callback: element => {
+                const item = this.actor.items.get(element.data("item-id"));
+                item.sheet.render(true);
+            }
+        },
+        {
+            name: game.i18n.localize("SCRPG.button.delete"),
+            icon: '<i class="fas fa-trash"></i>',
+            callback: element => {
+                this.actor.deleteEmbeddedDocuments("Item", [element.data("item-id")])
+            }
+        }
+    ]
 
     get template() {
         if (this.actor.data.type == "hero" || this.actor.data.type == "villain") {
@@ -136,6 +153,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     activateListeners(html) {
 
         if (this.actor.isOwner) {
+
+            new ContextMenu(html, ".ability-item", this.itemContextMenu);
+            new ContextMenu(html, ".power-item", this.itemContextMenu);
+            new ContextMenu(html, ".quality-item", this.itemContextMenu);
+            new ContextMenu(html, ".villain-status-item", this.itemContextMenu);
+            new ContextMenu(html, ".mod-item", this.itemContextMenu);
+            new ContextMenu(html, ".environmentTwist-item", this.itemContextMenu);
+            new ContextMenu(html, ".heroMinion-item", this.itemContextMenu);
+            new ContextMenu(html, ".minionForm-item", this.itemContextMenu);
+
             //item creation
             html.find(".item-create").click(this._onItemCreate.bind(this));
             //item deletion
@@ -180,6 +207,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".set-mode").click(this._onSetMode.bind(this));
             //Turns on/off modular archetype for character
             html.find(".set-modular").click(this._onSetModular.bind(this));
+            //Turns off powerless
+            html.find(".set-powerless").click(this._onSetPowerless.bind(this));
             //Turns on/off formchanger archetype for character
             html.find(".set-formchanger").click(this._onSetFormChanger.bind(this));
             //Turns on/off divided
@@ -196,8 +225,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".roll-minion").click(this._onRollMinion.bind(this));
             //downgrade minion
             html.find(".downgrade-minion").click(this._onDowngradeMinion.bind(this));
+            //upgrade minion
+            html.find(".upgrade-minion").click(this._onUpgradeMinion.bind(this));
             //create mod
             html.find(".create-mod").click(this._onCreateMod.bind(this));
+            //push ability to chat
+            html.find(".roll-item").click(this._onRollItem.bind(this));
         }
 
 
@@ -241,6 +274,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    }
+
+    //Rolls an item into the chat
+    _onRollItem(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+
+        dice.ItemRoll(item);
     }
 
     //deletes the closest item
@@ -301,6 +344,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let dieNum = parseInt(item.data.data.dieType.match(/[0-9]+/g)[0]);
         if (dieNum > 4) {
             dieNum -= 2;
+        }
+        let dieType = "d" + dieNum;
+        item.update({ "data.dieType": dieType });
+    }
+
+    // Increases the minion die one type
+    _onUpgradeMinion(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let dieNum = parseInt(item.data.data.dieType.match(/[0-9]+/g)[0]);
+        if (dieNum < 12) {
+            dieNum += 2;
         }
         let dieType = "d" + dieNum;
         item.update({ "data.dieType": dieType });
@@ -551,9 +608,17 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             this.actor.update({ "data.powerless": false });
             this.actor.update({ "data.formchanger": false });
             this.actor.update({ "data.divided": false })
+            this.actor.update({ "data.dividedPsyche": false })
+            this.actor.update({ "data.dividedStatus": false })
             this.actor.update({ "data.poweredMode": false })
             this.actor.update({ "data.civilianMode": false })
             this.actor.update({ "data.mode": "main" });
+        }
+    }
+
+    _onSetPowerless(event) {
+        if (this.actor.data.data.powerless == true) {
+            this.actor.update({ "data.mode": "main" })
         }
     }
 
@@ -682,29 +747,26 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     }
 
     async _onDropItem(event, data) {
-        if ( !this.actor.isOwner ) return false;
+        if (!this.actor.isOwner) return false;
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
-        switch (itemData.type)
-        {
+        switch (itemData.type) {
             case "principles":
-                if ( this.checkDropTarget(event, "DroppableFirstPrinciple") )
-                {
+                if (this.checkDropTarget(event, "DroppableFirstPrinciple")) {
                     this.actor.update({ "data.firstPrinciple.name": itemData.name });
                     this.actor.update({ "data.firstPrinciple.roleplaying": itemData.data.roleplaying });
                     this.actor.update({ "data.firstPrinciple.minorTwist": itemData.data.minorTwist });
                     this.actor.update({ "data.firstPrinciple.majorTwist": itemData.data.majorTwist });
                 }
 
-                if  ( this.checkDropTarget(event, "DroppableSecondPrinciple") )
-                {
+                if (this.checkDropTarget(event, "DroppableSecondPrinciple")) {
                     this.actor.update({ "data.secondPrinciple.name": itemData.name });
                     this.actor.update({ "data.secondPrinciple.roleplaying": itemData.data.roleplaying });
                     this.actor.update({ "data.secondPrinciple.minorTwist": itemData.data.minorTwist });
                     this.actor.update({ "data.secondPrinciple.majorTwist": itemData.data.majorTwist });
                 }
-                
+
                 return false;
             case "backgrounds":
                 this.actor.update({ "data.background": itemData.name });
@@ -726,22 +788,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
 
         // Handle item sorting within the same Actor
-        if ( await this._isFromSameActor(data) ) return this._onSortItem(event, itemData);
-    
+        if (await this._isFromSameActor(data)) return this._onSortItem(event, itemData);
+
         // Create the owned item
         return this._onDropItemCreate(itemData);
     }
 
     // Helper Function for _onDropItem. target example: "DroppableFirstPrinciple"
-    checkDropTarget(event, target)
-    {
+    checkDropTarget(event, target) {
         //Checks if any parts of the elements have the class name
         for (let i = 0; i < event.path.length; i++) {
-            if (event.path[i].className != null && event.path[i].className.includes(target))
-            {
+            if (event.path[i].className != null && event.path[i].className.includes(target)) {
                 return true;
             }
-          }
+        }
 
         return false;
     }

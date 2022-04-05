@@ -2,25 +2,28 @@
 
 {{!-- This partial takes a variable called mode which is uses --}}
 {{!-- to determine where the ability belongs --}}
-<div class="ability-list item-list ability-table">
-    <table class="{{#color}}{{mode}}{{/color}}-abilities box-border"
-        style="{{getAbilitiesEnabledFromStatusClass mode this.actor.data.data}}">
-        <tr>
-            <th>{{localize "SCRPG.abilities.icon"}}</th>
-            <th>{{localize "SCRPG.abilities.name"}}</th>
-            <th>{{localize "SCRPG.abilities.type"}}</th>
-            <th>{{localize "SCRPG.abilities.gameText"}}</th>
-            <th>
+<div class="ability-list item-list {{#color}}{{mode}}{{/color}}-abilities">
+    <div class="box-border ability-table" style="{{getAbilitiesEnabledFromStatusClass mode this.actor.data.data}}">
+        <div class="ability-title">
+            <div class="ability-title-child">{{localize "SCRPG.abilities.icon"}}
+            </div>
+            <div class="ability-title-child">{{localize "SCRPG.abilities.name"}}
+            </div>
+            <div class="ability-title-child">{{localize "SCRPG.abilities.type"}}
+            </div>
+            <div class="ability-title-child">{{localize
+                "SCRPG.abilities.gameText"}}</div>
+            <div class="ability-title-child">
                 <a title='{{localize "SCRPG.button.addNew"}}' class="add-ability" data-type="ability"
                     data-aux="{{mode}}">
                     <i class=" fas fa-plus"></i>
                 </a>
-            </th>
-        </tr>
+            </div>
+        </div>
         {{#each actor.ability as |ability id|}}
         {{#if (eq ability.data.aux ../mode)}}
-        <tr class="ability-item item" data-item-id="{{ability._id}}">
-            <td>
+        <div class="ability-item item" data-item-id="{{ability._id}}">
+            <div class="ability-item-child">
                 {{!-- Icons can be selected here --}}
                 <div class="icon-position">
                     {{#if (eq data.icon.attack true)}}<div class="icon"><i title={{localize "SCRPG.abilitytypes.attack"
@@ -37,30 +40,26 @@
                             title={{localize "SCRPG.abilitytypes.recover" }} class="fas fa-plus-square"></i></div>
                     {{/if}}
                 </div>
-            </td>
-            <td>
+            </div>
+            <div class="ability-item-child">
                 {{name}}
-            </td>
-            <td>
+            </div>
+            <div class="ability-item-child">
                 <div title="{{getLocalizeAbilityTypeTooltip data.type}}">{{getLocalizeAbilityTypeDescription
                     data.type}}
                 </div>
-            </td>
-            <td>
+            </div>
+            <div class="ability-item-child">
                 <div>{{{data.gameText}}}</div>
-
-            </td>
-            <td>
+            </div>
+            <div class="ability-item-child">
                 {{!-- buttons for editing and deleting the ablity --}}
-                <a title='{{localize "SCRPG.button.edit"}}' class="item-edit">
-                    <i class="fas fa-edit"></i>
+                <a title='{{localize "SCRPG.button.displayAbility"}}' class="roll-item">
+                    <i class="fas fa-comment-alt"></i>
                 </a>
-                <a title='{{localize "SCRPG.button.delete"}}' class="item-delete">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </td>
-        </tr>
+            </div>
+        </div>
         {{/if}}
         {{/each}}
-    </table>
+    </div>
 </div>

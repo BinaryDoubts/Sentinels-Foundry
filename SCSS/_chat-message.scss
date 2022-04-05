@@ -2,44 +2,58 @@
     .box-border {
         box-shadow: 2px 2px $gray;
         margin-bottom: 4px;
+
+        &-black {
+            border: 2px black solid;
+        }
     }
+
     .main-roll {
         th:first-child {
             width: 90px;
-            min-width: 90px;;
+            min-width: 90px;
+            ;
         }
-        td:nth-child(2){
+
+        td:nth-child(2) {
             max-width: 178px;
             overflow: hidden;
         }
     }
+
     .minor-roll {
         th:first-child {
             width: 65px;
             min-width: 65px;
         }
-        td:nth-child(2){
+
+        td:nth-child(2) {
             max-width: 169px;
             overflow: hidden;
         }
+
         td:nth-child(3) {
             width: 40px;
         }
     }
-    .dice-rolled{
-        
+
+    .dice-rolled {
+
         table td {
             text-align: center;
         }
+
         table th {
             padding-left: 8px;
         }
+
         table {
             background-color: $white;
             margin: 0;
             border: 0;
         }
     }
+
     .dice-results {
         background-color: $white;
         display: flex;
@@ -48,13 +62,14 @@
         p {
             display: inline;
         }
+
         .dice {
             position: relative;
             margin: 2px;
             display: inline-flex;
             width: 1.5625rem;
             height: 1.5625rem;
-        
+
             label {
                 position: absolute;
                 top: 4px;
@@ -63,7 +78,7 @@
                 width: 100%;
                 z-index: 1;
             }
-        
+
             img {
                 position: absolute;
                 width: 1.5625;
@@ -71,22 +86,91 @@
                 border: none;
             }
         }
+
         .d4 {
             filter: brightness(0) saturate(100%) invert(69%) sepia(89%) saturate(3407%) hue-rotate(189deg) brightness(108%) contrast(99%);
         }
+
         .d6 {
             filter: brightness(0) saturate(100%) invert(79%) sepia(45%) saturate(559%) hue-rotate(47deg) brightness(82%) contrast(89%);
         }
+
         .d8 {
             filter: brightness(0) saturate(100%) invert(74%) sepia(16%) saturate(5893%) hue-rotate(346deg) brightness(105%) contrast(97%);
         }
+
         .d10 {
             filter: brightness(0) saturate(100%) invert(35%) sepia(79%) saturate(1183%) hue-rotate(330deg) brightness(98%) contrast(90%);
         }
+
         .d12 {
             filter: brightness(0) saturate(100%) invert(45%) sepia(9%) saturate(2852%) hue-rotate(247deg) brightness(118%) contrast(78%);
         }
 
     }
-}
 
+    .green-abilities {
+        background-color: $greenbg;
+    }
+
+    .yellow-abilities {
+        background-color: $yellowbg;
+    }
+
+    .red-abilities {
+        background-color: $redbg;
+    }
+
+    .icon {
+        display: inline;
+    }
+
+    .villain-abilities {
+        background-color: $graybg;
+    }
+
+    .green-abilities,
+    .yellow-abilities,
+    .red-abilities,
+    .villain-abilities {
+        margin-top: 0;
+
+        table {
+            margin: 0;
+        }
+
+        td,
+        tr,
+        th {
+            border: 1px dotted $black;
+            padding: 4px;
+        }
+
+        p {
+            margin: 0px;
+        }
+    }
+
+    .ability-title {
+        font-weight: bold;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .ability-icon {
+        width: 50%;
+    }
+
+    .nested-name {
+        p:first-child {
+            display: inline;
+            font-weight: bold;
+        }
+
+        p:nth-child(2) {
+            display: inline
+        }
+    }
+}

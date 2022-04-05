@@ -10,7 +10,7 @@
             "name": "GamerDragon"
         }
     ],
-    "version": "1.2.4",
+    "version": "1.2.5",
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "esmodules": [
@@ -39,6 +39,6 @@
     "primaryTokenAttribute": "health",
     "initiative": "N/A",
     "url": "https://gitlab.com/RabidRaccoon/scrpg",
-    "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/main/system.json",
-    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.2.4/scrpg-v1.2.4.zip"
+    "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/v1.2.5/system.json",
+    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.2.5/scrpg-v1.2.5.zip"
 }
