@@ -143,14 +143,23 @@ Handlebars.registerHelper("getAbilitiesEnabledFromStatusClass", function (mode, 
         if (scene == "red" || actorStatus == "red") {
             //Enable green, yellow and red
         } else if (scene == "yellow" || actorStatus == "yellow") {
-            if (mode == "red") { return "filter: grayscale(70%);" }
+            if (mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
             //Enabled green
             //enable yellow
         } else {
-            if (mode == "yellow" || mode == "red") { return "filter: grayscale(70%);" }
+            if (mode == "yellow" || mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
             //enable green
         }
     }
 
     return "";
+});
+
+Handlebars.registerHelper("multiple", function (n, content) {
+    let result = "";
+    for (let i = 0; i < n; i++) {
+        content.data.index = i + 1;
+        result += content.fn(i)
+    }
+    return result;
 });

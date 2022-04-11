@@ -1009,11 +1009,10 @@
 
 .SCRPG.sheet.actor .ability-table .ability-title-child {
   padding: 4px;
-  background: rgba(0, 0, 0, 0.05);
 }
 
-.SCRPG.sheet.actor .ability-table .ability-item:nth-child(odd) {
-  background: rgba(0, 0, 0, 0.05);
+.SCRPG.sheet.actor .ability-table .ability-item:nth-child(even) {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .SCRPG.sheet.actor .ability-table .ability-item-child {
@@ -1295,14 +1294,9 @@
       grid-template-columns: 8.4375rem auto 5.5rem 1.25rem;
 }
 
-.SCRPG.sheet.actor .minion-form-table .villain-minion-form-title,
-.SCRPG.sheet.actor .minion-form-table .minion-form-title {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.SCRPG.sheet.actor .minion-form-table .villain-minionForm-parent:nth-child(odd),
-.SCRPG.sheet.actor .minion-form-table .minionForm-parent:nth-child(odd) {
-  background: rgba(0, 0, 0, 0.05);
+.SCRPG.sheet.actor .minion-form-table .villain-minionForm-parent:nth-child(even),
+.SCRPG.sheet.actor .minion-form-table .minionForm-parent:nth-child(even) {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .SCRPG.sheet.actor .minion-form-table .minion-form-title-child {
@@ -1372,6 +1366,13 @@
   margin-right: auto;
 }
 
+.SCRPG.sheet.actor .mods .mod-buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto auto;
+}
+
 .SCRPG.sheet.actor .mods th:nth-child(2),
 .SCRPG.sheet.actor .mods td:nth-child(2) {
   width: 40%;
@@ -1382,9 +1383,38 @@
   vertical-align: text-top;
 }
 
-.SCRPG.sheet.actor .mods button {
-  width: 32px;
+.SCRPG.sheet.actor .mods .mod-buttons-child {
+  width: 33px;
+  height: 33px;
+}
+
+.SCRPG.sheet.actor .mods .mod-link {
+  width: 28px;
+  height: 28px;
   line-height: normal;
+  text-align: center;
+  margin: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.SCRPG.sheet.actor .mods .mod-link h3 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.SCRPG.sheet.actor .mods .mod-link:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin-top: 3px;
+  margin-left: 3px;
 }
 
 .SCRPG.sheet.actor .penalties,

@@ -35,16 +35,22 @@
                         </div>
                     </div>
                     <div class="mod-buttons">
-                        <button class="create-mod" data-type="mod" data-value="+1">+1</button>
-                        <button class="create-mod" data-type="mod" data-value="+2">+2</button>
-                        <button class="create-mod" data-type="mod" data-value="+3">+3</button>
-                        <button class="create-mod" data-type="mod" data-value="+4">+4</button>
-                    </div>
-                    <div class="mod-buttons">
-                        <button class="create-mod" data-type="mod" data-value="-1">-1</button>
-                        <button class="create-mod" data-type="mod" data-value="-2">-2</button>
-                        <button class="create-mod" data-type="mod" data-value="-3">-3</button>
-                        <button class="create-mod" data-type="mod" data-value="-4">-4</button>
+                        {{#multiple 4}}
+                        <div class="mod-buttons-child">
+                            <a class="create-mod mod-link box-border green-abilities" data-type="mod"
+                                data-value="+{{@index}}">
+                                <h3>+{{@index}}</h3>
+                            </a>
+                        </div>
+                        {{/multiple}}
+                        {{#multiple 4}}
+                        <div class="mod-buttons-child">
+                            <a class="create-mod mod-link box-border red-abilities" data-type="mod"
+                                data-value="-{{@index}}">
+                                <h3>-{{@index}}</h3>
+                            </a>
+                        </div>
+                        {{/multiple}}
                     </div>
                 </td>
                 <td>

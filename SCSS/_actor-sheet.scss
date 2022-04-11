@@ -630,11 +630,10 @@
 
         .ability-title-child {
             padding: 4px;
-            background: rgba(0, 0, 0, 0.05);
         }
 
-        .ability-item:nth-child(odd) {
-            background: rgba(0, 0, 0, 0.05);
+        .ability-item:nth-child(even) {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .ability-item-child {
@@ -880,14 +879,9 @@
             grid-template-columns: 8.4375rem auto 5.5rem 1.25rem;
         }
 
-        .villain-minion-form-title,
-        .minion-form-title {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .villain-minionForm-parent:nth-child(odd),
-        .minionForm-parent:nth-child(odd) {
-            background: rgba(0, 0, 0, 0.05);
+        .villain-minionForm-parent:nth-child(even),
+        .minionForm-parent:nth-child(even) {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .minion-form-title-child {
@@ -949,6 +943,11 @@
             }
         }
 
+        .mod-buttons {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+        }
+
         th:nth-child(2),
         td:nth-child(2) {
             width: 40%;
@@ -959,9 +958,32 @@
             vertical-align: text-top;
         }
 
-        button {
-            width: 32px;
+        .mod-buttons-child {
+            width: 33px;
+            height: 33px;
+        }
+
+        .mod-link {
+            width: 28px;
+            height: 28px;
             line-height: normal;
+            text-align: center;
+            margin: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                margin: 0;
+                font-weight: bold;
+            }
+
+        }
+
+        .mod-link:active {
+            box-shadow: none;
+            margin-top: 3px;
+            margin-left: 3px;
         }
     }
 
