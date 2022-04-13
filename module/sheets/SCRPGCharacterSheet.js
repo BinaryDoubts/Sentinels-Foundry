@@ -231,6 +231,13 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".create-mod").click(this._onCreateMod.bind(this));
             //push ability to chat
             html.find(".roll-item").click(this._onRollItem.bind(this));
+            //mod select
+            html.find(".mod-select").click(this._onModSelect.bind(this));
+            //DeleteAllMods
+            html.find(".deleteAllMods").click(this._onDeleteAllMods.bind(this));
+            //DeleteAllHeroMinions
+            html.find(".deleteAllHeroMinions").click(this._onDeleteAllHeroMinions.bind(this));
+            
         }
 
 
@@ -297,6 +304,44 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             content: "<p>Are you sure you want to delete this item?</p>",
             yes: () => this.actor.deleteEmbeddedDocuments("Item", [itemId]),
             no: () => console.log("Foundry VTT | Item with id [" + itemId + "] was not deleted"),
+            defaultYes: false
+        });
+
+        return d
+    }
+
+    //deletes all Mods
+    _onDeleteAllMods(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemsId = this.actor.items.filter(it => it.data.type == "mod").map( m=>m.data._id);
+
+        console.log("mod event", event);
+
+        let d = Dialog.confirm({
+            title: "Delete",
+            content: "<p>Are you sure you want to delete all Bonuses and Penalties?</p>",
+            yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
+            no: () => console.log("Foundry VTT | Items with id [" + itemId + "] was not deleted"),
+            defaultYes: false
+        });
+
+        return d
+    }
+
+    //deletes all Mods
+    _onDeleteAllHeroMinions(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemsId = this.actor.items.filter(it => it.data.type == "heroMinion").map( m=>m.data._id);
+
+        console.log("hm event", event);
+
+        let d = Dialog.confirm({
+            title: "Delete",
+            content: "<p>Are you sure you want to delete all Hero Minions?</p>",
+            yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
+            no: () => console.log("Foundry VTT | Items with id [" + itemId + "] was not deleted"),
             defaultYes: false
         });
 
@@ -725,6 +770,39 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
+
+        //deletes the closest item
+        _onModSelect(event) {
+            event.preventDefault();
+
+             let element = event.currentTarget;
+             let itemId = element.closest(".item").dataset.itemId;
+             let item = this.actor.items.get(itemId);
+             let isExclusive = item.data.data.exclusive;
+             let updatedSelectedValue = !item.data.data.selected;
+
+             //if exclusive, deselect all other exclusive mods
+             if (isExclusive && updatedSelectedValue)
+             {
+                let isBonus = parseInt(item.data.data.value) > 0;       //Check if Bonus or Penality
+                let otherExclusives;
+
+                if (isBonus)
+                {
+                    otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) > 0);
+                }
+                else
+                {
+                    otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) < 0);
+                }
+
+                //Foreach exclusive, deselect
+                otherExclusives.forEach(oe => oe.update({'data.selected': false}))
+             }
+
+             //Toggle selected state for current
+             item.update({'data.selected': updatedSelectedValue});
+        }
 
     //creates a new environment twist
     _onCreateTwist(event) {

@@ -18,7 +18,8 @@ async function preloadHandlebarsTemplates() {
         "systems/scrpg/templates/partials/environment.hbs",
         "systems/scrpg/templates/partials/environmenttwist.hbs",
         "systems/scrpg/templates/partials/minions.hbs",
-        "systems/scrpg/templates/partials/mod.hbs"
+        "systems/scrpg/templates/partials/mod.hbs",
+        "systems/scrpg/templates/chat/partials/modDisplay.hbs"
     ];
 
     return loadTemplates(templatePaths)

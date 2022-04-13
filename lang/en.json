@@ -197,6 +197,8 @@
             "upgrade": "Upgrade Minion Die",
             "show": "Show/Hide Details",
             "changeMode": "Change to this Mode/Form",
+            "deleteMinions": "Delete all Minions",
+            "deleteMods": "Delete all Bonuses and Penalties",
             "addToRoll": "Add to Roll"
         },
         "mod": {

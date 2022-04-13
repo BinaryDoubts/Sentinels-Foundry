@@ -130,6 +130,7 @@
 
         &-mod {
             width: max-content;
+            display:flex;
 
             h3 {
                 margin: 0;
@@ -1068,5 +1069,9 @@
 
     .red-status-background {
         background-color: $redbg;
+    }
+
+    .deleteAllMods {
+        margin-left: 5px;
     }
 }

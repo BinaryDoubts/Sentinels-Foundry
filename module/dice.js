@@ -16,6 +16,9 @@ export async function TaskCheck(actor = null) {
     let color = game.settings.get("scrpg", "coloredDice");
     let modsOn = game.settings.get("scrpg", "mod");
     let coloring = "black";
+    let selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
+    let penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
+    let bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
 
     const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
 
@@ -29,15 +32,10 @@ export async function TaskCheck(actor = null) {
     //Assigns the higest result Max, mid result Mid and lowest result Min
     let dicePosition = ["Max", "Mid", "Min"];
 
-    //Checks to see if the actor has a negative mod and then sets penalty true
-    if (actor.data.type != "environment") {
-        for (let j = 0; j < mods.length; j++) {
-            if (mods[j].data.value < 0 && modsOn) {
-                coloring = "red";
-                break;
-            }
-        }
-    }
+    //Checks to see if the actor missed using all available negative mods and then sets penalty true
+    if ((actor.data.type != "environment")
+        && modsOn
+        && await usedAllValidPenalties(mods)) { coloring = "red" };
 
     //checks the number of die faces and attachs the corresponding dice image
     for (let i = 0; i < diceresults.length; i++) {
@@ -60,8 +58,15 @@ export async function TaskCheck(actor = null) {
         poweredMode: poweredMode,
         civilianMode: civilianMode,
         type: type,
-        coloring: coloring
+        coloring: coloring,
+        selectedmods: selectedmods,
+        bonus: bonus,
+        penalty: penalty
     }
+
+    await RemoveUsedMods(actor);
+
+    await UnselectPersistantMods(actor);
 
     //renders roll template using mainroll.hbs
     let render = await renderTemplate(messageTemplate, chatData)
@@ -83,6 +88,10 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     let coloring = "black";
     let mods = actor.items.document.mod;
     let modsOn = game.settings.get("scrpg", "mod");
+    let selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
+    let penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
+    let bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+
     rollResult.rollType = rollType;
     rollResult.rollName = rollName;
 
@@ -95,20 +104,21 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
         }
     };
 
-    //Checks to see if the actor has a negative mod and then sets penalty true
-    if (rollType == "power" || rollType == "quality" || rollType == "status") {
-        for (let j = 0; j < mods.length; j++) {
-            if (mods[j].data.value < 0 && modsOn) {
-                coloring = "red";
-                break;
-            }
-        }
-    }
+    //Checks to see if the actor missed using all available negative mods and then sets penalty true
+    if ((rollType == "power" || rollType == "quality" || rollType == "status")
+        && modsOn && await usedAllValidPenalties(mods)) { coloring = "red" };
 
     let chatData = {
         rollResult: rollResult,
-        coloring: coloring
+        coloring: coloring,
+        selectedmods: selectedmods,
+        bonus: bonus,
+        penalty: penalty
     };
+
+    await RemoveUsedMods(actor);
+
+    await UnselectPersistantMods(actor);
 
     //renders roll template using minorroll.hbs
     let render = await renderTemplate(messageTemplate, chatData);
@@ -137,4 +147,51 @@ export async function ItemRoll(item = null) {
     };
 
     return ChatMessage.create(messageData);
+}
+
+
+
+//helper functions
+async function RemoveUsedMods(actor) {
+    //Delete mods afterwards
+    let toDelId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && !it.data.data.persistant).map(m => m.data._id);
+    actor.deleteEmbeddedDocuments("Item", toDelId);
+}
+
+async function UnselectPersistantMods(actor) {
+    //unselects mods after roll
+    let toUnselectId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && it.data.data.persistant).map(m => m.data._id);
+    for (let i = 0; i < toUnselectId.length; i++) {
+        actor.items.get(toUnselectId[i]).update({ "data.selected": false });;
+    }
+}
+
+
+async function usedAllValidPenalties(mods) {
+    let selectedPenalties = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0);
+    let unselectedPenalties = mods.filter(m => !(m.data.selected == true) && parseInt(m.data.value) < 0);
+
+    let totalPersistantPenalities = mods.filter(m => m.data.persistant == true && m.data.exclusive == false && parseInt(m.data.value) < 0).length;     //Excluding penalties with both persistant & exlcusive, because gonna to have the exclusive check cover this case
+
+    let unusedVirginPenalities = unselectedPenalties.filter(m => m.data.persistant == false && m.data.exclusive == false).length;
+    let stillHaveUnusedExclusivePenalities = unselectedPenalties.filter(m => m.data.exclusive == true).length;
+    let usedPersistantPenalities = selectedPenalties.filter(m => m.data.persistant == true && m.data.exclusive == false).length;
+    let usedExclusivePenalities = selectedPenalties.filter(m => m.data.exclusive == true).length;
+
+    //Has non-Persistant and non-exclusive Penalities unused 
+    if (unusedVirginPenalities) {
+        return true;
+    }
+
+    //If there are any unused persistance penalty
+    if (unselectedPenalties.length && (usedPersistantPenalities != totalPersistantPenalities)) {
+        return true;
+    }
+
+    //Didnt use a exclusive and exclusive unused
+    if (unselectedPenalties.length && !usedExclusivePenalities && stillHaveUnusedExclusivePenalities) {
+        return true;
+    }
+
+    return false;
 }
