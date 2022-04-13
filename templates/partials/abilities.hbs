@@ -82,7 +82,8 @@
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red"}}
-    <input class="box-border out-box" type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
+    <input class="box-border out-box" style="{{getAbilitiesEnabledFromStatusClass 'out' this.actor.data.data}}"
+        type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
     {{/if}}
 
     {{!-- displays the villain abilities if the actor type is villain --}}

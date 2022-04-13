@@ -165,7 +165,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-power" data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -179,7 +180,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-power" data-item-id="{{power._id}}">
+                    <a class="power-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -195,7 +197,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-power" data-item-id="{{power._id}}">
+                    <a class="power-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -215,7 +218,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-quality" data-item-id="{{power._id}}">
+                    <a class="power-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -229,7 +233,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-quality" data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -243,7 +248,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-quality" data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -353,7 +359,8 @@
                     {{!-- Displays all villain statuses --}}
                     {{!-- Villain statuses can be clicked to set them to the main roll --}}
                     {{#each actor.villainStatus as |villainStatus id|}}
-                    <a class="villain-status-item item set-villain-status" data-item-id="{{villainStatus._id}}">
+                    <a class="villain-status-item item set-villain-status" title='{{localize "SCRPG.button.addToRoll"}}'
+                        data-item-id="{{villainStatus._id}}">
                         <div>{{name}}</div>
                         <div style="text-align: center">{{data.dieType}}</div>
                     </a>
