@@ -2,6 +2,9 @@
 <section>
     <div class="section-name section-name-mod">
         <h3>{{localize "SCRPG.mod.mod"}}</h3>
+        <a title='{{localize "SCRPG.button.deleteMods" }}' class="deleteAllMods" data-type="mod">
+            <i class="fas fa-trash"></i>
+        </a>
     </div>
     <div class="mods item-list">
         <table class="box-border">
@@ -59,7 +62,8 @@
                     <div class="bonuses">
                         {{#each actor.mod as |mod id|}}
                         {{#if (gte data.value 0)}}
-                        <div class="mod-item item box-border green-abilities" data-item-id="{{ mod._id}}">
+                        <div class="mod-item item mod-select box-border green-abilities {{#if (eq data.selected true)}}green-border{{/if}}"
+                            data-item-id="{{ mod._id}}">
                             <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
                                 {{#if (eq data.persistant true)}}
@@ -78,7 +82,8 @@
                     <div class="penalties">
                         {{#each actor.mod as |mod id|}}
                         {{#if (lte data.value 0)}}
-                        <div class="mod-item item box-border red-abilities" data-item-id="{{ mod._id}}">
+                        <div class="mod-item item mod-select box-border red-abilities  {{#if (eq data.selected true)}}red-border{{/if}}"
+                            data-item-id="{{ mod._id}}">
                             <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
                                 {{#if (eq data.persistant true)}}

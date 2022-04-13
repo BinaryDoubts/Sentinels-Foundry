@@ -441,6 +441,9 @@
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .SCRPG.sheet.actor .section-name-mod h3 {
@@ -1523,6 +1526,10 @@
   background-color: #f8b7a8;
 }
 
+.SCRPG.sheet.actor .deleteAllMods {
+  margin-left: 5px;
+}
+
 .SCRPG.chat.roll .box-border {
   -webkit-box-shadow: 2px 2px #808080;
           box-shadow: 2px 2px #808080;
@@ -1712,5 +1719,70 @@
 
 .SCRPG.chat.roll .nested-name p:nth-child(2) {
   display: inline;
+}
+
+.SCRPG.chat.roll .mod-box {
+  background-color: #ffffff;
+  padding: 3.5px 0;
+}
+
+.SCRPG.chat.roll .mod-box p {
+  margin: 0;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.SCRPG.chat.roll .mod-box .mod-bonus,
+.SCRPG.chat.roll .mod-box .mod-penalty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: 16px;
+}
+
+.SCRPG.chat.roll .mod-rolls {
+  margin: 2px;
+  padding: 1px 5px;
+  border: 1px solid black;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 21px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.SCRPG.chat.roll .mod-rolls .p-e-icon {
+  font-size: 0.7rem;
+  margin: auto 0px auto 4px;
+}
+
+.SCRPG.chat.roll .mod-roll-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.SCRPG.chat.roll .fa-hourglass {
+  color: #2e8b57;
+}
+
+.SCRPG.chat.roll .fa-lock {
+  color: #cd5c5c;
 }
 /*# sourceMappingURL=SCRPG.css.map */

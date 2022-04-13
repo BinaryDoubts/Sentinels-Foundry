@@ -173,4 +173,57 @@
             display: inline
         }
     }
+
+    .mod-box {
+        background-color: $white;
+        padding: 3.5px 0;
+
+        p {
+            margin: 0;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .mod-bonus,
+        .mod-penalty {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 16px;
+        }
+    }
+
+    .mod-rolls {
+        margin: 2px;
+        padding: 1px 5px;
+        border: 1px solid black;
+        width: max-content;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        height: 21px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .p-e-icon {
+            font-size: 0.7rem;
+            margin: auto 0px auto 4px;
+        }
+    }
+
+    .mod-roll-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .fa-hourglass {
+        color: $persistant;
+    }
+
+    .fa-lock {
+        color: $exclusive;
+    }
+
 }

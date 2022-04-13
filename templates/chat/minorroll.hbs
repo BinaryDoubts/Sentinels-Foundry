@@ -1,24 +1,26 @@
 {{!-- Displays a roll of a sinple power, quality or status die --}}
 
 <div class="SCRPG chat roll">
+    {{!-- Displays used Mods in roll --}}
+    {{> "systems/scrpg/templates/chat/partials/modDisplay.hbs"}}
     <div class="dice-results dice-rolled box-border minor-roll" style="border: 2px solid {{coloring}}">
         {{!-- Table displays name, die type, and result --}}
         <table>
             <tr>
                 {{!-- Displays the type of roll, name, and die result --}}
                 {{#if (eq rollResult.rollType "power")}}
-                <th style="color: {{coloring}}">{{localize "SCRPG.powerquality.power"}}</th>
+                <th>{{localize "SCRPG.powerquality.power"}}</th>
                 {{/if}}
                 {{#if (eq rollResult.rollType "quality")}}
-                <th style="color: {{coloring}}">{{localize "SCRPG.powerquality.quality"}}</th>
+                <th>{{localize "SCRPG.powerquality.quality"}}</th>
                 {{/if}}
                 {{#if (eq rollResult.rollType "status")}}
-                <th style="color: {{coloring}}">{{localize "SCRPG.powerquality.status"}}</th>
+                <th>{{localize "SCRPG.powerquality.status"}}</th>
                 {{/if}}
                 {{#if (eq rollResult.rollType "minion")}}
-                <th style="color: {{coloring}}">{{localize "SCRPG.minion.minion"}}</th>
+                <th>{{localize "SCRPG.minion.minion"}}</th>
                 {{/if}}
-                <td style="color: {{coloring}}">
+                <td>
                     {{#if (eq rollResult.rollName "green")}}{{localize "SCRPG.scene.green"}}
                     {{else}}
                     {{#if (eq rollResult.rollName "yellow")}}{{localize "SCRPG.scene.yellow"}}
