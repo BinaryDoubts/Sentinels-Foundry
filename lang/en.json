@@ -188,14 +188,16 @@
             "rollPower": "Roll Power",
             "rollQuality": "Roll Quality",
             "rollStatus": "Roll Status",
-            "displayAbility": "Display Twist to Chat",
+            "displayAbility": "Display Ability to Chat",
             "displayTwist": "Display Twist to Chat",
+            "displayMinionForm": "Display Minion Form to Chat",
             "rollMain": "Roll Dice Pool",
             "rollEnvironment": "Roll Environment Dice",
             "downgrade": "Downgrade Minion Die",
             "upgrade": "Upgrade Minion Die",
             "show": "Show/Hide Details",
-            "changeMode": "Change to this Mode/Form"
+            "changeMode": "Change to this Mode/Form",
+            "addToRoll": "Add to Roll"
         },
         "mod": {
             "mod": "Bonus/Penalty",

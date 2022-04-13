@@ -37,7 +37,8 @@
                     <div class="mod-buttons">
                         {{#multiple 4}}
                         <div class="mod-buttons-child">
-                            <a class="create-mod mod-link box-border green-abilities" data-type="mod"
+                            <a title='{{localize "SCRPG.button.addNew"}}'
+                                class="create-mod mod-link box-border green-abilities" data-type="mod"
                                 data-value="+{{@index}}">
                                 <h3>+{{@index}}</h3>
                             </a>
@@ -45,7 +46,8 @@
                         {{/multiple}}
                         {{#multiple 4}}
                         <div class="mod-buttons-child">
-                            <a class="create-mod mod-link box-border red-abilities" data-type="mod"
+                            <a title='{{localize "SCRPG.button.addNew"}}'
+                                class="create-mod mod-link box-border red-abilities" data-type="mod"
                                 data-value="-{{@index}}">
                                 <h3>-{{@index}}</h3>
                             </a>

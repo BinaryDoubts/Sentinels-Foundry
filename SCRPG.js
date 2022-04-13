@@ -138,17 +138,24 @@ Handlebars.registerHelper("getAbilitiesEnabledFromStatusClass", function (mode, 
     let setting = game.settings.get("scrpg", "availableAbilities")
     let scene = actor.scene;
     let actorStatus = actor.thirdDieName;
+    let actorHealth = actor.wounds.value;
 
     if (setting) {
+        if (actorHealth > 0) {
+            if (mode == "out") { return "background: rgba(0, 0, 0, 0.4);" }
+        }
         if (scene == "red" || actorStatus == "red") {
             //Enable green, yellow and red
         } else if (scene == "yellow" || actorStatus == "yellow") {
             if (mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
             //Enabled green
-            //enable yellow
+            //Enable yellow
         } else {
             if (mode == "yellow" || mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
-            //enable green
+            //Enable green
+        }
+        if (actorHealth <= 0) {
+            if (mode == "green" || mode == "yellow" || mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
         }
     }
 
