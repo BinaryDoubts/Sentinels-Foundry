@@ -1,5 +1,6 @@
 import * as dice from "../dice.js";
 import * as status from "../status.js";
+import * as scene from "../scene.js";
 
 /**
  * An Actor sheet for hero or villain type actors.
@@ -49,6 +50,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             this._prepareCharacterItems(data);
         } else if (this.actor.type == 'environment') {
             this._prepareEnvironmentItems(data);
+        } else if (this.actor.type == 'scene') {
+            this._prepareSceneTrackerItems(data);
         };
         return data;
     }
@@ -123,6 +126,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         actorData.environmentTwist = twists;
     }
 
+    _prepareSceneTrackerItems(sheetData) {
+        const actorData = sheetData.actor;
+        const inits = [];
+
+        for (let i of sheetData.items) {
+            i.img = i.img;
+            if (i.type === "initiativeActor") {
+                inits.push(i)
+            }
+        }
+
+        actorData.initiativeActor = inits;
+    }
+
     getNextMinionIndex() {
         let minions = this.object.heroMinion;
         let names = [];
@@ -162,6 +179,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             new ContextMenu(html, ".environmentTwist-item", this.itemContextMenu);
             new ContextMenu(html, ".heroMinion-item", this.itemContextMenu);
             new ContextMenu(html, ".minionForm-item", this.itemContextMenu);
+            new ContextMenu(html, ".initiativeActor-item", this.itemContextMenu);
 
             //item creation
             html.find(".item-create").click(this._onItemCreate.bind(this));
@@ -169,6 +187,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".item-delete").click(this._onItemDelete.bind(this));
             //item edit
             html.find(".item-edit").click(this._onItemEdit.bind(this));
+            //edit items on character sheet
+            html.find(".inline-edit").change(this._onItemEditInline.bind(this))
             //set power to main roll
             html.find(".set-power").click(this._onSetPower.bind(this));
             //set quality to main roll
@@ -231,20 +251,27 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".create-mod").click(this._onCreateMod.bind(this));
             //push ability to chat
             html.find(".roll-item").click(this._onRollItem.bind(this));
+            //Select the current Scene status
+            html.find(".set-scene").click(this._onSetScene.bind(this));
+            //Change the number of elements in a scene
+            html.find(".update-scene").focusout(this._onUpdateScene.bind(this));
+            //Set Scene Tracker to standard settings
+            html.find(".scene-tracker-setting").click(this._onSceneTrackerSetting.bind(this));
+            //Changes status from available to done  and back
+            html.find(".change-acted-status").click(this._onChangeActedStatus.bind(this));
+            //Open and closes Scene tracker options
+            html.find(".scene-options").click(this._onSceneOptions.bind(this));
             //mod select
             html.find(".mod-select").click(this._onModSelect.bind(this));
-            //DeleteAllMods
-            html.find(".deleteAllMods").click(this._onDeleteAllMods.bind(this));
-            //DeleteAllHeroMinions
-            html.find(".deleteAllHeroMinions").click(this._onDeleteAllHeroMinions.bind(this));
+            //DeleteAll
+            html.find(".delete-all").click(this._onDeleteAll.bind(this));
+            //Changes status of all to available
+            html.find(".reset-initiative").click(this._onResetInitiative.bind(this));
             //Increases player health by 1 and then updates status
             html.find(".increase-health").click(this._onIncreaseHealth.bind(this));
             //Decreases player health by 1 and then updates status
             html.find(".decrease-health").click(this._onDecreaseHealth.bind(this));
-
-
         }
-
 
         super.activateListeners(html);
     }
@@ -315,42 +342,34 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         return d
     }
 
-    //deletes all Mods
-    _onDeleteAllMods(event) {
+    //deletes all
+    _onDeleteAll(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == "mod").map(m => m.data._id);
+        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type).map(m => m.data._id);
+        let content = ""
 
-        console.log("mod event", event);
+        switch (element.dataset.type) {
+            case "mod":
+                content = "<p>Are you sure you want to delete all Bonuses and Penalties?</p>"
+                break
+            case "heroMinion":
+                content = "<p>Are you sure you want to delete all Hero Minions?</p>"
+                break
+            case "initiativeActor":
+                content = "<p>Are you sure you want to clear the Initiative Tracker?</p>"
+                break
+        }
 
         let d = Dialog.confirm({
             title: "Delete",
-            content: "<p>Are you sure you want to delete all Bonuses and Penalties?</p>",
+            content: content,
             yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
             no: () => console.log("Foundry VTT | Items with id [" + itemId + "] was not deleted"),
             defaultYes: false
         });
 
-        return d
-    }
-
-    //deletes all Mods
-    _onDeleteAllHeroMinions(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == "heroMinion").map(m => m.data._id);
-
-        console.log("hm event", event);
-
-        let d = Dialog.confirm({
-            title: "Delete",
-            content: "<p>Are you sure you want to delete all Hero Minions?</p>",
-            yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
-            no: () => console.log("Foundry VTT | Items with id [" + itemId + "] was not deleted"),
-            defaultYes: false
-        });
-
-        return d
+        return d;
     }
 
     //Opens item sheet so it can be edited
@@ -361,6 +380,17 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
 
         item.sheet.render(true)
+    }
+
+    //edit items on character sheet
+    _onItemEditInline(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let field = element.dataset.field;
+
+        return item.update({ [field]: element.value })
     }
 
     //Assigns power to main roll
@@ -927,5 +957,141 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         return false;
 
+    }
+
+    //When selecting a space on the scene, updates all section that should be selected and updates character scene
+    _onSetScene(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let current = parseInt(element.dataset.num);
+        let greenCurrent = this.actor.data.data.greenSpace.current;
+        let greenSetting = this.actor.data.data.greenSpace.setting;
+        let yellowCurrent = this.actor.data.data.yellowSpace.current;
+        let yellowSetting = this.actor.data.data.yellowSpace.setting;
+        let redCurrent = this.actor.data.data.redSpace.current;
+
+        switch (element.dataset.color) {
+            case "green":
+                if (greenSetting == current && yellowCurrent == 0) {
+                    scene.SetYellow();
+                    scene.SceneChat("yellow")
+                    this.actor.update({ "data.color": "yellow" });
+                } else if (current < greenSetting && greenSetting == greenCurrent) {
+                    scene.SetGreen();
+                    scene.SceneChat("green")
+                    this.actor.update({ "data.color": "green" });
+                }
+                this.actor.update({ "data.greenSpace.current": current });
+                this.actor.update({ "data.yellowSpace.current": 0 });
+                this.actor.update({ "data.redSpace.current": 0 });
+                if (greenCurrent == current && yellowCurrent == 0) {
+                    scene.SceneReset(this.actor);
+                    scene.SetGreen();
+                    scene.SceneChat("villain")
+                    this.actor.update({ "data.color": "green" });
+                }
+                break
+
+            case "yellow":
+                if ((greenCurrent < greenSetting || yellowCurrent == yellowSetting) && current != yellowSetting) {
+                    scene.SetYellow();
+                    scene.SceneChat("yellow")
+                    this.actor.update({ "data.color": "yellow" });
+                } else if (yellowSetting == current && yellowCurrent < yellowSetting) {
+                    scene.SetRed();
+                    scene.SceneChat("red")
+                    this.actor.update({ "data.color": "red" });
+                }
+                this.actor.update({ "data.yellowSpace.current": current });
+                this.actor.update({ "data.greenSpace.current": greenSetting });
+                this.actor.update({ "data.redSpace.current": 0 });
+                if (yellowCurrent == current && redCurrent == 0) {
+                    scene.SceneReset(this.actor);
+                    scene.SetGreen();
+                    scene.SceneChat("villain")
+                    this.actor.update({ "data.color": "green" });
+                }
+                break
+
+            case "red":
+                this.actor.update({ "data.redSpace.current": current });
+                if (yellowCurrent < this.actor.data.data.yellowSpace.setting) {
+                    scene.SetRed();
+                    scene.SceneChat("red")
+                    this.actor.update({ "data.color": "red" });
+                }
+                this.actor.update({ "data.yellowSpace.current": yellowSetting });
+                this.actor.update({ "data.greenSpace.current": greenSetting });
+                if (redCurrent == current) {
+                    scene.SceneReset(this.actor);
+                    scene.SetGreen();
+                    scene.SceneChat("villain")
+                    this.actor.update({ "data.color": "green" });
+                }
+        }
+    }
+
+    //when changing the number of scene elements updates selected elements
+    _onUpdateScene(event) {
+        event.preventDefault();
+        scene.SceneReset(this.actor);
+        scene.SetGreen();
+    }
+
+    //Set the scene tracker to one of the defaults from the books
+    _onSceneTrackerSetting(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+
+        switch (element.dataset.type) {
+            case "standard":
+                this.actor.update({ "data.greenSpace.setting": 2 });
+                this.actor.update({ "data.yellowSpace.setting": 4 });
+                this.actor.update({ "data.redSpace.setting": 2 });
+                break;
+            case "prolonged":
+                this.actor.update({ "data.greenSpace.setting": 3 });
+                this.actor.update({ "data.yellowSpace.setting": 5 });
+                this.actor.update({ "data.redSpace.setting": 3 });
+                break;
+            case "epic":
+                this.actor.update({ "data.greenSpace.setting": 1 });
+                this.actor.update({ "data.yellowSpace.setting": 3 });
+                this.actor.update({ "data.redSpace.setting": 4 });
+                break;
+        }
+        scene.SceneReset(this.actor);
+        scene.SetGreen();
+    }
+
+    //Changes status from acted to has not acted and back
+    _onChangeActedStatus(event) {
+        event.preventDefault()
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        if (item.data.data.acted) {
+            item.update({ "data.acted": false });
+        } else {
+            item.update({ "data.acted": true });
+        }
+
+    }
+
+    _onResetInitiative(event) {
+        event.preventDefault()
+        let element = event.currentTarget;
+        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type).map(m => m.data._id);
+        for (let i = 0; i < itemsId.length; i++) {
+            this.actor.items.get(itemsId[i]).update({ "data.acted": false });;
+        }
+    }
+
+    _onSceneOptions() {
+        if (this.actor.data.data.options) {
+            this.actor.update({ "data.options": false })
+        } else {
+            this.actor.update({ "data.options": true })
+        }
     }
 }

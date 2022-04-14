@@ -375,8 +375,13 @@
                 <div class="status">
                     <h4>{{localize "SCRPG.powerquality.currentHealth"}}</h4>
                     <div class="current-health">
-                        <input class="health-update black-border" name="data.wounds.value" type="text"
-                            value="{{data.data.wounds.value}}" data-dtype="Number">
+                        <input {{#if (lte data.data.wounds.value
+                            data.data.health.redHigh)}}class="health-update red-border red-status-background" {{/if}}
+                            {{#if (lte data.data.wounds.value
+                            data.data.health.yellowHigh)}}class="health-update yellow-border yellow-status-background"
+                            {{/if}} {{#if (lte data.data.wounds.value
+                            data.data.wounds.max)}}class="health-update green-border green-status-background" {{/if}}
+                            name="data.wounds.value" type="text" value="{{data.data.wounds.value}}" data-dtype="Number">
                         <div class="health-adjust">
                             <a class="increase-health">
                                 <i class="fas fa-angle-double-up"></i>

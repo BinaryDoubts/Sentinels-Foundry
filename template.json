@@ -3,7 +3,8 @@
         "types": [
             "hero",
             "villain",
-            "environment"
+            "environment",
+            "scene"
         ],
         "templates": {
             "heroic": {
@@ -174,6 +175,22 @@
                 "dice"
             ],
             "description": ""
+        },
+        "scene": {
+            "greenSpace": {
+                "setting": 2,
+                "current": 0
+            },
+            "yellowSpace": {
+                "setting": 4,
+                "current": 0
+            },
+            "redSpace": {
+                "setting": 2,
+                "current": 0
+            },
+            "color": "green",
+            "options": true
         }
     },
     "Item": {
@@ -190,7 +207,8 @@
             "backgrounds",
             "powerSources",
             "archetypes",
-            "personality"
+            "personality",
+            "initiativeActor"
         ],
         "power": {
             "dieType": "d4",
@@ -257,6 +275,9 @@
                 "yellow": "d8",
                 "red": "d8"
             }
+        },
+        "initiativeActor": {
+            "acted": false
         }
     }
 }

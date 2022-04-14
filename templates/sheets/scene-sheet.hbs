@@ -1,0 +1,146 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="scene-tracker box-border">
+        <div class="scene-tracker-title">
+            <h1>{{localize "SCRPG.scene.sceneTracker"}}</h1>
+            {{#if (eq data.data.options false)}}
+            <i class="fas fa-edit scene-options"></i>
+            {{else}}
+            <i class="fas fa-times-circle scene-options"></i>
+            {{/if}}
+        </div>
+
+
+        {{#if (eq data.data.options true)}}
+        <div class="scene-tracker-child scene-tracker-presets">
+            <a class="scene-tracker-setting" data-type="standard">
+                <h3>{{localize "SCRPG.scene.standard"}}</h3>
+            </a>
+            <a class="scene-tracker-setting" data-type="prolonged">
+                <h3>{{localize "SCRPG.scene.prolonged"}}</h3>
+            </a>
+            <a class="scene-tracker-setting" data-type="epic">
+                <h3>{{localize "SCRPG.scene.epic"}}</h3>
+            </a>
+        </div>
+
+        <div class="scene-tracker-child scene-tracker-options">
+            <select name="data.greenSpace.setting" class="adjust-green update-scene green-border green-abilities"
+                data-color="green">
+                {{#select data.data.greenSpace.setting}}
+                {{#multiple "10"}}
+                <option value="{{@index}}">{{@index}}</option>
+                {{/multiple}}
+                {{/select}}
+            </select>
+
+            <select name="data.yellowSpace.setting" class="adjust-yellow update-scene yellow-border yellow-abilities"
+                data-color="yellow">
+                {{#select data.data.yellowSpace.setting}}
+                {{#multiple "10"}}
+                <option value="{{@index}}">{{@index}}</option>
+                {{/multiple}}
+                {{/select}}
+            </select>
+
+            <select name="data.redSpace.setting" class="adjust-red update-scene red-border red-abilities"
+                data-color="red">
+                {{#select data.data.redSpace.setting}}
+                {{#multiple "10"}}
+                <option value="{{@index}}">{{@index}}</option>
+                {{/multiple}}
+                {{/select}}
+            </select>
+        </div>
+        {{/if}}
+
+        <div class="scene-tracker-child">
+            <i class="fa-solid fa-burst"></i>
+            {{#multiple data.data.greenSpace.setting}}
+            <a class="set-scene" data-num="{{@index}}" data-color="green">
+                {{#if (gte ../data.data.greenSpace.current @index)}}
+                <i class="fas fa-star green-scene"></i>
+                {{else}}
+                <i class="far fa-star green-scene"></i>
+                {{/if}}
+            </a>
+            {{/multiple}}
+            {{#multiple data.data.yellowSpace.setting}}
+            <a class="set-scene" data-num="{{@index}}" data-color="yellow">
+                {{#if (gte ../data.data.yellowSpace.current @index)}}
+                <i class="fas fa-star yellow-scene"></i>
+                {{else}}
+                <i class="far fa-star yellow-scene"></i>
+                {{/if}}
+            </a>
+            {{/multiple}}
+            {{#multiple data.data.redSpace.setting}}
+            <a class="set-scene" data-num="{{@index}}" data-color="red">
+                {{#if (gte ../data.data.redSpace.current @index)}}
+                <i class="fas fa-star red-scene"></i>
+                {{else}}
+                <i class="far fa-star red-scene"></i>
+                {{/if}}
+            </a>
+            {{/multiple}}
+        </div>
+    </div>
+
+    <div class="box-border initiative-tracker">
+
+        <h1 class="initiative-tracker-title">{{localize "SCRPG.scene.initiative" }}</h1>
+
+        <div class="initiative ">
+            <div class="initiative-available box-border">
+                <div class="initiative-name initiative-name-available green-abilities">
+                    <div class="available-title">
+                        <h3>{{localize "SCRPG.scene.available"}}</h3>
+                    </div>
+                    <div class="buttons">
+                        <a title='{{localize "SCRPG.button.addNew" }}' class="item-create" data-type="initiativeActor">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <a title='{{localize "SCRPG.button.deleteInitiative" }}' class="delete-all"
+                            data-type="initiativeActor">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                {{#each actor.initiativeActor as |init id|}}
+                {{#if (eq init.data.acted false)}}
+                <div class="initiativeActor-item item box-border" data-item-id="{{init._id}}">
+                    <input class="inline-edit" data-field="name" type="text" value="{{init.name}}" />
+                    <a title='{{localize "SCRPG.button.moveDone" }}' class="change-acted-status">
+                        <i class="fas fa-arrow-alt-circle-right"></i>
+                    </a>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+            <div class="initiative-done box-border">
+                <div class="initiative-name initiative-name-done red-abilities">
+                    <div class="done-title">
+                        <h3>{{localize "SCRPG.scene.done"}}</h3>
+                    </div>
+                    <div class="buttons">
+                        <a title='{{localize "SCRPG.button.moveAll" }}' class="reset-initiative"
+                            data-type="initiativeActor">
+                            <i class="fas fa-arrow-alt-circle-left"></i>
+                        </a>
+                    </div>
+                </div>
+                {{#each actor.initiativeActor as |init id|}}
+                {{#if (eq init.data.acted true)}}
+                <div class="initiativeActor-item item box-border" data-item-id="{{init._id}}">
+                    <input class="inline-edit" data-field="name" type="text" value="{{init.name}}" />
+                    <a title='{{localize "SCRPG.button.moveAvailable" }}' class="change-acted-status">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </a>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+</form>

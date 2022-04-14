@@ -935,6 +935,7 @@
 
         table {
             margin: 0;
+            background-color: inherit;
         }
 
         td,
@@ -1080,6 +1081,148 @@
 
     .red-status-background {
         background-color: $redbg;
+    }
+
+
+
+    .scene-tracker {
+        display: grid;
+        background-color: $white;
+        width: fit-content;
+        margin: 0 auto 10px auto;
+
+        &-child {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 8px;
+
+            h3 {
+                margin: 0 4px;
+            }
+
+            select {
+                margin: 0 4px;
+            }
+        }
+
+        &-options {
+            border-bottom: 1px dotted $black;
+        }
+
+        &-presets {
+            border-top: 1px dotted $black;
+        }
+
+        &-title {
+            display: flex;
+            justify-content: center;
+
+            h1 {
+                border-bottom: none;
+                margin: 6px 0 0 15.75px;
+            }
+
+            i {
+                margin: 8px 0 0 6px;
+                position: relative;
+                right: 0;
+            }
+        }
+    }
+
+    .green-scene {
+        color: $greenborder;
+    }
+
+    .yellow-scene {
+        color: $yellowborder;
+    }
+
+    .red-scene {
+        color: $redborder;
+    }
+
+    .green-scene,
+    .yellow-scene,
+    .red-scene {
+        border: none;
+        font-size: 40px;
+    }
+
+    .initiative-tracker {
+        background-color: white;
+        width: 70%;
+        margin: 0 auto;
+
+        &-title {
+            text-align: center;
+            border: none;
+            padding-top: 6px;
+        }
+    }
+
+    .initiative {
+        margin: 0 auto 6px auto;
+        display: flex;
+
+        .buttons {
+            margin: auto 6px auto 0;
+        }
+
+        &-name {
+            display: flex;
+            border-bottom: 2px solid #000000;
+
+            h3 {
+                margin: 4px auto;
+            }
+        }
+
+        &-name-available {
+            h3 {
+                margin: 4px 0 4px 27.5px;
+            }
+        }
+
+        &-name-done {
+            h3 {
+                margin: 4px 0 4px 18px;
+            }
+        }
+    }
+
+    .available-title,
+    .done-title {
+        margin: 0 auto;
+    }
+
+    .initiative-available,
+    .initiative-done {
+        display: flex;
+        flex-direction: column;
+        background-color: $white;
+        margin: 0 5px;
+        width: 50%;
+    }
+
+    .initiativeActor-item {
+        margin: 8px 8px 0px 8px;
+        display: grid;
+        grid-template-columns: auto 25px;
+        background-color: $graybg;
+
+        a {
+            margin: auto;
+        }
+
+        i {
+            font-size: 20px;
+        }
+    }
+
+    .initiativeActor-item:last-child {
+        margin: 8px;
     }
 
     .deleteAllMods {
