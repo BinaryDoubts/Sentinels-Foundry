@@ -186,7 +186,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             //update health ranges after max health update
             html.find(".max-update").focusout(this._onMaxUpdate.bind(this));
             //update status when health changed
-            html.find(".health-update").focusout(this._onHealthUpdate.bind(this));
+            html.find(".health-update").change(this._onHealthUpdate.bind(this));
             //update status if status die type changed
             html.find(".status-die-update").focusout(this._onStatusDieUpdate.bind(this));
             //update status if scene changes
@@ -237,7 +237,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".deleteAllMods").click(this._onDeleteAllMods.bind(this));
             //DeleteAllHeroMinions
             html.find(".deleteAllHeroMinions").click(this._onDeleteAllHeroMinions.bind(this));
-            
+            //Increases player health by 1 and then updates status
+            html.find(".increase-health").click(this._onIncreaseHealth.bind(this));
+            //Decreases player health by 1 and then updates status
+            html.find(".decrease-health").click(this._onDecreaseHealth.bind(this));
+
+
         }
 
 
@@ -314,7 +319,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onDeleteAllMods(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == "mod").map( m=>m.data._id);
+        let itemsId = this.actor.items.filter(it => it.data.type == "mod").map(m => m.data._id);
 
         console.log("mod event", event);
 
@@ -333,7 +338,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onDeleteAllHeroMinions(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == "heroMinion").map( m=>m.data._id);
+        let itemsId = this.actor.items.filter(it => it.data.type == "heroMinion").map(m => m.data._id);
 
         console.log("hm event", event);
 
@@ -771,38 +776,35 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
-        //deletes the closest item
-        _onModSelect(event) {
-            event.preventDefault();
+    //deletes the closest item
+    _onModSelect(event) {
+        event.preventDefault();
 
-             let element = event.currentTarget;
-             let itemId = element.closest(".item").dataset.itemId;
-             let item = this.actor.items.get(itemId);
-             let isExclusive = item.data.data.exclusive;
-             let updatedSelectedValue = !item.data.data.selected;
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let isExclusive = item.data.data.exclusive;
+        let updatedSelectedValue = !item.data.data.selected;
 
-             //if exclusive, deselect all other exclusive mods
-             if (isExclusive && updatedSelectedValue)
-             {
-                let isBonus = parseInt(item.data.data.value) > 0;       //Check if Bonus or Penality
-                let otherExclusives;
+        //if exclusive, deselect all other exclusive mods
+        if (isExclusive && updatedSelectedValue) {
+            let isBonus = parseInt(item.data.data.value) > 0;       //Check if Bonus or Penality
+            let otherExclusives;
 
-                if (isBonus)
-                {
-                    otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) > 0);
-                }
-                else
-                {
-                    otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) < 0);
-                }
+            if (isBonus) {
+                otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) > 0);
+            }
+            else {
+                otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) < 0);
+            }
 
-                //Foreach exclusive, deselect
-                otherExclusives.forEach(oe => oe.update({'data.selected': false}))
-             }
-
-             //Toggle selected state for current
-             item.update({'data.selected': updatedSelectedValue});
+            //Foreach exclusive, deselect
+            otherExclusives.forEach(oe => oe.update({ 'data.selected': false }))
         }
+
+        //Toggle selected state for current
+        item.update({ 'data.selected': updatedSelectedValue });
+    }
 
     //creates a new environment twist
     _onCreateTwist(event) {
@@ -822,6 +824,30 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         };
         //creates new power and assigns it to actor
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    }
+
+    //Increases health by 1 and then updates status
+    _onIncreaseHealth(event) {
+        event.preventDefault();
+        let health = this.actor.data.data.wounds.value + 1;
+        let scene = this.actor.data.data.scene;
+        let actor = this.actor;
+        if (health <= this.actor.data.data.wounds.max) {
+            status.HealthUpdate(scene, health, actor);
+            this.actor.update({ "data.wounds.value": health });
+        }
+    }
+
+    //Decreased health by 1 and then updates status
+    _onDecreaseHealth(event) {
+        event.preventDefault();
+        let health = this.actor.data.data.wounds.value - 1;
+        let scene = this.actor.data.data.scene;
+        let actor = this.actor;
+        if (health >= 0) {
+            status.HealthUpdate(scene, health, actor);
+            this.actor.update({ "data.wounds.value": health });
+        }
     }
 
     async _onDropItem(event, data) {
