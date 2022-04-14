@@ -374,8 +374,18 @@
             <td class="top-align">
                 <div class="status">
                     <h4>{{localize "SCRPG.powerquality.currentHealth"}}</h4>
-                    <input class="health-update black-border" name="data.wounds.value" type="text"
-                        value="{{data.data.wounds.value}}" data-dtype="Number">
+                    <div class="current-health">
+                        <input class="health-update black-border" name="data.wounds.value" type="text"
+                            value="{{data.data.wounds.value}}" data-dtype="Number">
+                        <div class="health-adjust">
+                            <a class="increase-health">
+                                <i class="fas fa-angle-double-up"></i>
+                            </a>
+                            <a class="decrease-health">
+                                <i class="fas fa-angle-double-down"></i>
+                            </a>
+                        </div>
+                    </div>
 
                     {{!-- Dropdown for selecting scene status --}}
                     <h4>{{localize "SCRPG.powerquality.sceneStatus"}}</h4>
