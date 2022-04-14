@@ -1365,6 +1365,7 @@
 
 .SCRPG.sheet.actor .mods table {
   margin: 0;
+  background-color: inherit;
 }
 
 .SCRPG.sheet.actor .mods td,
@@ -1544,6 +1545,165 @@
 
 .SCRPG.sheet.actor .red-status-background {
   background-color: #f8b7a8;
+}
+
+.SCRPG.sheet.actor .scene-tracker {
+  display: -ms-grid;
+  display: grid;
+  background-color: #ffffff;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto 10px auto;
+}
+
+.SCRPG.sheet.actor .scene-tracker-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 8px;
+}
+
+.SCRPG.sheet.actor .scene-tracker-child h3 {
+  margin: 0 4px;
+}
+
+.SCRPG.sheet.actor .scene-tracker-child select {
+  margin: 0 4px;
+}
+
+.SCRPG.sheet.actor .scene-tracker-options {
+  border-bottom: 1px dotted #000000;
+}
+
+.SCRPG.sheet.actor .scene-tracker-presets {
+  border-top: 1px dotted #000000;
+}
+
+.SCRPG.sheet.actor .scene-tracker-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.SCRPG.sheet.actor .scene-tracker-title h1 {
+  border-bottom: none;
+  margin: 6px 0 0 15.75px;
+}
+
+.SCRPG.sheet.actor .scene-tracker-title i {
+  margin: 8px 0 0 6px;
+  position: relative;
+  right: 0;
+}
+
+.SCRPG.sheet.actor .green-scene {
+  color: #3eae4a;
+}
+
+.SCRPG.sheet.actor .yellow-scene {
+  color: #c9b41b;
+}
+
+.SCRPG.sheet.actor .red-scene {
+  color: #db363d;
+}
+
+.SCRPG.sheet.actor .green-scene,
+.SCRPG.sheet.actor .yellow-scene,
+.SCRPG.sheet.actor .red-scene {
+  border: none;
+  font-size: 40px;
+}
+
+.SCRPG.sheet.actor .initiative-tracker {
+  background-color: white;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.SCRPG.sheet.actor .initiative-tracker-title {
+  text-align: center;
+  border: none;
+  padding-top: 6px;
+}
+
+.SCRPG.sheet.actor .initiative {
+  margin: 0 auto 6px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SCRPG.sheet.actor .initiative .buttons {
+  margin: auto 6px auto 0;
+}
+
+.SCRPG.sheet.actor .initiative-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 2px solid #000000;
+}
+
+.SCRPG.sheet.actor .initiative-name h3 {
+  margin: 4px auto;
+}
+
+.SCRPG.sheet.actor .initiative-name-available h3 {
+  margin: 4px 0 4px 27.5px;
+}
+
+.SCRPG.sheet.actor .initiative-name-done h3 {
+  margin: 4px 0 4px 18px;
+}
+
+.SCRPG.sheet.actor .available-title,
+.SCRPG.sheet.actor .done-title {
+  margin: 0 auto;
+}
+
+.SCRPG.sheet.actor .initiative-available,
+.SCRPG.sheet.actor .initiative-done {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #ffffff;
+  margin: 0 5px;
+  width: 50%;
+}
+
+.SCRPG.sheet.actor .initiativeActor-item {
+  margin: 8px 8px 0px 8px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 25px;
+      grid-template-columns: auto 25px;
+  background-color: #d8d8da;
+}
+
+.SCRPG.sheet.actor .initiativeActor-item a {
+  margin: auto;
+}
+
+.SCRPG.sheet.actor .initiativeActor-item i {
+  font-size: 20px;
+}
+
+.SCRPG.sheet.actor .initiativeActor-item:last-child {
+  margin: 8px;
 }
 
 .SCRPG.sheet.actor .deleteAllMods {
@@ -1739,6 +1899,11 @@
 
 .SCRPG.chat.roll .nested-name p:nth-child(2) {
   display: inline;
+}
+
+.SCRPG.chat.roll .scene h3 {
+  margin: 4px;
+  text-align: center;
 }
 
 .SCRPG.chat.roll .mod-box {

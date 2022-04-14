@@ -2,6 +2,7 @@
     "ACTOR.TypeHero": "Hero",
     "ACTOR.TypeVillain": "Villain",
     "ACTOR.TypeEnvironment": "Environment",
+    "ACTOR.TypeScene": "Scene",
     "ITEM.TypePower": "Power",
     "ITEM.TypeQuality": "Quality",
     "ITEM.TypeAbility": "Ability",
@@ -45,7 +46,16 @@
         "scene": {
             "green": "Green",
             "yellow": "Yellow",
-            "red": "Red"
+            "red": "Red",
+            "sceneColor": "The Scene has changed to ",
+            "sceneReset": "The Scene has been Reset",
+            "prolonged": "Prolonged",
+            "standard": "Standard",
+            "epic": "Epic",
+            "available": "Available",
+            "done": "Done",
+            "initiative": "Initiative",
+            "sceneTracker": "Scene Tracker"
         },
         "charInfo": {
             "heroName": "Hero Name",
@@ -199,7 +209,11 @@
             "changeMode": "Change to this Mode/Form",
             "deleteMinions": "Delete all Minions",
             "deleteMods": "Delete all Bonuses and Penalties",
-            "addToRoll": "Add to Roll"
+            "addToRoll": "Add to Roll",
+            "deleteInitiative": "Clear Initiative Tracker",
+            "moveDone": "Move to Done",
+            "moveAvailable": "Move to Available",
+            "moveAll": "Reset Initiative"
         },
         "mod": {
             "mod": "Bonus/Penalty",
