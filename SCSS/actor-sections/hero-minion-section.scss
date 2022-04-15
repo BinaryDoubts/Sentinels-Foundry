@@ -1,0 +1,94 @@
+.SCRPG.sheet.actor {
+
+    .heroMinion-list {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $white;
+        min-height: 7.5rem;
+    }
+
+    .heroMinion-item {
+        width: 11.6875rem;
+        margin: 4px;
+
+        .minion-title {
+            padding: 0;
+            border-bottom: 2px $black solid;
+
+            .minion-name {
+                padding: 0;
+                display: flex;
+                background-color: $miniontitle;
+                padding: 2px;
+
+                h3 {
+                    margin: 0;
+                    max-width: 100px;
+                    max-height: 1.25rem;
+                    overflow: hidden;
+                }
+            }
+
+            .minion-button {
+                margin-left: auto;
+            }
+        }
+
+        .minion-stats {
+            th:first-child {
+                width: 4.375rem;
+            }
+
+            td:nth-child(2) {
+                text-align: center;
+            }
+        }
+    }
+
+    .minion-form-table {
+        display: grid;
+
+        .villain-minion-form-title,
+        .villain-minionForm-parent {
+            display: grid;
+            grid-template-columns: 8.4375rem auto 1.25rem;
+        }
+
+        .minion-form-title,
+        .minionForm-parent {
+            display: grid;
+            grid-template-columns: 8.4375rem auto 5.5rem 1.25rem;
+        }
+
+        .villain-minionForm-parent:nth-child(even),
+        .minionForm-parent:nth-child(even) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .minion-form-title-child {
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        .minionForm-child:nth-child(3),
+        .minionForm-child:nth-child(4) {
+            justify-content: center;
+        }
+
+        .minionForm-child {
+            border-top-style: dotted;
+            border-width: thin;
+            padding: 4px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .minion-form-title-child:not(:first-child),
+        .minionForm-child:not(:first-child) {
+            border-left-style: dotted;
+            border-width: thin;
+        }
+    }
+}

@@ -415,6 +415,17 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         this.actor.update({ "data.secondDieName": item.data.name });
     }
 
+    //Assigns villain status to main roll
+    _onSetVillainStatus(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        //data.thirdDie represents the die that will be used in the main roll for status
+        this.actor.update({ "data.thirdDie": item.data.data.dieType });
+        this.actor.update({ "data.thirdDieName": item.data.name });
+    }
+
     // Reduces the minion die one type
     _onDowngradeMinion(event) {
         event.preventDefault();
@@ -441,17 +452,6 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
         let dieType = "d" + dieNum;
         item.update({ "data.dieType": dieType });
-    }
-
-    //Assigns villain status to main roll
-    _onSetVillainStatus(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.items.get(itemId);
-        //data.thirdDie represents the die that will be used in the main roll for status
-        this.actor.update({ "data.thirdDie": item.data.data.dieType });
-        this.actor.update({ "data.thirdDieName": item.data.name });
     }
 
     //Rolls currently assigned power, quality and status
@@ -529,7 +529,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             39: [30, 29, 15, 14],
             38: [29, 28, 14, 13],
             37: [29, 28, 14, 13],
-            36: [28, 27, 13, 12],
+            36: [28, 27, 14, 13],
             35: [27, 26, 13, 12],
             34: [26, 25, 13, 12],
             33: [26, 25, 13, 12],

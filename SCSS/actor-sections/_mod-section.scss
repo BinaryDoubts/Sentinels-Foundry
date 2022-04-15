@@ -1,0 +1,136 @@
+.SCRPG.sheet.actor {
+
+    .mods {
+        background-color: $white;
+        margin-bottom: 4px;
+
+        table {
+            margin: 0;
+            background-color: inherit;
+        }
+
+        td,
+        th {
+            border: 1px dotted $black;
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 20%;
+            vertical-align: top;
+
+            .mod-dialogue,
+            .mod-buttons {
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .mod-buttons {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 40%;
+        }
+
+        td:nth-child(2),
+        td:nth-child(3) {
+            vertical-align: text-top;
+        }
+
+        .mod-buttons-child {
+            width: 33px;
+            height: 33px;
+        }
+
+        .mod-link {
+            width: 28px;
+            height: 28px;
+            line-height: normal;
+            text-align: center;
+            margin: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                margin: 0;
+                font-weight: bold;
+            }
+
+        }
+
+        .mod-link:active {
+            box-shadow: none;
+            margin-top: 3px;
+            margin-left: 3px;
+        }
+    }
+
+    .penalties,
+    .bonuses {
+        display: flex;
+        flex-wrap: wrap;
+
+        .p-e-icon {
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            i {
+                padding: 1px 0;
+            }
+        }
+    }
+
+    .mod-item {
+        height: fit-content;
+        margin: 4px;
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto auto auto auto;
+        padding-left: 2px;
+        padding-right: 2px;
+
+        h3 {
+            max-width: 100%;
+            overflow: hidden;
+            margin: 2px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        .fa-trash {
+            vertical-align: middle;
+            margin: 2px;
+        }
+    }
+
+    .mod-dialogue {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+
+        .mod-per-dialogue,
+        .mod-exc-dialogue {
+            margin-left: auto;
+        }
+
+        p {
+            margin-left: auto;
+            display: inline;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        input {
+            vertical-align: middle;
+        }
+    }
+}

@@ -1,4 +1,8 @@
+@import "./actor-sections/_mod-section.scss";
+@import "./actor-sections/_hero-minion-section.scss";
+
 .SCRPG.sheet.actor {
+
     .editor {
         height: 6.25rem;
         background: rgba(255, 255, 255, 0.2);
@@ -552,6 +556,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+            width: 4.5rem;
         }
 
         .current-health {
@@ -559,7 +564,7 @@
             justify-content: center;
 
             input {
-                width: 4.25rem;
+                width: 4.5rem;
                 text-align: center;
                 margin-bottom: 4px;
                 margin-left: 7px;
@@ -831,234 +836,10 @@
         }
     }
 
-    .heroMinion-list {
-        display: flex;
-        flex-wrap: wrap;
-        background-color: $white;
-        min-height: 7.5rem;
-    }
 
-    .heroMinion-item {
-        width: 11.6875rem;
-        margin: 4px;
-
-        .minion-title {
-            padding: 0;
-            border-bottom: 2px $black solid;
-
-            .minion-name {
-                padding: 0;
-                display: flex;
-                background-color: $miniontitle;
-                padding: 2px;
-
-                h3 {
-                    margin: 0;
-                    max-width: 100px;
-                    max-height: 1.25rem;
-                    overflow: hidden;
-                }
-            }
-
-            .minion-button {
-                margin-left: auto;
-            }
-        }
-
-        .minion-stats {
-            th:first-child {
-                width: 4.375rem;
-            }
-
-            td:nth-child(2) {
-                text-align: center;
-            }
-        }
-    }
-
-    .minion-form-table {
-        display: grid;
-
-        .villain-minion-form-title,
-        .villain-minionForm-parent {
-            display: grid;
-            grid-template-columns: 8.4375rem auto 1.25rem;
-        }
-
-        .minion-form-title,
-        .minionForm-parent {
-            display: grid;
-            grid-template-columns: 8.4375rem auto 5.5rem 1.25rem;
-        }
-
-        .villain-minionForm-parent:nth-child(even),
-        .minionForm-parent:nth-child(even) {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .minion-form-title-child {
-            text-align: center;
-            font-weight: bold;
-            padding: 4px;
-        }
-
-        .minionForm-child:nth-child(3),
-        .minionForm-child:nth-child(4) {
-            justify-content: center;
-        }
-
-        .minionForm-child {
-            border-top-style: dotted;
-            border-width: thin;
-            padding: 4px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .minion-form-title-child:not(:first-child),
-        .minionForm-child:not(:first-child) {
-            border-left-style: dotted;
-            border-width: thin;
-        }
-    }
 
     .buttons {
         a {
-            vertical-align: middle;
-        }
-    }
-
-    .mods {
-        background-color: $white;
-        margin-bottom: 4px;
-
-        table {
-            margin: 0;
-            background-color: inherit;
-        }
-
-        td,
-        th {
-            border: 1px dotted $black;
-        }
-
-        th:first-child,
-        td:first-child {
-            width: 20%;
-            vertical-align: top;
-
-            .mod-dialogue,
-            .mod-buttons {
-                width: fit-content;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        .mod-buttons {
-            display: grid;
-            grid-template-columns: auto auto auto auto;
-        }
-
-        th:nth-child(2),
-        td:nth-child(2) {
-            width: 40%;
-        }
-
-        td:nth-child(2),
-        td:nth-child(3) {
-            vertical-align: text-top;
-        }
-
-        .mod-buttons-child {
-            width: 33px;
-            height: 33px;
-        }
-
-        .mod-link {
-            width: 28px;
-            height: 28px;
-            line-height: normal;
-            text-align: center;
-            margin: 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            h3 {
-                margin: 0;
-                font-weight: bold;
-            }
-
-        }
-
-        .mod-link:active {
-            box-shadow: none;
-            margin-top: 3px;
-            margin-left: 3px;
-        }
-    }
-
-    .penalties,
-    .bonuses {
-        display: flex;
-        flex-wrap: wrap;
-
-        .p-e-icon {
-            font-size: 0.75rem;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-
-            i {
-                padding: 1px 0;
-            }
-        }
-    }
-
-    .mod-item {
-        height: fit-content;
-        margin: 4px;
-        display: grid;
-        align-items: center;
-        grid-template-columns: auto auto auto auto;
-        padding-left: 2px;
-        padding-right: 2px;
-
-        h3 {
-            max-width: 100%;
-            overflow: hidden;
-            margin: 2px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 1.25rem;
-        }
-
-        .fa-trash {
-            vertical-align: middle;
-            margin: 2px;
-        }
-    }
-
-    .mod-dialogue {
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-
-        .mod-per-dialogue,
-        .mod-exc-dialogue {
-            margin-left: auto;
-        }
-
-        p {
-            margin-left: auto;
-            display: inline;
-            vertical-align: middle;
-            margin: 0;
-        }
-
-        input {
             vertical-align: middle;
         }
     }
@@ -1081,148 +862,6 @@
 
     .red-status-background {
         background-color: $redbg;
-    }
-
-
-
-    .scene-tracker {
-        display: grid;
-        background-color: $white;
-        width: fit-content;
-        margin: 0 auto 10px auto;
-
-        &-child {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 8px;
-
-            h3 {
-                margin: 0 4px;
-            }
-
-            select {
-                margin: 0 4px;
-            }
-        }
-
-        &-options {
-            border-bottom: 1px dotted $black;
-        }
-
-        &-presets {
-            border-top: 1px dotted $black;
-        }
-
-        &-title {
-            display: flex;
-            justify-content: center;
-
-            h1 {
-                border-bottom: none;
-                margin: 6px 0 0 15.75px;
-            }
-
-            i {
-                margin: 8px 0 0 6px;
-                position: relative;
-                right: 0;
-            }
-        }
-    }
-
-    .green-scene {
-        color: $greenborder;
-    }
-
-    .yellow-scene {
-        color: $yellowborder;
-    }
-
-    .red-scene {
-        color: $redborder;
-    }
-
-    .green-scene,
-    .yellow-scene,
-    .red-scene {
-        border: none;
-        font-size: 40px;
-    }
-
-    .initiative-tracker {
-        background-color: white;
-        width: 70%;
-        margin: 0 auto;
-
-        &-title {
-            text-align: center;
-            border: none;
-            padding-top: 6px;
-        }
-    }
-
-    .initiative {
-        margin: 0 auto 6px auto;
-        display: flex;
-
-        .buttons {
-            margin: auto 6px auto 0;
-        }
-
-        &-name {
-            display: flex;
-            border-bottom: 2px solid #000000;
-
-            h3 {
-                margin: 4px auto;
-            }
-        }
-
-        &-name-available {
-            h3 {
-                margin: 4px 0 4px 27.5px;
-            }
-        }
-
-        &-name-done {
-            h3 {
-                margin: 4px 0 4px 18px;
-            }
-        }
-    }
-
-    .available-title,
-    .done-title {
-        margin: 0 auto;
-    }
-
-    .initiative-available,
-    .initiative-done {
-        display: flex;
-        flex-direction: column;
-        background-color: $white;
-        margin: 0 5px;
-        width: 50%;
-    }
-
-    .initiativeActor-item {
-        margin: 8px 8px 0px 8px;
-        display: grid;
-        grid-template-columns: auto 25px;
-        background-color: $graybg;
-
-        a {
-            margin: auto;
-        }
-
-        i {
-            font-size: 20px;
-        }
-    }
-
-    .initiativeActor-item:last-child {
-        margin: 8px;
     }
 
     .deleteAllMods {
