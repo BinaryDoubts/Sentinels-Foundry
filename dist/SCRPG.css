@@ -914,6 +914,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 4.5rem;
 }
 
 .SCRPG.sheet.actor .status .current-health {
@@ -926,7 +927,7 @@
 }
 
 .SCRPG.sheet.actor .status .current-health input {
-  width: 4.25rem;
+  width: 4.5rem;
   text-align: center;
   margin-bottom: 4px;
   margin-left: 7px;
@@ -1605,23 +1606,40 @@
   right: 0;
 }
 
-.SCRPG.sheet.actor .green-scene {
-  color: #3eae4a;
+.SCRPG.sheet.actor .green-scene polygon {
+  fill: #ffffff;
+  stroke: #3eae4a;
+  stroke-width: 4;
 }
 
-.SCRPG.sheet.actor .yellow-scene {
-  color: #c9b41b;
+.SCRPG.sheet.actor .green-scene-selected polygon {
+  fill: #3eae4a;
+  stroke: #3eae4a;
+  stroke-width: 4;
 }
 
-.SCRPG.sheet.actor .red-scene {
-  color: #db363d;
+.SCRPG.sheet.actor .yellow-scene polygon {
+  fill: #ffffff;
+  stroke: #c9b41b;
+  stroke-width: 4;
 }
 
-.SCRPG.sheet.actor .green-scene,
-.SCRPG.sheet.actor .yellow-scene,
-.SCRPG.sheet.actor .red-scene {
-  border: none;
-  font-size: 40px;
+.SCRPG.sheet.actor .yellow-scene-selected polygon {
+  fill: #c9b41b;
+  stroke: #c9b41b;
+  stroke-width: 4;
+}
+
+.SCRPG.sheet.actor .red-scene polygon {
+  fill: #ffffff;
+  stroke: #db363d;
+  stroke-width: 4;
+}
+
+.SCRPG.sheet.actor .red-scene-selected polygon {
+  fill: #db363d;
+  stroke: #db363d;
+  stroke-width: 4;
 }
 
 .SCRPG.sheet.actor .initiative-tracker {
