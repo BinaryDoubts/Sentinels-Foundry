@@ -79,10 +79,18 @@ export async function SetRed() {
     };
 };
 
-export async function SceneChat(coloring = null) {
+export async function SceneChat(type = null) {
+    let coloring = ""
+
+    if (type == "reset" || type == "failure") {
+        coloring = "villain"
+    } else {
+        coloring = type
+    }
 
     let chatData = {
-        coloring: coloring
+        coloring: coloring,
+        type: type
     }
     const messageTemplate = "systems/scrpg/templates/chat/sceneupdate.hbs";
 

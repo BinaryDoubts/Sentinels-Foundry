@@ -49,6 +49,7 @@
             "red": "Red",
             "sceneColor": "The Scene has changed to ",
             "sceneReset": "The Scene has been Reset",
+            "sceneFailure": "The Scene Tracker is out of Spaces",
             "prolonged": "Prolonged",
             "standard": "Standard",
             "epic": "Epic",

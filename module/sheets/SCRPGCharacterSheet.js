@@ -365,7 +365,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             title: "Delete",
             content: content,
             yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
-            no: () => console.log("Foundry VTT | Items with id [" + itemId + "] was not deleted"),
+            no: () => console.log("Foundry VTT | Items of type " + element.dataset.type + " were not deleted"),
             defaultYes: false
         });
 
@@ -969,17 +969,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let yellowCurrent = this.actor.data.data.yellowSpace.current;
         let yellowSetting = this.actor.data.data.yellowSpace.setting;
         let redCurrent = this.actor.data.data.redSpace.current;
+        let redSetting = this.actor.data.data.redSpace.setting;
 
         switch (element.dataset.color) {
             case "green":
-                if (greenSetting == current && yellowCurrent == 0) {
+                if (greenSetting == current && (yellowCurrent == 0 || redCurrent > 0 || yellowCurrent == yellowSetting)) {
                     scene.SetYellow();
                     scene.SceneChat("yellow")
-                    this.actor.update({ "data.color": "yellow" });
                 } else if (current < greenSetting && greenSetting == greenCurrent) {
                     scene.SetGreen();
                     scene.SceneChat("green")
-                    this.actor.update({ "data.color": "green" });
                 }
                 this.actor.update({ "data.greenSpace.current": current });
                 this.actor.update({ "data.yellowSpace.current": 0 });
@@ -987,8 +986,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (greenCurrent == current && yellowCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("villain")
-                    this.actor.update({ "data.color": "green" });
+                    scene.SceneChat("reset")
                 }
                 break
 
@@ -996,11 +994,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if ((greenCurrent < greenSetting || yellowCurrent == yellowSetting) && current != yellowSetting) {
                     scene.SetYellow();
                     scene.SceneChat("yellow")
-                    this.actor.update({ "data.color": "yellow" });
                 } else if (yellowSetting == current && yellowCurrent < yellowSetting) {
                     scene.SetRed();
                     scene.SceneChat("red")
-                    this.actor.update({ "data.color": "red" });
                 }
                 this.actor.update({ "data.yellowSpace.current": current });
                 this.actor.update({ "data.greenSpace.current": greenSetting });
@@ -1008,25 +1004,25 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (yellowCurrent == current && redCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("villain")
-                    this.actor.update({ "data.color": "green" });
+                    scene.SceneChat("reset")
                 }
                 break
 
             case "red":
                 this.actor.update({ "data.redSpace.current": current });
-                if (yellowCurrent < this.actor.data.data.yellowSpace.setting) {
+                if (redSetting == current) {
+                    scene.SceneChat("failure")
+                    scene.SetRed();
+                } else if (yellowCurrent < this.actor.data.data.yellowSpace.setting) {
                     scene.SetRed();
                     scene.SceneChat("red")
-                    this.actor.update({ "data.color": "red" });
                 }
                 this.actor.update({ "data.yellowSpace.current": yellowSetting });
                 this.actor.update({ "data.greenSpace.current": greenSetting });
                 if (redCurrent == current) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("villain")
-                    this.actor.update({ "data.color": "green" });
+                    scene.SceneChat("reset")
                 }
         }
     }
