@@ -9,6 +9,8 @@ This is an unofficial package and a copy of the rulebook will be required to use
 ## Features
 
 - Support for Heroes, Villain and Environment character sheets
+- Support for Scene Tracker and Initiative
+    - Scene Tracker automatically updates all hero character sheet scene setting when the scene changes
 - Support for Modular, Form-Changer, Divided, Minion-Maker archetypes
     - Modular characters can choose to have a non-powered form
     - Divided psyche (rolling two powers/two qualities) and divided status can both be enabled separately
