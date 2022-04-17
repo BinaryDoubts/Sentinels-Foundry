@@ -17,8 +17,13 @@ export async function TaskCheck(actor = null) {
     let modsOn = game.settings.get("scrpg", "mod");
     let coloring = "black";
     let selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
-    let penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
-    let bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+    let penalty = [];
+    let bonus = [];
+
+    if (actor.data.type != "environment") {
+        penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
+        bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+    }
 
     const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
 

@@ -1092,6 +1092,39 @@
         width: fit-content;
         margin: 0 auto 10px auto;
 
+        .green-spaces,
+        .yellow-spaces,
+        .red-spaces {
+            display: flex;
+        }
+
+        .green-spaces-name,
+        .yellow-spaces-name,
+        .red-spaces-name {
+            margin: 0;
+            text-align: center;
+            margin: auto 4px;
+
+            h3 {
+                font-weight: bold;
+            }
+        }
+
+        .green-spaces-name {
+            border-top: 3px solid $greentxt;
+            color: $greentxt;
+        }
+
+        .yellow-spaces-name {
+            border-top: 3px solid $yellowtxt;
+            color: $yellowtxt;
+        }
+
+        .red-spaces-name {
+            border-top: 3px solid $redtxt;
+            color: $redtxt;
+        }
+
         &-child {
             display: flex;
             flex-wrap: wrap;
@@ -1130,52 +1163,66 @@
                 right: 0;
             }
         }
+
+        &-spaces {
+            display: grid;
+        }
     }
 
     .green-scene {
         polygon {
-            fill: $white;
-            stroke: $greenborder;
-            stroke-width: 4;
+            fill: $greenbg-light;
+            stroke: $black;
+            stroke-width: 1;
         }
 
         &-selected {
             polygon {
-                fill: $greenborder;
-                stroke: $greenborder;
-                stroke-width: 4;
+                fill: $greenfill;
+                stroke: $black;
+                stroke-width: 1;
             }
+        }
+    }
+
+    .spaces {
+        position: relative;
+
+        label {
+            position: absolute;
+            top: 17px;
+            left: 22px
         }
     }
 
     .yellow-scene {
         polygon {
-            fill: $white;
-            stroke: $yellowborder;
-            stroke-width: 4;
+            fill: $yellowbg-light;
+            stroke: $black;
+            stroke-width: 1;
         }
 
         &-selected {
             polygon {
-                fill: $yellowborder;
-                stroke: $yellowborder;
-                stroke-width: 4;
+                fill: $yellowfill;
+                stroke: $black;
+                stroke-width: 1;
             }
         }
     }
 
     .red-scene {
         polygon {
-            fill: $white;
-            stroke: $redborder;
-            stroke-width: 4;
+            fill: $redbg-light;
+            stroke: $black;
+            stroke-width: 1;
         }
 
         &-selected {
             polygon {
-                fill: $redborder;
-                stroke: $redborder;
-                stroke-width: 4;
+                fill: $redfill;
+                stroke: $black;
+                stroke-width: 1;
             }
         }
     }
@@ -1231,16 +1278,32 @@
     .initiative-done {
         display: flex;
         flex-direction: column;
+
         background-color: $white;
         margin: 0 5px;
         width: 50%;
+    }
+
+    .initiative-available {
+        .initiativeActor-item {
+            background-color: $greenbg-light;
+        }
+    }
+
+    .initiative-done {
+        .initiativeActor-item {
+            background-color: $redbg-light;
+        }
     }
 
     .initiativeActor-item {
         margin: 8px 8px 0px 8px;
         display: grid;
         grid-template-columns: auto 25px;
-        background-color: $graybg;
+
+        input {
+            border-radius: 0;
+        }
 
         a {
             margin: auto;

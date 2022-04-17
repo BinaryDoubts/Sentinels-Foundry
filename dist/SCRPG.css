@@ -1558,6 +1558,43 @@
   margin: 0 auto 10px auto;
 }
 
+.SCRPG.sheet.actor .scene-tracker .green-spaces,
+.SCRPG.sheet.actor .scene-tracker .yellow-spaces,
+.SCRPG.sheet.actor .scene-tracker .red-spaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SCRPG.sheet.actor .scene-tracker .green-spaces-name,
+.SCRPG.sheet.actor .scene-tracker .yellow-spaces-name,
+.SCRPG.sheet.actor .scene-tracker .red-spaces-name {
+  margin: 0;
+  text-align: center;
+  margin: auto 4px;
+}
+
+.SCRPG.sheet.actor .scene-tracker .green-spaces-name h3,
+.SCRPG.sheet.actor .scene-tracker .yellow-spaces-name h3,
+.SCRPG.sheet.actor .scene-tracker .red-spaces-name h3 {
+  font-weight: bold;
+}
+
+.SCRPG.sheet.actor .scene-tracker .green-spaces-name {
+  border-top: 3px solid #2d8536;
+  color: #2d8536;
+}
+
+.SCRPG.sheet.actor .scene-tracker .yellow-spaces-name {
+  border-top: 3px solid #978917;
+  color: #978917;
+}
+
+.SCRPG.sheet.actor .scene-tracker .red-spaces-name {
+  border-top: 3px solid #99242a;
+  color: #99242a;
+}
+
 .SCRPG.sheet.actor .scene-tracker-child {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1606,40 +1643,55 @@
   right: 0;
 }
 
+.SCRPG.sheet.actor .scene-tracker-spaces {
+  display: -ms-grid;
+  display: grid;
+}
+
 .SCRPG.sheet.actor .green-scene polygon {
-  fill: #ffffff;
-  stroke: #3eae4a;
-  stroke-width: 4;
+  fill: #c4debb;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .SCRPG.sheet.actor .green-scene-selected polygon {
-  fill: #3eae4a;
-  stroke: #3eae4a;
-  stroke-width: 4;
+  fill: #3dae48;
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.SCRPG.sheet.actor .spaces {
+  position: relative;
+}
+
+.SCRPG.sheet.actor .spaces label {
+  position: absolute;
+  top: 17px;
+  left: 22px;
 }
 
 .SCRPG.sheet.actor .yellow-scene polygon {
-  fill: #ffffff;
-  stroke: #c9b41b;
-  stroke-width: 4;
+  fill: #fbf7c1;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .SCRPG.sheet.actor .yellow-scene-selected polygon {
-  fill: #c9b41b;
-  stroke: #c9b41b;
-  stroke-width: 4;
+  fill: #f8ee1f;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .SCRPG.sheet.actor .red-scene polygon {
-  fill: #ffffff;
-  stroke: #db363d;
-  stroke-width: 4;
+  fill: #f9c6ba;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .SCRPG.sheet.actor .red-scene-selected polygon {
-  fill: #db363d;
-  stroke: #db363d;
-  stroke-width: 4;
+  fill: #d3252c;
+  stroke: #000000;
+  stroke-width: 1;
 }
 
 .SCRPG.sheet.actor .initiative-tracker {
@@ -1703,13 +1755,24 @@
   width: 50%;
 }
 
+.SCRPG.sheet.actor .initiative-available .initiativeActor-item {
+  background-color: #c4debb;
+}
+
+.SCRPG.sheet.actor .initiative-done .initiativeActor-item {
+  background-color: #f9c6ba;
+}
+
 .SCRPG.sheet.actor .initiativeActor-item {
   margin: 8px 8px 0px 8px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto 25px;
       grid-template-columns: auto 25px;
-  background-color: #d8d8da;
+}
+
+.SCRPG.sheet.actor .initiativeActor-item input {
+  border-radius: 0;
 }
 
 .SCRPG.sheet.actor .initiativeActor-item a {
