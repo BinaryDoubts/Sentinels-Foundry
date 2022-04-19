@@ -1009,14 +1009,15 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 break
 
             case "red":
-                this.actor.update({ "data.redSpace.current": current });
-                if (redSetting == current) {
+
+                if (redSetting == current && redCurrent != current) {
                     scene.SceneChat("failure")
                     scene.SetRed();
                 } else if (yellowCurrent < this.actor.data.data.yellowSpace.setting) {
                     scene.SetRed();
                     scene.SceneChat("red")
                 }
+                this.actor.update({ "data.redSpace.current": current });
                 this.actor.update({ "data.yellowSpace.current": yellowSetting });
                 this.actor.update({ "data.greenSpace.current": greenSetting });
                 if (redCurrent == current) {

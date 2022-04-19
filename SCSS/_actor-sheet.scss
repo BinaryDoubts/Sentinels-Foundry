@@ -2,7 +2,7 @@
     .editor {
         height: 6.25rem;
         background: rgba(255, 255, 255, 0.2);
-        border: 1px solid $lightgray;
+        border: 1px solid $inputdarkgray;
         border-radius: 3px;
 
         p {
@@ -61,6 +61,10 @@
 
     .principles {
         background-color: $white;
+
+        .editor {
+            margin-bottom: 8px;
+        }
     }
 
     .principle {
@@ -180,7 +184,7 @@
 
     .villain-info {
         h3 {
-            color: $redborder;
+            color: $redtxt;
             margin: 0px;
         }
 
@@ -213,7 +217,7 @@
             width: 100%;
             text-align: center;
             background: rgba(255, 255, 255, 0.2);
-            border: 1px solid $lightgray;
+            border: 1px solid $inputdarkgray;
             border-radius: 3px;
         }
     }
@@ -359,6 +363,10 @@
             padding: 2px;
             border-radius: 3px;
         }
+
+        input {
+            border: 1px solid $inputdarkgray;
+        }
     }
 
     .divided-status {
@@ -429,7 +437,7 @@
     .villain-status-item {
         display: grid;
         grid-template-columns: auto 2.1875rem;
-        border: 1px solid $lightgray;
+        border: 1px solid $inputdarkgray;
         border-radius: 3px;
         margin: 2px;
         padding: 2px;
@@ -563,13 +571,14 @@
                 width: 4.5rem;
                 text-align: center;
                 margin-bottom: 4px;
-                margin-left: 7px;
+                margin-left: 8px;
             }
 
             .health-adjust {
                 display: flex;
                 flex-direction: column;
                 font-size: 0.7rem;
+                margin-left: 1px;
             }
         }
     }
@@ -1171,7 +1180,7 @@
 
     .green-scene {
         polygon {
-            fill: $greenbg-light;
+            fill: $greenbg-dark;
             stroke: $black;
             stroke-width: 1;
         }
@@ -1197,7 +1206,7 @@
 
     .yellow-scene {
         polygon {
-            fill: $yellowbg-light;
+            fill: $yellowbg-dark;
             stroke: $black;
             stroke-width: 1;
         }
@@ -1213,7 +1222,7 @@
 
     .red-scene {
         polygon {
-            fill: $redbg-light;
+            fill: $redbg-dark;
             stroke: $black;
             stroke-width: 1;
         }
