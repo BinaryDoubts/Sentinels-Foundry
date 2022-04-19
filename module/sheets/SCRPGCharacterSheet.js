@@ -816,6 +816,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
         otherPowers = this.actor.items.filter(it => it.data.type == "quality");
         otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+        this.actor.update({ "data.firstDie": "d4" });
+        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        this.actor.update({ "data.secondDie": "d4" });
+        this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
         status.DividedHealthChange(currentStatus, actor)
     }
 
@@ -831,6 +835,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
         otherPowers = this.actor.items.filter(it => it.data.type == "power");
         otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+        this.actor.update({ "data.firstDie": "d4" });
+        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        this.actor.update({ "data.secondDie": "d4" });
+        this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
         status.DividedHealthChange(currentStatus, actor)
     }
 
