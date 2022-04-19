@@ -165,8 +165,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-power {{#if (eq quality.data.selected 'power')}}quality-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -180,8 +180,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{power._id}}">
+                    <a class="power-item item set-power {{#if (eq power.data.selected 'power')}}power-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -197,8 +197,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-power" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{power._id}}">
+                    <a class="power-item item set-power {{#if (eq power.data.selected 'power')}}power-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -218,8 +218,8 @@
                     {{!-- Powers can be clicked to set them to the main roll --}}
                     {{#each actor.power as |power id|}}
                     {{#if (eq power.data.aux ../data.data.mode)}}
-                    <a class="power-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{power._id}}">
+                    <a class="power-item item set-quality  {{#if (eq power.data.selected 'quality')}}power-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{power._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -233,8 +233,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-quality {{#if (eq quality.data.selected 'quality')}}quality-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -248,8 +248,8 @@
                     {{!-- Displays all qualities --}}
                     {{!-- Qualities can be clicked to set them to the main roll --}}
                     {{#each actor.quality as |quality id|}}
-                    <a class="quality-item item set-quality" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{quality._id}}">
+                    <a class="quality-item item set-quality  {{#if (eq quality.data.selected 'quality')}}quality-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{quality._id}}">
                         <div class="name">{{name}}</div>
                         <div class="center">{{data.dieType}}</div>
                     </a>
@@ -359,8 +359,8 @@
                     {{!-- Displays all villain statuses --}}
                     {{!-- Villain statuses can be clicked to set them to the main roll --}}
                     {{#each actor.villainStatus as |villainStatus id|}}
-                    <a class="villain-status-item item set-villain-status" title='{{localize "SCRPG.button.addToRoll"}}'
-                        data-item-id="{{villainStatus._id}}">
+                    <a class="villain-status-item item set-villain-status  {{#if (eq villainStatus.data.selected true)}}villain-status-item-selected{{/if}}"
+                        title='{{localize "SCRPG.button.addToRoll"}}' data-item-id="{{villainStatus._id}}">
                         <div>{{name}}</div>
                         <div style="text-align: center">{{data.dieType}}</div>
                     </a>
@@ -416,21 +416,37 @@
 <section>
     <div class="combined-roll box-border">
         {{!-- Current selected power and die type --}}
-        <p><b>{{localize "SCRPG.powerquality.power"}}:</b>
+        <p><b>{{#if (eq data.data.dividedPsyche true)}}
+                {{#if (eq data.data.poweredMode true)}}
+                {{localize "SCRPG.powerquality.power"}}:
+                {{else}}
+                {{localize "SCRPG.powerquality.quality"}}:
+                {{/if}}
+                {{else}}
+                {{localize "SCRPG.powerquality.power"}}:
+                {{/if}}</b>
             {{#if (eq data.data.firstDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
             {{else}}
             {{this.actor.data.data.firstDieName}}
             {{/if}}
             {{this.actor.data.data.firstDie}}</p>
         {{!-- Current selected quality and die type --}}
-        <p><b>{{localize "SCRPG.powerquality.quality"}}:</b>
+        <p><b>{{#if (eq data.data.dividedPsyche true)}}
+                {{#if (eq data.data.civilianMode true)}}
+                {{localize "SCRPG.powerquality.quality"}}:
+                {{else}}
+                {{localize "SCRPG.powerquality.power"}}:
+                {{/if}}
+                {{else}}
+                {{localize "SCRPG.powerquality.quality"}}:
+                {{/if}}</b>
             {{#if (eq data.data.secondDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
             {{else}}
             {{this.actor.data.data.secondDieName}}
             {{/if}}
             {{this.actor.data.data.secondDie}}</p>
         {{!-- Current selected status and die type--}}
-        <p><b>{{localize "SCRPG.powerquality.status"}}:</b>
+        <p><b> {{localize "SCRPG.powerquality.status"}}:</b>
             {{#if (eq data.data.thirdDieName "N/A")}}{{localize "SCRPG.sheet.newItem"}}
             {{else}}
             {{#if (eq data.data.thirdDieName "green")}}{{localize "SCRPG.scene.green"}}{{/if}}

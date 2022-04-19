@@ -1,4 +1,4 @@
-<select name="data.mode" class="section-name section-name-formmode">
+<select name="data.mode" class="section-name section-name-formmode change-mode">
     {{#select data.data.mode}}
     <option value="main" class="green-abilities">{{this.actor.data.data.modeName.main}}</option>
     <option value="green1" class="green-abilities">{{this.actor.data.data.modeName.green1}}</option>
@@ -65,10 +65,12 @@
 {{!-- First yellow mode/form --}}
 {{#if (eq this.actor.data.data.mode "yellow1")}}
 <table class="box-border yellow-abilities">
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow1'
+    this.actor.data.data}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow1'
+    this.actor.data.data}}">
         <td>
             {{{this.actor.data.data.modeDescription.yellow1}}}
         </td>

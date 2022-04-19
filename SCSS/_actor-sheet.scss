@@ -432,6 +432,12 @@
         vertical-align: top;
     }
 
+    .power-item-selected,
+    .quality-item-selected,
+    .villain-status-item-selected {
+        background-color: $lightgray;
+    }
+
     .power-item,
     .quality-item,
     .villain-status-item {
