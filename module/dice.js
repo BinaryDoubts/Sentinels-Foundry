@@ -20,7 +20,7 @@ export async function TaskCheck(actor = null) {
     let penalty = [];
     let bonus = [];
 
-    if (actor.data.type != "environment") {
+    if (mods) {
         penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
         bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
     }

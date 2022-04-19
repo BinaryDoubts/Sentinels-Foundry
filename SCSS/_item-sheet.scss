@@ -12,7 +12,7 @@
         .editor {
             height: 6.25rem;
             background: rgba(255, 255, 255, 0.2);
-            border: 1px solid $lightgray;
+            border: 1px solid $inputdarkgray;
             border-radius: 3px;
 
             p {
@@ -226,6 +226,10 @@
     .principle {
         background-color: $white;
         padding: 4px;
+
+        .editor {
+            margin-bottom: 8px;
+        }
     }
 
     .ability-content,
