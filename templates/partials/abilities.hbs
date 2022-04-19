@@ -45,10 +45,12 @@
 {{!-- Second yellow mode/form --}}
 {{#if (eq this.actor.data.data.mode "yellow2")}}
 <table class="box-border yellow-abilities">
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow2'
+    this.actor.data.data}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow2'
+    this.actor.data.data}}">
         <td>
             {{{this.actor.data.data.modeDescription.yellow2}}}
         </td>
@@ -60,10 +62,12 @@
 {{!-- Red mode/form --}}
 {{#if (eq this.actor.data.data.mode "red1")}}
 <table class="box-border red-abilities">
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'red1'
+    this.actor.data.data}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
-    <tr>
+    <tr style="{{getAbilitiesEnabledFromStatusClass 'red1'
+    this.actor.data.data}}">
         <td>
             {{{this.actor.data.data.modeDescription.red1}}}
         </td>

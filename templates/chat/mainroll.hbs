@@ -41,7 +41,7 @@
                     {{#if (eq names.[2] "green")}}{{localize "SCRPG.scene.green"}}{{/if}}
                     {{#if (eq names.[2] "yellow")}}{{localize "SCRPG.scene.yellow"}}{{/if}}
                     {{#if (eq names.[2] "red")}}{{localize "SCRPG.scene.red"}}{{/if}}
-                    {{#if (eq type "environment")}}{{names.[2]}}{{/if}}
+                    {{#if (ne type "hero")}}{{names.[2]}}{{/if}}
                 </td>
             </tr>
         </table>

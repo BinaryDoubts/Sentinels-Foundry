@@ -225,6 +225,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".show-red1").click(this._onShowRed1.bind(this));
             //Set mode/form
             html.find(".set-mode").click(this._onSetMode.bind(this));
+            //Set mode/form
+            html.find(".change-mode").change(this._onChangeMode.bind(this));
             //Turns on/off modular archetype for character
             html.find(".set-modular").click(this._onSetModular.bind(this));
             //Turns off powerless
@@ -399,9 +401,28 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        //data.firstDie represents the die that will be used in the main roll for power
-        this.actor.update({ "data.firstDie": item.data.data.dieType });
-        this.actor.update({ "data.firstDieName": item.data.name });
+        let itemSelected = item.data.data.selected
+        let otherPowers = [];
+
+        if (itemSelected == "power") {
+            this.actor.update({ "data.firstDie": "d4" });
+            this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "data.selected": null });
+        } else {
+            if (itemSelected == "quality") {
+                this.actor.update({ "data.secondDie": "d4" });
+                this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            }
+            this.actor.update({ "data.firstDie": item.data.data.dieType });
+            this.actor.update({ "data.firstDieName": item.data.name });
+            item.update({ "data.selected": "power" });
+            if (this.actor.data.data.civilianMode) {
+                otherPowers = this.actor.items.filter(it => (it.data.type == "quality" && it.key != itemId && it.data.data.selected != "quality") || it.data.type == "power");
+            } else {
+                otherPowers = this.actor.items.filter(it => it.data.type == "power" && it.key != itemId && it.data.data.selected != "quality");
+            }
+            otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+        }
     }
 
     //Assigns quality to main roll
@@ -410,9 +431,52 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        //data.secondDie represents the die that will be used in the main roll for quality
-        this.actor.update({ "data.secondDie": item.data.data.dieType });
-        this.actor.update({ "data.secondDieName": item.data.name });
+        let itemSelected = item.data.data.selected
+        let otherPowers = [];
+
+        if (itemSelected == "quality") {
+            this.actor.update({ "data.secondDie": "d4" });
+            this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "data.selected": null });
+        } else {
+            if (itemSelected == "power") {
+                this.actor.update({ "data.firstDie": "d4" });
+                this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            }
+            this.actor.update({ "data.secondDie": item.data.data.dieType });
+            this.actor.update({ "data.secondDieName": item.data.name });
+            item.update({ "data.selected": "quality" });
+            if (this.actor.data.data.poweredMode) {
+                otherPowers = this.actor.items.filter(it => (it.data.type == "power" && it.key != itemId && it.data.data.selected != "power") || it.data.type == "quality");
+            } else {
+                otherPowers = this.actor.items.filter(it => it.data.type == "quality" && it.key != itemId && it.data.data.selected != "power");
+            }
+            otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+        }
+
+    }
+
+    //Assigns villain status to main roll
+    _onSetVillainStatus(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let itemSelected = item.data.data.selected
+
+        if (itemSelected) {
+            this.actor.update({ "data.thirdDie": "d4" });
+            this.actor.update({ "data.thirdDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "data.selected": false });
+        } else {
+            //data.secondDie represents the die that will be used in the main roll for quality
+            let otherPowers = [];
+            this.actor.update({ "data.thirdDie": item.data.data.dieType });
+            this.actor.update({ "data.thirdDieName": item.data.name });
+            item.update({ "data.selected": true });
+            otherPowers = this.actor.items.filter(it => it.data.type == "villainStatus" && it.key != itemId);
+            otherPowers.forEach(oe => oe.update({ 'data.selected': false }));
+        }
     }
 
     // Reduces the minion die one type
@@ -441,17 +505,6 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
         let dieType = "d" + dieNum;
         item.update({ "data.dieType": dieType });
-    }
-
-    //Assigns villain status to main roll
-    _onSetVillainStatus(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.items.get(itemId);
-        //data.thirdDie represents the die that will be used in the main roll for status
-        this.actor.update({ "data.thirdDie": item.data.data.dieType });
-        this.actor.update({ "data.thirdDieName": item.data.name });
     }
 
     //Rolls currently assigned power, quality and status
@@ -671,7 +724,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onSetMode(event) {
         event.preventDefault();
         let element = event.currentTarget;
+        let powers = [];
         this.actor.update({ "data.mode": element.dataset.aux });
+        powers = this.actor.items.filter(it => it.data.type == "power");
+        powers.forEach(oe => oe.update({ 'data.selected': false }));
+        this.actor.update({ "data.firstDie": "d4" });
+        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+    }
+
+    _onChangeMode(event) {
+        let powers = [];
+        powers = this.actor.items.filter(it => it.data.type == "power");
+        powers.forEach(oe => oe.update({ 'data.selected': false }));
+        this.actor.update({ "data.firstDie": "d4" });
+        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
     }
 
     //Turns on and off modular
@@ -741,24 +807,30 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //Turns on divided psyche powered mode and turns off civilian mode
     _onSetPowered(event) {
         let currentStatus = this.actor.data.data.thirdDieName;
-        let actor = this.actor
+        let actor = this.actor;
+        let otherPowers = [];
         if (this.actor.data.data.poweredMode == true) {
             this.actor.update({ "data.civilianMode": true });
         } else {
             this.actor.update({ "data.civilianMode": false });
         }
+        otherPowers = this.actor.items.filter(it => it.data.type == "quality");
+        otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
         status.DividedHealthChange(currentStatus, actor)
     }
 
     //Turns on divided psyche civilian mode and turns off powered mode
     _onSetCivilian(event) {
         let currentStatus = this.actor.data.data.thirdDieName;
-        let actor = this.actor
+        let actor = this.actor;
+        let otherPowers = [];
         if (this.actor.data.data.civilianMode == true) {
             this.actor.update({ "data.poweredMode": true });
         } else {
             this.actor.update({ "data.poweredMode": false });
         }
+        otherPowers = this.actor.items.filter(it => it.data.type == "power");
+        otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
         status.DividedHealthChange(currentStatus, actor)
     }
 

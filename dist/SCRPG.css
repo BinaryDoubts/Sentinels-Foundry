@@ -22,7 +22,7 @@
 .SCRPG.sheet.item .sheet-content .editor {
   height: 6.25rem;
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid #727169;
+  border: 1px solid #565656;
   border-radius: 3px;
 }
 
@@ -289,7 +289,7 @@
 .SCRPG.sheet.actor .editor {
   height: 6.25rem;
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid #727169;
+  border: 1px solid #565656;
   border-radius: 3px;
 }
 
@@ -528,7 +528,7 @@
   width: 100%;
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid #727169;
+  border: 1px solid #565656;
   border-radius: 3px;
 }
 
@@ -699,6 +699,10 @@
   border-radius: 3px;
 }
 
+.SCRPG.sheet.actor .status-dice input {
+  border: 1px solid #565656;
+}
+
 .SCRPG.sheet.actor .divided-status {
   width: 190px;
   background-color: #ffffff;
@@ -762,6 +766,12 @@
   vertical-align: top;
 }
 
+.SCRPG.sheet.actor .power-item-selected,
+.SCRPG.sheet.actor .quality-item-selected,
+.SCRPG.sheet.actor .villain-status-item-selected {
+  background-color: #d3d3d3;
+}
+
 .SCRPG.sheet.actor .power-item,
 .SCRPG.sheet.actor .quality-item,
 .SCRPG.sheet.actor .villain-status-item {
@@ -769,7 +779,7 @@
   display: grid;
   -ms-grid-columns: auto 2.1875rem;
       grid-template-columns: auto 2.1875rem;
-  border: 1px solid #727169;
+  border: 1px solid #565656;
   border-radius: 3px;
   margin: 2px;
   padding: 2px;

@@ -148,15 +148,15 @@ Handlebars.registerHelper("getAbilitiesEnabledFromStatusClass", function (mode, 
         if (scene == "red" || actorStatus == "red") {
             //Enable green, yellow and red
         } else if (scene == "yellow" || actorStatus == "yellow") {
-            if (mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
+            if (mode == "red" || mode == "red1") { return "background: rgba(0, 0, 0, 0.4);" }
             //Enabled green
             //Enable yellow
         } else {
-            if (mode == "yellow" || mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
+            if (mode == "yellow" || mode == "yellow1" || mode == "yellow2" || mode == "red" || mode == "red1") { return "background: rgba(0, 0, 0, 0.4);" }
             //Enable green
         }
         if (actorHealth <= 0) {
-            if (mode == "green" || mode == "yellow" || mode == "red") { return "background: rgba(0, 0, 0, 0.4);" }
+            if (mode == "green" || mode == "yellow" || mode == "yellow1" || mode == "yellow2" || mode == "red" || mode == "red1") { return "background: rgba(0, 0, 0, 0.4);" }
         }
     }
 
