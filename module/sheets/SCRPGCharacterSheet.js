@@ -866,9 +866,17 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             value = element.dataset.value
         }
 
-        if (this.actor.data.data.modName != "") {
-            name = this.actor.data.data.modName
-            named = true;
+        //Tranverse up the DOM to find the input for Mod Names, then get the value via javascript (as the default value isn't updated until it is deselected)
+        let InputBox = this.getInputBoxViaDOM(event);
+
+        //Hopefully, will fix issues with blur triggering after this function is called
+        InputBox.blur();
+
+        let modNameTrueValue = InputBox.value;
+
+        if (modNameTrueValue != "") {
+            name = modNameTrueValue;
+            named = modNameTrueValue !== "";
         }
 
         let itemData = {
@@ -885,6 +893,54 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
+
+    /* Transverse up via parentElements, until we find the class 'mod-create-td', then tranverse back down until we find input with name 'data.modName' */
+    getInputBoxViaDOM(event)
+    {
+        let DOMDepth = 0;
+        let foundItem = false;
+
+        let target = event.target;
+
+        //Look for 'mod-create-td' in the DOM
+        while (DOMDepth < 20 && foundItem == false)
+        {
+            if (target.classList.contains('mod-create-td'))
+            {
+                foundItem = true;
+            }
+            else
+            {
+                target = target.parentElement;
+                DOMDepth++;
+            }
+        }
+
+        if (foundItem == false) { throw "getInputBoxViaDOM(event): Can't find the <td> with class 'mod-create-td'"; }
+        //Now look for the input with name 'data.modName'
+        DOMDepth = 0;
+        foundItem = false;
+
+        while (DOMDepth < 20 && foundItem == false)
+        {
+            if (target.attributes['name'] && target.attributes['name'].value == 'data.modName')
+            {
+                foundItem = true;
+            }
+            else
+            {
+                target = target.children[0];
+                DOMDepth++;
+            }
+        }
+
+        if (foundItem == false) { throw "getInputBoxViaDOM(event): Can't find the input with the name 'data.modename'"; }
+
+        return target;
+    }
+
+
+
 
     //deletes the closest item
     _onModSelect(event) {
