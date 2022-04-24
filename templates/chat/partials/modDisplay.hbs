@@ -8,8 +8,8 @@
         <div class="green-abilities mod-rolls">
             <span class="mod-roll-text"> {{data.data.value}} {{#if data.data.named}}{{data.name}}{{/if}}</span>
             <div class="p-e-icon">
-                {{#if (eq data.data.persistant true)}}
-                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                {{#if (eq data.data.persistent true)}}
+                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                 {{/if}}
                 {{#if (eq data.data.exclusive true)}}
                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
@@ -26,8 +26,8 @@
         <div class="red-abilities mod-rolls">
             <span class="mod-roll-text"> {{data.data.value}} {{#if data.data.named}}{{data.name}}{{/if}}</span>
             <div class="p-e-icon">
-                {{#if (eq data.data.persistant true)}}
-                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                {{#if (eq data.data.persistent true)}}
+                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                 {{/if}}
                 {{#if (eq data.data.exclusive true)}}
                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>

@@ -160,7 +160,7 @@
             "dividedStatus": false,
             "civilianMode": false,
             "poweredMode": false,
-            "persistant": false,
+            "persistent": false,
             "exclusive": false
         },
         "villain": {
@@ -250,7 +250,7 @@
         },
         "mod": {
             "value": 1,
-            "persistant": false,
+            "persistent": false,
             "exclusive": false,
             "named": true,
             "selected": false
