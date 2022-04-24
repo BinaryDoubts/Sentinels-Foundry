@@ -884,10 +884,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             type: element.dataset.type,
             "data.named": named,
             "data.value": value,
-            "data.persistant": this.actor.data.data.persistant,
+            "data.persistent": this.actor.data.data.persistent,
             "data.exclusive": this.actor.data.data.exclusive
         };
-        this.actor.update({ "data.persistant": false });
+        this.actor.update({ "data.persistent": false });
         this.actor.update({ "data.exclusive": false });
         this.actor.update({ "data.modName": "" })
 

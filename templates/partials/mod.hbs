@@ -22,10 +22,10 @@
                     <div class="mod-dialogue">
                         <div class="mod-per-dialogue">
                             <p>
-                                {{localize "SCRPG.mod.persistant"}}
-                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                                {{localize "SCRPG.mod.persistent"}}
+                                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                             </p>
-                            <input type="checkbox" name="data.persistant" {{checked data.data.persistant}}
+                            <input type="checkbox" name="data.persistent" {{checked data.data.persistent}}
                                 data-dtype="boolean" />
                         </div>
                         <div class="mod-exc-dialogue">
@@ -66,8 +66,8 @@
                             data-item-id="{{ mod._id}}">
                             <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
-                                {{#if (eq data.persistant true)}}
-                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                                {{#if (eq data.persistent true)}}
+                                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                                 {{/if}}
                                 {{#if (eq data.exclusive true)}}
                                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
@@ -86,8 +86,8 @@
                             data-item-id="{{ mod._id}}">
                             <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
                             <div class="p-e-icon">
-                                {{#if (eq data.persistant true)}}
-                                <i title='{{localize "SCRPG.mod.persistant"}}' class="fas fa-hourglass"></i>
+                                {{#if (eq data.persistent true)}}
+                                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                                 {{/if}}
                                 {{#if (eq data.exclusive true)}}
                                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>

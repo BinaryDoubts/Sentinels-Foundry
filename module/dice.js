@@ -16,11 +16,12 @@ export async function TaskCheck(actor = null) {
     let color = game.settings.get("scrpg", "coloredDice");
     let modsOn = game.settings.get("scrpg", "mod");
     let coloring = "black";
-    let selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
+    let selectedmods = [];
     let penalty = [];
     let bonus = [];
 
     if (mods) {
+        selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected)
         penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
         bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
     }
@@ -71,7 +72,7 @@ export async function TaskCheck(actor = null) {
 
     await RemoveUsedMods(actor);
 
-    await UnselectPersistantMods(actor);
+    await UnselectPersistentMods(actor);
 
     //renders roll template using mainroll.hbs
     let render = await renderTemplate(messageTemplate, chatData)
@@ -93,9 +94,15 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     let coloring = "black";
     let mods = actor.items.document.mod;
     let modsOn = game.settings.get("scrpg", "mod");
-    let selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
-    let penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
-    let bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+    let selectedmods = [];
+    let penalty = [];
+    let bonus = [];
+
+    if (mods && rollType != "minion") {
+        selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
+        penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
+        bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+    }
 
     rollResult.rollType = rollType;
     rollResult.rollName = rollName;
@@ -121,9 +128,11 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
         penalty: penalty
     };
 
-    await RemoveUsedMods(actor);
+    if (mods && rollType != "minion") {
+        await RemoveUsedMods(actor);
+    };
 
-    await UnselectPersistantMods(actor);
+    await UnselectPersistentMods(actor);
 
     //renders roll template using minorroll.hbs
     let render = await renderTemplate(messageTemplate, chatData);
@@ -159,13 +168,13 @@ export async function ItemRoll(item = null) {
 //helper functions
 async function RemoveUsedMods(actor) {
     //Delete mods afterwards
-    let toDelId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && !it.data.data.persistant).map(m => m.data._id);
+    let toDelId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && !it.data.data.persistent).map(m => m.data._id);
     actor.deleteEmbeddedDocuments("Item", toDelId);
 }
 
-async function UnselectPersistantMods(actor) {
+async function UnselectPersistentMods(actor) {
     //unselects mods after roll
-    let toUnselectId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && it.data.data.persistant).map(m => m.data._id);
+    let toUnselectId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && it.data.data.persistent).map(m => m.data._id);
     for (let i = 0; i < toUnselectId.length; i++) {
         actor.items.get(toUnselectId[i]).update({ "data.selected": false });;
     }
@@ -176,20 +185,20 @@ async function usedAllValidPenalties(mods) {
     let selectedPenalties = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0);
     let unselectedPenalties = mods.filter(m => !(m.data.selected == true) && parseInt(m.data.value) < 0);
 
-    let totalPersistantPenalities = mods.filter(m => m.data.persistant == true && m.data.exclusive == false && parseInt(m.data.value) < 0).length;     //Excluding penalties with both persistant & exlcusive, because gonna to have the exclusive check cover this case
+    let totalPersistentPenalities = mods.filter(m => m.data.persistent == true && m.data.exclusive == false && parseInt(m.data.value) < 0).length;     //Excluding penalties with both persistent & exlcusive, because gonna to have the exclusive check cover this case
 
-    let unusedVirginPenalities = unselectedPenalties.filter(m => m.data.persistant == false && m.data.exclusive == false).length;
+    let unusedVirginPenalities = unselectedPenalties.filter(m => m.data.persistent == false && m.data.exclusive == false).length;
     let stillHaveUnusedExclusivePenalities = unselectedPenalties.filter(m => m.data.exclusive == true).length;
-    let usedPersistantPenalities = selectedPenalties.filter(m => m.data.persistant == true && m.data.exclusive == false).length;
+    let usedPersistentPenalities = selectedPenalties.filter(m => m.data.persistent == true && m.data.exclusive == false).length;
     let usedExclusivePenalities = selectedPenalties.filter(m => m.data.exclusive == true).length;
 
-    //Has non-Persistant and non-exclusive Penalities unused 
+    //Has non-persistent and non-exclusive Penalities unused 
     if (unusedVirginPenalities) {
         return true;
     }
 
     //If there are any unused persistance penalty
-    if (unselectedPenalties.length && (usedPersistantPenalities != totalPersistantPenalities)) {
+    if (unselectedPenalties.length && (usedPersistentPenalities != totalPersistentPenalities)) {
         return true;
     }
 
