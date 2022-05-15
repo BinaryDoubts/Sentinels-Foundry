@@ -253,6 +253,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".create-mod").click(this._onCreateMod.bind(this));
             //push ability to chat
             html.find(".roll-item").click(this._onRollItem.bind(this));
+            //push out ability to chat
+            html.find(".roll-out").click(this._onRollOut.bind(this));
             //Select the current Scene status
             html.find(".set-scene").click(this._onSetScene.bind(this));
             //Change the number of elements in a scene
@@ -325,6 +327,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
 
         dice.ItemRoll(item);
+    }
+
+    //Rolls out ability into chat
+    _onRollOut(event) {
+        event.preventDefault();
+        dice.OutRoll(this.actor.data.data.out);
     }
 
     //deletes the closest item
@@ -895,22 +903,18 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     }
 
     /* Transverse up via parentElements, until we find the class 'mod-create-td', then tranverse back down until we find input with name 'data.modName' */
-    getInputBoxViaDOM(event)
-    {
+    getInputBoxViaDOM(event) {
         let DOMDepth = 0;
         let foundItem = false;
 
         let target = event.target;
 
         //Look for 'mod-create-td' in the DOM
-        while (DOMDepth < 20 && foundItem == false)
-        {
-            if (target.classList.contains('mod-create-td'))
-            {
+        while (DOMDepth < 20 && foundItem == false) {
+            if (target.classList.contains('mod-create-td')) {
                 foundItem = true;
             }
-            else
-            {
+            else {
                 target = target.parentElement;
                 DOMDepth++;
             }
@@ -921,14 +925,11 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         DOMDepth = 0;
         foundItem = false;
 
-        while (DOMDepth < 20 && foundItem == false)
-        {
-            if (target.attributes['name'] && target.attributes['name'].value == 'data.modName')
-            {
+        while (DOMDepth < 20 && foundItem == false) {
+            if (target.attributes['name'] && target.attributes['name'].value == 'data.modName') {
                 foundItem = true;
             }
-            else
-            {
+            else {
                 target = target.children[0];
                 DOMDepth++;
             }

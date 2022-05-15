@@ -146,6 +146,7 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     rollResult.toMessage(messageData);
 }
 
+//Function for displaying an item in the chat window
 export async function ItemRoll(item = null) {
 
     let chatData = {
@@ -163,7 +164,23 @@ export async function ItemRoll(item = null) {
     return ChatMessage.create(messageData);
 }
 
+//Function for displaying out ability in the chat window
+export async function OutRoll(out = null) {
 
+    let chatData = {
+        out: out
+    }
+    const messageTemplate = "systems/scrpg/templates/chat/outroll.hbs";
+
+    let render = await renderTemplate(messageTemplate, chatData)
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: render,
+    };
+
+    return ChatMessage.create(messageData);
+}
 
 //helper functions
 async function RemoveUsedMods(actor) {
@@ -180,7 +197,7 @@ async function UnselectPersistentMods(actor) {
     }
 }
 
-
+//Function for checking if all valid penalties have been used
 async function usedAllValidPenalties(mods) {
     let selectedPenalties = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0);
     let unselectedPenalties = mods.filter(m => !(m.data.selected == true) && parseInt(m.data.value) < 0);

@@ -86,8 +86,17 @@
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red"}}
-    <input class="box-border out-box" style="{{getAbilitiesEnabledFromStatusClass 'out' this.actor.data.data}}"
-        type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
+    <div class="box-border out-box" style="{{getAbilitiesEnabledFromStatusClass 'out' this.actor.data.data}}">
+        <div class="out-box-child">
+            <input type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
+        </div>
+        <div class="out-box-child">
+            <a title='{{localize "SCRPG.button.displayAbility"}}' class="roll-out">
+                <i class="fas fa-comment-alt"></i>
+            </a>
+        </div>
+    </div>
+
     {{/if}}
 
     {{!-- displays the villain abilities if the actor type is villain --}}
