@@ -785,16 +785,10 @@
   padding: 2px;
 }
 
-.SCRPG.sheet.actor .power-item .set-power,
-.SCRPG.sheet.actor .power-item .set-quality,
-.SCRPG.sheet.actor .power-item .set-villain-status,
-.SCRPG.sheet.actor .quality-item .set-power,
-.SCRPG.sheet.actor .quality-item .set-quality,
-.SCRPG.sheet.actor .quality-item .set-villain-status,
-.SCRPG.sheet.actor .villain-status-item .set-power,
-.SCRPG.sheet.actor .villain-status-item .set-quality,
-.SCRPG.sheet.actor .villain-status-item .set-villain-status {
-  max-width: 157px;
+.SCRPG.sheet.actor .power-item .name,
+.SCRPG.sheet.actor .quality-item .name,
+.SCRPG.sheet.actor .villain-status-item .name {
+  max-width: 180px;
   overflow: hidden;
 }
 
@@ -881,7 +875,32 @@
 
 .SCRPG.sheet.actor .out-box {
   background-color: #d8d8da;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 20px;
+      grid-template-columns: auto 20px;
+}
+
+.SCRPG.sheet.actor .out-box .out-box-child:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-left: 1px dotted #000000;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.SCRPG.sheet.actor .out-box a {
+  padding: 4px;
+}
+
+.SCRPG.sheet.actor .out-box input {
   border-radius: 0;
+  border: none;
 }
 
 .SCRPG.sheet.actor .quality {

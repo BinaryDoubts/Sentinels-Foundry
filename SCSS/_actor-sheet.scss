@@ -448,10 +448,8 @@
         margin: 2px;
         padding: 2px;
 
-        .set-power,
-        .set-quality,
-        .set-villain-status {
-            max-width: 157px;
+        .name {
+            max-width: 180px;
             overflow: hidden;
         }
 
@@ -518,7 +516,24 @@
 
     .out-box {
         background-color: $graybg;
-        border-radius: 0;
+        display: grid;
+        grid-template-columns: auto 20px;
+
+        .out-box-child:last-child {
+            display: flex;
+            border-left: 1px dotted $black;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            padding: 4px;
+        }
+
+        input {
+            border-radius: 0;
+            border: none;
+        }
     }
 
     .quality {
