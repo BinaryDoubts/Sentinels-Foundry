@@ -193,7 +193,7 @@
             "options": true
         },
         "minion": {
-            "groups": 1,
+            "groups": "1",
             "groupName": {
                 "one": "Group 1",
                 "two": "Group 2",
