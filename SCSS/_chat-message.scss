@@ -37,6 +37,34 @@
         }
     }
 
+    .minion-roll {
+        th {
+            text-align: center;
+            height: 34px;
+        }
+
+        td:first-child {
+            text-align: left;
+            overflow: hidden;
+        }
+
+        td:nth-child(2) {
+            width: 40px;
+        }
+
+        tr:first-child {
+            border-bottom: 1px solid black;
+        }
+
+        tr:nth-child(n+2) {
+            border-bottom: 1px dotted black;
+        }
+
+        tr:last-child {
+            border-bottom: none;
+        }
+    }
+
     .dice-rolled {
 
         table td {

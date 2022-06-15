@@ -52,6 +52,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             this._prepareEnvironmentItems(data);
         } else if (this.actor.type == 'scene') {
             this._prepareSceneTrackerItems(data);
+        } else if (this.actor.type == 'minion') {
+            this._prepareMinionItems(data);
         };
         return data;
     }
@@ -140,7 +142,26 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         actorData.initiativeActor = inits;
     }
 
-    getNextMinionIndex() {
+    _prepareMinionItems(sheetData) {
+        const actorData = sheetData.actor;
+        const heroMinions = [];
+        const minionForms = [];
+
+        for (let i of sheetData.items) {
+            i.img = i.img;
+            if (i.type === "heroMinion") {
+                heroMinions.push(i)
+            };
+            if (i.type === "minionForm") {
+                minionForms.push(i)
+            };
+        }
+
+        actorData.heroMinion = heroMinions;
+        actorData.minionForm = minionForms;
+    }
+
+    getNextMinionIndex(group = 1, minionName = null) {
         let minions = this.object.heroMinion;
         let names = [];
         let highestIndex = 0;
@@ -149,6 +170,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             let curname = minions[i].name;
             let curindex;
             let minionPrefix = game.i18n.localize("SCRPG.sheet.newMinion");
+
+            if (minionName) {
+                minionPrefix = minionName;
+            }
 
             // Only check index if name starts with the minionPrefix
             if (curname.startsWith(minionPrefix)) {
@@ -269,12 +294,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".mod-select").click(this._onModSelect.bind(this));
             //DeleteAll
             html.find(".delete-all").click(this._onDeleteAll.bind(this));
+            //Deletes all minions
+            html.find(".delete-all-minions").click(this._onDeleteAllMinions.bind(this));
             //Changes status of all to available
             html.find(".reset-initiative").click(this._onResetInitiative.bind(this));
             //Increases player health by 1 and then updates status
             html.find(".increase-health").click(this._onIncreaseHealth.bind(this));
             //Decreases player health by 1 and then updates status
             html.find(".decrease-health").click(this._onDecreaseHealth.bind(this));
+            //Roll all minions
+            html.find(".roll-all-minions").click(this._onRollAllMinions.bind(this));
         }
 
         super.activateListeners(html);
@@ -285,13 +314,16 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let action = "all"
+        let dieType = "d4";
         let itemData = null;
         var aux = "main";
+        var group = 1;
+        let minionName = "";
 
         switch (element.dataset.type) {
             case "power":
                 if (element.dataset.aux) {
-                    aux = element.dataset.aux
+                    aux = element.dataset.aux;
                 }
                 itemData = {
                     name: game.i18n.localize("SCRPG.sheet.newItem"),
@@ -300,14 +332,66 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 }
                 break;
             case "heroMinion":
+                if (element.dataset.group) {
+                    group = parseInt(element.dataset.group);
+                    switch (group) {
+                        case 1: minionName = this.actor.data.data.groupName.one
+                            break
+                        case 2: minionName = this.actor.data.data.groupName.two
+                            break
+                        case 3: minionName = this.actor.data.data.groupName.three
+                            break
+                        case 4: minionName = this.actor.data.data.groupName.four
+                            break
+                        case 5: minionName = this.actor.data.data.groupName.five
+                            break
+                        case 6: minionName = this.actor.data.data.groupName.six
+                            break
+                        case 7: minionName = this.actor.data.data.groupName.seven
+                            break
+                        case 8: minionName = this.actor.data.data.groupName.eight
+                            break
+                        case 9: minionName = this.actor.data.data.groupName.nine
+                            break
+                        case 10: minionName = this.actor.data.data.groupName.ten
+                            break
+                    }
+                    if (minionName == "") {
+                        minionName = game.i18n.localize("SCRPG.sheet.newMinion")
+                    }
+                }
                 if (this.actor.type == "hero") {
-                    action = "attack"
+                    action = "attack";
+                }
+                if (element.dataset.dietype) {
+                    dieType = element.dataset.dietype
+                }
+                if (this.actor.data.type == "minion") {
+                    itemData = {
+                        name: minionName + " " + this.getNextMinionIndex(1, minionName),
+                        type: element.dataset.type,
+                        "data.action": action,
+                        "data.group": group,
+                        "data.dieType": dieType
+                    };
+                } else {
+                    itemData = {
+                        name: game.i18n.localize("SCRPG.sheet.newMinion") + " " + this.getNextMinionIndex(),
+                        type: element.dataset.type,
+                        "data.action": action,
+                        "data.group": group
+                    };
+                }
+                break;
+            case "minionForm":
+                if (element.dataset.group) {
+                    group = parseInt(element.dataset.group);
                 }
                 itemData = {
-                    name: game.i18n.localize("SCRPG.sheet.newMinion") + " " + this.getNextMinionIndex(),
+                    name: game.i18n.localize("SCRPG.sheet.newItem"),
                     type: element.dataset.type,
-                    "data.action": action
-                };
+                    "data.group": group
+                }
                 break;
             default:
                 itemData = {
@@ -364,7 +448,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 content = "<p>Are you sure you want to delete all Bonuses and Penalties?</p>"
                 break
             case "heroMinion":
-                content = "<p>Are you sure you want to delete all Hero Minions?</p>"
+                content = "<p>Are you sure you want to delete all Minions?</p>"
                 break
             case "initiativeActor":
                 content = "<p>Are you sure you want to clear the Initiative Tracker?</p>"
@@ -376,6 +460,27 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             content: content,
             yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
             no: () => console.log("Foundry VTT | Items of type " + element.dataset.type + " were not deleted"),
+            defaultYes: false
+        });
+
+        return d;
+    }
+
+    //deletes all minions in a group
+    _onDeleteAllMinions(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type && it.data.data.group == parseInt(element.dataset.group)).map(m => m.data._id);
+        console.log(itemsId)
+        let content = ""
+
+        content = "<p>Are you sure you want to delete all Minions in this group?</p>"
+
+        let d = Dialog.confirm({
+            title: "Delete",
+            content: content,
+            yes: () => this.actor.deleteEmbeddedDocuments("Item", itemsId),
+            no: () => console.log("Foundry VTT | Items of type " + element.dataset.type + " were not deleted in group " + element.dataset.group),
             defaultYes: false
         });
 
@@ -567,12 +672,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let rollName = item.data.name
-        let rollType = "minion"
-        let roll = item.data.data.dieType
-        let actor = this.actor
+        let rollName = item.data.name;
+        let rollType = "minion";
+        let roll = item.data.data.dieType;
+        let actor = this.actor;
 
         dice.SingleCheck(roll, rollType, rollName, actor);
+    }
+
+    _onRollAllMinions(event) {
+        event.preventDefault;
+        let element = event.currentTarget;
+        let actor = this.actor;
+
+        dice.RollAllMinions(actor, element.dataset.group);
     }
 
     //Updates heath ranges when Max health set
@@ -1212,6 +1325,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
     }
 
+    //Reets all items on the initiative tracker to available
     _onResetInitiative(event) {
         event.preventDefault()
         let element = event.currentTarget;
@@ -1221,6 +1335,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
     }
 
+    //Disables and Enables the scene options
     _onSceneOptions() {
         if (this.actor.data.data.options) {
             this.actor.update({ "data.options": false })

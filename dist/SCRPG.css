@@ -1829,6 +1829,49 @@
   margin-left: 5px;
 }
 
+.SCRPG.sheet.actor .minion-group-name {
+  width: 50%;
+  display: -ms-grid;
+  display: grid;
+  background-color: #cd5c5c;
+  -ms-grid-columns: auto 3.5rem 1.25rem 1.25rem 1.25rem;
+      grid-template-columns: auto 3.5rem 1.25rem 1.25rem 1.25rem;
+}
+
+.SCRPG.sheet.actor .minion-group-name h3 {
+  margin: 0;
+}
+
+.SCRPG.sheet.actor .minion-group-name-input {
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+}
+
+.SCRPG.sheet.actor .minion-group-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.SCRPG.sheet.actor .minion-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.SCRPG.sheet.actor .minion-count h3 {
+  font-weight: bold;
+  margin: auto 0;
+}
+
 .SCRPG.chat.roll .box-border {
   -webkit-box-shadow: 2px 2px #808080;
           box-shadow: 2px 2px #808080;
@@ -1861,6 +1904,32 @@
 
 .SCRPG.chat.roll .minor-roll td:nth-child(3) {
   width: 40px;
+}
+
+.SCRPG.chat.roll .minion-roll th {
+  text-align: center;
+  height: 34px;
+}
+
+.SCRPG.chat.roll .minion-roll td:first-child {
+  text-align: left;
+  overflow: hidden;
+}
+
+.SCRPG.chat.roll .minion-roll td:nth-child(2) {
+  width: 40px;
+}
+
+.SCRPG.chat.roll .minion-roll tr:first-child {
+  border-bottom: 1px solid black;
+}
+
+.SCRPG.chat.roll .minion-roll tr:nth-child(n+2) {
+  border-bottom: 1px dotted black;
+}
+
+.SCRPG.chat.roll .minion-roll tr:last-child {
+  border-bottom: none;
 }
 
 .SCRPG.chat.roll .dice-rolled table td {

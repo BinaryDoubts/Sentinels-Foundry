@@ -11,9 +11,15 @@
                 <th>
                     {{localize "SCRPG.minion.action"}}
                 </th>
+                {{#unless (eq this.item.actor.data.type "minion")}}
                 <th>
+                    {{#unless (eq this.item.actor.data.type "hero")}}
+                    {{localize "SCRPG.minion.ability"}}
+                    {{else}}
                     {{localize "SCRPG.minion.form"}}
+                    {{/unless}}
                 </th>
+                {{/unless}}
                 <th>
                     {{localize "SCRPG.sheet.die"}}
                 </th>
@@ -29,6 +35,7 @@
                         {{/select}}
                     </select>
                 </td>
+                {{#unless (eq this.item.actor.data.type "minion")}}
                 <td>
                     {{!-- Drop down to select the form that it can take --}}
                     {{!-- list is generated from character options --}}
@@ -41,6 +48,7 @@
                         {{/select}}
                     </select>
                 </td>
+                {{/unless}}
                 <td>
                     {{!-- Drop down to select minion die type --}}
                     <select name="data.dieType">
