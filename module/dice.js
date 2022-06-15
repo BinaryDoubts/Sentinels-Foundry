@@ -164,6 +164,87 @@ export async function ItemRoll(item = null) {
     return ChatMessage.create(messageData);
 }
 
+// Rolls all minions that are part of the same group
+export async function RollAllMinions(actor = null, group = 1) {
+
+    let minions = [];
+    let rollResult = {};
+    let color = game.settings.get("scrpg", "coloredDice");
+    let groupName = "";
+
+    switch (parseInt(group)) {
+        case 1:
+            groupName = actor.data.data.groupName.one
+            break
+        case 2:
+            groupName = actor.data.data.groupName.two
+            break
+        case 3:
+            groupName = actor.data.data.groupName.three
+            break
+        case 4:
+            groupName = actor.data.data.groupName.four
+            break
+        case 5:
+            groupName = actor.data.data.groupName.five
+            break
+        case 6:
+            groupName = actor.data.data.groupName.six
+            break
+        case 7:
+            groupName = actor.data.data.groupName.seven
+            break
+        case 8:
+            groupName = actor.data.data.groupName.eight
+            break
+        case 9:
+            groupName = actor.data.data.groupName.nine
+            break
+        case 10:
+            groupName = actor.data.data.groupName.ten
+            break
+    }
+
+    for (let i = 0; i < actor.heroMinion.length; i++) {
+        if (actor.heroMinion[i].data.group == group) {
+
+            rollResult = new Roll(actor.heroMinion[i].data.dieType).evaluate({ async: false });
+
+            //checks the number of die faces and attachs the corresponding dice image
+            if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
+                rollResult.img = `icons/svg/d${rollResult.dice[0].faces}-grey.svg`;
+                // if the setting for colored dice is enabled, adds a class to to the roll to be used in the template
+                if (color) {
+                    rollResult.imgClass = `d${rollResult.dice[0].faces}`
+                }
+            };
+
+            minions[i] = {
+                groupName: groupName,
+                dice: actor.heroMinion[i].data.dieType,
+                name: actor.heroMinion[i].name,
+                rollResult: rollResult
+            };
+        };
+    };
+
+    let chatData = {
+        minions: minions,
+        groupName: groupName
+    }
+    const messageTemplate = "systems/scrpg/templates/chat/minionsroll.hbs";
+
+    let render = await renderTemplate(messageTemplate, chatData)
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: render,
+    };
+
+    return ChatMessage.create(messageData);
+
+}
+
 //Function for displaying out ability in the chat window
 export async function OutRoll(out = null) {
 

@@ -1351,4 +1351,37 @@
     .deleteAllMods {
         margin-left: 5px;
     }
+
+    .minion-group-name {
+        width: 50%;
+        display: grid;
+        background-color: $miniontitle;
+        grid-template-columns: auto 3.5rem 1.25rem 1.25rem 1.25rem;
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    .minion-group-name-input {
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+    }
+
+    .minion-group-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .minion-count {
+        display: flex;
+        margin-bottom: 10px;
+
+        h3 {
+            font-weight: bold;
+            margin: auto 0;
+        }
+    }
 }

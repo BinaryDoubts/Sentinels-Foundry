@@ -4,7 +4,8 @@
             "hero",
             "villain",
             "environment",
-            "scene"
+            "scene",
+            "minion"
         ],
         "templates": {
             "heroic": {
@@ -190,6 +191,33 @@
                 "current": 0
             },
             "options": true
+        },
+        "minion": {
+            "groups": 1,
+            "groupName": {
+                "one": "Group 1",
+                "two": "Group 2",
+                "three": "Group 3",
+                "four": "Group 4",
+                "five": "Group 5",
+                "six": "Group 6",
+                "seven": "Group 7",
+                "eight": "Group 8",
+                "nine": "Group 9",
+                "ten": "Group 10"
+            },
+            "typicalDie": {
+                "one": "d4",
+                "two": "d4",
+                "three": "d4",
+                "four": "d4",
+                "five": "d4",
+                "six": "d4",
+                "seven": "d4",
+                "eight": "d4",
+                "nine": "d4",
+                "ten": "d4"
+            }
         }
     },
     "Item": {
@@ -242,11 +270,13 @@
         "heroMinion": {
             "dieType": "d4",
             "action": "attack",
-            "form": "N/A"
+            "form": "N/A",
+            "group": 1
         },
         "minionForm": {
             "description": "",
-            "bonus": "one"
+            "bonus": "one",
+            "group": 1
         },
         "mod": {
             "value": 1,
