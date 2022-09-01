@@ -33,10 +33,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     ]
 
     get template() {
-        if (this.actor.data.type == "hero" || this.actor.data.type == "villain") {
+        if (this.actor.type == "hero" || this.actor.type == "villain") {
             return "systems/scrpg/templates/sheets/heroCharacter-sheet.hbs";
         } else {
-            return "systems/scrpg/templates/sheets/" + this.actor.data.type + "-sheet.hbs"
+            return "systems/scrpg/templates/sheets/" + this.actor.type + "-sheet.hbs"
         }
     }
 
@@ -46,7 +46,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         data.config = CONFIG.SCRPG;
         //prepares items for actor
 
-        if (this.actor.data.type == 'hero' || this.actor.data.type == 'villain') {
+        if (this.actor.type == 'hero' || this.actor.type == 'villain') {
             this._prepareCharacterItems(data);
         } else if (this.actor.type == 'environment') {
             this._prepareEnvironmentItems(data);
@@ -328,32 +328,32 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 itemData = {
                     name: game.i18n.localize("SCRPG.sheet.newItem"),
                     type: element.dataset.type,
-                    "data.aux": aux
+                    "system.aux": aux
                 }
                 break;
             case "heroMinion":
                 if (element.dataset.group) {
                     group = parseInt(element.dataset.group);
                     switch (group) {
-                        case 1: minionName = this.actor.data.data.groupName.one
+                        case 1: minionName = this.actor.system.groupName.one
                             break
-                        case 2: minionName = this.actor.data.data.groupName.two
+                        case 2: minionName = this.actor.system.groupName.two
                             break
-                        case 3: minionName = this.actor.data.data.groupName.three
+                        case 3: minionName = this.actor.system.groupName.three
                             break
-                        case 4: minionName = this.actor.data.data.groupName.four
+                        case 4: minionName = this.actor.system.groupName.four
                             break
-                        case 5: minionName = this.actor.data.data.groupName.five
+                        case 5: minionName = this.actor.system.groupName.five
                             break
-                        case 6: minionName = this.actor.data.data.groupName.six
+                        case 6: minionName = this.actor.system.groupName.six
                             break
-                        case 7: minionName = this.actor.data.data.groupName.seven
+                        case 7: minionName = this.actor.system.groupName.seven
                             break
-                        case 8: minionName = this.actor.data.data.groupName.eight
+                        case 8: minionName = this.actor.system.groupName.eight
                             break
-                        case 9: minionName = this.actor.data.data.groupName.nine
+                        case 9: minionName = this.actor.system.groupName.nine
                             break
-                        case 10: minionName = this.actor.data.data.groupName.ten
+                        case 10: minionName = this.actor.system.groupName.ten
                             break
                     }
                     if (minionName == "") {
@@ -366,20 +366,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (element.dataset.dietype) {
                     dieType = element.dataset.dietype
                 }
-                if (this.actor.data.type == "minion") {
+                if (this.actor.type == "minion") {
                     itemData = {
                         name: minionName + " " + this.getNextMinionIndex(1, minionName),
                         type: element.dataset.type,
-                        "data.action": action,
-                        "data.group": group,
-                        "data.dieType": dieType
+                        "system.action": action,
+                        "system.group": group,
+                        "system.dieType": dieType
                     };
                 } else {
                     itemData = {
                         name: game.i18n.localize("SCRPG.sheet.newMinion") + " " + this.getNextMinionIndex(),
                         type: element.dataset.type,
-                        "data.action": action,
-                        "data.group": group
+                        "system.action": action,
+                        "system.group": group
                     };
                 }
                 break;
@@ -390,7 +390,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 itemData = {
                     name: game.i18n.localize("SCRPG.sheet.newItem"),
                     type: element.dataset.type,
-                    "data.group": group
+                    "system.group": group
                 }
                 break;
             default:
@@ -416,7 +416,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //Rolls out ability into chat
     _onRollOut(event) {
         event.preventDefault();
-        dice.OutRoll(this.actor.data.data.out);
+        dice.OutRoll(this.actor.system.out);
     }
 
     //deletes the closest item
@@ -440,7 +440,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onDeleteAll(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type).map(m => m.data._id);
+        let itemsId = this.actor.items.filter(it => it.type == element.dataset.type).map(m => m._id);
         let content = ""
 
         switch (element.dataset.type) {
@@ -470,7 +470,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onDeleteAllMinions(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type && it.data.data.group == parseInt(element.dataset.group)).map(m => m.data._id);
+        let itemsId = this.actor.items.filter(it => it.type == element.dataset.type && it.system.group == parseInt(element.dataset.group)).map(m => m._id);
         console.log(itemsId)
         let content = ""
 
@@ -514,27 +514,27 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemSelected = item.data.data.selected
+        let itemSelected = item.system.selected
         let otherPowers = [];
 
         if (itemSelected == "power") {
-            this.actor.update({ "data.firstDie": "d4" });
-            this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
-            item.update({ "data.selected": null });
+            this.actor.update({ "system.firstDie": "d4" });
+            this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "system.selected": null });
         } else {
             if (itemSelected == "quality") {
-                this.actor.update({ "data.secondDie": "d4" });
-                this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+                this.actor.update({ "system.secondDie": "d4" });
+                this.actor.update({ "system.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
             }
-            this.actor.update({ "data.firstDie": item.data.data.dieType });
-            this.actor.update({ "data.firstDieName": item.data.name });
-            item.update({ "data.selected": "power" });
-            if (this.actor.data.data.civilianMode) {
-                otherPowers = this.actor.items.filter(it => (it.data.type == "quality" && it.key != itemId && it.data.data.selected != "quality") || it.data.type == "power");
+            this.actor.update({ "system.firstDie": item.systemdieType });
+            this.actor.update({ "system.firstDieName": item.name });
+            item.update({ "system.selected": "power" });
+            if (this.actor.system.civilianMode) {
+                otherPowers = this.actor.items.filter(it => (it.type == "quality" && it.key != itemId && it.system.selected != "quality") || it.type == "power");
             } else {
-                otherPowers = this.actor.items.filter(it => it.data.type == "power" && it.key != itemId && it.data.data.selected != "quality");
+                otherPowers = this.actor.items.filter(it => it.type == "power" && it.key != itemId && it.system.selected != "quality");
             }
-            otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+            otherPowers.forEach(oe => oe.update({ 'system.selected': null }));
         }
     }
 
@@ -544,27 +544,27 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemSelected = item.data.data.selected
+        let itemSelected = item.system.selected
         let otherPowers = [];
 
         if (itemSelected == "quality") {
-            this.actor.update({ "data.secondDie": "d4" });
-            this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
-            item.update({ "data.selected": null });
+            this.actor.update({ "system.secondDie": "d4" });
+            this.actor.update({ "system.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "system.selected": null });
         } else {
             if (itemSelected == "power") {
-                this.actor.update({ "data.firstDie": "d4" });
-                this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+                this.actor.update({ "system.firstDie": "d4" });
+                this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
             }
-            this.actor.update({ "data.secondDie": item.data.data.dieType });
-            this.actor.update({ "data.secondDieName": item.data.name });
-            item.update({ "data.selected": "quality" });
-            if (this.actor.data.data.poweredMode) {
-                otherPowers = this.actor.items.filter(it => (it.data.type == "power" && it.key != itemId && it.data.data.selected != "power") || it.data.type == "quality");
+            this.actor.update({ "system.secondDie": item.system.dieType });
+            this.actor.update({ "system.secondDieName": item.name });
+            item.update({ "system.selected": "quality" });
+            if (this.actor.system.poweredMode) {
+                otherPowers = this.actor.items.filter(it => (it.type == "power" && it.key != itemId && it.system.selected != "power") || it.type == "quality");
             } else {
-                otherPowers = this.actor.items.filter(it => it.data.type == "quality" && it.key != itemId && it.data.data.selected != "power");
+                otherPowers = this.actor.items.filter(it => it.type == "quality" && it.key != itemId && it.system.selected != "power");
             }
-            otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
+            otherPowers.forEach(oe => oe.update({ 'system.selected': null }));
         }
 
     }
@@ -575,20 +575,20 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let itemSelected = item.data.data.selected
+        let itemSelected = item.system.selected
 
         if (itemSelected) {
-            this.actor.update({ "data.thirdDie": "d4" });
-            this.actor.update({ "data.thirdDieName": game.i18n.localize("SCRPG.sheet.newItem") });
-            item.update({ "data.selected": false });
+            this.actor.update({ "system.thirdDie": "d4" });
+            this.actor.update({ "system.thirdDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+            item.update({ "system.selected": false });
         } else {
-            //data.secondDie represents the die that will be used in the main roll for quality
+            //system.secondDie represents the die that will be used in the main roll for quality
             let otherPowers = [];
-            this.actor.update({ "data.thirdDie": item.data.data.dieType });
-            this.actor.update({ "data.thirdDieName": item.data.name });
-            item.update({ "data.selected": true });
-            otherPowers = this.actor.items.filter(it => it.data.type == "villainStatus" && it.key != itemId);
-            otherPowers.forEach(oe => oe.update({ 'data.selected': false }));
+            this.actor.update({ "system.thirdDie": item.system.dieType });
+            this.actor.update({ "system.thirdDieName": item.name });
+            item.update({ "system.selected": true });
+            otherPowers = this.actor.items.filter(it => it.type == "villainStatus" && it.key != itemId);
+            otherPowers.forEach(oe => oe.update({ 'system.selected': false }));
         }
     }
 
@@ -598,12 +598,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let dieNum = parseInt(item.data.data.dieType.match(/[0-9]+/g)[0]);
+        let dieNum = parseInt(item.system.dieType.match(/[0-9]+/g)[0]);
         if (dieNum > 4) {
             dieNum -= 2;
         }
         let dieType = "d" + dieNum;
-        item.update({ "data.dieType": dieType });
+        item.update({ "system.dieType": dieType });
     }
 
     // Increases the minion die one type
@@ -612,12 +612,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let dieNum = parseInt(item.data.data.dieType.match(/[0-9]+/g)[0]);
+        let dieNum = parseInt(item.system.dieType.match(/[0-9]+/g)[0]);
         if (dieNum < 12) {
             dieNum += 2;
         }
         let dieType = "d" + dieNum;
-        item.update({ "data.dieType": dieType });
+        item.update({ "system.dieType": dieType });
     }
 
     //Rolls currently assigned power, quality and status
@@ -631,13 +631,13 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onRollPower(event) {
         event.preventDefault();
         //dice type and name of power
-        let roll = this.actor.data.data.firstDie;
+        let roll = this.actor.system.firstDie;
         let rollType = "power";
         let actor = this.actor
-        if (this.actor.data.data.civilianMode == true) {
+        if (this.actor.system.civilianMode == true) {
             rollType = "quality";
         };
-        let rollName = this.actor.data.data.firstDieName;
+        let rollName = this.actor.system.firstDieName;
         dice.SingleCheck(roll, rollType, rollName, actor);
     }
 
@@ -645,13 +645,13 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onRollQuality(event) {
         event.preventDefault();
         //dice type and name of quality
-        let roll = this.actor.data.data.secondDie;
+        let roll = this.actor.system.secondDie;
         let rollType = "quality";
         let actor = this.actor
-        if (this.actor.data.data.poweredMode == true) {
+        if (this.actor.system.poweredMode == true) {
             rollType = "power";
         };
-        let rollName = this.actor.data.data.secondDieName;
+        let rollName = this.actor.system.secondDieName;
         dice.SingleCheck(roll, rollType, rollName, actor);
     }
 
@@ -659,9 +659,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onRollStatus(event) {
         event.preventDefault();
         //dice type and name of status
-        let roll = this.actor.data.data.thirdDie;
+        let roll = this.actor.system.thirdDie;
         let rollType = "status";
-        let rollName = this.actor.data.data.thirdDieName;
+        let rollName = this.actor.system.thirdDieName;
         let actor = this.actor
         dice.SingleCheck(roll, rollType, rollName, actor);
     }
@@ -672,9 +672,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let rollName = item.data.name;
+        let rollName = item.name;
         let rollType = "minion";
-        let roll = item.data.data.dieType;
+        let roll = item.system.dieType;
         let actor = this.actor;
 
         dice.SingleCheck(roll, rollType, rollName, actor);
@@ -726,10 +726,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         };
 
         //updates actor data with new range values
-        this.actor.update({ "data.health.greenLow": health[max][0] });
-        this.actor.update({ "data.health.yellowHigh": health[max][1] });
-        this.actor.update({ "data.health.yellowLow": health[max][2] });
-        this.actor.update({ "data.health.redHigh": health[max][3] });
+        this.actor.update({ "system.health.greenLow": health[max][0] });
+        this.actor.update({ "system.health.yellowHigh": health[max][1] });
+        this.actor.update({ "system.health.yellowLow": health[max][2] });
+        this.actor.update({ "system.health.redHigh": health[max][3] });
     }
 
     //updates status die when current health changes
@@ -737,7 +737,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let health = parseFloat(element.value);
-        let scene = this.actor.data.data.scene;
+        let scene = this.actor.system.scene;
         let actor = this.actor;
 
         status.HealthUpdate(scene, health, actor);
@@ -747,8 +747,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //updates status die when any status die type is changed
     _onStatusDieUpdate(event) {
         event.preventDefault();
-        let health = this.actor.data.data.wounds.value;
-        let scene = this.actor.data.data.scene;
+        let health = this.actor.system.wounds.value;
+        let scene = this.actor.system.scene;
         let actor = this.actor;
 
         status.HealthUpdate(scene, health, actor);
@@ -759,7 +759,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onSceneUpdate(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let health = this.actor.data.data.wounds.value;
+        let health = this.actor.system.wounds.value;
         let scene = element.value;
         let actor = this.actor;
 
@@ -780,7 +780,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let itemData = {
             name: game.i18n.localize("SCRPG.sheet.newItem"),
             type: element.dataset.type,
-            "data.aux": aux
+            "system.aux": aux
         };
         //creates new ability and assigns it to actor
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -789,55 +789,55 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //Displays or hides first green mode/form
     _onShowGreen1(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.green1;
+        let display = this.actor.system.modeDisplayed.green1;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.green1": false });
+            this.actor.update({ "system.modeDisplayed.green1": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.green1": true });
+            this.actor.update({ "system.modeDisplayed.green1": true });
         }
     }
 
     //Displays or hides second green mode/form
     _onShowGreen2(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.green2;
+        let display = this.actor.system.modeDisplayed.green2;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.green2": false });
+            this.actor.update({ "system.modeDisplayed.green2": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.green2": true });
+            this.actor.update({ "system.modeDisplayed.green2": true });
         }
     }
 
     //Displays or hides first yellow mode/form
     _onShowYellow1(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.yellow1;
+        let display = this.actor.system.modeDisplayed.yellow1;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.yellow1": false });
+            this.actor.update({ "system.modeDisplayed.yellow1": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.yellow1": true });
+            this.actor.update({ "system.modeDisplayed.yellow1": true });
         }
     }
 
     //Displays or hides second yellow mode/form
     _onShowYellow2(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.yellow2;
+        let display = this.actor.system.modeDisplayed.yellow2;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.yellow2": false });
+            this.actor.update({ "system.modeDisplayed.yellow2": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.yellow2": true });
+            this.actor.update({ "system.modeDisplayed.yellow2": true });
         }
     }
 
     //Displays or hides red mode/form
     _onShowRed1(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.red1;
+        let display = this.actor.system.modeDisplayed.red1;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.red1": false });
+            this.actor.update({ "system.modeDisplayed.red1": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.red1": true });
+            this.actor.update({ "system.modeDisplayed.red1": true });
         }
     }
 
@@ -846,131 +846,131 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let powers = [];
-        this.actor.update({ "data.mode": element.dataset.aux });
-        powers = this.actor.items.filter(it => it.data.type == "power");
-        powers.forEach(oe => oe.update({ 'data.selected': false }));
-        this.actor.update({ "data.firstDie": "d4" });
-        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        this.actor.update({ "system.mode": element.dataset.aux });
+        powers = this.actor.items.filter(it => it.type == "power");
+        powers.forEach(oe => oe.update({ 'system.selected': false }));
+        this.actor.update({ "system.firstDie": "d4" });
+        this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
     }
 
     _onChangeMode(event) {
         let powers = [];
-        powers = this.actor.items.filter(it => it.data.type == "power");
-        powers.forEach(oe => oe.update({ 'data.selected': false }));
-        this.actor.update({ "data.firstDie": "d4" });
-        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        powers = this.actor.items.filter(it => it.type == "power");
+        powers.forEach(oe => oe.update({ 'system.selected': false }));
+        this.actor.update({ "system.firstDie": "d4" });
+        this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
     }
 
     //Turns on and off modular
     //Disables formchanger if modular active
     _onSetModular(event) {
-        if (this.actor.data.data.modular == true) {
-            this.actor.update({ "data.mode": "main" });
-            this.actor.update({ "data.modeDisplayed.green1": false });
-            this.actor.update({ "data.modeDisplayed.green2": false });
-            this.actor.update({ "data.modeDisplayed.yellow1": false });
-            this.actor.update({ "data.modeDisplayed.yellow2": false });
-            this.actor.update({ "data.modeDisplayed.red1": false });
+        if (this.actor.system.modular == true) {
+            this.actor.update({ "system.mode": "main" });
+            this.actor.update({ "system.modeDisplayed.green1": false });
+            this.actor.update({ "system.modeDisplayed.green2": false });
+            this.actor.update({ "system.modeDisplayed.yellow1": false });
+            this.actor.update({ "system.modeDisplayed.yellow2": false });
+            this.actor.update({ "system.modeDisplayed.red1": false });
         } else {
-            this.actor.update({ "data.powerless": false });
-            this.actor.update({ "data.formchanger": false });
-            this.actor.update({ "data.divided": false })
-            this.actor.update({ "data.dividedPsyche": false })
-            this.actor.update({ "data.dividedStatus": false })
-            this.actor.update({ "data.poweredMode": false })
-            this.actor.update({ "data.civilianMode": false })
-            this.actor.update({ "data.mode": "main" });
+            this.actor.update({ "system.powerless": false });
+            this.actor.update({ "system.formchanger": false });
+            this.actor.update({ "system.divided": false })
+            this.actor.update({ "system.dividedPsyche": false })
+            this.actor.update({ "system.dividedStatus": false })
+            this.actor.update({ "system.poweredMode": false })
+            this.actor.update({ "system.civilianMode": false })
+            this.actor.update({ "system.mode": "main" });
         }
     }
 
     _onSetPowerless(event) {
-        if (this.actor.data.data.powerless == true) {
-            this.actor.update({ "data.mode": "main" })
+        if (this.actor.system.powerless == true) {
+            this.actor.update({ "system.mode": "main" })
         }
     }
 
     //Turns on and off formchanger
     //Disables modular if modular active
     _onSetFormChanger(event) {
-        if (this.actor.data.data.formchanger == true) {
-            this.actor.update({ "data.mode": "main" });
-            this.actor.update({ "data.modeDisplayed.green1": false });
-            this.actor.update({ "data.modeDisplayed.green2": false });
-            this.actor.update({ "data.modeDisplayed.yellow1": false });
+        if (this.actor.system.formchanger == true) {
+            this.actor.update({ "system.mode": "main" });
+            this.actor.update({ "system.modeDisplayed.green1": false });
+            this.actor.update({ "system.modeDisplayed.green2": false });
+            this.actor.update({ "system.modeDisplayed.yellow1": false });
         } else {
-            this.actor.update({ "data.modular": false });
-            this.actor.update({ "data.powerless": true });
-            this.actor.update({ "data.mode": "main" });
+            this.actor.update({ "system.modular": false });
+            this.actor.update({ "system.powerless": true });
+            this.actor.update({ "system.mode": "main" });
         }
     }
 
     //turns on the divided psyche mode and set the mode powered
     //turns off modular mode
     _onSetDivided(event) {
-        let currentStatus = this.actor.data.data.thirdDieName;
+        let currentStatus = this.actor.system.thirdDieName;
         let actor = this.actor
-        if (this.actor.data.data.divided == true) {
-            this.actor.update({ "data.mode": "main" });
-            this.actor.update({ "data.poweredMode": false });
-            this.actor.update({ "data.civilianMode": false });
-            this.actor.update({ "data.dividedStatus": false });
-            this.actor.update({ "data.dividedPsyche": false });
+        if (this.actor.system.divided == true) {
+            this.actor.update({ "system.mode": "main" });
+            this.actor.update({ "system.poweredMode": false });
+            this.actor.update({ "system.civilianMode": false });
+            this.actor.update({ "system.dividedStatus": false });
+            this.actor.update({ "system.dividedPsyche": false });
             status.DividedHealthChange(currentStatus, actor)
 
         } else {
-            this.actor.update({ "data.modular": false });
-            this.actor.update({ "data.mode": "main" });
-            this.actor.update({ "data.poweredMode": true });
+            this.actor.update({ "system.modular": false });
+            this.actor.update({ "system.mode": "main" });
+            this.actor.update({ "system.poweredMode": true });
 
         }
     }
 
     //Turns on divided psyche powered mode and turns off civilian mode
     _onSetPowered(event) {
-        let currentStatus = this.actor.data.data.thirdDieName;
+        let currentStatus = this.actor.system.thirdDieName;
         let actor = this.actor;
         let otherPowers = [];
-        if (this.actor.data.data.poweredMode == true) {
-            this.actor.update({ "data.civilianMode": true });
+        if (this.actor.system.poweredMode == true) {
+            this.actor.update({ "system.civilianMode": true });
         } else {
-            this.actor.update({ "data.civilianMode": false });
+            this.actor.update({ "system.civilianMode": false });
         }
-        otherPowers = this.actor.items.filter(it => it.data.type == "quality");
-        otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
-        this.actor.update({ "data.firstDie": "d4" });
-        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
-        this.actor.update({ "data.secondDie": "d4" });
-        this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        otherPowers = this.actor.items.filter(it => it.type == "quality");
+        otherPowers.forEach(oe => oe.update({ 'system.selected': null }));
+        this.actor.update({ "system.firstDie": "d4" });
+        this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        this.actor.update({ "system.secondDie": "d4" });
+        this.actor.update({ "system.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
         status.DividedHealthChange(currentStatus, actor)
     }
 
     //Turns on divided psyche civilian mode and turns off powered mode
     _onSetCivilian(event) {
-        let currentStatus = this.actor.data.data.thirdDieName;
+        let currentStatus = this.actor.system.thirdDieName;
         let actor = this.actor;
         let otherPowers = [];
-        if (this.actor.data.data.civilianMode == true) {
-            this.actor.update({ "data.poweredMode": true });
+        if (this.actor.system.civilianMode == true) {
+            this.actor.update({ "system.poweredMode": true });
         } else {
-            this.actor.update({ "data.poweredMode": false });
+            this.actor.update({ "system.poweredMode": false });
         }
-        otherPowers = this.actor.items.filter(it => it.data.type == "power");
-        otherPowers.forEach(oe => oe.update({ 'data.selected': null }));
-        this.actor.update({ "data.firstDie": "d4" });
-        this.actor.update({ "data.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
-        this.actor.update({ "data.secondDie": "d4" });
-        this.actor.update({ "data.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        otherPowers = this.actor.items.filter(it => it.type == "power");
+        otherPowers.forEach(oe => oe.update({ 'system.selected': null }));
+        this.actor.update({ "system.firstDie": "d4" });
+        this.actor.update({ "system.firstDieName": game.i18n.localize("SCRPG.sheet.newItem") });
+        this.actor.update({ "system.secondDie": "d4" });
+        this.actor.update({ "system.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
         status.DividedHealthChange(currentStatus, actor)
     }
 
     //Displays or hides red mode/form
     _onShowMain(event) {
         event.preventDefault();
-        let display = this.actor.data.data.modeDisplayed.main;
+        let display = this.actor.system.modeDisplayed.main;
         if (display) {
-            this.actor.update({ "data.modeDisplayed.main": false });
+            this.actor.update({ "system.modeDisplayed.main": false });
         } else {
-            this.actor.update({ "data.modeDisplayed.main": true });
+            this.actor.update({ "system.modeDisplayed.main": true });
         }
     }
 
@@ -1003,19 +1003,19 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let itemData = {
             name: name,
             type: element.dataset.type,
-            "data.named": named,
-            "data.value": value,
-            "data.persistent": this.actor.data.data.persistent,
-            "data.exclusive": this.actor.data.data.exclusive
+            "system.named": named,
+            "system.value": value,
+            "system.persistent": this.actor.system.persistent,
+            "system.exclusive": this.actor.system.exclusive
         };
-        this.actor.update({ "data.persistent": false });
-        this.actor.update({ "data.exclusive": false });
-        this.actor.update({ "data.modName": "" })
+        this.actor.update({ "system.persistent": false });
+        this.actor.update({ "system.exclusive": false });
+        this.actor.update({ "system.modName": "" })
 
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
-    /* Transverse up via parentElements, until we find the class 'mod-create-td', then tranverse back down until we find input with name 'data.modName' */
+    /* Transverse up via parentElements, until we find the class 'mod-create-td', then tranverse back down until we find input with name 'system.modName' */
     getInputBoxViaDOM(event) {
         let DOMDepth = 0;
         let foundItem = false;
@@ -1034,12 +1034,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         }
 
         if (foundItem == false) { throw "getInputBoxViaDOM(event): Can't find the <td> with class 'mod-create-td'"; }
-        //Now look for the input with name 'data.modName'
+        //Now look for the input with name 'system.modName'
         DOMDepth = 0;
         foundItem = false;
 
         while (DOMDepth < 20 && foundItem == false) {
-            if (target.attributes['name'] && target.attributes['name'].value == 'data.modName') {
+            if (target.attributes['name'] && target.attributes['name'].value == 'system.modName') {
                 foundItem = true;
             }
             else {
@@ -1048,7 +1048,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             }
         }
 
-        if (foundItem == false) { throw "getInputBoxViaDOM(event): Can't find the input with the name 'data.modename'"; }
+        if (foundItem == false) { throw "getInputBoxViaDOM(event): Can't find the input with the name 'system.modename'"; }
 
         return target;
     }
@@ -1063,27 +1063,27 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        let isExclusive = item.data.data.exclusive;
-        let updatedSelectedValue = !item.data.data.selected;
+        let isExclusive = item.system.exclusive;
+        let updatedSelectedValue = !item.system.selected;
 
         //if exclusive, deselect all other exclusive mods
         if (isExclusive && updatedSelectedValue) {
-            let isBonus = parseInt(item.data.data.value) > 0;       //Check if Bonus or Penality
+            let isBonus = parseInt(item.system.value) > 0;       //Check if Bonus or Penality
             let otherExclusives;
 
             if (isBonus) {
-                otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) > 0);
+                otherExclusives = this.actor.items.filter(it => it.type == "mod" && it.system.exclusive == true && parseInt(it.system.value) > 0);
             }
             else {
-                otherExclusives = this.actor.items.filter(it => it.data.type == "mod" && it.data.data.exclusive == true && parseInt(it.data.data.value) < 0);
+                otherExclusives = this.actor.items.filter(it => it.type == "mod" && it.system.exclusive == true && parseInt(it.system.value) < 0);
             }
 
             //Foreach exclusive, deselect
-            otherExclusives.forEach(oe => oe.update({ 'data.selected': false }))
+            otherExclusives.forEach(oe => oe.update({ 'system.selected': false }))
         }
 
         //Toggle selected state for current
-        item.update({ 'data.selected': updatedSelectedValue });
+        item.update({ 'system.selected': updatedSelectedValue });
     }
 
     //creates a new environment twist
@@ -1100,7 +1100,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let itemData = {
             name: game.i18n.localize("SCRPG.sheet.newItem"),
             type: element.dataset.type,
-            "data.type": aux
+            "type": aux
         };
         //creates new power and assigns it to actor
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -1109,24 +1109,24 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     //Increases health by 1 and then updates status
     _onIncreaseHealth(event) {
         event.preventDefault();
-        let health = this.actor.data.data.wounds.value + 1;
-        let scene = this.actor.data.data.scene;
+        let health = this.actor.system.wounds.value + 1;
+        let scene = this.actor.system.scene;
         let actor = this.actor;
-        if (health <= this.actor.data.data.wounds.max) {
+        if (health <= this.actor.system.wounds.max) {
             status.HealthUpdate(scene, health, actor);
-            this.actor.update({ "data.wounds.value": health });
+            this.actor.update({ "system.wounds.value": health });
         }
     }
 
     //Decreased health by 1 and then updates status
     _onDecreaseHealth(event) {
         event.preventDefault();
-        let health = this.actor.data.data.wounds.value - 1;
-        let scene = this.actor.data.data.scene;
+        let health = this.actor.system.wounds.value - 1;
+        let scene = this.actor.system.scene;
         let actor = this.actor;
         if (health >= 0) {
             status.HealthUpdate(scene, health, actor);
-            this.actor.update({ "data.wounds.value": health });
+            this.actor.update({ "system.wounds.value": health });
         }
     }
 
@@ -1138,35 +1138,35 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         switch (itemData.type) {
             case "principles":
                 if (this.checkDropTarget(event, "DroppableFirstPrinciple")) {
-                    this.actor.update({ "data.firstPrinciple.name": itemData.name });
-                    this.actor.update({ "data.firstPrinciple.roleplaying": itemData.data.roleplaying });
-                    this.actor.update({ "data.firstPrinciple.minorTwist": itemData.data.minorTwist });
-                    this.actor.update({ "data.firstPrinciple.majorTwist": itemData.data.majorTwist });
+                    this.actor.update({ "system.firstPrinciple.name": itemData.name });
+                    this.actor.update({ "system.firstPrinciple.roleplaying": item.system.roleplaying });
+                    this.actor.update({ "system.firstPrinciple.minorTwist": item.system.minorTwist });
+                    this.actor.update({ "system.firstPrinciple.majorTwist": item.system.majorTwist });
                 }
 
                 if (this.checkDropTarget(event, "DroppableSecondPrinciple")) {
-                    this.actor.update({ "data.secondPrinciple.name": itemData.name });
-                    this.actor.update({ "data.secondPrinciple.roleplaying": itemData.data.roleplaying });
-                    this.actor.update({ "data.secondPrinciple.minorTwist": itemData.data.minorTwist });
-                    this.actor.update({ "data.secondPrinciple.majorTwist": itemData.data.majorTwist });
+                    this.actor.update({ "system.secondPrinciple.name": itemData.name });
+                    this.actor.update({ "system.secondPrinciple.roleplaying": item.system.roleplaying });
+                    this.actor.update({ "system.secondPrinciple.minorTwist": item.system.minorTwist });
+                    this.actor.update({ "system.secondPrinciple.majorTwist": item.system.majorTwist });
                 }
 
                 return false;
             case "backgrounds":
-                this.actor.update({ "data.background": itemData.name });
+                this.actor.update({ "system.background": itemData.name });
                 return false;
             case "powerSources":
-                this.actor.update({ "data.powerSource": itemData.name });
+                this.actor.update({ "system.powerSource": itemData.name });
                 return false;
             case "archetypes":
-                this.actor.update({ "data.archetype": itemData.name });
+                this.actor.update({ "system.archetype": itemData.name });
                 return false;
             case "personality":
-                this.actor.update({ "data.personality": itemData.name });
-                this.actor.update({ "data.out": itemData.data.out });
-                this.actor.update({ "data.statusDie.green": itemData.data.statusDie.green });
-                this.actor.update({ "data.statusDie.yellow": itemData.data.statusDie.yellow });
-                this.actor.update({ "data.statusDie.red": itemData.data.statusDie.red });
+                this.actor.update({ "system.personality": itemData.name });
+                this.actor.update({ "system.out": item.system.out });
+                this.actor.update({ "system.statusDie.green": item.system.statusDie.green });
+                this.actor.update({ "system.statusDie.yellow": item.system.statusDie.yellow });
+                this.actor.update({ "system.statusDie.red": item.system.statusDie.red });
                 return false;
         }
 
@@ -1214,12 +1214,12 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         event.preventDefault();
         let element = event.currentTarget;
         let current = parseInt(element.dataset.num);
-        let greenCurrent = this.actor.data.data.greenSpace.current;
-        let greenSetting = this.actor.data.data.greenSpace.setting;
-        let yellowCurrent = this.actor.data.data.yellowSpace.current;
-        let yellowSetting = this.actor.data.data.yellowSpace.setting;
-        let redCurrent = this.actor.data.data.redSpace.current;
-        let redSetting = this.actor.data.data.redSpace.setting;
+        let greenCurrent = this.actor.system.greenSpace.current;
+        let greenSetting = this.actor.system.greenSpace.setting;
+        let yellowCurrent = this.actor.system.yellowSpace.current;
+        let yellowSetting = this.actor.system.yellowSpace.setting;
+        let redCurrent = this.actor.system.redSpace.current;
+        let redSetting = this.actor.system.redSpace.setting;
 
         switch (element.dataset.color) {
             case "green":
@@ -1230,9 +1230,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                     scene.SetGreen();
                     scene.SceneChat("green")
                 }
-                this.actor.update({ "data.greenSpace.current": current });
-                this.actor.update({ "data.yellowSpace.current": 0 });
-                this.actor.update({ "data.redSpace.current": 0 });
+                this.actor.update({ "system.greenSpace.current": current });
+                this.actor.update({ "system.yellowSpace.current": 0 });
+                this.actor.update({ "system.redSpace.current": 0 });
                 if (greenCurrent == current && yellowCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
@@ -1248,9 +1248,9 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                     scene.SetRed();
                     scene.SceneChat("red")
                 }
-                this.actor.update({ "data.yellowSpace.current": current });
-                this.actor.update({ "data.greenSpace.current": greenSetting });
-                this.actor.update({ "data.redSpace.current": 0 });
+                this.actor.update({ "system.yellowSpace.current": current });
+                this.actor.update({ "system.greenSpace.current": greenSetting });
+                this.actor.update({ "system.redSpace.current": 0 });
                 if (yellowCurrent == current && redCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
@@ -1263,13 +1263,13 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (redSetting == current && redCurrent != current) {
                     scene.SceneChat("failure")
                     scene.SetRed();
-                } else if (yellowCurrent < this.actor.data.data.yellowSpace.setting) {
+                } else if (yellowCurrent < this.actor.system.yellowSpace.setting) {
                     scene.SetRed();
                     scene.SceneChat("red")
                 }
-                this.actor.update({ "data.redSpace.current": current });
-                this.actor.update({ "data.yellowSpace.current": yellowSetting });
-                this.actor.update({ "data.greenSpace.current": greenSetting });
+                this.actor.update({ "system.redSpace.current": current });
+                this.actor.update({ "system.yellowSpace.current": yellowSetting });
+                this.actor.update({ "system.greenSpace.current": greenSetting });
                 if (redCurrent == current) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
@@ -1292,19 +1292,19 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         switch (element.dataset.type) {
             case "standard":
-                this.actor.update({ "data.greenSpace.setting": 2 });
-                this.actor.update({ "data.yellowSpace.setting": 4 });
-                this.actor.update({ "data.redSpace.setting": 2 });
+                this.actor.update({ "system.greenSpace.setting": 2 });
+                this.actor.update({ "system.yellowSpace.setting": 4 });
+                this.actor.update({ "system.redSpace.setting": 2 });
                 break;
             case "prolonged":
-                this.actor.update({ "data.greenSpace.setting": 3 });
-                this.actor.update({ "data.yellowSpace.setting": 5 });
-                this.actor.update({ "data.redSpace.setting": 3 });
+                this.actor.update({ "system.greenSpace.setting": 3 });
+                this.actor.update({ "system.yellowSpace.setting": 5 });
+                this.actor.update({ "system.redSpace.setting": 3 });
                 break;
             case "epic":
-                this.actor.update({ "data.greenSpace.setting": 1 });
-                this.actor.update({ "data.yellowSpace.setting": 3 });
-                this.actor.update({ "data.redSpace.setting": 4 });
+                this.actor.update({ "system.greenSpace.setting": 1 });
+                this.actor.update({ "system.yellowSpace.setting": 3 });
+                this.actor.update({ "system.redSpace.setting": 4 });
                 break;
         }
         scene.SceneReset(this.actor);
@@ -1317,10 +1317,10 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let element = event.currentTarget;
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
-        if (item.data.data.acted) {
-            item.update({ "data.acted": false });
+        if (item.system.acted) {
+            item.update({ "system.acted": false });
         } else {
-            item.update({ "data.acted": true });
+            item.update({ "system.acted": true });
         }
 
     }
@@ -1329,18 +1329,18 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     _onResetInitiative(event) {
         event.preventDefault()
         let element = event.currentTarget;
-        let itemsId = this.actor.items.filter(it => it.data.type == element.dataset.type).map(m => m.data._id);
+        let itemsId = this.actor.items.filter(it => it.type == element.dataset.type).map(m => m._id);
         for (let i = 0; i < itemsId.length; i++) {
-            this.actor.items.get(itemsId[i]).update({ "data.acted": false });;
+            this.actor.items.get(itemsId[i]).update({ "system.acted": false });;
         }
     }
 
     //Disables and Enables the scene options
     _onSceneOptions() {
-        if (this.actor.data.data.options) {
-            this.actor.update({ "data.options": false })
+        if (this.actor.system.options) {
+            this.actor.update({ "system.options": false })
         } else {
-            this.actor.update({ "data.options": true })
+            this.actor.update({ "system.options": true })
         }
     }
 }
