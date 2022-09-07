@@ -9,21 +9,21 @@
         <table class="villain-abilities box-border">
             <tr>
                 <th>{{localize "SCRPG.sheet.description"}}</th>
-                {{#if (eq this.item.actor.data.type "hero")}}
+                {{#if (eq this.item.actor.system.type "hero")}}
                 <th>{{localize "SCRPG.sheet.bonus"}}</th>
                 {{/if}}
             </tr>
             <tr>
                 {{!-- Minion form description --}}
                 <td>
-                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    {{editor enrichedMinionFormSheetDescription target="system.description" button=true
                     editable=editable}}
                 </td>
                 {{!-- Bonus required to apply form --}}
-                {{#if (eq this.item.actor.data.type "hero")}}
+                {{#if (eq this.item.actor.system.type "hero")}}
                 <td class="top-align">
-                    <select name="data.bonus">
-                        {{#select data.data.bonus}}
+                    <select name="system.bonus">
+                        {{#select item.system.bonus}}
                         {{#each config.bonus as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}

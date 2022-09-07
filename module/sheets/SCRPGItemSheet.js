@@ -11,11 +11,25 @@ export default class SCRPGItemSheet extends ItemSheet {
     }
 
     get template() {
-        return 'systems/scrpg/templates/sheets/' + this.item.data.type + '-sheet.hbs';
+        return 'systems/scrpg/templates/sheets/' + this.item.type + '-sheet.hbs';
     }
 
-    getData() {
-        const data = super.getData();
+    async getData(options) {
+        const data = await super.getData(options);
+
+        data.enrichedAbilityGameText = await TextEditor.enrichHTML(this.object.system.gameText, { async: true });
+        data.enrichedArchetypeDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedBackgroundDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedEnvironmentTwistDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedMinionFormSheetDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPersonalityDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPowerDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPowerSourcesDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPrincipleRoleplaying = await TextEditor.enrichHTML(this.object.system.roleplaying, { async: true });
+        data.enrichedPrincipleMinorTwist = await TextEditor.enrichHTML(this.object.system.minorTwist, { async: true });
+        data.enrichedPrincipleMajorTwist = await TextEditor.enrichHTML(this.object.system.majorTwist, { async: true });
+        data.enrichedQualityDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedVillainStatusDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
 
         data.config = CONFIG.SCRPG;
 
@@ -47,66 +61,66 @@ export default class SCRPGItemSheet extends ItemSheet {
     //Set attack icon to true or false
     _onSetAttack(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.attack
+        let state = this.item.system.icon.attack
         if (state) {
-            this.item.update({ "data.icon.attack": false });
+            this.item.update({ "system.icon.attack": false });
         } else {
-            this.item.update({ "data.icon.attack": true });
+            this.item.update({ "system.icon.attack": true });
         }
     }
 
     //Set defend icon to true or false
     _onSetDefend(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.defend
+        let state = this.item.system.icon.defend
         if (state) {
-            this.item.update({ "data.icon.defend": false });
+            this.item.update({ "system.icon.defend": false });
         } else {
-            this.item.update({ "data.icon.defend": true });
+            this.item.update({ "system.icon.defend": true });
         }
     }
 
     //Set overcome icon to true or false
     _onSetOvercome(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.overcome
+        let state = this.item.system.icon.overcome
         if (state) {
-            this.item.update({ "data.icon.overcome": false });
+            this.item.update({ "system.icon.overcome": false });
         } else {
-            this.item.update({ "data.icon.overcome": true });
+            this.item.update({ "system.icon.overcome": true });
         }
     }
 
     //Set hinder icon to true or false
     _onSetHinder(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.hinder
+        let state = this.item.system.icon.hinder
         if (state) {
-            this.item.update({ "data.icon.hinder": false });
+            this.item.update({ "system.icon.hinder": false });
         } else {
-            this.item.update({ "data.icon.hinder": true });
+            this.item.update({ "system.icon.hinder": true });
         }
     }
 
     //Set boost icon to true or false
     _onSetBoost(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.boost
+        let state = this.item.system.icon.boost
         if (state) {
-            this.item.update({ "data.icon.boost": false });
+            this.item.update({ "system.icon.boost": false });
         } else {
-            this.item.update({ "data.icon.boost": true });
+            this.item.update({ "system.icon.boost": true });
         }
     }
 
     //Set recover icon to true or false
     _onSetRecover(event) {
         event.preventDefault();
-        let state = this.item.data.data.icon.recover
+        let state = this.item.system.icon.recover
         if (state) {
-            this.item.update({ "data.icon.recover": false });
+            this.item.update({ "system.icon.recover": false });
         } else {
-            this.item.update({ "data.icon.recover": true });
+            this.item.update({ "system.icon.recover": true });
         }
     }
 

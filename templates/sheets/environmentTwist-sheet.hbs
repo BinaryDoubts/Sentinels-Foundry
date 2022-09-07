@@ -2,19 +2,19 @@
 
 <form class="{{cssClass}}" autocomplete="off">
     <header class="environment-twist-title sheet-header">
-        <h3 class="{{#color}}{{data.data.type}}{{/color}}-abilities box-border "><input name="name" type="text"
+        <h3 class="{{#color}}{{item.system.type}}{{/color}}-abilities box-border "><input name="name" type="text"
                 value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h3>
     </header>
 
     {{!-- Drop down menu for selecting the type --}}
     <div class="sheet-content environment-twist-content">
         {{#if (eq this.item.actor null)}}
-        <table class="{{#color}}{{data.data.type}}{{/color}}-abilities box-border type-table">
+        <table class="{{#color}}{{actor.system.type}}{{/color}}-abilities box-border type-table">
             <tr>
                 <th>{{localize "SCRPG.type.twist"}}</th>
                 <td>
-                    <select name="data.type">
-                        {{#select data.data.type}}
+                    <select name="system.type">
+                        {{#select item.system.type}}
                         {{#each config.twistType as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -24,14 +24,14 @@
             </tr>
         </table>
         {{/if}}
-        <table class="box-border {{#color}}{{data.data.type}}{{/color}}-abilities">
+        <table class="box-border {{#color}}{{item.system.type}}{{/color}}-abilities">
             <tr>
                 <th>{{localize "SCRPG.sheet.description"}}</th>
             </tr>
             <tr>
                 <td>
                     {{!-- Form for filling in description--}}
-                    {{editor content=data.data.description target="data.description" button=true owner=owner
+                    {{editor enrichedEnvironmentTwistDescription target="system.description" button=true
                     editable=editable}}
                 </td>
             </tr>

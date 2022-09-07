@@ -10,9 +10,9 @@
             "name": "GamerDragon"
         }
     ],
-    "version": "1.4.1",
-    "minimumCoreVersion": "9",
-    "compatibleCoreVersion": "9",
+    "version": "1.5.0",
+    "minimumCoreVersion": "10",
+    "compatibleCoreVersion": "10",
     "esmodules": [
         "SCRPG.js"
     ],

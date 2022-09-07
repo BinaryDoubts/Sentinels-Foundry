@@ -3,7 +3,7 @@
 {{!-- Displays Regular and Auxiliary abilities for hero type characters --}}
 {{!-- Auxiliary ability display --}}
 {{!-- Displays the current mode/form and its associated abilities --}}
-{{#if (eq data.data.divided true)}}
+{{#if (eq actor.system.divided true)}}
 <div class="section-name section-name-divided">
     <h3>{{localize "SCRPG.auxiliary.dividedPsyche"}}</h3>
 </div>
@@ -12,16 +12,16 @@
         <tr>
             <td>
                 <div class="auxiliary-item">
-                    <input class="set-powered" type="checkbox" name="data.poweredMode" {{checked data.data.poweredMode}}
-                        data-dtype="boolean" />
+                    <input class="set-powered" type="checkbox" name="system.poweredMode" {{checked
+                        actor.system.poweredMode}} data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.powered"}}</p>
                 </div>
             </td>
             <td>
                 <div class="auxiliary-item">
 
-                    <input class="set-civilian" type="checkbox" name="data.civilianMode" {{checked
-                        data.data.civilianMode}} data-dtype="boolean" />
+                    <input class="set-civilian" type="checkbox" name="system.civilianMode" {{checked
+                        actor.system.civilianMode}} data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.civilian"}}</p>
                 </div>
             </td>
@@ -31,28 +31,28 @@
 
 {{/if}}
 
-{{#if (eq data.data.civilianMode false)}}
-{{#if (eq this.actor.data.data.formchanger true)}}
+{{#if (eq actor.system.civilianMode false)}}
+{{#if (eq actor.system.formchanger true)}}
 
 {{> "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs"}}
 
 {{/if}}
 
-{{#if (eq this.actor.data.data.modular true)}}
+{{#if (eq actor.system.modular true)}}
 
 {{> "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs"}}
 
 {{!-- Second yellow mode/form --}}
-{{#if (eq this.actor.data.data.mode "yellow2")}}
+{{#if (eq actor.system.mode "yellow2")}}
 <table class="box-border yellow-abilities">
     <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow2'
-    this.actor.data.data}}">
+    actor.system}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow2'
-    this.actor.data.data}}">
+    actor.system}}">
         <td>
-            {{{this.actor.data.data.modeDescription.yellow2}}}
+            {{{actor.system.modeDescription.yellow2}}}
         </td>
     </tr>
 </table>
@@ -60,16 +60,16 @@
 {{/if}}
 
 {{!-- Red mode/form --}}
-{{#if (eq this.actor.data.data.mode "red1")}}
+{{#if (eq actor.system.mode "red1")}}
 <table class="box-border red-abilities">
     <tr style="{{getAbilitiesEnabledFromStatusClass 'red1'
-    this.actor.data.data}}">
+    actor.system}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr style="{{getAbilitiesEnabledFromStatusClass 'red1'
-    this.actor.data.data}}">
+    actor.system}}">
         <td>
-            {{{this.actor.data.data.modeDescription.red1}}}
+            {{{actor.system.modeDescription.red1}}}
         </td>
     </tr>
 </table>
@@ -86,9 +86,9 @@
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow"}}
     {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red"}}
-    <div class="box-border out-box" style="{{getAbilitiesEnabledFromStatusClass 'out' this.actor.data.data}}">
+    <div class="box-border out-box" style="{{getAbilitiesEnabledFromStatusClass 'out' actor.system}}">
         <div class="out-box-child">
-            <input type="text" value="{{data.data.out}}" name="data.out" placeholder="Out">
+            <input type="text" value="{{actor.system.out}}" name="system.out" placeholder="Out">
         </div>
         <div class="out-box-child">
             <a title='{{localize "SCRPG.button.displayAbility"}}' class="roll-out">

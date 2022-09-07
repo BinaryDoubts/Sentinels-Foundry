@@ -41,6 +41,10 @@
   width: 80px;
 }
 
+.SCRPG.sheet.item .sheet-content .editor .tox .tox-toolbar__group {
+  padding: 0;
+}
+
 .SCRPG.sheet.item .powerquality {
   background-color: #ffffff;
 }
@@ -286,6 +290,10 @@
   text-align: center;
 }
 
+.SCRPG.sheet.actor h3 {
+  border-bottom: none;
+}
+
 .SCRPG.sheet.actor .editor {
   height: 6.25rem;
   background: rgba(255, 255, 255, 0.2);
@@ -306,6 +314,10 @@
 
 .SCRPG.sheet.actor .editor .tox.tox-tinymce .tox-tbtn[title="Formats"] {
   width: 80px;
+}
+
+.SCRPG.sheet.actor .editor .tox .tox-toolbar__group {
+  padding: 0;
 }
 
 .SCRPG.sheet.actor .sheet-content {
@@ -596,8 +608,8 @@
 .SCRPG.sheet.actor .hero-point-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50% auto;
-      grid-template-columns: 50% auto;
+  -ms-grid-columns: 55% auto;
+      grid-template-columns: 55% auto;
   border-bottom: 1px dotted #000000;
 }
 

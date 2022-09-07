@@ -25,10 +25,10 @@
                 <div class="power-list item-list">
                     {{!-- Displays all powers related to this mode/form --}}
                     {{#each actor.power as |power id|}}
-                    {{#if (eq power.data.aux ../mode)}}
+                    {{#if (eq power.system.aux ../mode)}}
                     <div class="power-item item" data-item-id="{{power._id}}">
                         <div>{{name}}</div>
-                        <div>{{data.dieType}}</div>
+                        <div>{{system.dieType}}</div>
                     </div>
                     {{/if}}
                     {{/each}}

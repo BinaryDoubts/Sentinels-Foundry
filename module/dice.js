@@ -3,16 +3,16 @@
 /* Rolls power, quality, and status and outputs to chat */
 export async function TaskCheck(actor = null) {
 
-    let d1 = actor.data.data.firstDie;
-    let d2 = actor.data.data.secondDie;
-    let d3 = actor.data.data.thirdDie;
-    let power = actor.data.data.firstDieName;
-    let quality = actor.data.data.secondDieName;
-    let status = actor.data.data.thirdDieName;
-    let poweredMode = actor.data.data.poweredMode;
-    let civilianMode = actor.data.data.civilianMode;
-    let type = actor.data.type;
-    let mods = actor.items.document.mod;
+    let d1 = actor.system.firstDie;
+    let d2 = actor.system.secondDie;
+    let d3 = actor.system.thirdDie;
+    let power = actor.system.firstDieName;
+    let quality = actor.system.secondDieName;
+    let status = actor.system.thirdDieName;
+    let poweredMode = actor.system.poweredMode;
+    let civilianMode = actor.system.civilianMode;
+    let type = actor.type;
+    let mods = actor.mod;
     let color = game.settings.get("scrpg", "coloredDice");
     let modsOn = game.settings.get("scrpg", "mod");
     let coloring = "black";
@@ -21,9 +21,9 @@ export async function TaskCheck(actor = null) {
     let bonus = [];
 
     if (mods) {
-        selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected)
-        penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
-        bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+        selectedmods = actor.items.filter(it => it.type == "mod" && it.system.selected)
+        penalty = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) < 0).length > 0;
+        bonus = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) > 0).length > 0;
     }
 
     const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
@@ -39,7 +39,7 @@ export async function TaskCheck(actor = null) {
     let dicePosition = ["Max", "Mid", "Min"];
 
     //Checks to see if the actor missed using all available negative mods and then sets penalty true
-    if ((actor.data.type != "environment")
+    if ((actor.type != "environment")
         && modsOn
         && await usedAllValidPenalties(mods)) { coloring = "red" };
 
@@ -92,16 +92,16 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     let color = game.settings.get("scrpg", "coloredDice");
     let rollResult = new Roll(roll).evaluate({ async: false });
     let coloring = "black";
-    let mods = actor.items.document.mod;
+    let mods = actor.mod;
     let modsOn = game.settings.get("scrpg", "mod");
     let selectedmods = [];
     let penalty = [];
     let bonus = [];
 
     if (mods && rollType != "minion") {
-        selectedmods = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected);
-        penalty = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0).length > 0;
-        bonus = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) > 0).length > 0;
+        selectedmods = actor.items.filter(it => it.type == "mod" && it.system.selected);
+        penalty = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) < 0).length > 0;
+        bonus = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) > 0).length > 0;
     }
 
     rollResult.rollType = rollType;
@@ -174,41 +174,41 @@ export async function RollAllMinions(actor = null, group = 1) {
 
     switch (parseInt(group)) {
         case 1:
-            groupName = actor.data.data.groupName.one
+            groupName = actor.system.groupName.one
             break
         case 2:
-            groupName = actor.data.data.groupName.two
+            groupName = actor.system.groupName.two
             break
         case 3:
-            groupName = actor.data.data.groupName.three
+            groupName = actor.system.groupName.three
             break
         case 4:
-            groupName = actor.data.data.groupName.four
+            groupName = actor.system.groupName.four
             break
         case 5:
-            groupName = actor.data.data.groupName.five
+            groupName = actor.system.groupName.five
             break
         case 6:
-            groupName = actor.data.data.groupName.six
+            groupName = actor.system.groupName.six
             break
         case 7:
-            groupName = actor.data.data.groupName.seven
+            groupName = actor.system.groupName.seven
             break
         case 8:
-            groupName = actor.data.data.groupName.eight
+            groupName = actor.system.groupName.eight
             break
         case 9:
-            groupName = actor.data.data.groupName.nine
+            groupName = actor.system.groupName.nine
             break
         case 10:
-            groupName = actor.data.data.groupName.ten
+            groupName = actor.system.groupName.ten
             break
     }
 
     for (let i = 0; i < actor.heroMinion.length; i++) {
-        if (actor.heroMinion[i].data.group == group) {
+        if (actor.heroMinion[i].system.group == group) {
 
-            rollResult = new Roll(actor.heroMinion[i].data.dieType).evaluate({ async: false });
+            rollResult = new Roll(actor.heroMinion[i].system.dieType).evaluate({ async: false });
 
             //checks the number of die faces and attachs the corresponding dice image
             if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
@@ -221,7 +221,7 @@ export async function RollAllMinions(actor = null, group = 1) {
 
             minions[i] = {
                 groupName: groupName,
-                dice: actor.heroMinion[i].data.dieType,
+                dice: actor.heroMinion[i].system.dieType,
                 name: actor.heroMinion[i].name,
                 rollResult: rollResult
             };
@@ -266,29 +266,29 @@ export async function OutRoll(out = null) {
 //helper functions
 async function RemoveUsedMods(actor) {
     //Delete mods afterwards
-    let toDelId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && !it.data.data.persistent).map(m => m.data._id);
+    let toDelId = actor.items.filter(it => it.type == "mod" && it.system.selected && !it.system.persistent).map(m => m._id);
     actor.deleteEmbeddedDocuments("Item", toDelId);
 }
 
 async function UnselectPersistentMods(actor) {
     //unselects mods after roll
-    let toUnselectId = actor.items.filter(it => it.data.type == "mod" && it.data.data.selected && it.data.data.persistent).map(m => m.data._id);
+    let toUnselectId = actor.items.filter(it => it.type == "mod" && it.system.selected && it.system.persistent).map(m => m._id);
     for (let i = 0; i < toUnselectId.length; i++) {
-        actor.items.get(toUnselectId[i]).update({ "data.selected": false });;
+        actor.items.get(toUnselectId[i]).update({ "system.selected": false });;
     }
 }
 
 //Function for checking if all valid penalties have been used
 async function usedAllValidPenalties(mods) {
-    let selectedPenalties = mods.filter(m => (m.data.selected == true) && parseInt(m.data.value) < 0);
-    let unselectedPenalties = mods.filter(m => !(m.data.selected == true) && parseInt(m.data.value) < 0);
+    let selectedPenalties = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) < 0);
+    let unselectedPenalties = mods.filter(m => !(m.system.selected == true) && parseInt(m.system.value) < 0);
 
-    let totalPersistentPenalities = mods.filter(m => m.data.persistent == true && m.data.exclusive == false && parseInt(m.data.value) < 0).length;     //Excluding penalties with both persistent & exlcusive, because gonna to have the exclusive check cover this case
+    let totalPersistentPenalities = mods.filter(m => m.system.persistent == true && m.system.exclusive == false && parseInt(m.system.value) < 0).length;     //Excluding penalties with both persistent & exlcusive, because gonna to have the exclusive check cover this case
 
-    let unusedVirginPenalities = unselectedPenalties.filter(m => m.data.persistent == false && m.data.exclusive == false).length;
-    let stillHaveUnusedExclusivePenalities = unselectedPenalties.filter(m => m.data.exclusive == true).length;
-    let usedPersistentPenalities = selectedPenalties.filter(m => m.data.persistent == true && m.data.exclusive == false).length;
-    let usedExclusivePenalities = selectedPenalties.filter(m => m.data.exclusive == true).length;
+    let unusedVirginPenalities = unselectedPenalties.filter(m => m.system.persistent == false && m.system.exclusive == false).length;
+    let stillHaveUnusedExclusivePenalities = unselectedPenalties.filter(m => m.system.exclusive == true).length;
+    let usedPersistentPenalities = selectedPenalties.filter(m => m.system.persistent == true && m.system.exclusive == false).length;
+    let usedExclusivePenalities = selectedPenalties.filter(m => m.system.exclusive == true).length;
 
     //Has non-persistent and non-exclusive Penalities unused 
     if (unusedVirginPenalities) {

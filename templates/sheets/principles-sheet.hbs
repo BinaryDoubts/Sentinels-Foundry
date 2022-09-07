@@ -13,26 +13,20 @@
                 {{localize "SCRPG.principles.duringRoleplaying"}}
             </h4>
             <div>
-                {{editor content=data.data.roleplaying target="data.roleplaying"
-                button=true
-                owner=owner editable=editable}}
+                {{editor enrichedPrincipleRoleplaying target="system.roleplaying" button=true editable=editable}}
             </div>
 
             <h4 class="principle-section">
                 {{localize "SCRPG.twist.minorTwist"}}
             </h4>
             <div>
-                {{editor content=data.data.minorTwist target="data.minorTwist"
-                button=true
-                owner=owner editable=editable}}
+                {{editor enrichedPrincipleMinorTwist target="system.minorTwist" button=true editable=editable}}
             </div>
             <h4 class="principle-section">
                 {{localize "SCRPG.twist.majorTwist"}}
             </h4>
             <div>
-                {{editor content=data.data.majorTwist target="data.majorTwist"
-                button=true
-                owner=owner editable=editable}}
+                {{editor enrichedPrincipleMajorTwist target="system.majorTwist" button=true editable=editable}}
             </div>
         </div>
     </div>

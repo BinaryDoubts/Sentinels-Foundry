@@ -1,52 +1,52 @@
 <section class="environment">
-        <div>
-            <div class="environment-title box-border">
-                <div class="environment-dice">
-                    <input class="environment-name" type="text" name="name" value="{{data.name}}">
-                    {{!-- Button for rolling environment dice --}}
-                    <a title='{{localize "SCRPG.button.rollEnvironment"}}' class="make-roll">
-                        <i class="fas fa-dice"></i>
-                    </a>
-                    {{!-- Environment dice names and values --}}
-                    <input name="data.firstDieName" type="text" value="{{data.data.firstDieName}}">
-                    <select name="data.firstDie">
-                        {{#select data.data.firstDie}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <input name="data.secondDieName" type="text" value="{{data.data.secondDieName}}">
-                    <select name="data.secondDie">
-                        {{#select data.data.secondDie}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <input name="data.thirdDieName" type="text" value="{{data.data.thirdDieName}}">
-                    <select name="data.thirdDie">
-                        {{#select data.data.thirdDie}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
+    <div>
+        <div class="environment-title box-border">
+            <div class="environment-dice">
+                <input class="environment-name" type="text" name="name" value="{{actor.name}}">
+                {{!-- Button for rolling environment dice --}}
+                <a title='{{localize "SCRPG.button.rollEnvironment"}}' class="make-roll">
+                    <i class="fas fa-dice"></i>
+                </a>
+                {{!-- Environment dice names and values --}}
+                <input name="system.firstDieName" type="text" value="{{actor.system.firstDieName}}">
+                <select name="system.firstDie">
+                    {{#select actor.system.firstDie}}
+                    {{#each config.dieTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input name="system.secondDieName" type="text" value="{{actor.system.secondDieName}}">
+                <select name="system.secondDie">
+                    {{#select actor.system.secondDie}}
+                    {{#each config.dieTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input name="system.thirdDieName" type="text" value="{{actor.system.thirdDieName}}">
+                <select name="system.thirdDie">
+                    {{#select actor.system.thirdDie}}
+                    {{#each config.dieTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
             </div>
-            {{!-- Displays green environment twists --}}
-            {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="green" minor="greenminor"
-            major="greenmajor"}}
-            {{!-- Displays yellow environment twists --}}
-            {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="yellow" minor="yellowminor"
-            major="yellowmajor"}}
         </div>
-        <div>
-            {{!-- Environment image --}}
-            <div class="character-photo">
-                <img src="{{data.img}}" data-edit="img" title="{{data.name}}" class="img-border environment-img">
-            </div>
-            {{!-- Displays red environment twists --}}
-            {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="red" minor="redminor" major="redmajor"}}
+        {{!-- Displays green environment twists --}}
+        {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="green" minor="greenminor"
+        major="greenmajor"}}
+        {{!-- Displays yellow environment twists --}}
+        {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="yellow" minor="yellowminor"
+        major="yellowmajor"}}
+    </div>
+    <div>
+        {{!-- Environment image --}}
+        <div class="character-photo">
+            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" class="img-border environment-img">
         </div>
-    </section>
+        {{!-- Displays red environment twists --}}
+        {{> "systems/scrpg/templates/partials/environmenttwist.hbs" title="red" minor="redminor" major="redmajor"}}
+    </div>
+</section>

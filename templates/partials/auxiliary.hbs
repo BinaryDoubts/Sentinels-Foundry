@@ -7,16 +7,16 @@
         <tr>
             <td>
                 <div class="auxiliary-item">
-                    <input class="set-modular" type="checkbox" name="data.modular" {{checked data.data.modular}}
+                    <input class="set-modular" type="checkbox" name="system.modular" {{checked actor.system.modular}}
                         data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.modular"}}</p>
                 </div>
             </td>
-            {{#if (eq data.data.modular true)}}
+            {{#if (eq actor.system.modular true)}}
             <td>
                 <div class="auxiliary-item">
-                    <input class="set-powerless" type="checkbox" name="data.powerless" {{checked data.data.powerless}}
-                        data-dtype="boolean" />
+                    <input class="set-powerless" type="checkbox" name="system.powerless" {{checked
+                        actor.system.powerless}} data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.powerless"}}</p>
                 </div>
             </td>
@@ -25,8 +25,8 @@
         <tr>
             <td>
                 <div class="auxiliary-item">
-                    <input class="set-formchanger" type="checkbox" name="data.formchanger" {{checked
-                        data.data.formchanger}} data-dtype="boolean" />
+                    <input class="set-formchanger" type="checkbox" name="system.formchanger" {{checked
+                        actor.system.formchanger}} data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.formChanger"}}</p>
                 </div>
             </td>
@@ -34,22 +34,22 @@
         <tr>
             <td>
                 <div class="auxiliary-item">
-                    <input class="set-divided" type="checkbox" name="data.divided" {{checked data.data.divided}}
+                    <input class="set-divided" type="checkbox" name="system.divided" {{checked actor.system.divided}}
                         data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.divided"}}</p>
                 </div>
             </td>
-            {{#if (eq data.data.divided true)}}
+            {{#if (eq actor.system.divided true)}}
             <td>
                 <div class="auxiliary-item">
-                    <input type="checkbox" name="data.dividedPsyche" {{checked data.data.dividedPsyche}}
+                    <input type="checkbox" name="system.dividedPsyche" {{checked actor.system.dividedPsyche}}
                         data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.dividedPsyche"}}</p>
                 </div>
             </td>
             <td>
                 <div class="auxiliary-item">
-                    <input type="checkbox" name="data.dividedStatus" {{checked data.data.dividedStatus}}
+                    <input type="checkbox" name="system.dividedStatus" {{checked actor.system.dividedStatus}}
                         data-dtype="boolean" />
                     <p>{{localize "SCRPG.auxiliary.dividedStatus"}}</p>
                 </div>
@@ -60,34 +60,34 @@
 </div><br>
 
 {{!-- Displays auxiliary boxes for form-changer --}}
-{{#if (eq data.data.formchanger true)}}
+{{#if (eq actor.system.formchanger true)}}
 
 {{> "systems/scrpg/templates/partials/formmodularcommon.hbs"}}
 
 {{/if}}
 
 {{!-- Displays auxiliary boxes for modular --}}
-{{#if (eq data.data.modular true)}}
+{{#if (eq actor.system.modular true)}}
 
 {{> "systems/scrpg/templates/partials/formmodularcommon.hbs"}}
 
 {{!-- Second yellow mode/form --}}
-<div {{#if (eq data.data.mode "yellow2" )}} class="select-border yellow-abilities mode-name"
+<div {{#if (eq actor.system.mode "yellow2" )}} class="select-border yellow-abilities mode-name"
     {{else}}class="box-border yellow-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.yellow2" value="{{data.data.modeName.yellow2}}"
+    <input class="mode-name-input" type="text" name="system.modeName.yellow2" value="{{actor.system.modeName.yellow2}}"
         placeholder='{{localize "SCRPG.modes.yellow2"}}'>
     {{!-- Buttons for minimizing the details and applying it to character --}}
-    <a title='{{localize "SCRPG.button.show"}}' class="show-yellow2 mode-item" {{#if (eq data.data.modeDisplayed.yellow2
-        true )}} style="color:green" {{/if}} data-aux="yellow2">
+    <a title='{{localize "SCRPG.button.show"}}' class="show-yellow2 mode-item" {{#if (eq
+        actor.system.modeDisplayed.yellow2 true )}} style="color:green" {{/if}} data-aux="yellow2">
         <i class="fas fa-expand-arrows-alt"></i>
     </a>
-    <a title='{{localize "SCRPG.button.changeMode"}}' class="set-mode mode-item" {{#if (eq data.data.mode "yellow2" )}}
-        style="color:green" {{/if}} data-aux="yellow2">
+    <a title='{{localize "SCRPG.button.changeMode"}}' class="set-mode mode-item" {{#if (eq actor.system.mode "yellow2"
+        )}} style="color:green" {{/if}} data-aux="yellow2">
         <i class="fas fa-upload"></i>
     </a>
 </div>
 {{!-- Displays powers, description and ability --}}
-{{#if (eq data.data.modeDisplayed.yellow2 true)}}
+{{#if (eq actor.system.modeDisplayed.yellow2 true)}}
 <div class="mode-card box-border yellow-abilities">
     <div class="forms">
         {{> "systems/scrpg/templates/partials/auxiliarypowers.hbs" mode="yellow2"}}
@@ -100,9 +100,8 @@
                     </th>
                 <tr>
                     <td>
-                        {{editor content=data.data.modeDescription.yellow2 target="data.modeDescription.yellow2"
-                        button=true
-                        owner=owner editable=editable}}
+                        {{editor enrichedModeDescriptionYellow2 target="system.modeDescription.yellow2" button=true
+                        editable=editable}}
                     </td>
                 </tr>
             </table>
@@ -117,22 +116,22 @@
 {{/if}}
 
 {{!-- Red mode/form --}}
-<div {{#if (eq data.data.mode "red1" )}} class="select-border red-abilities mode-name"
+<div {{#if (eq actor.system.mode "red1" )}} class="select-border red-abilities mode-name"
     {{else}}class="box-border red-abilities mode-name" {{/if}}>
-    <input class="mode-name-input" type="text" name="data.modeName.red1" value="{{data.data.modeName.red1}}"
+    <input class="mode-name-input" type="text" name="system.modeName.red1" value="{{actor.system.modeName.red1}}"
         placeholder='{{localize "SCRPG.modes.red1"}}'>
     {{!-- Buttons for minimizing the details and applying it to character --}}
-    <a title='{{localize "SCRPG.button.show"}}' class="show-red1 mode-item" {{#if (eq data.data.modeDisplayed.red1 true
-        )}} style="color:green" {{/if}} data-aux="red1">
+    <a title='{{localize "SCRPG.button.show"}}' class="show-red1 mode-item" {{#if (eq actor.system.modeDisplayed.red1
+        true )}} style="color:green" {{/if}} data-aux="red1">
         <i class="fas fa-expand-arrows-alt"></i>
     </a>
-    <a title='{{localize "SCRPG.button.changeMode"}}' class="set-mode mode-item" {{#if (eq data.data.mode "red1" )}}
+    <a title='{{localize "SCRPG.button.changeMode"}}' class="set-mode mode-item" {{#if (eq actor.system.mode "red1" )}}
         style="color: green" {{/if}} data-aux="red1">
         <i class="fas fa-upload"></i>
     </a>
 </div>
 {{!-- Displays powers, description and ability --}}
-{{#if (eq data.data.modeDisplayed.red1 true)}}
+{{#if (eq actor.system.modeDisplayed.red1 true)}}
 <div class="mode-card box-border red-abilities">
     <div class="forms">
         {{> "systems/scrpg/templates/partials/auxiliarypowers.hbs" mode="red1"}}
@@ -145,9 +144,8 @@
                     </th>
                 <tr>
                     <td>
-                        {{editor content=data.data.modeDescription.red1 target="data.modeDescription.red1"
-                        button=true
-                        owner=owner editable=editable}}
+                        {{editor enrichedModeDescriptionRed1 target="system.modeDescription.red1" button=true
+                        editable=editable}}
                     </td>
                 </tr>
             </table>
@@ -164,55 +162,55 @@
 
 {{!-- When divided status selected will show two sets of status dice that can be set for the --}}
 {{!-- civilian and powered mode --}}
-{{#if (eq data.data.dividedStatus true)}}
+{{#if (eq actor.system.dividedStatus true)}}
 <div class="section-name section-name-divided">
     <h3>{{localize "SCRPG.powerquality.statusDice"}}</h3>
 </div>
 <div class="status-dice box-border divided-status">
     <h3>{{localize "SCRPG.auxiliary.powered"}}</h3>
     <h3>{{localize "SCRPG.auxiliary.civilian"}}</h3>
-    <select class="status-die-update green-border green-status-background" name="data.statusDie.green">
-        {{#select data.data.statusDie.green}}
+    <select class="status-die-update green-border green-status-background" name="system.statusDie.green">
+        {{#select actor.system.statusDie.green}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
         {{/select}}
     </select>
 
-    <select class="status-die-update green-border green-status-background" name="data.statusDie.civilianGreen">
-        {{#select data.data.statusDie.civilianGreen}}
+    <select class="status-die-update green-border green-status-background" name="system.statusDie.civilianGreen">
+        {{#select actor.system.statusDie.civilianGreen}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
         {{/select}}
     </select>
 
-    <select class="status-die-update yellow-border yellow-status-background" name="data.statusDie.yellow">
-        {{#select data.data.statusDie.yellow}}
+    <select class="status-die-update yellow-border yellow-status-background" name="system.statusDie.yellow">
+        {{#select actor.system.statusDie.yellow}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
         {{/select}}
     </select>
 
-    <select class="status-die-update yellow-border yellow-status-background" name="data.statusDie.civilianYellow">
-        {{#select data.data.statusDie.civilianYellow}}
+    <select class="status-die-update yellow-border yellow-status-background" name="system.statusDie.civilianYellow">
+        {{#select actor.system.statusDie.civilianYellow}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
         {{/select}}
     </select>
 
-    <select class="status-die-update red-border red-status-background" name="data.statusDie.red">
-        {{#select data.data.statusDie.red}}
+    <select class="status-die-update red-border red-status-background" name="system.statusDie.red">
+        {{#select actor.system.statusDie.red}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}
         {{/select}}
     </select>
 
-    <select class="status-die-update red-border red-status-background" name="data.statusDie.civilianRed">
-        {{#select data.data.statusDie.civilianRed}}
+    <select class="status-die-update red-border red-status-background" name="system.statusDie.civilianRed">
+        {{#select actor.system.statusDie.civilianRed}}
         {{#each config.dieTypes as |name type|}}
         <option value="{{type}}">{{localize name}}</option>
         {{/each}}

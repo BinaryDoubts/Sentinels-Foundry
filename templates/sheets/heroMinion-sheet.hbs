@@ -11,9 +11,9 @@
                 <th>
                     {{localize "SCRPG.minion.action"}}
                 </th>
-                {{#unless (eq this.item.actor.data.type "minion")}}
+                {{#unless (eq this.item.actor.system.type "minion")}}
                 <th>
-                    {{#unless (eq this.item.actor.data.type "hero")}}
+                    {{#unless (eq this.item.actor.system.type "hero")}}
                     {{localize "SCRPG.minion.ability"}}
                     {{else}}
                     {{localize "SCRPG.minion.form"}}
@@ -27,20 +27,20 @@
             <tr class="villain-abilities">
                 <td>
                     {{!-- Drop down to select the action the minion can take --}}
-                    <select name="data.action">
-                        {{#select data.data.action}}
+                    <select name="system.action">
+                        {{#select item.system.action}}
                         {{#each config.actionType as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}}
                     </select>
                 </td>
-                {{#unless (eq this.item.actor.data.type "minion")}}
+                {{#unless (eq this.item.actor.system.type "minion")}}
                 <td>
                     {{!-- Drop down to select the form that it can take --}}
                     {{!-- list is generated from character options --}}
-                    <select name="data.form">
-                        {{#select data.data.form}}
+                    <select name="system.form">
+                        {{#select item.system.form}}
                         <option value="N/A">N/A</option>
                         {{#each this.item.actor.minionForm as |minionForm|}}
                         <option value="{{name}}">{{name}}</option>
@@ -51,8 +51,8 @@
                 {{/unless}}
                 <td>
                     {{!-- Drop down to select minion die type --}}
-                    <select name="data.dieType">
-                        {{#select data.data.dieType}}
+                    <select name="system.dieType">
+                        {{#select item.system.dieType}}
                         {{#each config.dieTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}

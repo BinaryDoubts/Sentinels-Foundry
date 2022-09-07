@@ -11,16 +11,14 @@
             </div>
             <div class="personality-description">
                 <div>
-                    {{editor content=data.data.description target="data.description"
-                    button=true
-                    owner=owner editable=editable}}
-                    <input name="data.out" type="text" value="{{item.data.data.out}}"
+                    {{editor enrichedPersonalityDescription target="system.description" button=true editable=editable}}
+                    <input name="system.out" type="text" value="{{item.system.out}}"
                         placeholder='{{localize "SCRPG.charInfo.out"}}'>
                 </div>
                 <div class="status-dice">
                     <div class="status-dice-child">
-                        <select name="data.statusDie.green" class="green-border green-status-background">
-                            {{#select data.data.statusDie.green}}
+                        <select name="system.statusDie.green" class="green-border green-status-background">
+                            {{#select item.system.statusDie.green}}
                             {{#each config.dieTypes as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
@@ -28,8 +26,8 @@
                         </select>
                     </div>
                     <div class="status-dice-child">
-                        <select name="data.statusDie.yellow" class="yellow-border yellow-status-background">
-                            {{#select data.data.statusDie.yellow}}
+                        <select name="system.statusDie.yellow" class="yellow-border yellow-status-background">
+                            {{#select item.system.statusDie.yellow}}
                             {{#each config.dieTypes as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
@@ -37,8 +35,8 @@
                         </select>
                     </div>
                     <div class="status-dice-child">
-                        <select name="data.statusDie.red" class="red-border red-status-background">
-                            {{#select data.data.statusDie.red}}
+                        <select name="system.statusDie.red" class="red-border red-status-background">
+                            {{#select item.system.statusDie.red}}
                             {{#each config.dieTypes as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                             {{/each}}

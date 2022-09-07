@@ -15,8 +15,8 @@
             <tr>
                 {{!-- Dropdown menu for selecting die type --}}
                 <td>
-                    <select name="data.dieType">
-                        {{#select data.data.dieType}}
+                    <select name="system.dieType">
+                        {{#select item.system.dieType}}
                         {{#each config.dieTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -25,8 +25,7 @@
                 </td>
                 {{!-- Description input --}}
                 <td>
-                    {{editor content=data.data.description target="data.description" button=true owner=owner
-                    editable=editable}}
+                    {{editor enrichedQualityDescription target="system.description" button=true editable=editable}}
                 </td>
             </tr>
         </table>
