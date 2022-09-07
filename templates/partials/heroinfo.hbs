@@ -3,7 +3,7 @@
 <section {{#if (eq actor.type "hero" )}}class="character chargrid chargrid-hero" {{/if}} {{#if (eq actor.type "villain"
     )}}class="character chargrid chargrid-villain" {{/if}}>
     <div class="character-photo">
-        <img src="{{data.img}}" data-edit="img" title="{{data.name}}" {{#if (eq actor.type "hero"
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" {{#if (eq actor.type "hero"
             )}}class="hero-img img-border" {{/if}} {{#if (eq actor.type "villain" )}}class="villain-img img-border"
             {{/if}} />
 
@@ -33,7 +33,7 @@
                         <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" />
                     </td>
                     <td>
-                        <input name="data.alias" type="text" value="{{data.data.alias}}">
+                        <input name="system.alias" type="text" value="{{actor.system.alias}}">
                     </td>
                 </tr>
             </table>
@@ -50,43 +50,41 @@
                 <tr>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.gender"}}</h4>
-                        <input name="data.gender" type="text" value="{{data.data.gender}}">
+                        <input name="system.gender" type="text" value="{{actor.system.gender}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.age"}}</h4>
-                        <input name="data.age" type="text" value="{{data.data.age}}">
+                        <input name="system.age" type="text" value="{{actor.system.age}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.height"}}</h4>
-                        <input name="data.height" type="text" value="{{data.data.height}}">
+                        <input name="system.height" type="text" value="{{actor.system.height}}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.eyes"}}</h4>
-                        <input name="data.eyes" type="text" value="{{data.data.eyes}}">
+                        <input name="system.eyes" type="text" value="{{actor.system.eyes}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.hair"}}</h4>
-                        <input name="data.hair" type="text" value="{{data.data.hair}}">
+                        <input name="system.hair" type="text" value="{{actor.system.hair}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.skin"}}</h4>
-                        <input name="data.skin" type="text" value="{{data.data.skin}}">
+                        <input name="system.skin" type="text" value="{{actor.system.skin}}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.build"}}</h4>
-                        <input name="data.build" type="text" value="{{data.data.build}}">
+                        <input name="system.build" type="text" value="{{actor.system.build}}">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3">
                         <h4>{{localize "SCRPG.charInfo.costume"}}</h4>
-                        {{editor content=data.data.costume target="data.costume"
-                        button=true
-                        owner=owner editable=editable}}
+                        {{editor enrichedCostume target="system.costume" button=true editable=editable}}
 
                     </td>
                 </tr>
@@ -105,11 +103,11 @@
                 <tr>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.background"}}</h4>
-                        <input name="data.background" type="text" value="{{data.data.background}}">
+                        <input name="system.background" type="text" value="{{actor.system.background}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.powerSource"}}</h4>
-                        <input name="data.powerSource" type="text" value="{{data.data.powerSource}}">
+                        <input name="system.powerSource" type="text" value="{{actor.system.powerSource}}">
                     </td>
                 <tr>
                     {{/if}}
@@ -118,17 +116,17 @@
                     {{#if (eq actor.type "villain")}}
                     <td>
                         <h4>{{localize "SCRPG.charInfo.approach"}}</h4>
-                        <input name="data.approach" type="text" value="{{data.data.approach}}">
+                        <input name="system.approach" type="text" value="{{actor.system.approach}}">
                     </td>
                     {{/if}}
                     <td>
                         <h4>{{localize "SCRPG.charInfo.archetype"}}</h4>
-                        <input name="data.archetype" type="text" value="{{data.data.archetype}}">
+                        <input name="system.archetype" type="text" value="{{actor.system.archetype}}">
                     </td>
                     {{#if (eq actor.type "hero")}}
                     <td>
                         <h4>{{localize "SCRPG.charInfo.personality"}}</h4>
-                        <input name="data.personality" type="text" value="{{data.data.personality}}">
+                        <input name="system.personality" type="text" value="{{actor.system.personality}}">
                     </td>
                     {{/if}}
                 </tr>
@@ -148,11 +146,11 @@
                 <tr>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.maxHealth"}}</h4>
-                        <input name="data.wounds.max" type="text" value="{{data.data.wounds.max}}">
+                        <input name="system.wounds.max" type="text" value="{{actor.system.wounds.max}}">
                     </td>
                     <td>
                         <h4>{{localize "SCRPG.charInfo.currentHealth"}}</h4>
-                        <input name="data.wounds.value" type="text" value="{{data.data.wounds.value}}">
+                        <input name="system.wounds.value" type="text" value="{{actor.system.wounds.value}}">
                     </td>
                 </tr>
             </table>

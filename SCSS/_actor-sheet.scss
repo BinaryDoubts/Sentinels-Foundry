@@ -1,4 +1,8 @@
 .SCRPG.sheet.actor {
+    h3 {
+        border-bottom: none;
+    }
+
     .editor {
         height: 6.25rem;
         background: rgba(255, 255, 255, 0.2);
@@ -17,6 +21,10 @@
 
         .tox.tox-tinymce .tox-tbtn[title="Formats"] {
             width: 80px;
+        }
+
+        .tox .tox-toolbar__group {
+            padding: 0;
         }
     }
 
@@ -280,7 +288,7 @@
 
     .hero-point-grid {
         display: grid;
-        grid-template-columns: 50% auto;
+        grid-template-columns: 55% auto;
         border-bottom: 1px dotted $black;
     }
 

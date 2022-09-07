@@ -21,8 +21,8 @@
             <tr>
                 <td>
                     {{!-- Drop down to select the mod --}}
-                    <select name="data.value">
-                        {{#select data.data.value}}
+                    <select name="system.value">
+                        {{#select item.system.value}}
                         {{#each config.mod as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -31,12 +31,13 @@
                 </td>
                 <td>
                     {{!-- Toggle wether the mod is persistent --}}
-                    <input type="checkbox" name="data.persistent" {{checked data.data.persistent}}
+                    <input type="checkbox" name="system.persistent" {{checked item.system.persistent}}
                         data-dtype="boolean" />
                 </td>
                 <td>
                     {{!-- Toggle wether the mod is exclusvie --}}
-                    <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}} data-dtype="boolean" />
+                    <input type="checkbox" name="system.exclusive" {{checked item.system.exclusive}}
+                        data-dtype="boolean" />
                 </td>
             </tr>
 

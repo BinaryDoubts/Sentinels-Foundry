@@ -16,7 +16,7 @@
             <tr>
                 <td class="mod-create-td">
                     <div>
-                        <input name="data.modName" type="text" value="{{data.data.modName}}"
+                        <input name="system.modName" type="text" value="{{actor.system.modName}}"
                             placeholder='{{localize "SCRPG.mod.modName"}}' />
                     </div>
                     <div class="mod-dialogue">
@@ -25,7 +25,7 @@
                                 {{localize "SCRPG.mod.persistent"}}
                                 <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                             </p>
-                            <input type="checkbox" name="data.persistent" {{checked data.data.persistent}}
+                            <input type="checkbox" name="system.persistent" {{checked actor.system.persistent}}
                                 data-dtype="boolean" />
                         </div>
                         <div class="mod-exc-dialogue">
@@ -33,7 +33,7 @@
                                 {{localize "SCRPG.mod.exclusive"}}
                                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
                             </p>
-                            <input type="checkbox" name="data.exclusive" {{checked data.data.exclusive}}
+                            <input type="checkbox" name="system.exclusive" {{checked actor.system.exclusive}}
                                 data-dtype="boolean" />
                         </div>
                     </div>
@@ -61,15 +61,15 @@
                 <td>
                     <div class="bonuses">
                         {{#each actor.mod as |mod id|}}
-                        {{#if (gte data.value 0)}}
-                        <div class="mod-item item mod-select box-border green-abilities {{#if (eq data.selected true)}}green-border{{/if}}"
+                        {{#if (gte system.value 0)}}
+                        <div class="mod-item item mod-select box-border green-abilities {{#if (eq system.selected true)}}green-border{{/if}}"
                             data-item-id="{{ mod._id}}">
-                            <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
+                            <h3>{{#if (eq system.named true)}}{{name}}{{/if}} {{system.value}}</h3>
                             <div class="p-e-icon">
-                                {{#if (eq data.persistent true)}}
+                                {{#if (eq system.persistent true)}}
                                 <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                                 {{/if}}
-                                {{#if (eq data.exclusive true)}}
+                                {{#if (eq system.exclusive true)}}
                                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
                                 {{/if}}
                             </div>
@@ -81,15 +81,15 @@
                 <td>
                     <div class="penalties">
                         {{#each actor.mod as |mod id|}}
-                        {{#if (lte data.value 0)}}
-                        <div class="mod-item item mod-select box-border red-abilities  {{#if (eq data.selected true)}}red-border{{/if}}"
+                        {{#if (lte system.value 0)}}
+                        <div class="mod-item item mod-select box-border red-abilities  {{#if (eq system.selected true)}}red-border{{/if}}"
                             data-item-id="{{ mod._id}}">
-                            <h3>{{#if (eq data.named true)}}{{name}}{{/if}} {{data.value}}</h3>
+                            <h3>{{#if (eq system.named true)}}{{name}}{{/if}} {{system.value}}</h3>
                             <div class="p-e-icon">
-                                {{#if (eq data.persistent true)}}
+                                {{#if (eq system.persistent true)}}
                                 <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
                                 {{/if}}
-                                {{#if (eq data.exclusive true)}}
+                                {{#if (eq system.exclusive true)}}
                                 <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
                                 {{/if}}
                             </div>

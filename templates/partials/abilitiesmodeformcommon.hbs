@@ -1,28 +1,28 @@
-<select name="data.mode" class="section-name section-name-formmode change-mode">
-    {{#select data.data.mode}}
-    <option value="main" class="green-abilities">{{this.actor.data.data.modeName.main}}</option>
-    <option value="green1" class="green-abilities">{{this.actor.data.data.modeName.green1}}</option>
-    {{#if (eq data.data.powerless true)}}
-    <option value="green2" class="green-abilities">{{this.actor.data.data.modeName.green2}}</option>
+<select name="system.mode" class="section-name section-name-formmode change-mode">
+    {{#select actor.system.mode}}
+    <option value="main" class="green-abilities">{{actor.system.modeName.main}}</option>
+    <option value="green1" class="green-abilities">{{actor.system.modeName.green1}}</option>
+    {{#if (eq actor.system.powerless true)}}
+    <option value="green2" class="green-abilities">{{actor.system.modeName.green2}}</option>
     {{/if}}
-    <option value="yellow1" class="yellow-abilities">{{this.actor.data.data.modeName.yellow1}}</option>
-    {{#if (eq data.data.modular true)}}
-    <option value="yellow2" class="yellow-abilities">{{this.actor.data.data.modeName.yellow2}}</option>
-    <option value="red1" class="red-abilities">{{this.actor.data.data.modeName.red1}}</option>
+    <option value="yellow1" class="yellow-abilities">{{actor.system.modeName.yellow1}}</option>
+    {{#if (eq actor.system.modular true)}}
+    <option value="yellow2" class="yellow-abilities">{{actor.system.modeName.yellow2}}</option>
+    <option value="red1" class="red-abilities">{{actor.system.modeName.red1}}</option>
     {{/if}}
     {{/select}}
 </select>
 
 
 {{!-- First green mode/form --}}
-{{#if (eq this.actor.data.data.mode "green1")}}
+{{#if (eq actor.system.mode "green1")}}
 <table class="box-border green-abilities">
     <tr>
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr>
         <td>
-            {{{this.actor.data.data.modeDescription.green1}}}
+            {{{actor.system.modeDescription.green1}}}
         </td>
     </tr>
 </table>
@@ -30,32 +30,32 @@
 {{/if}}
 
 {{!-- Default mode/form --}}
-{{#if (eq this.actor.data.data.mode "main")}}
+{{#if (eq actor.system.mode "main")}}
 <table class="box-border green-abilities">
     <tr>
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr>
         <td>
-            {{{this.actor.data.data.modeDescription.main}}}
+            {{{actor.system.modeDescription.main}}}
         </td>
     </tr>
 </table>
 {{/if}}
 
 {{!-- Second green mode/form --}}
-{{#if (eq this.actor.data.data.mode "green2")}}
+{{#if (eq actor.system.mode "green2")}}
 <table class="box-border green-abilities">
     <tr>
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr>
         <td>
-            {{{this.actor.data.data.modeDescription.green2}}}
+            {{{actor.system.modeDescription.green2}}}
         </td>
     </tr>
 </table>
-{{#if (eq data.data.formchanger true)}}
+{{#if (eq actor.system.formchanger true)}}
 {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green2"}}
 {{/if}}
 {{/if}}
@@ -63,16 +63,16 @@
 
 
 {{!-- First yellow mode/form --}}
-{{#if (eq this.actor.data.data.mode "yellow1")}}
+{{#if (eq actor.system.mode "yellow1")}}
 <table class="box-border yellow-abilities">
     <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow1'
-    this.actor.data.data}}">
+    actor.system}}">
         <th>{{localize "SCRPG.abilities.description"}}</th>
     </tr>
     <tr style="{{getAbilitiesEnabledFromStatusClass 'yellow1'
-    this.actor.data.data}}">
+    actor.system}}">
         <td>
-            {{{this.actor.data.data.modeDescription.yellow1}}}
+            {{{actor.system.modeDescription.yellow1}}}
         </td>
     </tr>
 </table>

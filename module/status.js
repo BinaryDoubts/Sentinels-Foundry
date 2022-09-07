@@ -3,43 +3,43 @@
 //Determine characters status from current health and scene status and set it
 //to main roll
 export function HealthUpdate(scene = null, health = null, actor = null) {
-    if (scene == "red" || health <= actor.data.data.health.redHigh) {
-        if (actor.data.data.dividedStatus == true && actor.data.data.civilianMode == true) {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianRed });
+    if (scene == "red" || health <= actor.system.health.redHigh) {
+        if (actor.system.dividedStatus == true && actor.system.civilianMode == true) {
+            actor.update({ "system.thirdDie": actor.system.statusDie.civilianRed });
         } else {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.red });
+            actor.update({ "system.thirdDie": actor.system.statusDie.red });
         }
-        actor.update({ "data.thirdDieName": "red" });
-    } else if (scene == "yellow" || health <= actor.data.data.health.yellowHigh) {
-        if (actor.data.data.dividedStatus == true && actor.data.data.civilianMode == true) {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianYellow });
+        actor.update({ "system.thirdDieName": "red" });
+    } else if (scene == "yellow" || health <= actor.system.health.yellowHigh) {
+        if (actor.system.dividedStatus == true && actor.system.civilianMode == true) {
+            actor.update({ "system.thirdDie": actor.system.statusDie.civilianYellow });
         } else {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.yellow });
+            actor.update({ "system.thirdDie": actor.system.statusDie.yellow });
         }
-        actor.update({ "data.thirdDieName": "yellow" });
+        actor.update({ "system.thirdDieName": "yellow" });
     } else {
-        if (actor.data.data.dividedStatus == true && actor.data.data.civilianMode == true) {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianGreen });
+        if (actor.system.dividedStatus == true && actor.system.civilianMode == true) {
+            actor.update({ "system.thirdDie": actor.system.statusDie.civilianGreen });
         } else {
-            actor.update({ "data.thirdDie": actor.data.data.statusDie.green });
+            actor.update({ "system.thirdDie": actor.system.statusDie.green });
         }
-        actor.update({ "data.thirdDieName": "green" });
+        actor.update({ "system.thirdDieName": "green" });
     }
 }
 
 //updates the set status die when changing between civilian and powered modes
 export function DividedHealthChange(status = null, actor = null) {
-    if (status == "green" && actor.data.data.civilianMode == false) {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianGreen });
-    } else if (status == "green" && actor.data.data.civilianMode == true) {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.green });
-    } else if (status == "yellow" && actor.data.data.civilianMode == false) {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianYellow });
-    } else if (status == "yellow" && actor.data.data.civilianMode == true) {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.yellow });
-    } else if (status == "red" && actor.data.data.civilianMode == false) {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.civilianRed });
+    if (status == "green" && actor.system.civilianMode == false) {
+        actor.update({ "system.thirdDie": actor.system.statusDie.civilianGreen });
+    } else if (status == "green" && actor.system.civilianMode == true) {
+        actor.update({ "system.thirdDie": actor.system.statusDie.green });
+    } else if (status == "yellow" && actor.system.civilianMode == false) {
+        actor.update({ "system.thirdDie": actor.system.statusDie.civilianYellow });
+    } else if (status == "yellow" && actor.system.civilianMode == true) {
+        actor.update({ "system.thirdDie": actor.system.statusDie.yellow });
+    } else if (status == "red" && actor.system.civilianMode == false) {
+        actor.update({ "system.thirdDie": actor.system.statusDie.civilianRed });
     } else {
-        actor.update({ "data.thirdDie": actor.data.data.statusDie.red });
+        actor.update({ "system.thirdDie": actor.system.statusDie.red });
     }
 }

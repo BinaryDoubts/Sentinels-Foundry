@@ -8,11 +8,10 @@
 <div class="minion-form-list item-list">
     {{!-- Table to displaying available minion forms --}}
     <div class="villain-abilities box-border minion-form-table">
-        <div class={{#if (eq this.actor.data.type "hero"
-            )}}"minion-form-title"{{else}}"villain-minion-form-title"{{/if}}>
+        <div class={{#if (eq actor.system.type "hero" )}}"minion-form-title"{{else}}"villain-minion-form-title"{{/if}}>
             <div class="minion-form-title-child">{{localize "SCRPG.sheet.name"}}</div>
             <div class="minion-form-title-child">{{localize "SCRPG.sheet.description"}}</div>
-            {{#if (eq this.actor.data.type "hero")}}
+            {{#if (eq actor.system.type "hero")}}
             <div class="minion-form-title-child">{{localize "SCRPG.sheet.bonus"}}</div>
             {{/if}}
             <div class="minion-form-title-child">
@@ -24,17 +23,17 @@
         </div>
         {{!-- Displays all minion forms the character has --}}
         {{#each actor.minionForm as |minionForm id|}}
-        <div class={{#if (eq ../this.actor.data.type "hero" )}}"minionForm-item minionForm-parent
+        <div class={{#if (eq ../actor.system.type "hero" )}}"minionForm-item minionForm-parent
             item"{{else}}"minionForm-item villain-minionForm-parent item"{{/if}} data-item-id="{{minionForm._id}}">
             <div class="minionForm-child">
                 {{name}}
             </div>
             <div class="minionForm-child">
-                <div>{{{data.description}}}</div>
+                <div>{{{system.description}}}</div>
             </div>
-            {{#if (eq ../this.actor.data.type "hero")}}
+            {{#if (eq ../actor.system.type "hero")}}
             <div class="minionForm-child">
-                {{getLocalizeMinionBonus data.bonus}}
+                {{getLocalizeMinionBonus system.bonus}}
             </div>
             {{/if}}
             <div class="minionForm-child">
@@ -84,19 +83,19 @@
             </tr>
             <tr>
                 <th>{{localize "SCRPG.minion.action"}}</th>
-                <td>{{getLocalizeMinionAbility data.action}}</td>
+                <td>{{getLocalizeMinionAbility system.action}}</td>
             </tr>
             <tr>
-                {{#if (eq ../this.actor.data.type "hero")}}
+                {{#if (eq ../actor.system.type "hero")}}
                 <th>{{localize "SCRPG.minion.form"}}</th>
                 {{else}}
                 <th>{{localize "SCRPG.minion.ability"}}</th>
                 {{/if}}
-                <td>{{data.form}}</td>
+                <td>{{system.form}}</td>
             </tr>
             <tr>
                 <th>{{localize "SCRPG.sheet.die"}}</th>
-                <td>{{data.dieType}}</td>
+                <td>{{system.dieType}}</td>
             </tr>
         </table>
     </div>

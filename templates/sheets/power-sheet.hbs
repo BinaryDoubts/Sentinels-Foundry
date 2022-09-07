@@ -13,8 +13,8 @@
                 <th>{{localize "SCRPG.type.power"}}</th>
                 <td>
                     {{!-- Dropdown menu shows where the power belongs either default or part of mode/form --}}
-                    <select name="data.aux">
-                        {{#select data.data.aux}}
+                    <select name="system.aux">
+                        {{#select item.system.aux}}
                         {{#each config.types as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -34,8 +34,8 @@
                 <tr>
                     {{!-- Dropdown menu for selecting die type --}}
                     <td>
-                        <select name="data.dieType">
-                            {{#select data.data.dieType}}
+                        <select name="system.dieType">
+                            {{#select item.system.dieType}}
                             {{#each config.dieTypes as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                             {{/each}}
@@ -44,8 +44,7 @@
                     </td>
                     {{!-- Description input --}}
                     <td>
-                        {{editor content=data.data.description target="data.description" button=true owner=owner
-                        editable=editable}}
+                        {{editor enrichedPowerDescription target="system.description" button=true editable=editable}}
                     </td>
                 </tr>
             </table>

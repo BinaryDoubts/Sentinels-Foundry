@@ -13,11 +13,11 @@
     </div>
     <section class="environmentTwist-list item-list">
         {{#each actor.environmentTwist as |twist id|}}
-        {{#if (eq twist.data.type ../minor)}}
+        {{#if (eq twist.system.type ../minor)}}
         <div class="environmentTwist-item item" data-item-id="{{twist._id}}">
             <div class="nested-name">
                 <p>{{name}}: </p>
-                {{{data.description}}}
+                {{{system.description}}}
             </div>
             <div class="environment-buttons">
                 {{!-- button for pushing twist to chat --}}
@@ -39,11 +39,11 @@
     </div>
     <section class="environmentTwist-list item-list">
         {{#each actor.environmentTwist as |twist id|}}
-        {{#if (eq twist.data.type ../major)}}
+        {{#if (eq twist.system.type ../major)}}
         <div class="environmentTwist-item item" data-item-id="{{twist._id}}">
             <div class="nested-name">
                 <p>{{name}}: </p>
-                {{{data.description}}}
+                {{{system.description}}}
             </div>
             <div class="environment-buttons">
                 {{!-- button for pushing twist to chat --}}

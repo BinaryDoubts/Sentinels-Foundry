@@ -14,13 +14,13 @@
         </div>
         {{!-- Displays all minion forms the character has --}}
         {{#each actor.minionForm as |minionForm id|}}
-        {{#if (eq data.group ../index)}}
+        {{#if (eq system.group ../index)}}
         <div class="minionForm-item villain-minionForm-parent item" data-item-id="{{minionForm._id}}">
             <div class="minionForm-child">
                 {{name}}
             </div>
             <div class="minionForm-child">
-                <div>{{{data.description}}}</div>
+                <div>{{{system.description}}}</div>
             </div>
             <div class="minionForm-child">
                 {{!-- buttons for pushing minion form to chat --}}
@@ -36,7 +36,7 @@
 
 <div class="heroMinion-list item-list box-border">
     {{#each actor.heroMinion as |heroMinion id|}}
-    {{#if (eq data.group ../index)}}
+    {{#if (eq system.group ../index)}}
     <div class="heroMinion-item item" data-item-id="{{heroMinion._id}}">
         <table class="villain-abilities box-border minion-stats">
             <tr>
@@ -59,11 +59,11 @@
             </tr>
             <tr>
                 <th>{{localize "SCRPG.minion.action"}}</th>
-                <td>{{getLocalizeMinionAbility data.action}}</td>
+                <td>{{getLocalizeMinionAbility system.action}}</td>
             </tr>
             <tr>
                 <th>{{localize "SCRPG.sheet.die"}}</th>
-                <td>{{data.dieType}}</td>
+                <td>{{system.dieType}}</td>
             </tr>
         </table>
     </div>

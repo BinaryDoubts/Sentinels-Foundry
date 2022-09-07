@@ -2,20 +2,20 @@
 
 <form class="{{cssClass}}" autocomplete="off">
     <header class="ability-title sheet-header">
-        <h3 class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border "><input name="name" type="text"
+        <h3 class="{{#color}}{{item.system.aux}}{{/color}}-abilities box-border "><input name="name" type="text"
                 value="{{item.name}}" placeholder="{{ localize 'Name' }}" /></h3>
     </header>
 
     <div class="sheet-content ability-content">
         {{#if (eq this.item.actor null)}}
-        <table class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border type-table">
+        <table class="{{#color}}{{item.system.aux}}{{/color}}-abilities box-border type-table">
             <tr>
                 <th>{{localize "SCRPG.type.ability"}}</th>
                 <td>
                     {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
                     {{!-- or part of mode/form --}}
-                    <select name="data.aux">
-                        {{#select data.data.aux}}
+                    <select name="system.aux">
+                        {{#select item.system.aux}}
                         {{#each config.modes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -25,7 +25,7 @@
             </tr>
         </table>
         {{/if}}
-        <table class="{{#color}}{{data.data.aux}}{{/color}}-abilities box-border">
+        <table class="{{#color}}{{item.system.aux}}{{/color}}-abilities box-border">
             <colgroup>
                 <col width="45px">
                 <col width="30px">
@@ -43,34 +43,34 @@
                     <div class="icon-position">
                         <a class="set-attack">
                             <i title={{localize "SCRPG.abilitytypes.attack" }} class="fas fa-hand-rock" {{#if (eq
-                                data.data.icon.attack true)}}style="color:green" {{/if}}></i>
+                                item.system.icon.attack true)}}style="color:green" {{/if}}></i>
                         </a>
                         <a class="set-defend">
                             <i title={{localize "SCRPG.abilitytypes.defend" }} class="fas fa-shield-alt" {{#if (eq
-                                data.data.icon.defend true)}}style="color:green" {{/if}}></i>
+                                item.system.icon.defend true)}}style="color:green" {{/if}}></i>
                         </a>
                         <a class="set-overcome">
                             <i title={{localize "SCRPG.abilitytypes.overcome" }} class="fas fa-share" {{#if (eq
-                                data.data.icon.overcome true)}}style="color:green" {{/if}}></i>
+                                item.system.icon.overcome true)}}style="color:green" {{/if}}></i>
                         </a>
                         <a class="set-hinder">
                             <i title={{localize "SCRPG.abilitytypes.hinder" }} class="fas fa-angle-double-down" {{#if
-                                (eq data.data.icon.hinder true)}}style="color:green" {{/if}}></i>
+                                (eq item.system.icon.hinder true)}}style="color:green" {{/if}}></i>
                         </a>
                         <a class="set-boost">
                             <i title={{localize "SCRPG.abilitytypes.boost" }} class="fas fa-angle-double-up" {{#if (eq
-                                data.data.icon.boost true)}}style="color:green" {{/if}}></i>
+                                item.system.icon.boost true)}}style="color:green" {{/if}}></i>
                         </a>
                         <a class="set-recover">
                             <i title={{localize "SCRPG.abilitytypes.recover" }} class="fas fa-plus-square" {{#if (eq
-                                data.data.icon.recover true)}}style="color:green" {{/if}}></i>
+                                item.system.icon.recover true)}}style="color:green" {{/if}}></i>
                         </a>
                     </div>
                 </td>
                 {{!-- Ability Type --}}
                 <td class="top-align">
-                    <select name="data.type">
-                        {{#select data.data.type}}
+                    <select name="system.type">
+                        {{#select item.system.type}}
                         {{#each config.abilityType}}
                         <option value="{{this.type}}" title="{{localize this.tooltip}}">{{localize this.desc}}</option>
                         {{/each}}
@@ -79,8 +79,7 @@
                 </td>
                 {{!-- Description input --}}
                 <td>
-                    {{editor content=data.data.gameText target="data.gameText" button=true owner=owner
-                    editable=editable}}
+                    {{editor enrichedAbilityGameText target="system.gameText" button=true editable=editable}}
                 </td>
             </tr>
         </table>

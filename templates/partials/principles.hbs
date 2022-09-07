@@ -3,64 +3,58 @@
     {{!-- Entries for first principle, roleplaying info, minor twist and major twist --}}
     <div class="principle DroppableFirstPrinciple">
         <h3 class="section-name section-name-principle">
-            <input name="data.firstPrinciple.name" type="text" value="{{data.data.firstPrinciple.name}}"
+            <input name="system.firstPrinciple.name" type="text" value="{{actor.system.firstPrinciple.name}}"
                 placeholder='{{localize "SCRPG.sheet.firstPrinciple"}}'>
         </h3>
         <h4 class="principle-section">
             {{localize "SCRPG.principles.duringRoleplaying"}}
         </h4>
         <div>
-            {{editor content=data.data.firstPrinciple.roleplaying target="data.firstPrinciple.roleplaying"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedFirstPrincipleRoleplaying target="system.firstPrinciple.roleplaying" button=true
+            editable=editable}}
         </div>
         <h4 class="principle-section">
             {{localize "SCRPG.twist.minorTwist"}}
         </h4>
         <div>
-            {{editor content=data.data.firstPrinciple.minorTwist target="data.firstPrinciple.minorTwist"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedFirstPrincipleMinorTwist target="system.firstPrinciple.minorTwist" button=true
+            editable=editable}}
         </div>
         <h4 class="principle-section">
             {{localize "SCRPG.twist.majorTwist"}}
         </h4>
         <div>
-            {{editor content=data.data.firstPrinciple.majorTwist target="data.firstPrinciple.majorTwist"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedFirstPrincipleMajorTwist target="system.firstPrinciple.majorTwist" button=true
+            editable=editable}}
         </div>
     </div>
 
     {{!-- Entries for second principle, roleplaying info, minor twist and major twist --}}
     <div class="principle left-border DroppableSecondPrinciple">
         <h3 class="section-name section-name-principle">
-            <input name="data.secondPrinciple.name" type="text" value="{{data.data.secondPrinciple.name}}"
+            <input name="system.secondPrinciple.name" type="text" value="{{actor.system.secondPrinciple.name}}"
                 placeholder='{{localize "SCRPG.sheet.secondPrinciple"}}'>
         </h3>
         <h4 class="principle-section">
             {{localize "SCRPG.principles.duringRoleplaying"}}
         </h4>
         <div>
-            {{editor content=data.data.secondPrinciple.roleplaying target="data.secondPrinciple.roleplaying"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedSecondPrincipleRoleplaying target="system.secondPrinciple.roleplaying" button=true
+            editable=editable}}
         </div>
         <h4 class="principle-section">
             {{localize "SCRPG.twist.minorTwist"}}
         </h4>
         <div>
-            {{editor content=data.data.secondPrinciple.minorTwist target="data.secondPrinciple.minorTwist"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedSecondPrincipleMinorTwist target="system.secondPrinciple.minorTwist" button=true
+            editable=editable}}
         </div>
         <h4 class="principle-section">
             {{localize "SCRPG.twist.majorTwist"}}
         </h4>
         <div>
-            {{editor content=data.data.secondPrinciple.majorTwist target="data.secondPrinciple.majorTwist"
-            button=true
-            owner=owner editable=editable}}
+            {{editor enrichedSecondPrincipleMajorTwist target="system.secondPrinciple.majorTwist" button=true
+            editable=editable}}
         </div>
     </div>
 </section>
