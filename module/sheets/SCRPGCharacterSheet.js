@@ -542,7 +542,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 this.actor.update({ "system.secondDie": "d4" });
                 this.actor.update({ "system.secondDieName": game.i18n.localize("SCRPG.sheet.newItem") });
             }
-            this.actor.update({ "system.firstDie": item.systemdieType });
+            this.actor.update({ "system.firstDie": item.system.dieType });
             this.actor.update({ "system.firstDieName": item.name });
             item.update({ "system.selected": "power" });
             if (this.actor.system.civilianMode) {
