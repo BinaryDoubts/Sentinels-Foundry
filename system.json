@@ -1,5 +1,5 @@
 {
-    "name": "scrpg",
+    "id": "scrpg",
     "title": "Sentinel Comics the Roleplaying Game (Unofficial)",
     "description": "A system for playing Sentinel Comics the Roleplaying Game",
     "authors": [
@@ -10,9 +10,12 @@
             "name": "GamerDragon"
         }
     ],
-    "version": "1.5.1",
-    "minimumCoreVersion": "10",
-    "compatibleCoreVersion": "10",
+    "version": "1.5.2",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10",
+        "maximum": "10"
+    },
     "esmodules": [
         "SCRPG.js"
     ],
@@ -24,7 +27,7 @@
             "name": "macros",
             "label": "SCRPG Macros",
             "path": "packs/macros.db",
-            "entity": "Macro"
+            "type": "Macro"
         }
     ],
     "languages": [
@@ -40,5 +43,5 @@
     "initiative": "N/A",
     "url": "https://gitlab.com/RabidRaccoon/scrpg",
     "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/main/system.json",
-    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.5.1/scrpg-v1.5.1.zip"
+    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.5.2/scrpg-v1.5.2.zip"
 }
