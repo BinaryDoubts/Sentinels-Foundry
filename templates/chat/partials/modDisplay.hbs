@@ -6,7 +6,7 @@
         {{#each selectedmods}}
         {{#if (gte system.value 0)}}
         <div class="green-abilities mod-rolls">
-            <span class="mod-roll-text"> {{system.value}} {{#if system.named}}{{item.name}}{{/if}}</span>
+            <span class="mod-roll-text"> {{system.value}} {{#if system.named}}{{name}}{{/if}}</span>
             <div class="p-e-icon">
                 {{#if (eq system.persistent true)}}
                 <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
@@ -24,7 +24,7 @@
         {{#each selectedmods}}
         {{#if (lte system.value 0)}}
         <div class="red-abilities mod-rolls">
-            <span class="mod-roll-text"> {{system.value}} {{#if system.named}}{{item.name}}{{/if}}</span>
+            <span class="mod-roll-text"> {{system.value}} {{#if system.named}}{{name}}{{/if}}</span>
             <div class="p-e-icon">
                 {{#if (eq system.persistent true)}}
                 <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
