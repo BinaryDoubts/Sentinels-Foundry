@@ -10,11 +10,11 @@
             "name": "GamerDragon"
         }
     ],
-    "version": "1.5.3",
+    "version": "1.5.4",
     "compatibility": {
         "minimum": "10",
-        "verified": "10",
-        "maximum": "10"
+        "verified": "11",
+        "maximum": "11"
     },
     "esmodules": [
         "SCRPG.js"
@@ -43,5 +43,5 @@
     "initiative": "N/A",
     "url": "https://gitlab.com/RabidRaccoon/scrpg",
     "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/main/system.json",
-    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.5.3/scrpg-v1.5.3.zip"
+    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.5.4/scrpg-v1.5.4.zip"
 }
