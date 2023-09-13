@@ -1153,6 +1153,11 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
+        if (!this.isValidDropItem(this.actor.type, itemData.type))
+        {
+            return false;
+        }
+
         switch (itemData.type) {
             case "principles":
                 if (this.checkDropTarget(event, "DroppableFirstPrinciple")) {
@@ -1194,6 +1199,44 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         // Create the owned item
         return this._onDropItemCreate(itemData);
+    }
+
+    /**    
+     *      Helper Function for _onDropItem.
+     *      Return true if the dropped itemDataType is a drag and droppable item and is valid for the actorType, else return false
+     **/ 
+    isValidDropItem(actorType, itemDataType) {
+
+        const dragAndDropableItems = ["power", "quality", "ability", "villainStatus", "environmentTwist", "heroMinion", "minionForm", "mod", "principles", "backgrounds", "powerSources", "archetypes", "personality", "initiativeActor"];     //List of itemTypes that is checked, so item ordering isn't affected.
+        const validHeroDrops = ["power", "quality", "ability", "heroMinion", "minionForm", "mod", "principles", "backgrounds", "powerSources", "archetypes", "personality"];
+        const validVillainDrops = ["power", "quality", "ability", "villainStatus", "heroMinion", "minionForm", "mod", "archetypes"];
+        const validEnvironmentDrops = ["environmentTwist", "heroMinion", "minionForm"];
+        const validSceneDrops = ["initiativeActor"];
+        const validMinionDrops = ["heroMinion", "minionForm"];
+
+        // This filter is only for Drag and Droppable from side bar, so allow any items that is not a drag and droppable item
+        // Basically don't stop the item reorder or create owned item. 
+        if (!dragAndDropableItems.includes(itemDataType)) {
+            return true;
+        }
+
+        if (actorType == 'hero' && !validHeroDrops.includes(itemDataType)) {
+            return false;
+        }
+        else if (actorType == 'villain' && !validVillainDrops.includes(itemDataType)) {
+            return false;
+        }
+        else if (actorType == 'environment' && !validEnvironmentDrops.includes(itemDataType)) {
+            return false;
+        }
+        else if (actorType == 'scene' && !validSceneDrops.includes(itemDataType)) {
+            return false;
+        }
+        else if (actorType == 'minion' && !validMinionDrops.includes(itemDataType)) {
+            return false;
+        };
+
+        return true;
     }
 
     // Helper Function for _onDropItem. target example: "DroppableFirstPrinciple"
