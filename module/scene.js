@@ -79,20 +79,18 @@ export async function SetRed() {
     };
 };
 
-export async function SceneChat(type = null) {
-    let coloring = ""
-
-    if (type == "reset" || type == "failure") {
-        coloring = "villain"
-    } else {
-        coloring = type
-    }
+export async function SceneStatus(gc = 0, yc = 0, rc = 0, gt = 0, yt = 0, rt = 0) {
 
     let chatData = {
-        coloring: coloring,
-        type: type
+        gc: gc,
+        yc: yc,
+        rc: rc,
+        gt: gt,
+        yt: yt,
+        rt: rt
     }
-    const messageTemplate = "systems/scrpg/templates/chat/sceneupdate.hbs";
+
+    const messageTemplate = "systems/scrpg/templates/chat/scenestatus.hbs";
 
     let render = await renderTemplate(messageTemplate, chatData)
 
@@ -102,4 +100,5 @@ export async function SceneChat(type = null) {
     };
 
     return ChatMessage.create(messageData);
-};
+
+}
