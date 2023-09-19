@@ -2,10 +2,11 @@
     <div class="scene-tracker box-border">
         <div class="scene-tracker-title">
             <h1>{{localize "SCRPG.scene.sceneTracker"}}</h1>
+            <i title='{{localize "SCRPG.button.displayScene" }}' class="fas fa-comment-alt display-scene"></i>
             {{#if (eq actor.system.options false)}}
-            <i class="fas fa-edit scene-options"></i>
+            <i title='{{localize "SCRPG.button.editScene" }}' class="fas fa-edit scene-options"></i>
             {{else}}
-            <i class="fas fa-times-circle scene-options"></i>
+            <i title='{{localize "SCRPG.button.closeSceneEdit" }}' class="fas fa-times-circle scene-options"></i>
             {{/if}}
         </div>
 

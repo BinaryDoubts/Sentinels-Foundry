@@ -218,7 +218,10 @@
             "moveDone": "Move to Done",
             "moveAvailable": "Move to Available",
             "moveAll": "Reset Initiative",
-            "rollAllMinions": "Roll all in this group"
+            "rollAllMinions": "Roll all in this group",
+            "editScene": "Edit Scene",
+            "closeSceneEdit": "Close Scene Edit",
+            "displayScene": "Display Scene to Chat"
         },
         "mod": {
             "mod": "Bonus/Penalty",
