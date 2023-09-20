@@ -35,7 +35,11 @@
                 </td>
                 <td>
                     <div class="dice" style="margin-right: 6px">
+                        {{#if (eq rollResult.rollType "minion")}}
+                        <label> {{{rollResult.mods}}} </label>
+                        {{else}}
                         <label> {{{rollResult.total}}} </label>
+                        {{/if}}
                         {{#if rollResult.img}}
                         <img class="{{rollResult.imgClass}}" src="{{rollResult.img}}" />
                         {{/if}}

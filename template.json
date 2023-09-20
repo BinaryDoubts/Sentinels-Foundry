@@ -16,7 +16,8 @@
                     "max": 0
                 },
                 "mode": "main",
-                "modName": ""
+                "modName": "",
+                "minionModName": ""
             },
             "dice": {
                 "firstDie": "d4",
@@ -162,7 +163,10 @@
             "civilianMode": false,
             "poweredMode": false,
             "persistent": false,
-            "exclusive": false
+            "exclusive": false,
+            "minionPersistent": false,
+            "minionExclusive": false,
+            "minionBonus": ""
         },
         "villain": {
             "templates": [
@@ -271,7 +275,54 @@
             "dieType": "d4",
             "action": "attack",
             "form": "N/A",
-            "group": 1
+            "group": 1,
+            "mods": {
+                "one": {
+                    "mod": 0,
+                    "modName": "N/A",
+                    "avail": false,
+                    "persistent": false,
+                    "exclusive": false,
+                    "named": true,
+                    "selected": true
+                },
+                "two": {
+                    "mod": 0,
+                    "modName": "N/A",
+                    "avail": false,
+                    "persistent": false,
+                    "exclusive": false,
+                    "named": true,
+                    "selected": true
+                },
+                "three": {
+                    "mod": 0,
+                    "modName": "N/A",
+                    "avail": false,
+                    "persistent": false,
+                    "exclusive": false,
+                    "named": true,
+                    "selected": false
+                },
+                "four": {
+                    "mod": 0,
+                    "modName": "N/A",
+                    "avail": false,
+                    "persistent": false,
+                    "exclusive": false,
+                    "named": true,
+                    "selected": false
+                },
+                "five": {
+                    "mod": 0,
+                    "modName": "N/A",
+                    "avail": false,
+                    "persistent": false,
+                    "exclusive": false,
+                    "named": true,
+                    "selected": false
+                }
+            }
         },
         "minionForm": {
             "description": "",

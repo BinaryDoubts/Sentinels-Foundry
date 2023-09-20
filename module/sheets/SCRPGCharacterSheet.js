@@ -292,6 +292,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".upgrade-minion").click(this._onUpgradeMinion.bind(this));
             //create mod
             html.find(".create-mod").click(this._onCreateMod.bind(this));
+            //create minion mod
+            html.find(".create-minion-mod").click(this._onCreateMinionMod.bind(this));
             //push ability to chat
             html.find(".roll-item").click(this._onRollItem.bind(this));
             //push out ability to chat
@@ -320,6 +322,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".decrease-health").click(this._onDecreaseHealth.bind(this));
             //Roll all minions
             html.find(".roll-all-minions").click(this._onRollAllMinions.bind(this));
+            //Adds a mod to a minion
+            html.find(".add-minion-mod").click(this._onAddMinionMod.bind(this));
         }
 
         super.activateListeners(html);
@@ -691,9 +695,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         let rollName = item.name;
         let rollType = "minion";
         let roll = item.system.dieType;
-        let actor = this.actor;
 
-        dice.SingleCheck(roll, rollType, rollName, actor);
+        dice.MinionRoll(roll, rollType, rollName, item);
     }
 
     _onRollAllMinions(event) {
@@ -1031,6 +1034,63 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
+    //creates a new mod
+    _onCreateMinionMod(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let named = false;
+        let item = this.actor.items.get(this.actor.system.minionBonus);
+        console.log(item);
+        let name = game.i18n.localize("SCRPG.sheet.newItem");
+        //checks datatype of element and assigns that to the ability value
+        //value is used to determine where the ability goes, ex in a mode/form
+        var value = "+1"
+        if (element.dataset.value) {
+            value = element.dataset.value
+        }
+
+        if (!item.system.mods.one.avail) {
+            item.update({ "system.mods.one.avail": true });
+            item.update({ "system.mods.one.mod": value });
+        } else if (!item.system.mods.two.avail) {
+            item.update({ "system.mods.two.avail": true })
+            item.update({ "system.mods.two.mod": value });
+        } else if (!item.system.mods.three.avail) {
+            item.update({ "system.mods.three.avail": true })
+            item.update({ "system.mods.three.mod": value });
+        } else if (!item.system.mods.four.avail) {
+            item.update({ "system.mods.four.avail": true })
+            item.update({ "system.mods.four.mod": value });
+        } else if (!item.system.mods.five.avail) {
+            item.update({ "system.mods.five.avail": true })
+            item.update({ "system.mods.five.mod": value });
+        }
+
+        console.log(this.actor.system.minionBonus)
+
+
+
+        this.actor.update({ "system.minionPersistent": false });
+        this.actor.update({ "system.minionExclusive": false });
+        this.actor.update({ "system.minionModName": "" })
+
+
+
+        /*    let itemData = {
+                name: name,
+                type: element.dataset.type,
+                "system.named": named,
+                "system.value": value,
+                "system.persistent": this.actor.system.persistent,
+                "system.exclusive": this.actor.system.exclusive
+            };
+            this.actor.update({ "system.persistent": false });
+            this.actor.update({ "system.exclusive": false });
+            this.actor.update({ "system.modName": "" })
+    
+            return this.actor.createEmbeddedDocuments("Item", [itemData]);*/
+    }
+
     /* Transverse up via parentElements, until we find the class 'mod-create-td', then tranverse back down until we find input with name 'system.modName' */
     getInputBoxViaDOM(event) {
         let DOMDepth = 0;
@@ -1153,8 +1213,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
-        if (!this.isValidDropItem(this.actor.type, itemData.type))
-        {
+        if (!this.isValidDropItem(this.actor.type, itemData.type)) {
             return false;
         }
 
@@ -1204,7 +1263,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
     /**    
      *      Helper Function for _onDropItem.
      *      Return true if the dropped itemDataType is a drag and droppable item and is valid for the actorType, else return false
-     **/ 
+     **/
     isValidDropItem(actorType, itemDataType) {
 
         const dragAndDropableItems = ["power", "quality", "ability", "villainStatus", "environmentTwist", "heroMinion", "minionForm", "mod", "principles", "backgrounds", "powerSources", "archetypes", "personality", "initiativeActor"];     //List of itemTypes that is checked, so item ordering isn't affected.
@@ -1403,5 +1462,26 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         } else {
             this.actor.update({ "system.options": true })
         }
+    }
+
+    _onAddMinionMod(event) {
+        event.preventDefault()
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+
+        if (!item.system.mods.one.avail) {
+            item.update({ "system.mods.one.avail": true });
+        } else if (!item.system.mods.two.avail) {
+            item.update({ "system.mods.two.avail": true })
+        } else if (!item.system.mods.three.avail) {
+            item.update({ "system.mods.three.avail": true })
+        } else if (!item.system.mods.four.avail) {
+            item.update({ "system.mods.four.avail": true })
+        } else if (!item.system.mods.five.avail) {
+            item.update({ "system.mods.five.avail": true })
+        }
+
+
     }
 }

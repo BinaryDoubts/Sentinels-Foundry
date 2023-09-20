@@ -47,6 +47,75 @@
     </div>
 </div>
 
+<div class="section-name section-name-mod">
+    <h3>{{localize "SCRPG.mod.mod"}}</h3>
+    <a title='{{localize "SCRPG.button.deleteMods" }}' class="delete-all" data-type="mod">
+        <i class="fas fa-trash"></i>
+    </a>
+</div>
+<div class="mods item-list">
+    <table class="box-border">
+        <tr>
+            <th>{{localize "SCRPG.mod.addNew"}}</th>
+        </tr>
+        <tr>
+            <td class="mod-create-td">
+                <div>
+                    <select name="system.minionBonus" class="section-name section-name-formmode change-mode">
+                        {{#select actor.system.minionBonus}}
+                        {{#each actor.heroMinion as |heroMinion id|}}
+                        <option value='{{heroMinion._id}}'>{{heroMinion.name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div>
+                <div>
+                    <input name="system.minionModName" type="text" value="{{actor.system.minionModName}}"
+                        placeholder=' {{localize "SCRPG.mod.modName" }}' />
+                </div>
+                <div class="mod-dialogue">
+                    <div class="mod-per-dialogue">
+                        <p>
+                            {{localize "SCRPG.mod.persistent"}}
+                            <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
+                        </p>
+                        <input type="checkbox" name="system.minionPersistent" {{checked actor.system.minionPersistent}}
+                            data-dtype="boolean" />
+                    </div>
+                    <div class="mod-exc-dialogue">
+                        <p>
+                            {{localize "SCRPG.mod.exclusive"}}
+                            <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
+                        </p>
+                        <input type="checkbox" name="system.minionExclusive" {{checked actor.system.minionExclusive}}
+                            data-dtype="boolean" />
+                    </div>
+                </div>
+                <div class="mod-buttons">
+                    {{#multiple 4}}
+                    <div class="mod-buttons-child">
+                        <a title='{{localize "SCRPG.button.addNew"}}'
+                            class="create-minion-mod mod-link box-border green-abilities" data-type="mod"
+                            data-value={{@index}}>
+                            <h3>+{{@index}}</h3>
+                        </a>
+                    </div>
+                    {{/multiple}}
+                    {{#multiple 4}}
+                    <div class="mod-buttons-child">
+                        <a title='{{localize "SCRPG.button.addNew"}}'
+                            class="create-minion-mod mod-link box-border red-abilities" data-type="mod"
+                            data-value=-{{@index}}>
+                            <h3>-{{@index}}</h3>
+                        </a>
+                    </div>
+                    {{/multiple}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
 {{!-- Section for displaying available minons and their abilities --}}
 <div class="section-name section-name-minion">
     <h3>{{localize "SCRPG.minion.minions"}}</h3>
@@ -98,6 +167,21 @@
                 <td>{{system.dieType}}</td>
             </tr>
         </table>
+
+        {{#if system.mods.one.avail}}
+
+        <div class="box-border {{#if (gte system.mods.one.mod 1)}}green-abilities{{else}}red-abilities{{/if}}">
+            <h3>{{#if (eq system.named true)}}{{system.mods.one.name}}{{/if}} {{system.mods.one.mod}}</h3>
+            <div class="p-e-icon">
+                {{#if (eq system.persistent true)}}
+                <i title='{{localize "SCRPG.mod.persistent"}}' class="fas fa-hourglass"></i>
+                {{/if}}
+                {{#if (eq system.exclusive true)}}
+                <i title='{{localize "SCRPG.mod.exclusive"}}' class="fas fa-lock"></i>
+                {{/if}}
+            </div>
+        </div>
+        {{/if}}
     </div>
     {{/each}}
 </div>

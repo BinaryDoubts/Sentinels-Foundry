@@ -307,3 +307,60 @@ async function usedAllValidPenalties(mods) {
 
     return false;
 }
+
+export async function MinionRoll(roll = null, rollType = null, rollName = null, minion = null) {
+    const messageTemplate = "systems/scrpg/templates/chat/minorroll.hbs";
+    let color = game.settings.get("scrpg", "coloredDice");
+    let rollResult = new Roll(roll).evaluate({ async: false });
+    let coloring = "black";
+
+    rollResult.rollType = rollType;
+    rollResult.rollName = rollName;
+
+    //checks the number of die faces and attachs the corresponding dice image
+    if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
+        rollResult.img = `icons/svg/d${rollResult.dice[0].faces}-grey.svg`;
+        // if the setting for colored dice is enabled, adds a class to to the roll to be used in the template
+        if (color) {
+            rollResult.imgClass = `d${rollResult.dice[0].faces}`
+        }
+    };
+
+    console.log(minion.system.mods.one.mod)
+    rollResult.mods = rollResult.total + parseInt(minion.system.mods.one.mod) +
+        parseInt(minion.system.mods.two.mod) + parseInt(minion.system.mods.three.mod) +
+        parseInt(minion.system.mods.four.mod) + parseInt(minion.system.mods.five.mod);
+
+
+    minion.update({ "system.mods.one.avail": false });
+    minion.update({ "system.mods.one.mod": 0 });
+    minion.update({ "system.mods.one.modName": "" });
+    minion.update({ "system.mods.two.avail": false });
+    minion.update({ "system.mods.two.mod": 0 });
+    minion.update({ "system.mods.two.modName": "" });
+    minion.update({ "system.mods.three.avail": false });
+    minion.update({ "system.mods.three.mod": 0 });
+    minion.update({ "system.mods.three.modName": "" });
+    minion.update({ "system.mods.four.avail": false });
+    minion.update({ "system.mods.four.mod": 0 });
+    minion.update({ "system.mods.four.modName": "" });
+    minion.update({ "system.mods.five.avail": false });
+    minion.update({ "system.mods.five.mod": 0 });
+    minion.update({ "system.mods.five.modName": "" });
+
+    let chatData = {
+        rollResult: rollResult,
+        coloring: coloring,
+    };
+
+    //renders roll template using minorroll.hbs
+    let render = await renderTemplate(messageTemplate, chatData);
+
+    let messageData = {
+        speaker: ChatMessage.getSpeaker(),
+        content: render,
+    };
+
+    //push roll result to chat
+    rollResult.toMessage(messageData);
+}
