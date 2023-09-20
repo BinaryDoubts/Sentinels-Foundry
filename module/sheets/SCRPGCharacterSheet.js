@@ -308,6 +308,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             html.find(".change-acted-status").click(this._onChangeActedStatus.bind(this));
             //Open and closes Scene tracker options
             html.find(".scene-options").click(this._onSceneOptions.bind(this));
+            //Displays Scene in Chat
+            html.find(".display-scene").click(this._onDisplayScene.bind(this));
             //mod select
             html.find(".mod-select").click(this._onModSelect.bind(this));
             //DeleteAll
@@ -1345,10 +1347,8 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             case "green":
                 if (greenSetting == current && (yellowCurrent == 0 || redCurrent > 0 || yellowCurrent == yellowSetting)) {
                     scene.SetYellow();
-                    scene.SceneChat("yellow")
                 } else if (current < greenSetting && greenSetting == greenCurrent) {
                     scene.SetGreen();
-                    scene.SceneChat("green")
                 }
                 this.actor.update({ "system.greenSpace.current": current });
                 this.actor.update({ "system.yellowSpace.current": 0 });
@@ -1356,17 +1356,17 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (greenCurrent == current && yellowCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("reset")
+                    scene.SceneStatus(0, 0, 0, greenSetting, yellowSetting, redSetting);
+                } else {
+                    scene.SceneStatus(current, 0, 0, greenSetting - current, yellowSetting, redSetting);
                 }
                 break
 
             case "yellow":
                 if ((greenCurrent < greenSetting || yellowCurrent == yellowSetting) && current != yellowSetting) {
                     scene.SetYellow();
-                    scene.SceneChat("yellow")
                 } else if (yellowSetting == current && yellowCurrent < yellowSetting) {
                     scene.SetRed();
-                    scene.SceneChat("red")
                 }
                 this.actor.update({ "system.yellowSpace.current": current });
                 this.actor.update({ "system.greenSpace.current": greenSetting });
@@ -1374,18 +1374,18 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (yellowCurrent == current && redCurrent == 0) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("reset")
+                    scene.SceneStatus(0, 0, 0, greenSetting, yellowSetting, redSetting);
+                } else {
+                    scene.SceneStatus(greenSetting, current, 0, 0, yellowSetting - current, redSetting);
                 }
                 break
 
             case "red":
 
                 if (redSetting == current && redCurrent != current) {
-                    scene.SceneChat("failure")
                     scene.SetRed();
                 } else if (yellowCurrent < this.actor.system.yellowSpace.setting) {
                     scene.SetRed();
-                    scene.SceneChat("red")
                 }
                 this.actor.update({ "system.redSpace.current": current });
                 this.actor.update({ "system.yellowSpace.current": yellowSetting });
@@ -1393,8 +1393,11 @@ export default class SCRPGCharacterSheet extends ActorSheet {
                 if (redCurrent == current) {
                     scene.SceneReset(this.actor);
                     scene.SetGreen();
-                    scene.SceneChat("reset")
+                    scene.SceneStatus(0, 0, 0, greenSetting, yellowSetting, redSetting);
+                } else {
+                    scene.SceneStatus(greenSetting, yellowSetting, current, 0, 0, redSetting - current);
                 }
+
         }
     }
 
@@ -1462,6 +1465,18 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         } else {
             this.actor.update({ "system.options": true })
         }
+    }
+
+    //Displays Scene in Chat
+    _onDisplayScene() {
+        let greenCurrent = this.actor.system.greenSpace.current;
+        let greenSetting = this.actor.system.greenSpace.setting;
+        let yellowCurrent = this.actor.system.yellowSpace.current;
+        let yellowSetting = this.actor.system.yellowSpace.setting;
+        let redCurrent = this.actor.system.redSpace.current;
+        let redSetting = this.actor.system.redSpace.setting;
+
+        scene.SceneStatus(greenCurrent, yellowCurrent, redCurrent, greenSetting - greenCurrent, yellowSetting - yellowCurrent, redSetting - redCurrent);
     }
 
     _onAddMinionMod(event) {
