@@ -30,7 +30,7 @@ export async function TaskCheck(actor = null) {
 
     //Sets the roll formula and rolls it
     let rollFormula = "{" + d1 + "," + d2 + "," + d3 + "}";
-    let rollResult = new Roll(rollFormula).roll({ async: false });
+    let rollResult = await new Roll(rollFormula).evaluate({ async: true });
 
     //Sorts dice in order of highest result
     let diceresults = rollResult.dice.sort(function (a, b) { if (b.total - a.total == 0) { return b.faces - a.faces } else { return b.total - a.total } });
@@ -90,7 +90,7 @@ export async function TaskCheck(actor = null) {
 export async function SingleCheck(roll = null, rollType = null, rollName = null, actor = null) {
     const messageTemplate = "systems/scrpg/templates/chat/minorroll.hbs";
     let color = game.settings.get("scrpg", "coloredDice");
-    let rollResult = new Roll(roll).evaluate({ async: false });
+    let rollResult = await new Roll(roll).evaluate({ async: true });
     let coloring = "black";
     let mods = actor.mod;
     let modsOn = game.settings.get("scrpg", "mod");
@@ -208,7 +208,7 @@ export async function RollAllMinions(actor = null, group = 1) {
     for (let i = 0; i < actor.heroMinion.length; i++) {
         if (actor.heroMinion[i].system.group == group) {
 
-            rollResult = new Roll(actor.heroMinion[i].system.dieType).evaluate({ async: false });
+            rollResult = await new Roll(actor.heroMinion[i].system.dieType).evaluate({ async: true });
 
             //checks the number of die faces and attachs the corresponding dice image
             if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
