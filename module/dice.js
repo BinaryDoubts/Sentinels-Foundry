@@ -30,7 +30,7 @@ export async function TaskCheck(actor = null) {
 
     //Sets the roll formula and rolls it
     let rollFormula = "{" + d1 + "," + d2 + "," + d3 + "}";
-    let rollResult = new Roll(rollFormula).roll({ async: false });
+    let rollResult = await new Roll(rollFormula).roll();
 
     //Sorts dice in order of highest result
     let diceresults = rollResult.dice.sort(function (a, b) { if (b.total - a.total == 0) { return b.faces - a.faces } else { return b.total - a.total } });
