@@ -1,5 +1,7 @@
 # Sentinel Comics The Roleplaying Game (Unofficial)
 
+This is an updated version of [RabidRaccoon's Sentinel Comics system](https://gitlab.com/RabidRaccoon/scrpg/) for Foundry. 
+
 This game system for [Foundry Virtual Tabletop](https://foundryvtt.com/) provides the character sheets and game system for [Sentinel Comics the Roleplaying Game](https://greaterthangames.com/product/sentinel-comics-the-role-playing-game-core-rulebook/) by [Greater than Games](https://greaterthangames.com/).
 
 This system provides character sheet support for Heroes, Villains and Environments. It also provides macros for updating all hero character's scene status.
