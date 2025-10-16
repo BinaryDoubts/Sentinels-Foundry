@@ -6,37 +6,37 @@ import * as scene from "../scene.js";
  * An Actor sheet for hero or villain type actors.
  */
 
-export default class SCRPGCharacterSheet extends ActorSheet {
+export default class SCRPGCharacterSheet extends foundry.appv1.sheets.ActorSheet {
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
-            template: "systems/scrpg/templates/sheets/heroCharacter-sheet.hbs",
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            template: "systems/Sentinels-Foundry/templates/sheets/heroCharacter-sheet.hbs",
             classes: ["SCRPG", "sheet", "actor"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "info" }]
         })
     }
     itemContextMenu = [
         {
-            name: game.i18n.localize("SCRPG.button.edit"),
+            name: "SCRPG.button.edit",
             icon: '<i class="fas fa-edit"></i>',
             callback: element => {
-                const item = this.actor.items.get(element.data("item-id"));
+                const item = this.actor.items.get(element.dataset.itemId);
                 item.sheet.render(true);
             }
         },
         {
-            name: game.i18n.localize("SCRPG.button.delete"),
+            name: "SCRPG.button.delete",
             icon: '<i class="fas fa-trash"></i>',
             callback: element => {
-                this.actor.deleteEmbeddedDocuments("Item", [element.data("item-id")])
+                this.actor.deleteEmbeddedDocuments("Item", [element.dataset.itemId])
             }
         }
     ]
 
     get template() {
         if (this.actor.type == "hero" || this.actor.type == "villain") {
-            return "systems/scrpg/templates/sheets/heroCharacter-sheet.hbs";
+            return "systems/Sentinels-Foundry/templates/sheets/heroCharacter-sheet.hbs";
         } else {
-            return "systems/scrpg/templates/sheets/" + this.actor.type + "-sheet.hbs"
+            return "systems/Sentinels-Foundry/templates/sheets/" + this.actor.type + "-sheet.hbs"
         }
     }
 
@@ -46,19 +46,19 @@ export default class SCRPGCharacterSheet extends ActorSheet {
         data.config = CONFIG.SCRPG;
 
         if (this.actor.type == "hero") {
-            data.enrichedModeDescriptionMain = await TextEditor.enrichHTML(this.object.system.modeDescription.main, { async: true });
-            data.enrichedModeDescriptionGreen1 = await TextEditor.enrichHTML(this.object.system.modeDescription.Green1, { async: true });
-            data.enrichedModeDescriptionGreen2 = await TextEditor.enrichHTML(this.object.system.modeDescription.Green2, { async: true });
-            data.enrichedModeDescriptionYellow1 = await TextEditor.enrichHTML(this.object.system.modeDescription.yellow1, { async: true });
-            data.enrichedModeDescriptionYellow2 = await TextEditor.enrichHTML(this.object.system.modeDescription.yellow2, { async: true });
-            data.enrichedModeDescriptionRed1 = await TextEditor.enrichHTML(this.object.system.modeDescription.red1, { async: true });
-            data.enrichedCostume = await TextEditor.enrichHTML(this.object.system.costume, { async: true });
-            data.enrichedFirstPrincipleRoleplaying = await TextEditor.enrichHTML(this.object.system.firstPrinciple.roleplaying, { async: true });
-            data.enrichedFirstPrincipleMinorTwist = await TextEditor.enrichHTML(this.object.system.firstPrinciple.minorTwist, { async: true });
-            data.enrichedFirstPrincipleMajorTwist = await TextEditor.enrichHTML(this.object.system.firstPrinciple.majorTwist, { async: true });
-            data.enrichedSecondPrincipleRoleplaying = await TextEditor.enrichHTML(this.object.system.secondPrinciple.roleplaying, { async: true });
-            data.enrichedSecondPrincipleMinorTwist = await TextEditor.enrichHTML(this.object.system.secondPrinciple.minorTwist, { async: true });
-            data.enrichedSecondPrincipleMajorTwist = await TextEditor.enrichHTML(this.object.system.secondPrinciple.majorTwist, { async: true });
+            data.enrichedModeDescriptionMain = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.main, { async: true });
+            data.enrichedModeDescriptionGreen1 = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.Green1, { async: true });
+            data.enrichedModeDescriptionGreen2 = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.Green2, { async: true });
+            data.enrichedModeDescriptionYellow1 = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.yellow1, { async: true });
+            data.enrichedModeDescriptionYellow2 = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.yellow2, { async: true });
+            data.enrichedModeDescriptionRed1 = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.modeDescription.red1, { async: true });
+            data.enrichedCostume = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.costume, { async: true });
+            data.enrichedFirstPrincipleRoleplaying = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.firstPrinciple.roleplaying, { async: true });
+            data.enrichedFirstPrincipleMinorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.firstPrinciple.minorTwist, { async: true });
+            data.enrichedFirstPrincipleMajorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.firstPrinciple.majorTwist, { async: true });
+            data.enrichedSecondPrincipleRoleplaying = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.secondPrinciple.roleplaying, { async: true });
+            data.enrichedSecondPrincipleMinorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.secondPrinciple.minorTwist, { async: true });
+            data.enrichedSecondPrincipleMajorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.secondPrinciple.majorTwist, { async: true });
         }
 
         //prepares items for actor
@@ -68,6 +68,7 @@ export default class SCRPGCharacterSheet extends ActorSheet {
             this._prepareEnvironmentItems(data);
         } else if (this.actor.type == 'scene') {
             this._prepareSceneTrackerItems(data);
+
         } else if (this.actor.type == 'minion') {
             this._prepareMinionItems(data);
         };
@@ -212,15 +213,15 @@ export default class SCRPGCharacterSheet extends ActorSheet {
 
         if (this.actor.isOwner) {
 
-            new ContextMenu(html, ".ability-item", this.itemContextMenu);
-            new ContextMenu(html, ".power-item", this.itemContextMenu);
-            new ContextMenu(html, ".quality-item", this.itemContextMenu);
-            new ContextMenu(html, ".villain-status-item", this.itemContextMenu);
-            new ContextMenu(html, ".mod-item", this.itemContextMenu);
-            new ContextMenu(html, ".environmentTwist-item", this.itemContextMenu);
-            new ContextMenu(html, ".heroMinion-item", this.itemContextMenu);
-            new ContextMenu(html, ".minionForm-item", this.itemContextMenu);
-            new ContextMenu(html, ".initiativeActor-item", this.itemContextMenu);
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".ability-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".power-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".quality-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".villain-status-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".mod-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".environmentTwist-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".heroMinion-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".minionForm-item", this.itemContextMenu, {jQuery: false, fixed: true});
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".initiativeActor-item", this.itemContextMenu, {jQuery: false, fixed: true});
 
             //item creation
             html.find(".item-create").click(this._onItemCreate.bind(this));

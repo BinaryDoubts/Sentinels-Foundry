@@ -1,5 +1,4 @@
-<select name="system.mode" class="section-name section-name-formmode change-mode">
-    {{#select actor.system.mode}}
+<select name="system.mode" class="section-name section-name-formmode change-mode" selected="{{actor.system.mode}}">
     <option value="main" class="green-abilities">{{actor.system.modeName.main}}</option>
     <option value="green1" class="green-abilities">{{actor.system.modeName.green1}}</option>
     {{#if (eq actor.system.powerless true)}}
@@ -10,7 +9,6 @@
     <option value="yellow2" class="yellow-abilities">{{actor.system.modeName.yellow2}}</option>
     <option value="red1" class="red-abilities">{{actor.system.modeName.red1}}</option>
     {{/if}}
-    {{/select}}
 </select>
 
 
@@ -26,7 +24,7 @@
         </td>
     </tr>
 </table>
-{{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green1"}}
+{{> "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs" mode="green1"}}
 {{/if}}
 
 {{!-- Default mode/form --}}
@@ -56,7 +54,7 @@
     </tr>
 </table>
 {{#if (eq actor.system.formchanger true)}}
-{{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="green2"}}
+{{> "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs" mode="green2"}}
 {{/if}}
 {{/if}}
 
@@ -76,5 +74,5 @@
         </td>
     </tr>
 </table>
-{{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow1"}}
+{{> "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs" mode="yellow1"}}
 {{/if}}

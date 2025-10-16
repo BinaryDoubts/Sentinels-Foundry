@@ -23,11 +23,7 @@
                 {{#if (eq this.item.actor.system.type "hero")}}
                 <td class="top-align">
                     <select name="system.bonus">
-                        {{#select item.system.bonus}}
-                        {{#each config.bonus as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.bonus selected=item.system.bonus localize=true}}
                     </select>
                 </td>
                 {{/if}}

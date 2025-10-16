@@ -2,34 +2,34 @@
  * Loads all item sheets
  */
 
-export default class SCRPGItemSheet extends ItemSheet {
+export default class SCRPGItemSheet extends foundry.appv1.sheets.ItemSheet {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["SCRPG", "sheet", "item"]
         });
     }
 
     get template() {
-        return 'systems/scrpg/templates/sheets/' + this.item.type + '-sheet.hbs';
+        return 'systems/Sentinels-Foundry/templates/sheets/' + this.item.type + '-sheet.hbs';
     }
 
     async getData(options) {
         const data = await super.getData(options);
 
-        data.enrichedAbilityGameText = await TextEditor.enrichHTML(this.object.system.gameText, { async: true });
-        data.enrichedArchetypeDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedBackgroundDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedEnvironmentTwistDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedMinionFormSheetDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedPersonalityDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedPowerDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedPowerSourcesDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedPrincipleRoleplaying = await TextEditor.enrichHTML(this.object.system.roleplaying, { async: true });
-        data.enrichedPrincipleMinorTwist = await TextEditor.enrichHTML(this.object.system.minorTwist, { async: true });
-        data.enrichedPrincipleMajorTwist = await TextEditor.enrichHTML(this.object.system.majorTwist, { async: true });
-        data.enrichedQualityDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
-        data.enrichedVillainStatusDescription = await TextEditor.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedAbilityGameText = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.gameText, { async: true });
+        data.enrichedArchetypeDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedBackgroundDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedEnvironmentTwistDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedMinionFormSheetDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPersonalityDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPowerDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPowerSourcesDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedPrincipleRoleplaying = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.roleplaying, { async: true });
+        data.enrichedPrincipleMinorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.minorTwist, { async: true });
+        data.enrichedPrincipleMajorTwist = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.majorTwist, { async: true });
+        data.enrichedQualityDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
+        data.enrichedVillainStatusDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.object.system.description, { async: true });
 
         data.config = CONFIG.SCRPG;
 

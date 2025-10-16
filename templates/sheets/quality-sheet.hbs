@@ -16,11 +16,7 @@
                 {{!-- Dropdown menu for selecting die type --}}
                 <td>
                     <select name="system.dieType">
-                        {{#select item.system.dieType}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.dieTypes selected=item.system.dieType localize=true}}
                     </select>
                 </td>
                 {{!-- Description input --}}

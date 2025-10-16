@@ -5,26 +5,26 @@ import SCRPGCharacterSheet from "./module/sheets/SCRPGCharacterSheet.js";
 //register all handlebars templates
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/scrpg/templates/partials/heroinfo.hbs",
-        "systems/scrpg/templates/partials/principles.hbs",
-        "systems/scrpg/templates/partials/issuescollections.hbs",
-        "systems/scrpg/templates/partials/powerquality.hbs",
-        "systems/scrpg/templates/partials/abilities.hbs",
-        "systems/scrpg/templates/partials/auxiliary.hbs",
-        "systems/scrpg/templates/partials/auxiliarypowers.hbs",
-        "systems/scrpg/templates/partials/abilitiestable.hbs",
-        "systems/scrpg/templates/partials/formmodularcommon.hbs",
-        "systems/scrpg/templates/partials/abilitiesmodeformcommon.hbs",
-        "systems/scrpg/templates/partials/environment.hbs",
-        "systems/scrpg/templates/partials/environmenttwist.hbs",
-        "systems/scrpg/templates/partials/minions.hbs",
-        "systems/scrpg/templates/partials/mod.hbs",
-        "systems/scrpg/templates/chat/partials/modDisplay.hbs",
-        "systems/scrpg/templates/partials/miniongroups.hbs",
-        "systems/scrpg/templates/partials/minionsheetbuttons.hbs"
+        "systems/Sentinels-Foundry/templates/partials/heroinfo.hbs",
+        "systems/Sentinels-Foundry/templates/partials/principles.hbs",
+        "systems/Sentinels-Foundry/templates/partials/issuescollections.hbs",
+        "systems/Sentinels-Foundry/templates/partials/powerquality.hbs",
+        "systems/Sentinels-Foundry/templates/partials/abilities.hbs",
+        "systems/Sentinels-Foundry/templates/partials/auxiliary.hbs",
+        "systems/Sentinels-Foundry/templates/partials/auxiliarypowers.hbs",
+        "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs",
+        "systems/Sentinels-Foundry/templates/partials/formmodularcommon.hbs",
+        "systems/Sentinels-Foundry/templates/partials/abilitiesmodeformcommon.hbs",
+        "systems/Sentinels-Foundry/templates/partials/environment.hbs",
+        "systems/Sentinels-Foundry/templates/partials/environmenttwist.hbs",
+        "systems/Sentinels-Foundry/templates/partials/minions.hbs",
+        "systems/Sentinels-Foundry/templates/partials/mod.hbs",
+        "systems/Sentinels-Foundry/templates/chat/partials/modDisplay.hbs",
+        "systems/Sentinels-Foundry/templates/partials/miniongroups.hbs",
+        "systems/Sentinels-Foundry/templates/partials/minionsheetbuttons.hbs"
     ];
 
-    return loadTemplates(templatePaths)
+    return foundry.applications.handlebars.loadTemplates(templatePaths)
 };
 
 // Sets up a system setting to run on and off colored dice as part of the roll templates
@@ -61,12 +61,12 @@ Hooks.once("init", function () {
     CONFIG.SCRPG = SCRPG;
 
     //unregister core item sheets and use SCRPGItemSheet
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("SCRPG", SCRPGItemSheet, { makeDefault: true });
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+    foundry.documents.collections.Items.registerSheet("SCRPG", SCRPGItemSheet, { makeDefault: true });
 
     //unregister core actor sheet and use SCRPGHeroCharacterSheet
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("SCRPG", SCRPGCharacterSheet, { makeDefault: true });
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+    foundry.documents.collections.Actors.registerSheet("SCRPG", SCRPGCharacterSheet, { makeDefault: true });
 
     registerSystemSettings();
 

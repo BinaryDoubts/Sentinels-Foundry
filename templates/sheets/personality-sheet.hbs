@@ -18,29 +18,17 @@
                 <div class="status-dice">
                     <div class="status-dice-child">
                         <select name="system.statusDie.green" class="green-border green-status-background">
-                            {{#select item.system.statusDie.green}}
-                            {{#each config.dieTypes as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{selectOptions config.dieTypes selected=item.system.statusDie.green localize=true}}
                         </select>
                     </div>
                     <div class="status-dice-child">
                         <select name="system.statusDie.yellow" class="yellow-border yellow-status-background">
-                            {{#select item.system.statusDie.yellow}}
-                            {{#each config.dieTypes as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{selectOptions config.dieTypes selected=item.system.statusDie.yellow localize=true}}
                         </select>
                     </div>
                     <div class="status-dice-child">
                         <select name="system.statusDie.red" class="red-border red-status-background">
-                            {{#select item.system.statusDie.red}}
-                            {{#each config.dieTypes as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{selectOptions config.dieTypes selected=item.system.statusDie.red localize=true}}
                         </select>
                         </center>
                     </div>

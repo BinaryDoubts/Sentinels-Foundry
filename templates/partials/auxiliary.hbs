@@ -62,14 +62,14 @@
 {{!-- Displays auxiliary boxes for form-changer --}}
 {{#if (eq actor.system.formchanger true)}}
 
-{{> "systems/scrpg/templates/partials/formmodularcommon.hbs"}}
+{{> "systems/Sentinels-Foundry/templates/partials/formmodularcommon.hbs"}}
 
 {{/if}}
 
 {{!-- Displays auxiliary boxes for modular --}}
 {{#if (eq actor.system.modular true)}}
 
-{{> "systems/scrpg/templates/partials/formmodularcommon.hbs"}}
+{{> "systems/Sentinels-Foundry/templates/partials/formmodularcommon.hbs"}}
 
 {{!-- Second yellow mode/form --}}
 <div {{#if (eq actor.system.mode "yellow2" )}} class="select-border yellow-abilities mode-name"
@@ -90,7 +90,7 @@
 {{#if (eq actor.system.modeDisplayed.yellow2 true)}}
 <div class="mode-card box-border yellow-abilities">
     <div class="forms">
-        {{> "systems/scrpg/templates/partials/auxiliarypowers.hbs" mode="yellow2"}}
+        {{> "systems/Sentinels-Foundry/templates/partials/auxiliarypowers.hbs" mode="yellow2"}}
 
         <div>
             <table class="box-border">
@@ -107,7 +107,7 @@
             </table>
         </div>
 
-        {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="yellow2"}}
+        {{> "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs" mode="yellow2"}}
 
     </div>
 </div>
@@ -134,7 +134,7 @@
 {{#if (eq actor.system.modeDisplayed.red1 true)}}
 <div class="mode-card box-border red-abilities">
     <div class="forms">
-        {{> "systems/scrpg/templates/partials/auxiliarypowers.hbs" mode="red1"}}
+        {{> "systems/Sentinels-Foundry/templates/partials/auxiliarypowers.hbs" mode="red1"}}
 
         <div>
             <table class="box-border">
@@ -151,7 +151,7 @@
             </table>
         </div>
 
-        {{> "systems/scrpg/templates/partials/abilitiestable.hbs" mode="red1"}}
+        {{> "systems/Sentinels-Foundry/templates/partials/abilitiestable.hbs" mode="red1"}}
 
     </div>
 </div>
@@ -170,51 +170,27 @@
     <h3>{{localize "SCRPG.auxiliary.powered"}}</h3>
     <h3>{{localize "SCRPG.auxiliary.civilian"}}</h3>
     <select class="status-die-update green-border green-status-background" name="system.statusDie.green">
-        {{#select actor.system.statusDie.green}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.green localize=true}}
     </select>
 
     <select class="status-die-update green-border green-status-background" name="system.statusDie.civilianGreen">
-        {{#select actor.system.statusDie.civilianGreen}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.civilianGreen localize=true}}
     </select>
 
     <select class="status-die-update yellow-border yellow-status-background" name="system.statusDie.yellow">
-        {{#select actor.system.statusDie.yellow}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.yellow localize=true}}
     </select>
 
     <select class="status-die-update yellow-border yellow-status-background" name="system.statusDie.civilianYellow">
-        {{#select actor.system.statusDie.civilianYellow}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.civilianYellow localize=true}}
     </select>
 
     <select class="status-die-update red-border red-status-background" name="system.statusDie.red">
-        {{#select actor.system.statusDie.red}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.red localize=true}}
     </select>
 
     <select class="status-die-update red-border red-status-background" name="system.statusDie.civilianRed">
-        {{#select actor.system.statusDie.civilianRed}}
-        {{#each config.dieTypes as |name type|}}
-        <option value="{{type}}">{{localize name}}</option>
-        {{/each}}
-        {{/select}}
+        {{selectOptions config.dieTypes selected=actor.system.statusDie.civilianRed localize=true}}
     </select>
 </div>
 

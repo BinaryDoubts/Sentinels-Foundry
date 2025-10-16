@@ -1,6 +1,6 @@
 {
-    "id": "scrpg",
-    "title": "Sentinel Comics the Roleplaying Game (Unofficial)",
+    "id": "Sentinels-Foundry",
+    "title": "Sentinel Comics the Roleplaying Game [New]",
     "description": "A system for playing Sentinel Comics the Roleplaying Game",
     "authors": [
         {
@@ -8,13 +8,15 @@
         },
         {
             "name": "GamerDragon"
+        },
+        {
+            "name": "BinaryDoubts"
         }
     ],
     "version": "1.5.5",
     "compatibility": {
         "minimum": "10",
-        "verified": "11",
-        "maximum": "11"
+        "verified": "11"
     },
     "esmodules": [
         "SCRPG.js"
@@ -37,11 +39,13 @@
             "path": "lang/en.json"
         }
     ],
-    "gridDistance": 5,
-    "gridUnits": "ft",
+    "grid":{
+        "distance": 5,
+        "units": "ft"
+    },
     "primaryTokenAttribute": "health",
     "initiative": "N/A",
-    "url": "https://gitlab.com/RabidRaccoon/scrpg",
-    "manifest": "https://gitlab.com/RabidRaccoon/scrpg/-/raw/main/system.json",
-    "download": "https://gitlab.com/RabidRaccoon/scrpg/-/archive/v1.5.5/scrpg-v1.5.5.zip"
+    "url": "https://github.com/BinaryDoubts/Sentinels-Foundry",
+    "manifest": "https://github.com/BinaryDoubts/Sentinels-Foundry/blob/main/system.json",
+    "download": "https://github.com/BinaryDoubts/Sentinels-Foundry/archive/refs/heads/main.zip"
 }

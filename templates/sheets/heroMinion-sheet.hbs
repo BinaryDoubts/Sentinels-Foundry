@@ -28,11 +28,7 @@
                 <td>
                     {{!-- Drop down to select the action the minion can take --}}
                     <select name="system.action">
-                        {{#select item.system.action}}
-                        {{#each config.actionType as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.actionType selected=item.system.action localize=true}}
                     </select>
                 </td>
                 {{#unless (eq this.item.actor.system.type "minion")}}
@@ -40,23 +36,17 @@
                     {{!-- Drop down to select the form that it can take --}}
                     {{!-- list is generated from character options --}}
                     <select name="system.form">
-                        {{#select item.system.form}}
                         <option value="N/A">N/A</option>
                         {{#each this.item.actor.minionForm as |minionForm|}}
                         <option value="{{name}}">{{name}}</option>
                         {{/each}}
-                        {{/select}}
                     </select>
                 </td>
                 {{/unless}}
                 <td>
                     {{!-- Drop down to select minion die type --}}
                     <select name="system.dieType">
-                        {{#select item.system.dieType}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.dieTypes selected=item.system.dieType localize=true}}
                     </select>
                 </td>
             </tr>

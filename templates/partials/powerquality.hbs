@@ -276,11 +276,7 @@
                     {{else}}
                     <select class="status-die-update green-border green-status-background"
                         name="system.statusDie.green">
-                        {{#select actor.system.statusDie.green}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.dieTypes selected=actor.system.statusDie.green localize=true}}
                     </select>
                     {{/if}}
 
@@ -308,11 +304,7 @@
                     {{else}}
                     <select class="status-die-update yellow-border yellow-status-background"
                         name="system.statusDie.yellow">
-                        {{#select actor.system.statusDie.yellow}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.dieTypes selected=actor.system.statusDie.yellow localize=true}}
                     </select>
                     {{/if}}
 
@@ -335,11 +327,7 @@
                     {{/if}}
                     {{else}}
                     <select class="status-die-update red-border red-status-background" name="system.statusDie.red">
-                        {{#select actor.system.statusDie.red}}
-                        {{#each config.dieTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.dieTypes selected=actor.system.statusDie.red localize=true}}
                     </select>
                     {{/if}}
 
@@ -401,11 +389,7 @@
                         actor.system.scene "yellow" )}} class="scene-update yellow-border yellow-status-background"
                         {{/if}} {{#if (eq actor.system.scene "red" )}}
                         class="scene-update red-border red-status-background" {{/if}} name="system.scene">
-                        {{#select actor.system.scene}}
-                        {{#each config.scenes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.scenes selected=actor.system.scene localize=true}}
                     </select>
                 </div>
             </td>

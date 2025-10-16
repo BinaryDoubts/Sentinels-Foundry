@@ -15,11 +15,8 @@
                     {{!-- Dropdown menu shows where the ability belongs either green, yellow, red, villain --}}
                     {{!-- or part of mode/form --}}
                     <select name="system.aux">
-                        {{#select item.system.aux}}
-                        {{#each config.modes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.modes selected=item.system.aux localize=true}}
+
                     </select>
                 </td>
             </tr>
@@ -70,11 +67,7 @@
                 {{!-- Ability Type --}}
                 <td class="top-align">
                     <select name="system.type">
-                        {{#select item.system.type}}
-                        {{#each config.abilityType}}
-                        <option value="{{this.type}}" title="{{localize this.tooltip}}">{{localize this.desc}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.abilityType selected=item.system.type localize=true}}
                     </select>
                 </td>
                 {{!-- Description input --}}

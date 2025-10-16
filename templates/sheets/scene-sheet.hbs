@@ -27,29 +27,21 @@
         <div class="scene-tracker-child scene-tracker-options">
             <select name="system.greenSpace.setting" class="adjust-green update-scene green-border green-abilities"
                 data-color="green">
-                {{#select actor.system.greenSpace.setting}}
-                {{#multiple "10"}}
-                <option value="{{@index}}">{{@index}}</option>
-                {{/multiple}}
-                {{/select}}
+                {{selectOptions actor.system.1to10 selected=actor.system.greenSpace.setting}}
             </select>
 
             <select name="system.yellowSpace.setting" class="adjust-yellow update-scene yellow-border yellow-abilities"
-                data-color="yellow">
-                {{#select actor.system.yellowSpace.setting}}
+                data-color="yellow" selected={{actor.system.yellowSpace.setting}}>
                 {{#multiple "10"}}
                 <option value="{{@index}}">{{@index}}</option>
                 {{/multiple}}
-                {{/select}}
             </select>
 
             <select name="system.redSpace.setting" class="adjust-red update-scene red-border red-abilities"
-                data-color="red">
-                {{#select actor.system.redSpace.setting}}
+                data-color="red" selected={{actor.system.redSpace.setting}}>
                 {{#multiple "10"}}
                 <option value="{{@index}}">{{@index}}</option>
                 {{/multiple}}
-                {{/select}}
             </select>
         </div>
         {{/if}}

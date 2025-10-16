@@ -26,11 +26,13 @@ export async function TaskCheck(actor = null) {
         bonus = mods.filter(m => (m.system.selected == true) && parseInt(m.system.value) > 0).length > 0;
     }
 
-    const messageTemplate = "systems/scrpg/templates/chat/mainroll.hbs";
+    const messageTemplate = "systems/Sentinels-Foundry/templates/chat/mainroll.hbs";
 
     //Sets the roll formula and rolls it
     let rollFormula = "{" + d1 + "," + d2 + "," + d3 + "}";
-    let rollResult = new Roll(rollFormula).roll({ async: false });
+    let rollResult = new Roll(rollFormula);
+    await rollResult.evaluate();
+
 
     //Sorts dice in order of highest result
     let diceresults = rollResult.dice.sort(function (a, b) { if (b.total - a.total == 0) { return b.faces - a.faces } else { return b.total - a.total } });
@@ -75,7 +77,7 @@ export async function TaskCheck(actor = null) {
     await UnselectPersistentMods(actor);
 
     //renders roll template using mainroll.hbs
-    let render = await renderTemplate(messageTemplate, chatData)
+    let render = await foundry.applications.handlebars.renderTemplate(messageTemplate, chatData)
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
@@ -88,9 +90,10 @@ export async function TaskCheck(actor = null) {
 
 /* Rolls either power, quality or status and displays to chat */
 export async function SingleCheck(roll = null, rollType = null, rollName = null, actor = null) {
-    const messageTemplate = "systems/scrpg/templates/chat/minorroll.hbs";
+    const messageTemplate = "systems/Sentinels-Foundry/templates/chat/minorroll.hbs";
     let color = game.settings.get("scrpg", "coloredDice");
-    let rollResult = new Roll(roll).evaluate({ async: false });
+    let rollResult = new Roll(roll);
+    await rollResult.evaluate();
     let coloring = "black";
     let mods = actor.mod;
     let modsOn = game.settings.get("scrpg", "mod");
@@ -135,7 +138,7 @@ export async function SingleCheck(roll = null, rollType = null, rollName = null,
     await UnselectPersistentMods(actor);
 
     //renders roll template using minorroll.hbs
-    let render = await renderTemplate(messageTemplate, chatData);
+    let render = await foundry.applications.handlebars.renderTemplate(messageTemplate, chatData);
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
@@ -152,9 +155,9 @@ export async function ItemRoll(item = null) {
     let chatData = {
         item: item
     }
-    const messageTemplate = "systems/scrpg/templates/chat/" + item.type + "roll.hbs";
+    const messageTemplate = "systems/Sentinels-Foundry/templates/chat/" + item.type + "roll.hbs";
 
-    let render = await renderTemplate(messageTemplate, chatData)
+    let render = await foundry.applications.handlebars.renderTemplate(messageTemplate, chatData)
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
@@ -208,7 +211,8 @@ export async function RollAllMinions(actor = null, group = 1) {
     for (let i = 0; i < actor.heroMinion.length; i++) {
         if (actor.heroMinion[i].system.group == group) {
 
-            rollResult = new Roll(actor.heroMinion[i].system.dieType).evaluate({ async: false });
+            rollResult = new Roll(actor.heroMinion[i].system.dieType);
+            await rollResult.evaluate();
 
             //checks the number of die faces and attachs the corresponding dice image
             if ([4, 6, 8, 10, 12].indexOf(rollResult.dice[0].faces) > -1) {
@@ -232,9 +236,9 @@ export async function RollAllMinions(actor = null, group = 1) {
         minions: minions,
         groupName: groupName
     }
-    const messageTemplate = "systems/scrpg/templates/chat/minionsroll.hbs";
+    const messageTemplate = "systems/Sentinels-Foundry/templates/chat/minionsroll.hbs";
 
-    let render = await renderTemplate(messageTemplate, chatData)
+    let render = await foundry.applications.handlebars.renderTemplate(messageTemplate, chatData)
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),
@@ -251,9 +255,9 @@ export async function OutRoll(out = null) {
     let chatData = {
         out: out
     }
-    const messageTemplate = "systems/scrpg/templates/chat/outroll.hbs";
+    const messageTemplate = "systems/Sentinels-Foundry/templates/chat/outroll.hbs";
 
-    let render = await renderTemplate(messageTemplate, chatData)
+    let render = await foundry.applications.handlebars.renderTemplate(messageTemplate, chatData)
 
     let messageData = {
         speaker: ChatMessage.getSpeaker(),

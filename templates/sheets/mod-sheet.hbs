@@ -22,11 +22,7 @@
                 <td>
                     {{!-- Drop down to select the mod --}}
                     <select name="system.value">
-                        {{#select item.system.value}}
-                        {{#each config.mod as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions config.mod selected=item.system.value localize=true}}
                     </select>
                 </td>
                 <td>
